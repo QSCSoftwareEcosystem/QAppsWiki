@@ -1,0 +1,195 @@
+---
+type: schema
+status: draft
+updated: 2026-06-02
+owner: Thomas Naughton
+fallback_owner: Vicente Leyton
+tags: [frontmatter, provenance, data-schema]
+---
+
+# Frontmatter Schema v0
+
+This is the first draft schema for QAppsWiki markdown pages. It is intended to
+map cleanly to QSC Data Schema work and to reuse OpenQEvo context-schema ideas
+where possible.
+
+## Common Fields
+
+All maintained wiki pages should include:
+
+```yaml
+type: package | how-to | integration | source | schema | index | activity-log | note
+status: draft | active | deprecated | blocked
+updated: YYYY-MM-DD
+owner: <person or project>
+tags: []
+sources: []
+source_markdown: []
+provenance_status: source-backed | partially-source-backed | needs-verification
+```
+
+Recommended optional fields:
+
+```yaml
+related_packages: []
+related_integrations: []
+related_how_to: []
+qsc_projects: []
+openqse_relevance: ""
+version_scope: ""
+license: ""
+```
+
+## Package Pages
+
+Package pages describe software entities under `packages/`.
+
+Required fields:
+
+```yaml
+type: package
+name: ""
+status: draft | active | deprecated
+updated: YYYY-MM-DD
+package_role: library | framework | simulator | compiler | workflow | backend | dataset | other
+capabilities: []
+hardware_targets: []
+interfaces: []
+sources: []
+provenance_status: source-backed | partially-source-backed | needs-verification
+```
+
+Recommended fields:
+
+```yaml
+repository: ""
+documentation: ""
+package_manager: []
+language: []
+license: ""
+maturity: prototype | pre-alpha | alpha | beta | production | unknown
+qsc_projects: []
+```
+
+## How-To Pages
+
+How-to pages describe task-specific usage under `how-to/`.
+
+Required fields:
+
+```yaml
+type: how-to
+status: draft | active | deprecated
+updated: YYYY-MM-DD
+task: ""
+packages: []
+version_scope: ""
+sources: []
+provenance_status: source-backed | partially-source-backed | needs-verification
+```
+
+Recommended fields:
+
+```yaml
+prerequisites: []
+commands_verified: true | false
+failure_modes: []
+```
+
+## Integration Pages
+
+Integration pages describe package-to-package or package-to-workflow composition
+under `integrations/`.
+
+Required fields:
+
+```yaml
+type: integration
+status: draft | active | deprecated
+updated: YYYY-MM-DD
+packages: []
+interfaces: []
+inputs: []
+outputs: []
+sources: []
+provenance_status: source-backed | partially-source-backed | needs-verification
+```
+
+Recommended fields:
+
+```yaml
+version_scope: ""
+adapter: ""
+hardware_targets: []
+qsc_projects: []
+known_failure_modes: []
+validation_status: unverified | locally-tested | source-tested | production
+```
+
+## Source Pages
+
+Source pages or source inventory entries describe raw material under `raw/`.
+
+Required fields:
+
+```yaml
+type: source
+status: draft | active
+updated: YYYY-MM-DD
+title: ""
+source_type: documentation | repository | paper | issue | release-note | report | dataset | other
+location: ""
+preferred_ingest_path: raw/md | raw/pdf | external
+provenance_status: source-backed | partially-source-backed | needs-verification
+```
+
+## Controlled Vocabularies
+
+Initial capability tags:
+
+- `time-evolution`
+- `trotterization`
+- `circuit-framework`
+- `differentiable-programming`
+- `simulation`
+- `stabilizer-simulation`
+- `adapter`
+- `workflow-composition`
+- `schema`
+- `agentic-query`
+
+Initial hardware target tags:
+
+- `local-cpu`
+- `local-gpu`
+- `hpc`
+- `quantum-hardware`
+- `simulator`
+- `unknown`
+
+Initial interface tags:
+
+- `python-api`
+- `registry`
+- `adapter`
+- `json-context`
+- `markdown-source`
+- `mcp`
+- `cli`
+- `hybrid-agent-interface`
+
+## OpenQEvo Context Mapping
+
+OpenQEvo context JSON fields should inform QAppsWiki package and integration
+pages as follows:
+
+| OpenQEvo context concept | QAppsWiki field |
+|--------------------------|-----------------|
+| method name | `name`, `capabilities`, package page sections |
+| description | package/how-to summary |
+| source | `sources`, `provenance_status`, `qsc_projects` |
+| parameters | how-to prerequisites and usage notes |
+| limitations | known failure modes and version-scope notes |
+| references | `sources` and `source_markdown` |
+
+This mapping is draft until DS review.

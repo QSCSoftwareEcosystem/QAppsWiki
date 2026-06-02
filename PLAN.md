@@ -166,7 +166,8 @@ Deliverables:
 
 ### Data Schema
 
-- [ ] Name a DS DRI for QAppsWiki.
+- [x] Name a DS DRI for QAppsWiki: Thomas Naughton. Vicente will define tasks
+      and execute locally if collaboration does not materialize.
 - [ ] Draft `schema/frontmatter-v0.md`.
 - [ ] Define required fields for `package`, `how-to`, `integration`, and
       `source` pages.
@@ -179,7 +180,8 @@ Deliverables:
 
 ### Agentic Software
 
-- [ ] Name an AS DRI for QAppsWiki.
+- [x] Name an AS DRI for QAppsWiki: Tirthankar Ghosal. Vicente will define
+      tasks and execute locally if collaboration does not materialize.
 - [ ] Convert `CONTEXT.md` into explicit ingest, query, and lint workflows.
 - [ ] Define the first ingest prompt/workflow for source markdown in `raw/md/`.
 - [ ] Define the query workflow: read `index.md`, select relevant wiki pages,
@@ -193,6 +195,8 @@ Deliverables:
 
 ### Software Engineering
 
+- [x] Name an SE DRI for QAppsWiki: Seth Johnson. Vicente will define tasks
+      and execute locally if collaboration does not materialize.
 - [ ] Confirm repo layout and branch/review conventions.
 - [ ] Add basic validation for required files: `CONTEXT.md`, `PLAN.md`,
       `README.md`, `index.md`, `log.md`, and `schema/frontmatter-v0.md`.
@@ -206,6 +210,8 @@ Deliverables:
 
 ### Hybrid Workflows / Compilation Tools
 
+- [x] Name an HW DRI for QAppsWiki: Samuel Stein. Vicente will define tasks and
+      execute locally if collaboration does not materialize.
 - [ ] Identify the first QHPC-relevant integration target for OpenQEvo.
 - [ ] Identify hardware/backend metadata that should appear on package and
       integration pages.
@@ -240,22 +246,22 @@ Phase-1 MVP is complete when:
 
 ## Immediate Next Actions
 
-- [ ] Create `index.md` and `log.md`.
-- [ ] Create `schema/frontmatter-v0.md`.
-- [ ] Create starter package page: `packages/openqevo.md`.
-- [ ] Draft first `how-to/` page from OpenQEvo install or adapter usage.
-- [ ] Draft first `integrations/` page: Qiskit to OpenQEvo.
-- [ ] Pick the first source for each seed package.
-- [ ] Convert any PDFs with MarkItDown / Marker before ingest.
-- [ ] File companion page in `thrust-wiki/themes/qapps-wiki.md` after the name
+- [x] Create `index.md` and `log.md`.
+- [x] Create `schema/frontmatter-v0.md`.
+- [x] Create starter package page: `packages/openqevo.md`.
+- [x] Draft first `how-to/` page from OpenQEvo install or adapter usage.
+- [x] Draft first `integrations/` page: Qiskit to OpenQEvo.
+- [x] Pick the first source for each seed package.
+- [ ] Convert any PDFs with MarkItDown / Marker plugin before ingest.
+- [x] File companion page in `thrust-wiki/themes/qapps-wiki.md` after the name
       is stable.
 
 ## Open Decisions
 
-- Name: keep `QAppsWiki` or align with openQSE branding?
-- Audience: QSC internal first or external community from day one?
-- Hosting: private until MVP or public early?
-- Agent stack: MCP, direct API, CLI, or hybrid?
-- DRIs: who signs off for DS, AS, SE, and HW?
-- Marker integration: use Marker directly, through MarkItDown plugin support,
-  or as a fallback conversion path for high-value PDFs?
+- [x] Name: keep `QAppsWiki`.
+- [x] Audience / hosting: keep private until DOE copyright release.
+- [x] Agent stack: hybrid interface.
+- [x] DRIs: Thomas Naughton for DS, Tirthankar Ghosal for AS, Seth Johnson for
+      SE, Samuel Stein for HW. Vicente will define tasks and execute locally if
+      needed.
+- [x] Marker integration: use the MarkItDown plugin path.
