@@ -1,7 +1,7 @@
 ---
 type: source
 status: active
-updated: 2026-06-02
+updated: 2026-06-03
 title: QAppsWiki seed source inventory
 source_type: documentation
 location: raw/source-inventory.md
@@ -28,14 +28,38 @@ and conversion.
 ## PDF Conversion Policy
 
 For PDFs, use the MarkItDown plugin path with Marker-backed extraction when
-equations, tables, layout, or figures matter. Preserve both raw source and
-extracted markdown in derived pages.
+equations, tables, layout, or figures matter. Keep extracted markdown in
+`raw/md/` and record the original download location here. Do not track raw PDF
+binaries in Git unless a source is unavailable elsewhere or explicit archival
+approval is given.
 
 ```yaml
-sources:
-  - raw/pdf/<source>.pdf
+source_url: https://example.org/source.pdf
 source_markdown:
   - raw/md/<source>.md
 extracted_with: markitdown
 extraction_backend: marker
 ```
+
+## OpenQEvo Paper Source URLs
+
+| Local markdown | Source URL |
+|----------------|------------|
+| `raw/md/2606.00239.md` | https://arxiv.org/pdf/2606.00239 |
+| `raw/md/openqevo-annealing-albash-lidar-2016-1611.04471.md` | https://arxiv.org/pdf/1611.04471 |
+| `raw/md/openqevo-annealing-das-chakrabarti-2008-0801.2193.md` | https://arxiv.org/pdf/0801.2193 |
+| `raw/md/openqevo-annealing-farhi-2000-quant-ph-0001106.md` | https://arxiv.org/pdf/quant-ph/0001106 |
+| `raw/md/openqevo-interaction-low-wiebe-2018-1805.00675.md` | https://arxiv.org/pdf/1805.00675 |
+| `raw/md/openqevo-randomized-qdrift-campbell-2019-1811.08017.md` | https://arxiv.org/pdf/1811.08017 |
+| `raw/md/openqevo-randomized-qswift-2023-2302.14811.md` | https://arxiv.org/pdf/2302.14811 |
+| `raw/md/openqevo-randomized-random-trotter-childs-2019-1805.08385.md` | https://arxiv.org/pdf/1805.08385 |
+| `raw/md/openqevo-randomized-sparsification-campbell-2019-1910.06255.md` | https://arxiv.org/pdf/1910.06255 |
+| `raw/md/openqevo-trotter-gonzalez-garcia-2025-2502.05658.md` | https://arxiv.org/pdf/2502.05658 |
+| `raw/md/openqevo-trotter-grimsley-2020-1910.10329.md` | https://arxiv.org/pdf/1910.10329 |
+| `raw/md/openqevo-trotter-mehendale-2025-2312.13282.md` | https://arxiv.org/pdf/2312.13282 |
+| `raw/md/openqevo-trotter-rajput-2022-q-2022-08-17-780.md` | https://quantum-journal.org/papers/q-2022-08-17-780/pdf/ |
+| `raw/md/openqevo-trotter-sugisaki-fmo-2024-2402.17993.md` | https://arxiv.org/pdf/2402.17993 |
+| `raw/md/openqevo-trotter-sugisaki-qpe-2024-2406.09830.md` | https://arxiv.org/pdf/2406.09830 |
+| `raw/md/openqevo-trotter-suzuki-1976-10.1007-BF01609348.md` | https://doi.org/10.1007/BF01609348 |
+| `raw/md/openqevo-trotter-tranter-2019-1912.07555.md` | https://arxiv.org/pdf/1912.07555 |
+| `raw/md/openqevo-trotter-yang-2025-2505.04552.md` | https://arxiv.org/pdf/2505.04552 |
