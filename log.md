@@ -42,3 +42,15 @@ Adapted the generic LLM-wiki pattern for QSC needs. Added domain-specific
 structure for quantum-HPC/QEC integration, including QEC artifacts, workflows,
 benchmarks, compiler artifacts, hardware targets, validation state, and
 artifact/interface relationships.
+
+## 2026-06-08 structure | Broaden scope and harden provenance | touched: README.md, CONTEXT.md, PLAN.md, schema/frontmatter-v0.md, docs/llm-wiki-structure.md, index.md
+
+Generalized QAppsWiki from a QSC-software-thrust knowledge layer to a general
+quantum computing knowledge base (quantum information, algorithms, simulation,
+software, languages, implementation, QEC, compilation, QHPC), with QSC drivers
+setting ingest priority rather than scope. Added a `domains` controlled
+vocabulary and tagging rule. Added a two-level provenance convention: page-level
+`sources:` frontmatter plus claim-level inline `(source: ...)` citations, with a
+`provenance_granularity` field. Marked the QEC-artifact, benchmark, and workflow
+page/node types `provisional` until a compilation pass over real sources
+validates them, and expanded `concept_kind` for the broader domain coverage.

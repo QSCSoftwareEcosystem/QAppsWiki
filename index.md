@@ -6,9 +6,10 @@ updated: 2026-06-08
 
 # QAppsWiki Index
 
-This index tracks maintained QAppsWiki pages. Raw sources live under `raw/`;
-synthesized wiki knowledge lives under `packages/`, `how-to/`,
-`integrations/`, and `schema/`.
+This index tracks maintained QAppsWiki pages. QAppsWiki is an LLM-maintained
+knowledge base for quantum computing broadly — see [[README]] for scope and
+domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
+`packages/`, `concepts/`, `how-to/`, `integrations/`, and `schema/`.
 
 ## Project Docs
 
@@ -44,8 +45,9 @@ synthesized wiki knowledge lives under `packages/`, `how-to/`,
 
 ## Schema
 
-- [[schema/frontmatter-v0]]: draft frontmatter schema for package, how-to,
-  integration, and source pages.
+- [[schema/frontmatter-v0]]: draft frontmatter schema for package, concept,
+  how-to, integration, and source pages, with the `domains` taxonomy and the
+  inline-provenance convention.
 
 ## Source Tracking
 

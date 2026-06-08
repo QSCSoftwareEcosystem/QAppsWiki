@@ -24,6 +24,29 @@ The structure must support three things:
 3. explicit links between packages, concepts, interfaces, workflows, and
    sources.
 
+## Domain Coverage
+
+QAppsWiki is general to quantum computing, not limited to QSC software. The same
+page families and graph model carry every topic area; each page declares its
+areas with a `domains` field:
+
+- `quantum-information` — qubits, entanglement, channels, foundations.
+- `quantum-algorithms` — algorithms and primitives.
+- `quantum-simulation` — simulating quantum systems on quantum computers
+  (Hamiltonian / time evolution).
+- `quantum-software` — packages, libraries, SDKs, frameworks.
+- `quantum-languages` — programming languages, DSLs, and IRs.
+- `quantum-implementation` — hardware, devices, control, noise, architectures.
+- `quantum-error-correction` — codes, protocols, decoding, fault tolerance.
+- `quantum-hpc` — QHPC integration and hybrid workflows.
+- `compilation` — compilers, transpilation, lowering, IR.
+- `benchmarking-validation` — benchmarks, validation, resource estimation.
+- `wiki-infrastructure` — the LLM-wiki method, schema, and provenance itself.
+
+Quantum-HPC and QEC (below) are one specialization among these domains, not the
+boundary of the wiki. A general quantum computing topic is in scope even when no
+QSC project uses it yet.
+
 ## Page Families
 
 | Family | Directory | Role |
@@ -62,12 +85,17 @@ Minimum node types:
 - `concept`
 - `how-to`
 - `integration`
-- `qec-artifact`
-- `benchmark`
-- `workflow`
+- `qec-artifact` *(provisional)*
+- `benchmark` *(provisional)*
+- `workflow` *(provisional)*
 - `source`
 - `schema`
 - `note`
+
+The `qec-artifact`, `benchmark`, and `workflow` node types are **provisional**:
+they are defined ahead of evidence and should be validated or revised by the
+first compilation pass over real sources before being treated as settled. The
+remaining node types are the validated core.
 
 Important edge types:
 
@@ -117,6 +145,10 @@ Examples:
 
 The generic LLM-wiki pattern is necessary but not sufficient for QAppsWiki.
 QAppsWiki should specialize the pattern for quantum-HPC integration and QEC.
+This is one provisional domain extension (see Domain Coverage above), driven by
+QSC priorities; the node and page types it introduces are validated against real
+sources before being treated as settled, and other domains may justify their own
+extensions later.
 
 ### Domain Nodes
 

@@ -12,11 +12,14 @@ cross-linking, and bookkeeping.
 
 ## Purpose
 
-QAppsWiki is an LLM-maintained knowledge base for quantum computing
-applications, software packages, and QSC workflows. It is the knowledge layer
-that connects OpenQEvo, Quantum Wiki / ChatQEC planning, openQSE discovery, and
-future agentic workflow composition. It compounds knowledge across four page
-families:
+QAppsWiki is an LLM-maintained knowledge base for quantum computing. Its scope
+is general — quantum information, quantum algorithms, quantum simulation,
+quantum software and programming languages, quantum implementation and hardware,
+quantum error correction, compilation, and quantum-HPC integration. It is
+developed in the QSC Software Thrust and connects OpenQEvo, Quantum Wiki /
+ChatQEC planning, openQSE discovery, and future agentic workflow composition,
+but the knowledge graph is not limited to those projects. It compounds knowledge
+across four page families:
 
 - `packages/` — what exists: package/entity pages.
 - `concepts/` — what ideas recur: concepts, capabilities, interfaces,
@@ -29,6 +32,21 @@ families:
 Treat OpenQEvo as the first internal package and integration testbed. When
 OpenQEvo sources are ingested, update the relevant package, how-to, and
 integration pages rather than leaving the information only in raw notes.
+
+## Scope and Domains
+
+QAppsWiki covers quantum computing broadly. Tag every maintained page with one
+or more `domains` values so the graph stays navigable as topics multiply:
+
+- `quantum-information`, `quantum-algorithms`, `quantum-simulation`
+- `quantum-software`, `quantum-languages`, `quantum-implementation`
+- `quantum-error-correction`, `quantum-hpc`, `compilation`
+- `benchmarking-validation`, `wiki-infrastructure`
+
+QSC drivers (OpenQEvo, openQSE, ChatQEC) set ingest priority, not scope. A page
+about a general quantum computing topic is in scope even when no QSC project
+uses it yet. Prefer broadening an existing concept page over creating a
+QSC-only duplicate of a general idea.
 
 ## Current AS Implementation Direction
 
@@ -185,6 +203,38 @@ Periodic lint should report, not silently fix:
   adapters have changed;
 - claims that mention support for an adapter or backend without tests, source,
   or local verification.
+
+## Provenance Convention
+
+QAppsWiki uses two levels of provenance.
+
+Page-level provenance lists every source a page draws on, in frontmatter:
+
+```yaml
+sources:
+  - raw/md/openqevo-trotter-suzuki-1976-10.1007-BF01609348.md
+provenance_status: source-backed | partially-source-backed | needs-verification
+provenance_granularity: page | section | claim
+```
+
+Claim-level provenance cites the specific source inline, next to the claim:
+
+- Cite a non-obvious factual claim inline with `(source: <path>)`. Example:
+  second-order Trotter error scales as O(t^3/n^2)
+  `(source: raw/md/openqevo-trotter-suzuki-1976-10.1007-BF01609348.md)`.
+- When a whole paragraph or table comes from one source, cite once at the
+  paragraph or section level instead of per sentence.
+- Mark a claim that combines sources as `(synthesis: <pathA>, <pathB>)`.
+- Mark an inferred claim as `(inferred)` and an unverified one as
+  `(needs-verification)`.
+- Every path cited inline must also appear in the page's `sources:` frontmatter.
+  Frontmatter is the index of sources; inline citations say which claim came
+  from which source.
+
+Page-level frontmatter alone is too coarse for an agent to cite a specific
+sentence. Inline citations make each claim independently traceable and are the
+default for synthesized package, concept, how-to, and integration pages. Record
+the chosen level in `provenance_granularity`.
 
 ## Page Conventions
 

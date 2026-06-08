@@ -19,14 +19,22 @@ All maintained wiki pages should include:
 
 ```yaml
 type: package | concept | how-to | integration | workflow | qec-artifact | benchmark | source | schema | index | activity-log | note
-status: draft | active | deprecated | blocked
+status: draft | provisional | active | deprecated | blocked
 updated: YYYY-MM-DD
 owner: <person or project>
+domains: []
 tags: []
 sources: []
 source_markdown: []
 provenance_status: source-backed | partially-source-backed | needs-verification
+provenance_granularity: page | section | claim
 ```
+
+`status: provisional` marks a page or page type defined ahead of evidence; it
+should be validated or revised by a compilation pass over real sources before
+becoming `active`. `domains` records topic areas (see Domain Tags below).
+`provenance_granularity` records whether claims are cited at the page, section,
+or individual-claim level (see Inline Provenance below).
 
 Recommended optional fields:
 
@@ -88,7 +96,7 @@ type: concept
 name: ""
 status: draft | active | deprecated
 updated: YYYY-MM-DD
-concept_kind: algorithm | capability | interface | workflow-pattern | schema | provenance | failure-mode | qec | qhpc | validation | other
+concept_kind: algorithm | application | capability | interface | language | hardware | simulation | information | workflow-pattern | schema | provenance | failure-mode | qec | qhpc | validation | other
 aliases: []
 related_concepts: []
 related_packages: []
@@ -160,6 +168,18 @@ qsc_projects: []
 known_failure_modes: []
 validation_status: unverified | locally-tested | source-tested | production
 ```
+
+## Provisional Page Types
+
+The Workflow, QEC Artifact, and Benchmark page types below are **provisional**.
+They were defined ahead of evidence to describe quantum-HPC/QEC artifact flow,
+but no real source has yet been compiled to confirm the fields fit. Use
+`status: provisional` on pages of these types, and treat the field lists as
+hypotheses to validate or revise during the first compilation pass over real
+sources. Do not expand them further until a source demonstrates the need.
+
+The Package, Concept, How-To, Integration, and Source page types are the
+validated core and are not provisional.
 
 ## Workflow Pages
 
@@ -262,6 +282,21 @@ provenance_status: source-backed | partially-source-backed | needs-verification
 
 ## Controlled Vocabularies
 
+Domain (topic-area) tags. Every maintained content page should carry one or
+more `domains` values:
+
+- `quantum-information`
+- `quantum-algorithms`
+- `quantum-simulation`
+- `quantum-software`
+- `quantum-languages`
+- `quantum-implementation`
+- `quantum-error-correction`
+- `quantum-hpc`
+- `compilation`
+- `benchmarking-validation`
+- `wiki-infrastructure`
+
 Initial capability tags:
 
 - `time-evolution`
@@ -310,8 +345,13 @@ Initial interface tags:
 Initial concept-kind tags:
 
 - `algorithm`
+- `application`
 - `capability`
 - `interface`
+- `language`
+- `hardware`
+- `simulation`
+- `information`
 - `workflow-pattern`
 - `schema`
 - `provenance`
@@ -330,6 +370,29 @@ Initial artifact-kind tags:
 - `metadata-bundle`
 - `benchmark-input`
 - `other`
+
+## Inline Provenance
+
+QAppsWiki records provenance at two levels:
+
+- **Page level** — the `sources:` / `source_markdown:` frontmatter lists every
+  source a page draws on, and `provenance_status` rates how well-supported the
+  page is overall.
+- **Claim level** — individual non-obvious claims cite their source inline as
+  `(source: <path>)`, so an agent can attribute a specific sentence. Combined
+  claims use `(synthesis: <pathA>, <pathB>)`; inferred or unverified claims use
+  `(inferred)` or `(needs-verification)`.
+
+Set `provenance_granularity` to the level a page actually uses:
+
+- `page` — only frontmatter sources (acceptable for short notes and indexes);
+- `section` — one citation per paragraph/table/section;
+- `claim` — inline citation on individual claims (the default for synthesized
+  package, concept, how-to, and integration pages).
+
+Every path cited inline must also appear in the page's `sources:` frontmatter.
+The full inline convention is defined in [`CONTEXT.md`](../CONTEXT.md) under
+"Provenance Convention".
 
 ## OpenQEvo Context Mapping
 

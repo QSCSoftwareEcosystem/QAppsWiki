@@ -11,10 +11,18 @@ visibility: private-mvp
 
 # QAppsWiki
 
-QAppsWiki is the QSC Software Thrust knowledge layer for quantum applications,
-packages, and workflows. It is a maintained markdown wiki plus an emerging
-agent workflow, designed to help QSC users and downstream agents discover,
-understand, and compose quantum software.
+QAppsWiki is an LLM-maintained knowledge base for quantum computing. It spans
+quantum information, quantum algorithms, quantum simulation (simulating quantum
+systems on quantum computers), quantum software and programming languages, and
+quantum implementation and hardware, together with the packages, integrations,
+and workflows that realize them.
+
+It is a maintained markdown wiki plus an emerging agent workflow, designed to
+help users and downstream agents discover, understand, and compose quantum
+computing knowledge and software. QAppsWiki is developed in the QSC Software
+Thrust and driven first by OpenQEvo, openQSE, and Quantum Wiki / ChatQEC, but
+the knowledge graph itself is general to quantum computing rather than scoped to
+a single project.
 
 The repository is private during MVP development:
 `QSCSoftwareThrust/QAppsWiki`.
@@ -24,7 +32,7 @@ The repository is private during MVP development:
 QAppsWiki is no longer only a proposal. As of 2026-06-08, it is a dedicated
 repository seeded from the QSC Software Thrust workspace, with an initial
 OpenQEvo slice and an AS-assigned intern path for the LLM-Wiki implementation.
-It is aligned with three active thrust needs:
+Its first active drivers are three QSC Software Thrust needs:
 
 - **OpenQEvo support**: turn OpenQEvo docs, papers, examples, and context files
   into catalogued package, how-to, and integration knowledge.
@@ -37,14 +45,32 @@ It is aligned with three active thrust needs:
 - **openQSE integration**: become the discovery and composition surface for
   quantum software packages, schemas, adapters, and QHPC workflows.
 
+### Scope
+
+QAppsWiki is general to quantum computing. The QSC drivers above set the first
+ingest priorities, but package, concept, how-to, and integration pages may
+cover any quantum computing topic, including:
+
+- quantum information and foundations;
+- quantum algorithms and quantum simulation;
+- quantum software, SDKs, and programming languages / IRs;
+- quantum implementation, hardware, and control;
+- quantum error correction and fault tolerance;
+- compilation, simulation, benchmarking, and quantum-HPC integration.
+
+Each page declares its topic areas with a `domains` field, defined in
+[`schema/frontmatter-v0.md`](schema/frontmatter-v0.md). A page about a general
+quantum computing topic is in scope even when no QSC project uses it yet.
+
 ## Goals
 
 QAppsWiki has four concrete goals for the current QSC cycle.
 
-### 1. Build a Software Knowledge Graph
+### 1. Build a Quantum Computing Knowledge Graph
 
-Maintain an interlinked markdown graph describing quantum packages, their
-capabilities, usage patterns, hardware targets, and integration points.
+Maintain an interlinked markdown graph describing quantum computing concepts,
+packages, languages, hardware targets, algorithms, and simulation methods, and
+the integration points between them — not only software packages.
 
 Primary page families:
 

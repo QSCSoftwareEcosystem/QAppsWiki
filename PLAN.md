@@ -12,13 +12,20 @@ OpenQEvo, Quantum Wiki / ChatQEC planning, and openQSE discovery workflows.
 
 ## Goal
 
-Build a maintained markdown knowledge base that helps QSC users and agents
-answer four practical questions:
+Build a maintained markdown knowledge base for quantum computing that helps
+users and agents answer five practical questions:
 
-1. What quantum software packages exist for a task?
-2. How do we install, configure, and use them correctly?
-3. How do we compose them into working QSC and QHPC workflows?
-4. What sources, schema fields, and provenance support each answer?
+1. What quantum computing concepts, packages, and languages exist for a task?
+2. How do we install, configure, and use the software correctly?
+3. How do we compose tools into working quantum, QSC, and QHPC workflows?
+4. How do quantum information, algorithms, simulation, and implementation ideas
+   connect across sources?
+5. What sources, schema fields, and provenance support each answer?
+
+QAppsWiki is general to quantum computing — quantum information, algorithms,
+simulation, software, languages, implementation, QEC, compilation, and
+quantum-HPC. The QSC drivers (OpenQEvo, openQSE, ChatQEC) set ingest priority,
+not scope.
 
 ## Operating Principles
 
@@ -37,6 +44,13 @@ answer four practical questions:
 - The first AS implementation should be a RAG-like Markdown compilation
   workflow, not a conventional retrieval-only RAG system: extract concepts from
   source markdown, synthesize maintained pages, and add interlink connections.
+- QAppsWiki is general to quantum computing; tag every page with `domains`, and
+  prefer broadening a general concept page over creating a QSC-only duplicate.
+- Provenance is two-level: page-level `sources:` frontmatter plus claim-level
+  inline `(source: ...)` citations.
+- New page types beyond the validated core (package, concept, how-to,
+  integration, source) start as `provisional` and must be earned by real
+  sources before becoming `active`.
 
 ## Workstreams
 
@@ -299,6 +313,12 @@ Phase-1 MVP is complete when:
       structure.
 - [ ] Create a first lint checklist for missing links, missing provenance, and
       stale package status.
+- [x] Broaden QAppsWiki scope to general quantum computing and add the `domains`
+      controlled vocabulary.
+- [x] Add the inline (claim-level) provenance convention to `CONTEXT.md` and
+      `schema/frontmatter-v0.md`.
+- [x] Mark the QEC-artifact, benchmark, and workflow page types `provisional`
+      until a compilation pass validates them.
 
 ## Open Decisions
 
