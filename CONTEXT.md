@@ -1,7 +1,7 @@
 ---
 type: operating-manual
 status: draft
-updated: 2026-06-02
+updated: 2026-06-08
 ---
 
 # QAppsWiki Context
@@ -15,16 +15,41 @@ cross-linking, and bookkeeping.
 QAppsWiki is an LLM-maintained knowledge base for quantum computing
 applications, software packages, and QSC workflows. It is the knowledge layer
 that connects OpenQEvo, Quantum Wiki / ChatQEC planning, openQSE discovery, and
-future agentic workflow composition. It compounds knowledge across three page
+future agentic workflow composition. It compounds knowledge across four page
 families:
 
 - `packages/` — what exists: package/entity pages.
+- `concepts/` — what ideas recur: concepts, capabilities, interfaces,
+  algorithms, patterns, schemas, provenance topics, and failure modes.
 - `how-to/` — how to use packages for specific tasks.
 - `integrations/` — how packages compose into working pipelines.
+- workflow, QEC artifact, and benchmark pages — created when a source describes
+  quantum-HPC/QEC artifact flow, validation cases, or benchmark structure.
 
 Treat OpenQEvo as the first internal package and integration testbed. When
 OpenQEvo sources are ingested, update the relevant package, how-to, and
 integration pages rather than leaving the information only in raw notes.
+
+## Current AS Implementation Direction
+
+The first AS implementation should be a RAG-like Markdown compilation workflow,
+not a conventional retrieval-only RAG system. The goal is to compile durable,
+linked wiki pages from source markdown:
+
+1. read source markdown from `raw/md/` or local markdown sources;
+2. extract concepts, packages, capabilities, interfaces, adapters, and
+   source-backed claims;
+3. map extracted concepts to existing wiki pages or propose new pages;
+4. update maintained pages in `packages/`, `how-to/`, and `integrations/`;
+5. create or update concept pages in `concepts/` when concepts recur across
+   sources, packages, or workflows;
+6. create or repair wiki links between related pages;
+7. preserve provenance in frontmatter and page text;
+8. update `index.md` and append one entry to `log.md`.
+
+The workflow should scale by reducing repeated synthesis from raw chunks.
+Source markdown remains the evidence layer; maintained wiki pages become the
+compiled knowledge layer.
 
 ## QSC Integration Rules
 
@@ -33,6 +58,11 @@ integration pages rather than leaving the information only in raw notes.
   claims.
 - Capture interfaces and adapters explicitly; integration pages should describe
   inputs, outputs, schemas, version assumptions, and failure modes.
+- For QEC and quantum-HPC content, capture artifacts explicitly: protocol
+  packages, circuit families, compiler outputs, IR/lowering outputs, benchmark
+  inputs, metadata bundles, and validation status.
+- Track hardware and execution targets explicitly: simulator, local CPU/GPU,
+  HPC, vendor QPU, and QHPC operating environment.
 - Prefer QSC-relevant workflows over generic package summaries when choosing
   what to synthesize first.
 - Mark claims as uncertain when source extraction, version drift, or package
@@ -85,8 +115,8 @@ extraction_backend: marker
 2. Do not read the PDF by default. Check the corresponding original source in
    `raw/pdf/` only when extraction is incomplete, ambiguous, missing important
    figures/tables, or needs verification.
-3. Create or update the relevant pages in `packages/`, `how-to/`, and
-   `integrations/`.
+3. Create or update the relevant pages in `packages/`, `concepts/`, `how-to/`,
+   and `integrations/`.
 4. Update `index.md` with any new pages.
 5. Append one entry to `log.md`:
    `## [YYYY-MM-DD] ingest | <source title> | touched: <files>`.
@@ -99,6 +129,62 @@ For OpenQEvo ingest, prioritize:
 3. Adapter paths: Qiskit, PennyLane, Qrack, TNQVM, or other active targets.
 4. Context-schema/provenance fields that should inform `schema/frontmatter-v0.md`.
 5. Integration pages that connect OpenQEvo to QSC workflows.
+
+## Markdown Compilation Workflow
+
+Use this workflow when turning a source or source set into maintained wiki
+knowledge.
+
+1. Identify the source set and record it in `raw/source-inventory.md` if it is
+   not already listed.
+2. Read existing pages first: `index.md`, relevant `packages/`, relevant
+   `concepts/`, relevant `how-to/`, relevant `integrations/`, and
+   `schema/frontmatter-v0.md`.
+3. Extract a concept list from the source set. For each concept, classify it as
+   one of: package, capability, interface, adapter, hardware target, workflow,
+   QEC artifact, compiler artifact, benchmark, source, failure mode, or open
+   question.
+4. Decide whether each concept belongs on an existing page or needs a new page.
+5. Update pages with source-backed claims only. If a claim is inferred, mark it
+   as inferred or `needs-verification`.
+6. Add links using Obsidian-style wiki links where the target page exists or
+   should exist.
+7. Update frontmatter fields: `updated`, `sources`, `source_markdown`,
+   `provenance_status`, `capabilities`, `interfaces`, and `hardware_targets`
+   where applicable.
+8. Update `index.md` for any new maintained page.
+9. Append to `log.md` using the standard format.
+
+Do not allow automated compilation to overwrite pages without validation once
+repo checks exist. Until then, keep changes reviewable and narrowly scoped.
+
+## Query Workflow
+
+When answering a question from QAppsWiki:
+
+1. Read `index.md` first.
+2. Read the relevant maintained wiki pages before raw sources.
+3. Answer from maintained pages and cite the page names used.
+4. If the maintained pages are insufficient, say which source needs ingest or
+   verification.
+5. If the answer becomes reusable, offer to file it as a package, how-to,
+   integration, or note page.
+
+## Lint Workflow
+
+Periodic lint should report, not silently fix:
+
+- pages missing required frontmatter fields;
+- pages with `provenance_status: needs-verification`;
+- broken wiki links;
+- source references that do not exist locally;
+- reusable concepts that appear in multiple pages but do not have a concept
+  page;
+- package pages without at least one concept, how-to, or integration link;
+- stale package status, especially when external package versions or local
+  adapters have changed;
+- claims that mention support for an adapter or backend without tests, source,
+  or local verification.
 
 ## Page Conventions
 

@@ -2,7 +2,7 @@
 type: package
 name: OpenQEvo
 status: active
-updated: 2026-06-02
+updated: 2026-06-08
 package_role: library
 repository: https://github.com/QSCSoftwareThrust/OpenQEvo
 documentation:
@@ -60,7 +60,7 @@ Current source-backed methods and adapters:
 | `trotter_s2` | Placeholder / native method |
 | `qiskit_trotter` | Working adapter |
 | `pennylane_trotter` | Working adapter |
-| `qrack_trotter` | Stub |
+| `qrack_trotter` | Registered adapter stub; source says not yet implemented |
 
 The package metadata in `pyproject.toml` declares version `0.1.0` and Python
 `>=3.10`. The README describes v0.1.0 as a June 2026 target release; treat that
@@ -70,7 +70,9 @@ as a release target until verified against tags or release artifacts.
 
 - Python registry API: `openqevo.list_methods()` and `openqevo.get(name)`.
 - Evolution method interface: `evolve(terms, t, **params)`.
-- Optional adapters: Qiskit, PennyLane, and Qrack.
+- Optional adapters: Qiskit, PennyLane, and Qrack. Qrack is present as a
+  registered adapter module, but the local source still marks it as not yet
+  implemented because Qrack requires gate-level circuit construction.
 - Context JSON files under `context/`, validated against `context/schema.json`.
 
 ## QAppsWiki Follow-Ups
@@ -81,6 +83,8 @@ as a release target until verified against tags or release artifacts.
 - Verify current adapter status against tests and local execution before
   presenting support as production-ready.
 - Add QHPC/HW notes once the first simulator or backend target is selected.
+- Reconcile user-facing Qrack status after implementation work lands: current
+  QAppsWiki evidence supports "registered stub," not "working adapter."
 
 ## Related
 

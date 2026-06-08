@@ -2,7 +2,7 @@
 type: project-charter
 status: active
 created: 2026-04-24
-updated: 2026-06-02
+updated: 2026-06-08
 proposer: Vicente Leyton
 integrates: [data-schema, agentic-software, software-engineering, hybrid-workflows, openqevo, openqse]
 pattern: llm-wiki
@@ -21,14 +21,19 @@ The repository is private during MVP development:
 
 ## Current Position
 
-QAppsWiki is no longer only a proposal. As of 2026-06-02, it is a dedicated
-repository seeded from the QSC Software Thrust workspace and aligned with three
-active thrust needs:
+QAppsWiki is no longer only a proposal. As of 2026-06-08, it is a dedicated
+repository seeded from the QSC Software Thrust workspace, with an initial
+OpenQEvo slice and an AS-assigned intern path for the LLM-Wiki implementation.
+It is aligned with three active thrust needs:
 
 - **OpenQEvo support**: turn OpenQEvo docs, papers, examples, and context files
   into catalogued package, how-to, and integration knowledge.
 - **Quantum Wiki / ChatQEC support**: provide the reusable LLM-wiki pattern for
-  AS knowledge-base and conversational workflows.
+  AS knowledge-base and conversational workflows. The near-term implementation
+  is a RAG-like Markdown compilation workflow: gather concepts from source
+  markdown, synthesize maintained wiki pages, and create interlink connections
+  across the corpus. It is not intended to be a conventional chunk-retrieval
+  RAG system.
 - **openQSE integration**: become the discovery and composition surface for
   quantum software packages, schemas, adapters, and QHPC workflows.
 
@@ -44,6 +49,7 @@ capabilities, usage patterns, hardware targets, and integration points.
 Primary page families:
 
 - `packages/`: what exists.
+- `concepts/`: what ideas, capabilities, interfaces, and patterns recur.
 - `how-to/`: how to install, configure, and use packages for specific tasks.
 - `integrations/`: how packages compose into working pipelines.
 - `schema/`: structured page metadata and controlled vocabularies.
@@ -152,9 +158,29 @@ The first useful version is complete when:
 - A user can ask a package-selection or workflow-composition question and get
   an answer grounded in wiki pages with provenance.
 
+## Current Implementation Focus
+
+The next implementation step is to make the Markdown compilation loop explicit
+enough for AS to automate:
+
+1. collect or convert source material into `raw/md/`;
+2. extract concepts, packages, interfaces, capabilities, and source-backed
+   claims;
+3. update maintained pages in `packages/`, `concepts/`, `how-to/`, and
+   `integrations/`;
+4. create or repair wiki links between related concepts and pages;
+5. update `index.md`, `log.md`, and provenance frontmatter.
+
+This workflow should scale by compiling durable wiki pages from source markdown
+instead of repeatedly answering from raw chunks.
+
 ## Operating Docs
 
 - [`CONTEXT.md`](CONTEXT.md): operating manual for LLM maintenance.
 - [`PLAN.md`](PLAN.md): current work plan and milestones.
 - [`docs/qsc-integration.md`](docs/qsc-integration.md): QSC integration note.
 - [`docs/llm-wiki-pattern.md`](docs/llm-wiki-pattern.md): pattern reference.
+- [`docs/llm-wiki-structure.md`](docs/llm-wiki-structure.md): applied page
+  families, graph model, and compilation rules.
+- [`docs/as-intern-task-brief.md`](docs/as-intern-task-brief.md): first AS
+  implementation brief for Markdown compilation.

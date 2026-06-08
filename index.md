@@ -1,7 +1,7 @@
 ---
 type: index
 status: active
-updated: 2026-06-02
+updated: 2026-06-08
 ---
 
 # QAppsWiki Index
@@ -17,10 +17,21 @@ synthesized wiki knowledge lives under `packages/`, `how-to/`,
 - [[CONTEXT]]: operating manual for LLM maintenance.
 - [[docs/qsc-integration]]: QSC integration note.
 - [[docs/llm-wiki-pattern]]: LLM Wiki pattern reference.
+- [[docs/llm-wiki-structure]]: applied structure for the QAppsWiki LLM-wiki
+  graph.
+- [[docs/as-intern-task-brief]]: AS intern task brief for the Markdown
+  compilation workflow.
 
 ## Package Pages
 
 - [[packages/openqevo]]: OpenQEvo package entry.
+
+## Concept Pages
+
+- [[concepts/markdown-compilation]]: the core LLM-wiki compilation workflow
+  that turns source markdown into maintained, interlinked pages.
+- [[concepts/quantum-hpc-qec-llm-wiki]]: QSC-specific extension of the
+  LLM-wiki pattern for quantum-HPC integration and QEC.
 
 ## How-To Pages
 

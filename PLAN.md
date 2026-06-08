@@ -1,7 +1,7 @@
 ---
 type: project-plan
 status: active
-updated: 2026-06-02
+updated: 2026-06-08
 ---
 
 # QAppsWiki Plan
@@ -34,6 +34,9 @@ answer four practical questions:
   and integration pages.
 - QAppsWiki should reuse QSC Data Schema and OpenQEvo context-schema ideas
   instead of creating isolated metadata.
+- The first AS implementation should be a RAG-like Markdown compilation
+  workflow, not a conventional retrieval-only RAG system: extract concepts from
+  source markdown, synthesize maintained pages, and add interlink connections.
 
 ## Workstreams
 
@@ -47,15 +50,17 @@ Deliverables:
 - `README.md` project charter.
 - `index.md` content catalog.
 - `log.md` append-only activity log.
-- Directory conventions for `packages/`, `how-to/`, `integrations/`, `raw/`,
-  `schema/`, and `docs/`.
+- Directory conventions for `packages/`, `concepts/`, `how-to/`,
+  `integrations/`, `raw/`, `schema/`, and `docs/`.
 
 Current status:
 
 - Dedicated GitHub repo created and pushed: `QSCSoftwareThrust/QAppsWiki`.
 - `README.md`, `PLAN.md`, `CONTEXT.md`, and `docs/llm-wiki-pattern.md` exist.
-- `index.md`, `log.md`, `schema/`, and starter wiki pages still need to be
-  created.
+- `index.md`, `log.md`, `schema/frontmatter-v0.md`, the first OpenQEvo
+  package/how-to/integration pages, and the first concept page exist.
+- The next structure task is to broaden from the OpenQEvo slice to the five
+  seed package pages and the first source markdown inventory.
 
 ### 2. Source Ingest
 
@@ -93,6 +98,7 @@ Deliverables:
 First schema entities:
 
 - `package`
+- `concept`
 - `how-to`
 - `integration`
 - `source`
@@ -103,6 +109,13 @@ First schema entities:
 ### 4. Agent Workflow
 
 Owner: AS lead after review.
+
+Current status:
+
+- AS has assigned an intern to work on the LLM-Wiki / QAppsWiki effort.
+- The first implementation target is a RAG-like Markdown compilation workflow:
+  gather concepts from source markdown, synthesize durable wiki pages, preserve
+  provenance, and create interlink connections across the corpus.
 
 Deliverables:
 
@@ -155,7 +168,7 @@ Deliverables:
 |-----------|--------|--------------|-------------|
 | M0: Repo live | 2026-06 | SE / Vicente | Private GitHub repo created, initial charter and plan pushed |
 | M1: MVP scaffold | 2026-06 | SE / Vicente | `index.md`, `log.md`, `schema/frontmatter-v0.md`, and seed directories |
-| M2: OpenQEvo slice | 2026-06 | DS / AS / SE | OpenQEvo package page, first how-to, first integration page |
+| M2: OpenQEvo slice | 2026-06 | DS / AS / SE | OpenQEvo package page, first concept page, first how-to, first integration page |
 | M3: Source workflow | 2026-06 | AS / SE | MarkItDown + Marker conversion workflow documented and demonstrated |
 | M4: Seed corpus | 2026-07 | DS / AS | Five seed package pages grounded in source markdown |
 | M5: Query loop | 2026-07 | AS | Manual query workflow answers from wiki pages with provenance |
@@ -171,6 +184,8 @@ Deliverables:
 - [ ] Draft `schema/frontmatter-v0.md`.
 - [ ] Define required fields for `package`, `how-to`, `integration`, and
       `source` pages.
+- [ ] Define required fields for `concept` pages and graph edges.
+- [ ] Define required fields for QEC artifact, workflow, and benchmark pages.
 - [ ] Define controlled vocabularies for capabilities, hardware targets,
       package maturity, source type, interface type, and provenance status.
 - [ ] Map frontmatter v0 to OpenQEvo context-schema concepts.
@@ -192,6 +207,11 @@ Deliverables:
 - [ ] Evaluate whether the first automated interface should be MCP, direct API,
       CLI, or hybrid.
 - [ ] Align QAppsWiki workflow with Quantum Wiki / ChatQEC planning.
+- [ ] Define intern-ready implementation tasks for concept extraction,
+      Markdown page compilation, link suggestion, provenance preservation, and
+      scaling behavior.
+- [ ] Define when the workflow should create a new concept page versus only
+      adding a link or tag to an existing page.
 
 ### Software Engineering
 
@@ -207,6 +227,9 @@ Deliverables:
 - [ ] Define how QAppsWiki reuses or extends OpenQEvo packaging/CI work.
 - [ ] Support the MVP demo with a repeatable local command or documented
       workflow.
+- [ ] Define repository checks needed before automated page updates are
+      allowed: frontmatter validation, link validation, and source provenance
+      checks.
 
 ### Hybrid Workflows / Compilation Tools
 
@@ -217,6 +240,17 @@ Deliverables:
       integration pages.
 - [ ] Capture compiler/IR interface assumptions when an integration crosses CT
       or HW boundaries.
+
+### Vicente / Coordination
+
+- [ ] Convert the June 2026 QAppsWiki direction into intern-ready work
+      packages.
+- [ ] Decide which seed package pages AS should implement first after
+      OpenQEvo.
+- [ ] Coordinate with Data Schema on the minimum viable frontmatter fields
+      required by the Markdown compilation workflow.
+- [ ] Coordinate with Software Engineering on validation before automated page
+      updates are allowed.
 
 ## Seed Corpus
 
@@ -239,6 +273,8 @@ Phase-1 MVP is complete when:
 - Each seed package has at least one source in `raw/md/`.
 - At least three `how-to/` pages exist.
 - At least two `integrations/` pages exist.
+- At least five `concepts/` pages exist, including concepts that connect more
+  than one package or workflow.
 - `index.md` and `log.md` are maintained.
 - `schema/frontmatter-v0.md` defines the first usable page schema.
 - A human can ask a package-selection or workflow-composition question and get
@@ -255,6 +291,14 @@ Phase-1 MVP is complete when:
 - [ ] Convert any PDFs with MarkItDown / Marker plugin before ingest.
 - [x] File companion page in `thrust-wiki/themes/qapps-wiki.md` after the name
       is stable.
+- [x] Draft the AS intern task brief for the Markdown compilation workflow.
+- [x] Add the first concept page: `concepts/markdown-compilation.md`.
+- [ ] Add package pages for Qiskit, PennyLane, TNQVM, and Stim.
+- [ ] Add concept pages for time evolution, Trotterization, adapter pattern,
+      provenance, QEC-aware compilation, and quantum-HPC/QEC LLM-wiki
+      structure.
+- [ ] Create a first lint checklist for missing links, missing provenance, and
+      stale package status.
 
 ## Open Decisions
 
