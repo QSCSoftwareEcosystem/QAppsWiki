@@ -83,11 +83,11 @@ Primary page families:
 
 ### 2. Make Source Ingest Reproducible
 
-Use the MarkItDown + Marker workflow to convert papers, PDFs, reports, and
-technical docs into markdown before LLM synthesis. The goal is not just text
-conversion; it is a repeatable source-to-wiki path with provenance.
+Use `markitdown-lightpdf` to convert papers, PDFs, reports, and technical docs
+into markdown before LLM synthesis. The goal is not just text conversion; it is
+a repeatable source-to-wiki path with provenance.
 
-Expected source path:
+Expected source path (the `qappswiki ingest` command wraps this):
 
 ```bash
 mid raw/pdf/<source>.pdf -o raw/md/<source>.md
@@ -100,12 +100,11 @@ sources:
   - raw/pdf/<source>.pdf
 source_markdown:
   - raw/md/<source>.md
-extracted_with: markitdown
+extracted_with: markitdown-lightpdf
 ```
 
-Marker is the higher-quality PDF extraction option when equations, tables, or
-layout-sensitive content matter. MarkItDown is the front-door conversion
-interface; Marker improves the PDF leg of that workflow.
+`markitdown-lightpdf` is a no-OCR converter tuned for born-digital scientific
+PDFs (LaTeX papers), with heuristics for inline/display math and tables.
 
 ### 3. Align With QSC Data and Provenance
 
@@ -169,8 +168,8 @@ Concretely:
 - OpenQEvo pipelines with Qiskit, PennyLane, TNQVM, Qrack, and QHPC execution
   targets become `integrations/` pages.
 - OpenQEvo context-schema work seeds QAppsWiki frontmatter and provenance.
-- The MarkItDown + Marker workflow helps convert OpenQEvo-related papers and
-  technical sources into wiki-ready markdown.
+- `markitdown-lightpdf` helps convert OpenQEvo-related papers and technical
+  sources into wiki-ready markdown.
 
 ## MVP Definition
 

@@ -27,18 +27,16 @@ and conversion.
 
 ## PDF Conversion Policy
 
-For PDFs, use the MarkItDown plugin path with Marker-backed extraction when
-equations, tables, layout, or figures matter. Keep extracted markdown in
-`raw/md/` and record the original download location here. Do not track raw PDF
-binaries in Git unless a source is unavailable elsewhere or explicit archival
-approval is given.
+For PDFs, use `markitdown-lightpdf` (no-OCR; math/table heuristics for
+born-digital papers). Keep extracted markdown in `raw/md/` and record the
+original download location here. Do not track raw PDF binaries in Git unless a
+source is unavailable elsewhere or explicit archival approval is given.
 
 ```yaml
 source_url: https://example.org/source.pdf
 source_markdown:
   - raw/md/<source>.md
-extracted_with: markitdown
-extraction_backend: marker
+extracted_with: markitdown-lightpdf
 ```
 
 ## OpenQEvo Paper Source URLs

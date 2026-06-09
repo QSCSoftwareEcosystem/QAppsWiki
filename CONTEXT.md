@@ -94,7 +94,7 @@ compiled knowledge layer.
   the preferred LLM-readable source layer.
 - `raw/assets/` — extracted images, tables, or attachments when needed.
 
-When a PDF is available, convert it with MarkItDown before ingest:
+When a PDF is available, convert it with `markitdown-lightpdf` before ingest:
 
 ```bash
 mid raw/pdf/<source>.pdf -o raw/md/<source>.md
@@ -109,7 +109,7 @@ sources:
   - raw/pdf/<source>.pdf
 source_markdown:
   - raw/md/<source>.md
-extracted_with: markitdown
+extracted_with: markitdown-lightpdf
 ```
 
 Read the original PDF only when the markdown extraction is missing content,
@@ -117,14 +117,11 @@ garbles equations/tables, omits figures needed for the claim, or when the human
 explicitly asks for PDF-level verification. If extraction quality is poor, note
 that explicitly in the derived page.
 
-Use Marker or the MarkItDown Marker plugin for PDFs where layout, equations,
-figures, or tables are central to the wiki claims. Record the conversion path in
-frontmatter:
-
-```yaml
-extracted_with: markitdown
-extraction_backend: marker
-```
+`markitdown-lightpdf` handles inline/display math and tables for born-digital
+PDFs directly; tune extraction with its flags (e.g. `--columns`, `--no-math`,
+`--min-math-score`) when a paper's layout needs it. If a PDF is scanned (no text
+layer), `markitdown-lightpdf` cannot extract it — note that on the derived page
+and fall back to a manual transcription or another OCR tool.
 
 ## Ingest Workflow
 

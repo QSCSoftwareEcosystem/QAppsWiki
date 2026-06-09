@@ -34,8 +34,8 @@ not scope.
   stable.
 - PDFs remain immutable raw sources, but extracted markdown is the default LLM
   input.
-- MarkItDown is the front-door conversion workflow; Marker is used for
-  higher-quality PDF extraction when equations, tables, or layout matter.
+- `markitdown-lightpdf` is the PDF→markdown converter (no-OCR; math/table
+  heuristics for born-digital papers), invoked via `qappswiki ingest`.
 - Every synthesized claim should trace back to a source file.
 - The wiki should compound: ingest once, then update linked package, how-to,
   and integration pages.
@@ -85,7 +85,7 @@ Owner: Vicente initially; AS later automates.
 
 Deliverables:
 
-- Source workflow using MarkItDown and Marker-backed PDF extraction.
+- Source workflow using `markitdown-lightpdf` for PDF→markdown extraction.
 - Source provenance frontmatter convention.
 - First source set for OpenQEvo and the remaining seed packages.
 - First conversion examples that demonstrate PDF/report/doc-to-wiki flow.
@@ -382,8 +382,8 @@ Phase-1 MVP is complete when:
 - [x] DRIs: Thomas Naughton for DS, Tirthankar Ghosal for AS, Seth Johnson for
       SE, Samuel Stein for HW. Vicente will define tasks and execute locally if
       needed.
-- [x] Marker integration: use the MarkItDown plugin path.
-- [x] Default PDF converter: `markitdown-lightpdf` (`lightpdf` / `mid`), invoked
-      by `qappswiki ingest`; configurable via `--converter` / `$QAPPSWIKI_CONVERTER`.
+- [x] PDF converter: standardized on `markitdown-lightpdf` (`lightpdf` / `mid`),
+      invoked by `qappswiki ingest`; configurable via `--converter` /
+      `$QAPPSWIKI_CONVERTER`.
 - [x] Machine-readable export + access path: the `qappswiki` graph
       (`graph.json` / `graph.html`) plus a CLI and an MCP server.

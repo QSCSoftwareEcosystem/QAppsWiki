@@ -51,9 +51,9 @@ loop:
 6. Use the resulting pages to answer a workflow-composition question with
    citations.
 
-## MarkItDown and Marker Role
+## markitdown-lightpdf Role
 
-MarkItDown and Marker support the source-ingest side of QAppsWiki. They make
+`markitdown-lightpdf` supports the source-ingest side of QAppsWiki. It makes
 papers, reports, and technical PDFs usable as source markdown while preserving
 links back to immutable source files. This benefits OpenQEvo immediately by
 turning time-evolution and adapter-related sources into reusable wiki pages,
