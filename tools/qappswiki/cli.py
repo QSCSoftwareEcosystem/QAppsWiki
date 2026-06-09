@@ -145,6 +145,28 @@ def cmd_run(args):
     return _exit_code(findings, args.strict)
 
 
+def cmd_ingest(args):
+    from . import ingest as _ingest
+    root = Path(args.root).resolve()
+    try:
+        result = _ingest.ingest(
+            args.pdf, root, page_type=args.type, name=args.name, title=args.title,
+            converter=args.converter, keep_pdf=not args.no_keep_pdf, force=args.force,
+        )
+    except _ingest.IngestError as exc:
+        print(f"ingest failed: {exc}")
+        return 1
+    print(f"converted with {result['converter']}:")
+    print(f"  markdown : {result['markdown']}")
+    if result["pdf"]:
+        print(f"  archived : {result['pdf']}")
+    print(f"  stub page: {result['page']}")
+    print("\nnext: compile claims into the stub, then run `qappswiki run`.")
+    print("source-inventory row to paste into raw/source-inventory.md:")
+    print(f"  {result['inventory_row']}")
+    return 0
+
+
 def cmd_serve(args):
     from . import serve
     root = Path(args.root).resolve()
@@ -236,6 +258,19 @@ def main(argv=None) -> int:
     pn.add_argument("--no-html", action="store_true")
     pn.add_argument("--log", action="store_true", help="print a log.md entry line")
     pn.set_defaults(func=cmd_run)
+
+    pi = sub.add_parser("ingest", help="convert a PDF and scaffold a stub page")
+    _add_common(pi)
+    pi.add_argument("pdf", help="path to the source PDF")
+    pi.add_argument("--type", default="concept",
+                    help="stub page type (package|concept|how-to|integration|source|...)")
+    pi.add_argument("--name", default=None, help="slug override (default: PDF stem)")
+    pi.add_argument("--title", default=None, help="page title")
+    pi.add_argument("--converter", default=None,
+                    help="converter command (default: $QAPPSWIKI_CONVERTER, lightpdf, mid)")
+    pi.add_argument("--no-keep-pdf", action="store_true", help="don't archive the PDF to raw/pdf/")
+    pi.add_argument("--force", action="store_true", help="overwrite an existing stub")
+    pi.set_defaults(func=cmd_ingest)
 
     ps = sub.add_parser("serve", help="MCP stdio server over graph.json")
     _add_common(ps)

@@ -108,6 +108,17 @@ pip install -e ".[dev]"      # add the MCP server with ".[all]"
 This puts a `qappswiki` command on your PATH. Runtime dependencies: `pyyaml`,
 `networkx` (plus `mcp` for the server).
 
+For PDF ingest you also need a PDF→markdown converter. The default is
+[`markitdown-lightpdf`](https://pypi.org/project/markitdown-lightpdf/) (no-OCR,
+math/table heuristics for born-digital LaTeX papers), best installed standalone:
+
+```bash
+uv tool install markitdown-lightpdf      # provides the `lightpdf` command
+```
+
+`qappswiki` calls the converter as an external command, so it works whether the
+converter is in this env or its own.
+
 > Without installing, you can still run it as `python -m qappswiki …` from inside
 > the `tools/` directory.
 
@@ -134,6 +145,7 @@ qappswiki run [--strict] [--no-html] [--log]   # validate + build + report (one 
 qappswiki validate [--strict] [--format json]  # lint only; what CI runs
 qappswiki build                                # graph.json + graph.html only
 qappswiki report                               # GRAPH_REPORT.md only
+qappswiki ingest <pdf> [--type concept]        # convert a PDF + scaffold a stub page
 qappswiki serve [--graph wiki-out/graph.json]  # MCP stdio server over the graph
 
 # read-only graph queries
@@ -153,6 +165,25 @@ WARNING on the extensible "initial" tag lists), broken `[[wikilinks]]`, orphan p
 source files, inline citations not listed in `sources:`, and under-linked package
 pages. `validate` exits non-zero when any ERROR is present (or any WARNING with
 `--strict`).
+
+### Ingesting PDFs
+
+`ingest` is the one command that **writes into the wiki**. It converts a PDF with
+your converter, archives the original to `raw/pdf/` (gitignored) for provenance,
+and scaffolds a schema-valid stub page (the "template" — generated from the schema,
+so it always validates) pre-filled with `sources:` / `source_markdown:` provenance:
+
+```bash
+qappswiki ingest paper.pdf --type concept --title "Trotterization"
+# -> raw/md/paper.md  (converted)
+#    raw/pdf/paper.pdf (archived)
+#    concepts/paper.md (stub: status draft, provenance needs-verification)
+```
+
+It then prints a `raw/source-inventory.md` row to paste. The stub deliberately
+reports `missing-domains`, `needs-verification`, and `orphan` warnings — your
+to-do list for compiling it into real, linked, cited knowledge. Pick the converter
+with `--converter`, `$QAPPSWIKI_CONVERTER`, or rely on the `lightpdf`/`mid` default.
 
 ---
 

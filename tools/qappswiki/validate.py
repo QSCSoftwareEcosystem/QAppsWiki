@@ -74,15 +74,18 @@ def _validate_page(page: dict, root: Path, index_targets: set[str]) -> list[dict
     elif ptype not in schema.KNOWN_TYPES:
         out.append(_f("WARNING", "unknown-type", pid, f"type '{ptype}' is not in the known taxonomy"))
 
-    # Required fields
+    # Required fields. Absent/None is a hard miss; present-but-empty (e.g. a
+    # freshly scaffolded `capabilities: []`) is an incompleteness warning.
     required = schema.required_fields(ptype) if ptype else schema.COMMON_REQUIRED
     miss_level = "WARNING" if (is_provisional or not is_content) else "ERROR"
     for field in required:
         if field == "type":
             continue
         val = fm.get(field)
-        if val is None or (isinstance(val, (list, str)) and len(val) == 0):
+        if val is None:
             out.append(_f(miss_level, "missing-required-field", pid, f"missing required field: {field}"))
+        elif isinstance(val, (list, str)) and len(val) == 0:
+            out.append(_f("WARNING", "empty-required-field", pid, f"required field is empty: {field}"))
 
     # Provisional pages should be marked provisional
     if is_provisional and fm.get("status") != "provisional":
