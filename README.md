@@ -200,6 +200,26 @@ enough for AS to automate:
 This workflow should scale by compiling durable wiki pages from source markdown
 instead of repeatedly answering from raw chunks.
 
+## Tooling
+
+The repository ships `qappswiki` (in [`tools/`](tools/)), a markdown-native
+validator and knowledge-graph engine that turns this wiki's own schema and
+`[[wikilinks]]` into an enforced, queryable graph — no LLM, no code parsing. It:
+
+- **validates** every page against `schema/frontmatter-v0.md` (required fields,
+  controlled vocabularies, broken links, orphans, dangling refs, provenance);
+- **compiles** `[[wikilinks]]` + `related_*` + sources into a typed,
+  confidence-labeled graph, exported as `graph.json` and an interactive
+  `graph.html`, with an insight report (`GRAPH_REPORT.md`);
+- **ingests** PDFs (`qappswiki ingest <pdf>`) via `markitdown-lightpdf`,
+  archiving the source and scaffolding a schema-valid stub page;
+- **serves** the graph over an MCP server so agents query it instead of
+  re-reading raw markdown.
+
+It runs locally and in CI (`.github/workflows/validate.yml`), and is the
+validation gate the AS compilation workflow runs before writing pages. See
+[`tools/README.md`](tools/README.md) for installation and usage.
+
 ## Operating Docs
 
 - [`CONTEXT.md`](CONTEXT.md): operating manual for LLM maintenance.
@@ -210,3 +230,5 @@ instead of repeatedly answering from raw chunks.
   families, graph model, and compilation rules.
 - [`docs/as-intern-task-brief.md`](docs/as-intern-task-brief.md): first AS
   implementation brief for Markdown compilation.
+- [`tools/README.md`](tools/README.md): the `qappswiki` validator + knowledge-graph
+  engine — installation and usage.
