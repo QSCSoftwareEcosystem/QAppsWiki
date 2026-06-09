@@ -1,2 +1,11 @@
 .DS_Store
 raw/pdf/*.pdf
+
+node_modules/
+
+# qappswiki tooling
+wiki-out/
+tools/**/__pycache__/
+tools/*.egg-info/
+tools/.pytest_cache/
+*.pyc

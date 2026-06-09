@@ -51,6 +51,34 @@ version_scope: ""
 license: ""
 ```
 
+### Typed Edges (optional)
+
+Most relationships are derived automatically by the `qappswiki` tooling from
+`[[wikilinks]]`, `related_*` fields, and `sources:`. Add an explicit `edges:`
+list only when the relationship is **not** already obvious from those, or when
+you need to pin a specific relation or confidence the heuristics cannot infer
+(for example `supersedes` or `derived-from`). This field is optional and
+additive — tooling merges explicit edges with derived ones and de-duplicates on
+`(source, target, relation)`.
+
+```yaml
+edges:
+  - target: concepts/trotterization   # node id (rel path without .md) or external path
+    relation: implements              # see relation vocabulary below
+    confidence: EXTRACTED             # EXTRACTED | INFERRED | AMBIGUOUS (default EXTRACTED)
+    note: ""                          # optional; surfaced in the AMBIGUOUS-edge review
+```
+
+Relation vocabulary (closed): `integrates`, `depends-on`, `supersedes`, `uses`,
+`implements`, `derived-from`, `cites`, `related`, `has-how-to`, `composes-with`,
+`uses-interface`.
+
+Confidence reuses the three-label provenance system the tooling applies to all
+edges: `EXTRACTED` (explicitly stated), `INFERRED` (a reasonable deduction), or
+`AMBIGUOUS` (uncertain; flagged for human review). A `target` that does not
+resolve to a page produces an `AMBIGUOUS` edge to a `missing` node and a
+validation warning.
+
 ## Package Pages
 
 Package pages describe software entities under `packages/`.
