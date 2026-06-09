@@ -1,7 +1,7 @@
 ---
 type: project-plan
 status: active
-updated: 2026-06-08
+updated: 2026-06-09
 ---
 
 # QAppsWiki Plan
@@ -51,6 +51,9 @@ not scope.
 - New page types beyond the validated core (package, concept, how-to,
   integration, source) start as `provisional` and must be earned by real
   sources before becoming `active`.
+- Structural validation is tooling-enforced: the `qappswiki` engine validates
+  every page against `schema/frontmatter-v0.md` and compiles the corpus into a
+  typed knowledge graph; automated page writes must pass `qappswiki run` first.
 
 ## Workstreams
 
@@ -108,6 +111,8 @@ Deliverables:
   interface types, source types, and provenance status.
 - A mapping to OpenQEvo context-schema fields where possible.
 - Optional projection path for Dataview, JSON, LinkML, or graph export.
+  *(Delivered: the `qappswiki` engine exports `graph.json` + interactive
+  `graph.html`, and adds an optional typed `edges:` extension to the schema.)*
 
 First schema entities:
 
@@ -159,6 +164,15 @@ Deliverables:
 - Access path for users and agents: plain markdown repo first, then static
   site, CLI, MCP server, REST endpoint, or staged combination.
 
+Current status:
+
+- Delivered `tools/qappswiki`, a markdown-native validator + knowledge-graph
+  engine providing frontmatter + link validation, a typed graph
+  (`graph.json` / `graph.html`), an insight report, a `qappswiki ingest` PDF
+  conversion command, and an MCP server (see workstream 7).
+- CI gate `.github/workflows/validate.yml` runs the test suite +
+  `qappswiki validate` on pushes and PRs.
+
 MVP rule:
 
 Do not block the wiki on a service. A useful markdown repo comes first.
@@ -176,6 +190,39 @@ Deliverables:
   Quantum Wiki / ChatQEC, and QHPC workflow discovery.
 - Companion entry in `thrust-wiki/` once the naming and MVP scope are stable.
 
+### 7. Knowledge-Graph Tooling (`qappswiki`)
+
+Owner: SE / Vicente.
+
+Delivered (2026-06) as `tools/qappswiki`, an installable Python CLI that turns
+the schema into an enforced, queryable engine. Inspired by Graphify but
+markdown-native — no code parsing, no LLM, reads only the wiki's own
+frontmatter, `[[wikilinks]]`, and provenance.
+
+Delivered:
+
+- **Validate** — checks every page against `schema/frontmatter-v0.md` (required
+  fields, controlled vocabulary, broken `[[wikilinks]]`, orphans, dangling
+  `related_*` / `packages:` refs, missing/uncited sources, under-linked packages).
+- **Graph** — compiles `[[wikilinks]]` + `related_*` + sources into a typed,
+  confidence-labeled (`EXTRACTED` / `INFERRED` / `AMBIGUOUS`) graph; exports
+  `graph.json` + interactive `graph.html`.
+- **Report** — god-nodes, orphans, under-linked pages, surprising cross-domain
+  edges, AMBIGUOUS edges, and provenance gaps in `GRAPH_REPORT.md`.
+- **Ingest** — `qappswiki ingest <pdf>` converts a PDF to `raw/md/` via
+  `markitdown-lightpdf` (configurable), archives the PDF, and scaffolds a
+  schema-valid stub page.
+- **Serve** — MCP stdio server (`query` / `path` / `explain` / `list_orphans` /
+  …) so agents query the graph instead of re-reading raw markdown.
+- **Schema extension** — optional typed `edges:` block in `frontmatter-v0`.
+- **CI** — `.github/workflows/validate.yml` (tests + non-strict validate).
+- 39 unit tests; the corpus currently validates with 0 errors.
+
+Next:
+
+- Wire `qappswiki run --strict` into the AS compilation workflow as the
+  pre-write gate; promote CI to `--strict` once outstanding warnings clear.
+
 ## Cross-Project Milestones
 
 | Milestone | Target | Lead project | Deliverable |
@@ -183,10 +230,10 @@ Deliverables:
 | M0: Repo live | 2026-06 | SE / Vicente | Private GitHub repo created, initial charter and plan pushed |
 | M1: MVP scaffold | 2026-06 | SE / Vicente | `index.md`, `log.md`, `schema/frontmatter-v0.md`, and seed directories |
 | M2: OpenQEvo slice | 2026-06 | DS / AS / SE | OpenQEvo package page, first concept page, first how-to, first integration page |
-| M3: Source workflow | 2026-06 | AS / SE | MarkItDown + Marker conversion workflow documented and demonstrated |
+| M3: Source workflow | 2026-06 | AS / SE | PDF→markdown conversion documented + demonstrated — ✓ delivered as `qappswiki ingest` (markitdown-lightpdf) |
 | M4: Seed corpus | 2026-07 | DS / AS | Five seed package pages grounded in source markdown |
 | M5: Query loop | 2026-07 | AS | Manual query workflow answers from wiki pages with provenance |
-| M6: Repo checks | 2026-08 | SE | Required-file, link, and frontmatter validation |
+| M6: Repo checks | 2026-08 | SE | Required-file, link, and frontmatter validation — ✓ delivered early (2026-06) via `qappswiki validate` + CI |
 | M7: MVP review | 2026-08 | DS / AS / SE / HW | Demo QAppsWiki answering package-selection and workflow-composition questions |
 
 ## Project Action Items
@@ -198,14 +245,15 @@ Deliverables:
 - [ ] Draft `schema/frontmatter-v0.md`.
 - [ ] Define required fields for `package`, `how-to`, `integration`, and
       `source` pages.
-- [ ] Define required fields for `concept` pages and graph edges.
+- [x] Define required fields for `concept` pages and graph edges. *(Concept
+      required fields in `frontmatter-v0`; typed `edges:` extension added.)*
 - [ ] Define required fields for QEC artifact, workflow, and benchmark pages.
 - [ ] Define controlled vocabularies for capabilities, hardware targets,
       package maturity, source type, interface type, and provenance status.
 - [ ] Map frontmatter v0 to OpenQEvo context-schema concepts.
 - [ ] Review the first five seed package pages for schema completeness.
-- [ ] Define whether a machine-readable export is needed for openQSE or AS
-      workflows.
+- [x] Define whether a machine-readable export is needed for openQSE or AS
+      workflows. *(Yes — `qappswiki` emits `graph.json`; typed `edges:` added.)*
 
 ### Agentic Software
 
@@ -215,11 +263,13 @@ Deliverables:
 - [ ] Define the first ingest prompt/workflow for source markdown in `raw/md/`.
 - [ ] Define the query workflow: read `index.md`, select relevant wiki pages,
       answer from wiki pages, and cite sources.
-- [ ] Define the lint workflow: stale pages, missing provenance, broken links,
+- [~] Define the lint workflow: stale pages, missing provenance, broken links,
       contradictions, orphan pages, and missing package/how-to/integration
-      pages.
-- [ ] Evaluate whether the first automated interface should be MCP, direct API,
-      CLI, or hybrid.
+      pages. *(Structural lint delivered in `qappswiki validate`: broken links,
+      missing/uncited provenance, orphans, dangling refs, under-linked packages.
+      Semantic lint — stale claims, contradictions — still open.)*
+- [x] Evaluate whether the first automated interface should be MCP, direct API,
+      CLI, or hybrid. *(CLI-first with an MCP server, delivered in `qappswiki`.)*
 - [ ] Align QAppsWiki workflow with Quantum Wiki / ChatQEC planning.
 - [ ] Define intern-ready implementation tasks for concept extraction,
       Markdown page compilation, link suggestion, provenance preservation, and
@@ -234,16 +284,18 @@ Deliverables:
 - [ ] Confirm repo layout and branch/review conventions.
 - [ ] Add basic validation for required files: `CONTEXT.md`, `PLAN.md`,
       `README.md`, `index.md`, `log.md`, and `schema/frontmatter-v0.md`.
-- [ ] Add frontmatter validation once DS schema v0 exists.
-- [ ] Add link validation for internal wiki links and source file references.
-- [ ] Decide first access path: markdown repo, static site, CLI, REST endpoint,
-      MCP server, or staged combination.
+- [x] Add frontmatter validation once DS schema v0 exists. *(`qappswiki validate`.)*
+- [x] Add link validation for internal wiki links and source file references.
+      *(`qappswiki validate`.)*
+- [x] Decide first access path: markdown repo, static site, CLI, REST endpoint,
+      MCP server, or staged combination. *(Markdown repo + `qappswiki` CLI +
+      MCP server.)*
 - [ ] Define how QAppsWiki reuses or extends OpenQEvo packaging/CI work.
-- [ ] Support the MVP demo with a repeatable local command or documented
-      workflow.
-- [ ] Define repository checks needed before automated page updates are
+- [x] Support the MVP demo with a repeatable local command or documented
+      workflow. *(`qappswiki run`.)*
+- [x] Define repository checks needed before automated page updates are
       allowed: frontmatter validation, link validation, and source provenance
-      checks.
+      checks. *(All three in `qappswiki validate`; CI gate added.)*
 
 ### Hybrid Workflows / Compilation Tools
 
@@ -302,7 +354,9 @@ Phase-1 MVP is complete when:
 - [x] Draft first `how-to/` page from OpenQEvo install or adapter usage.
 - [x] Draft first `integrations/` page: Qiskit to OpenQEvo.
 - [x] Pick the first source for each seed package.
-- [ ] Convert any PDFs with MarkItDown / Marker plugin before ingest.
+- [ ] Convert seed-package PDFs before ingest — now via `qappswiki ingest <pdf>`
+      (markitdown-lightpdf). *(Command delivered; no source PDFs ingested into
+      pages yet.)*
 - [x] File companion page in `thrust-wiki/themes/qapps-wiki.md` after the name
       is stable.
 - [x] Draft the AS intern task brief for the Markdown compilation workflow.
@@ -311,8 +365,8 @@ Phase-1 MVP is complete when:
 - [ ] Add concept pages for time evolution, Trotterization, adapter pattern,
       provenance, QEC-aware compilation, and quantum-HPC/QEC LLM-wiki
       structure.
-- [ ] Create a first lint checklist for missing links, missing provenance, and
-      stale package status.
+- [x] Create a first lint checklist for missing links, missing provenance, and
+      stale package status. *(Automated as `qappswiki validate`.)*
 - [x] Broaden QAppsWiki scope to general quantum computing and add the `domains`
       controlled vocabulary.
 - [x] Add the inline (claim-level) provenance convention to `CONTEXT.md` and
@@ -329,3 +383,7 @@ Phase-1 MVP is complete when:
       SE, Samuel Stein for HW. Vicente will define tasks and execute locally if
       needed.
 - [x] Marker integration: use the MarkItDown plugin path.
+- [x] Default PDF converter: `markitdown-lightpdf` (`lightpdf` / `mid`), invoked
+      by `qappswiki ingest`; configurable via `--converter` / `$QAPPSWIKI_CONVERTER`.
+- [x] Machine-readable export + access path: the `qappswiki` graph
+      (`graph.json` / `graph.html`) plus a CLI and an MCP server.
