@@ -1,6 +1,6 @@
 ---
 type: reference
-status: canonical
+status: active
 updated: 2026-04-24
 source: shared by Vicente Leyton, 2026-04-24
 ---

@@ -1,0 +1,32 @@
+name: validate
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "tools/**"
+      - ".github/workflows/validate.yml"
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install qappswiki
+        run: pip install -e "tools[dev]"
+
+      - name: Unit tests
+        run: pytest tools/tests -q
+
+      # Non-strict: fails only on ERRORs. Flip to --strict once the corpus's
+      # outstanding warnings (missing domains, unknown doc types, the Qiskit
+      # package page) are cleared.
+      - name: Validate corpus
+        run: qappswiki validate --root . --format text
