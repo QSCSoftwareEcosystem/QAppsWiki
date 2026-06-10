@@ -1,7 +1,7 @@
 ---
 type: project-plan
 status: active
-updated: 2026-06-09
+updated: 2026-06-10
 ---
 
 # QAppsWiki Plan
@@ -214,14 +214,26 @@ Delivered:
   schema-valid stub page.
 - **Serve** — MCP stdio server (`query` / `path` / `explain` / `list_orphans` /
   …) so agents query the graph instead of re-reading raw markdown.
-- **Schema extension** — optional typed `edges:` block in `frontmatter-v0`.
+- **Freshness** — `version_source` / `version_built` / `version_scope` package
+  fields (with an offline form-validator) plus `qappswiki freshness`, an online
+  command that fetches the latest upstream version (PyPI / GitHub / npm / conda /
+  crates) and flags stale contexts. Exposed to agents via a `check_freshness`
+  MCP tool. Network is isolated and kept out of the CI gate.
+- **Schema extension** — optional typed `edges:` block and the `version_source`
+  freshness fields in `frontmatter-v0`.
 - **CI** — `.github/workflows/validate.yml` (tests + non-strict validate).
-- 39 unit tests; the corpus currently validates with 0 errors.
+- 50 unit tests; the corpus currently validates with 0 errors.
+
+This realizes the first tier of the
+[[concepts/self-refreshing-context]] design (version-stamped, demand-fresh
+context units — "Context7 for quantum") for software packages.
 
 Next:
 
 - Wire `qappswiki run --strict` into the AS compilation workflow as the
   pre-write gate; promote CI to `--strict` once outstanding warnings clear.
+- Build the auto-refresh tier (pull current docs on a stale flag → recompile →
+  commit) and application roll-up freshness; add a nightly `freshness` Action.
 
 ## Cross-Project Milestones
 

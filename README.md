@@ -27,6 +27,78 @@ a single project.
 The repository is private during MVP development:
 `QSCSoftwareThrust/QAppsWiki`.
 
+## What QAppsWiki Can Do
+
+QAppsWiki is two things working together: a **maintained, provenance-backed
+knowledge base** for quantum computing, and an **engine** (`qappswiki`) that
+turns that knowledge base into a queryable graph and serves it as fresh context
+to LLMs and agents.
+
+**As a knowledge base**, it compiles durable, source-cited pages — packages,
+concepts, how-tos, integrations — instead of re-answering from raw documents,
+across quantum information, algorithms, simulation, software and languages,
+implementation, QEC, compilation, and quantum-HPC.
+
+**As an engine**, it can today:
+
+- **Validate** every page against a controlled schema (`frontmatter-v0`) — broken
+  links, missing provenance, vocabulary drift — and gate changes in CI.
+- **Compile** the wiki into a typed, confidence-labeled knowledge graph plus an
+  interactive visualization, with an automatic insight report (central pages,
+  orphans, surprising cross-domain links, provenance gaps).
+- **Ingest** PDFs (papers, docs) into the wiki via `markitdown-lightpdf`,
+  scaffolding schema-valid, provenance-stamped pages.
+- **Answer structurally** over MCP — query the graph, trace how two pages
+  connect, explain a node — so an agent builds context from connected, cited
+  knowledge rather than raw chunks.
+- **Track freshness** — each software package declares where its upstream version
+  lives; `qappswiki freshness` checks whether a context is current and flags
+  stale ones.
+
+**Where it is heading — self-refreshing context ("Context7 for quantum").**
+QAppsWiki aims to serve *version-stamped, demand-fresh* context units for
+software, concepts, and applications: an agent requests a context, the system
+stamps it `fresh` / `stale` against the live upstream version, and refreshes it
+when it drifts. See the
+[self-refreshing-context design](concepts/self-refreshing-context.md).
+
+## Vision & Status
+
+**The finished product.** QAppsWiki is the **living context layer for quantum
+computing software**: a single place an agent or person asks *"how do I do X,
+with which tools, at what version, and why?"* and gets a connected, cited,
+always-current answer assembled from the knowledge graph. Name a task —
+*simulate H₂ time evolution*, *run VQE on a noisy backend* — and QAppsWiki
+returns a **context pack**: the concept (the algorithm), the software (the
+packages, at their current versions), and the integration (how they compose),
+each stamped `fresh` / `stale` against live upstream sources and each claim
+traced to a source. As quantum software evolves, contexts refresh themselves; as
+the thrust adds packages, concepts, and applications, the graph grows. It is
+*Context7 for quantum* — but cross-package, provenance-backed, and reaching from
+software up to applications.
+
+**Legend:** ✅ done · 🚧 under construction · 📋 planned
+
+| Capability | Status |
+|---|---|
+| Maintained markdown knowledge base + `frontmatter-v0` schema + two-level provenance | ✅ |
+| `qappswiki` engine: schema validation + CI gate | ✅ |
+| Typed, confidence-labeled knowledge graph (`graph.json` / `graph.html`) + insight report | ✅ |
+| PDF ingest (`markitdown-lightpdf`) + schema-valid stub scaffolding | ✅ |
+| Structural querying over MCP (query / path / explain) | ✅ |
+| Version-stamped packages (`version_source`) + online `freshness` + `check_freshness` MCP tool | ✅ |
+| Seed corpus compiled (OpenQEvo done; Qiskit, PennyLane, TNQVM, Stim) | 🚧 |
+| AS markdown-compilation workflow (manual today; automation) | 🚧 |
+| **Context packs** — assemble a seed + its neighborhood into a token-budgeted, freshness-stamped bundle | 📋 |
+| **Auto-refresh tier** — pull current upstream on a stale flag → recompile → commit | 📋 |
+| **Application roll-up freshness** — staleness propagates up through integrations | 📋 |
+| Concept / paper "newer-literature" freshness mode | 📋 |
+| Nightly `freshness` Action + staleness alerts | 📋 |
+| Consumption by ChatQEC / openQSE; broader access surface (static site / API) | 📋 |
+
+The bold 📋 rows are the gap between what exists today — a validated, queryable,
+freshness-aware wiki — and the vision: a self-refreshing context service.
+
 ## Current Position
 
 QAppsWiki is no longer only a proposal. As of 2026-06-08, it is a dedicated
@@ -213,7 +285,14 @@ validator and knowledge-graph engine that turns this wiki's own schema and
 - **ingests** PDFs (`qappswiki ingest <pdf>`) via `markitdown-lightpdf`,
   archiving the source and scaffolding a schema-valid stub page;
 - **serves** the graph over an MCP server so agents query it instead of
-  re-reading raw markdown.
+  re-reading raw markdown;
+- **tracks freshness** — `qappswiki freshness` checks each package's declared
+  upstream `version_source` (PyPI / GitHub / …) against the live latest version
+  and flags stale contexts.
+
+Together these are the foundation for *self-refreshing context* — serving
+version-stamped, demand-fresh context to agents (see the
+[self-refreshing-context design](concepts/self-refreshing-context.md)).
 
 It runs locally and in CI (`.github/workflows/validate.yml`), and is the
 validation gate the AS compilation workflow runs before writing pages. See
