@@ -64,3 +64,12 @@ principles (version range, two tiers, check-on-read/update-out-of-band,
 deterministic version check, separate software vs. literature freshness modes),
 the refresh flow, and the cross-package-graph differentiator. Marked
 `needs-verification` (proposal, not yet implemented). Linked from `index.md`.
+
+## 2026-06-10 concept | Context scope: software, concepts, applications | touched: concepts/self-refreshing-context.md
+
+Extended the self-refreshing-context design: a context is any seed node plus its
+graph neighborhood, spanning three flavors — software (`packages/`, version
+freshness), concepts (`concepts/`, literature freshness), and applications
+(both `concept_kind: application` and `integrations/` / `workflow/`, with
+composite freshness that rolls up from the software they compose). Generalized
+the freshness principle from two modes to three.

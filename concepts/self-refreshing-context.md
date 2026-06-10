@@ -41,9 +41,11 @@ sources:
 > (`tools/`).
 
 QAppsWiki should serve **version-stamped, demand-fresh context to LLMs** —
-"Context7 for quantum computing." Each quantum software package (and, with a
-different freshness mode, each concept or paper) becomes a *context unit* an
-agent can request over MCP. As the QSC thrust adds software, it adds contexts.
+"Context7 for quantum computing." A *context unit* is any seed node plus its
+graph neighborhood, requested over MCP. Contexts span three flavors —
+**software, concepts, and applications** (see below) — each with its own
+freshness model. As the QSC thrust adds software, concepts, and applications, it
+adds contexts.
 
 ## The unit
 
@@ -52,6 +54,30 @@ A **context** is a version-scoped, package-scoped bundle — the compiled
 source — served to a consuming LLM on demand. Adding a package = adding a context.
 The first contexts are the seed corpus: Qiskit, PennyLane, TNQVM, Stim, and
 OpenQEvo (see [[PLAN]]).
+
+## Context scope: software, concepts, applications
+
+A context is not only a software package — it is any seed node plus its typed
+neighborhood. Three flavors, each with a home in the schema and its own
+freshness model:
+
+| flavor | lives in | seed | freshness |
+|--------|----------|------|-----------|
+| **software** | `packages/` | a package | `version_source` → deterministic version compare |
+| **concept** | `concepts/` | algorithm / capability / pattern | "is there newer literature?" — fuzzy, slow-moving |
+| **application** | `concepts/` (`concept_kind: application`) **and** `integrations/` / `workflow/` | a task realized by composing parts | **composite** — inherited from its parts |
+
+**Applications live in both places, by design.** A stable, package-agnostic
+*application concept* (e.g. "VQE", "QAOA") captures the durable idea; concrete
+*workflow / integration* pages instantiate it with specific software and are
+version-scoped. This is the same split as the two-tier model: durable knowledge
+separate from version-churning composition.
+
+**Application freshness rolls up.** An application context has no version of its
+own; it is current only if the software it composes is fresh *and* the
+integration still holds. So software staleness propagates *up* the graph through
+integrations to every application that composes it — something a per-library
+service cannot do, and the reason the graph (not a flat index) is the substrate.
 
 ## Two-tier model
 
@@ -80,10 +106,11 @@ how it composes* (Tier 2) in one pack.
    authoritative version source (PyPI / GitHub for software); the serving layer
    compares and stamps `fresh` / `stale`. The LLM is reserved for *synthesizing*
    new content, not for guessing versions.
-5. **Two freshness modes.** Software → exact version compare against the pinned
-   source. Concepts / papers → "is there newer literature?" (a search, not a
-   version compare). A published paper is fixed; the *field* moves, so the paper
-   side must not reuse the software mechanism.
+5. **Three freshness modes.** Software → exact version compare against the
+   pinned source. Concepts / papers → "is there newer literature?" (a search,
+   not a version compare; a published paper is fixed, but the *field* moves).
+   Applications → **composite**: freshness inherited from the software they
+   compose plus the validity of the integration.
 
 ## The refresh flow
 
