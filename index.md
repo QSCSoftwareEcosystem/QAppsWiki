@@ -33,6 +33,8 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
   that turns source markdown into maintained, interlinked pages.
 - [[concepts/quantum-hpc-qec-llm-wiki]]: QSC-specific extension of the
   LLM-wiki pattern for quantum-HPC integration and QEC.
+- [[concepts/self-refreshing-context]]: design proposal for version-stamped,
+  demand-fresh context units served to LLMs ("Context7 for quantum").
 
 ## How-To Pages
 

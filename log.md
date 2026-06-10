@@ -1,7 +1,7 @@
 ---
 type: activity-log
 status: active
-updated: 2026-06-08
+updated: 2026-06-10
 ---
 
 # QAppsWiki Log
@@ -54,3 +54,13 @@ vocabulary and tagging rule. Added a two-level provenance convention: page-level
 `provenance_granularity` field. Marked the QEC-artifact, benchmark, and workflow
 page/node types `provisional` until a compilation pass over real sources
 validates them, and expanded `concept_kind` for the broader domain coverage.
+
+## 2026-06-10 concept | Self-refreshing context design | touched: concepts/self-refreshing-context.md, index.md
+
+Added a design-proposal concept page for "Context7 for quantum computing":
+version-stamped, demand-fresh context units served to LLMs. Records the
+two-tier model (auto-fresh source under curated compiled knowledge), the five
+principles (version range, two tiers, check-on-read/update-out-of-band,
+deterministic version check, separate software vs. literature freshness modes),
+the refresh flow, and the cross-package-graph differentiator. Marked
+`needs-verification` (proposal, not yet implemented). Linked from `index.md`.

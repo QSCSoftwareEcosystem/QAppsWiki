@@ -346,6 +346,19 @@ EDGE_RELATIONS = {
 
 EDGE_CONFIDENCE = {"EXTRACTED", "INFERRED", "AMBIGUOUS"}
 
+# Authoritative source kinds for the optional `version_source` field on package
+# pages. `deterministic` kinds have a version endpoint; `docs`/`git` are fuzzy.
+VERSION_SOURCE_KIND = {
+    "pypi",
+    "github-releases",
+    "github-tags",
+    "conda",
+    "npm",
+    "crates",
+    "git",
+    "docs",
+}
+
 
 def required_fields(page_type: str) -> tuple[str, ...]:
     """Required frontmatter keys for ``page_type`` (common set as a fallback)."""

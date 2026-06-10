@@ -108,7 +108,61 @@ language: []
 license: ""
 maturity: prototype | pre-alpha | alpha | beta | production | unknown
 qsc_projects: []
+version_built: ""              # exact upstream version this page was compiled from
+version_source:                # authoritative place to check the latest version
+  kind: pypi                   # see the version_source_kind vocabulary below
+  id: ""                       # identifier within that source (PyPI name, owner/repo, URL)
 ```
+
+`version_scope` (a common recommended field) holds the validity range.
+
+### Versioning & Freshness (optional)
+
+These fields let a package page act as a *self-refreshing context unit* (see
+[[concepts/self-refreshing-context]]). They are optional and additive; existing
+package pages without them are unaffected.
+
+- `version_built` — the exact upstream version the page was compiled from
+  (provenance). Example: `"1.2.0"`.
+- `version_scope` — the range the compiled knowledge claims validity for, as a
+  PEP 440-style specifier. Example: `">=1.0,<2.0"`. Drift *within* this range is
+  not staleness.
+- `version_source` — where to look up the current upstream version, as
+  `{ kind, id }`.
+
+```yaml
+version_source:
+  kind: pypi
+  id: qiskit
+version_built: "1.2.0"
+version_scope: ">=1.0,<2.0"
+```
+
+**`version_source_kind` controlled vocabulary:**
+
+| `kind` | `id` form | how "latest" is resolved | check mode |
+|--------|-----------|--------------------------|------------|
+| `pypi` | PyPI project name | `pypi.org/pypi/<id>/json` → `info.version` | deterministic |
+| `github-releases` | `owner/repo` | latest release `tag_name` | deterministic |
+| `github-tags` | `owner/repo` | highest semver tag | deterministic |
+| `conda` | `channel/package` | registry metadata | deterministic |
+| `npm` | package name | registry metadata | deterministic |
+| `crates` | crate name | registry metadata | deterministic |
+| `git` | repo URL | latest tag or commit | semi |
+| `docs` | docs URL | no version API; read by an LLM | fuzzy |
+
+**Freshness is checked separately from validation.** `qappswiki validate`
+verifies only the *form* of these fields (`kind` in the vocabulary, `id`
+present, `version_built` / `version_scope` parseable) and never makes a network
+call, so CI stays deterministic. The staleness comparison — fetch the latest
+version, test membership in `version_scope`, stamp `fresh` / `stale` — is an
+online operation performed by the serving layer (and a future
+`qappswiki freshness` command); it produces a banner and an update flag, not a
+build failure.
+
+Concepts, papers, and other non-software pages do not use `version_source`: a
+published source is fixed, so their freshness is a separate "is there newer
+literature?" check.
 
 ## Concept Pages
 

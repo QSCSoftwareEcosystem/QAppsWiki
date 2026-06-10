@@ -2,7 +2,7 @@
 type: package
 name: OpenQEvo
 status: active
-updated: 2026-06-08
+updated: 2026-06-10
 package_role: library
 repository: https://github.com/QSCSoftwareThrust/OpenQEvo
 documentation:
@@ -13,6 +13,11 @@ package_manager: [pip]
 language: [python]
 license: TBD
 maturity: pre-alpha
+version_built: "0.1.0"
+version_scope: ">=0.1,<0.2"
+version_source:
+  kind: github-tags
+  id: QSCSoftwareThrust/OpenQEvo
 capabilities: [time-evolution, trotterization, adapter, schema]
 hardware_targets: [local-cpu, simulator, hpc]
 interfaces: [python-api, registry, adapter, json-context]

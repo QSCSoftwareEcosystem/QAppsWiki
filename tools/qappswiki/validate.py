@@ -137,6 +137,33 @@ def _validate_page(page: dict, root: Path, index_targets: set[str]) -> list[dict
     if ptype in _ORPHAN_TYPES and pid not in index_targets:
         out.append(_f("WARNING", "orphan-not-in-index", pid, "page is not linked from index.md"))
 
+    # Versioning & freshness fields (form only — no network; staleness is a
+    # separate online concern handled by the serving layer / `freshness`).
+    out += _validate_version_fields(pid, fm)
+
+    return out
+
+
+def _validate_version_fields(pid: str, fm: dict) -> list[dict]:
+    """Validate the *form* of version_source / version_built (never the network)."""
+    out: list[dict] = []
+    vs = fm.get("version_source")
+    if vs is not None:
+        if not isinstance(vs, dict):
+            out.append(_f("ERROR", "invalid-version-source", pid,
+                          "version_source must be a mapping with `kind` and `id`"))
+        else:
+            kind = vs.get("kind")
+            if kind not in schema.VERSION_SOURCE_KIND:
+                out.append(_f("ERROR", "invalid-version-source", pid,
+                              f"version_source.kind '{kind}' not in vocabulary"))
+            if not vs.get("id"):
+                out.append(_f("WARNING", "incomplete-version-source", pid,
+                              "version_source.id is empty"))
+    vb = fm.get("version_built")
+    if vb is not None and not isinstance(vb, (str, int, float)):
+        out.append(_f("WARNING", "invalid-version-built", pid,
+                      "version_built should be a version string (e.g. \"1.2.0\")"))
     return out
 
 
