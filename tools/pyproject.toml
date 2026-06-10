@@ -18,8 +18,11 @@ mcp = ["mcp>=1.0"]
 # (e.g. `uv tool install markitdown-lightpdf`); the command is invoked via
 # subprocess, so this extra is a convenience, not a hard import dependency.
 ingest = ["markitdown-lightpdf>=0.1"]
-dev = ["pytest>=8"]
-all = ["mcp>=1.0", "markitdown-lightpdf>=0.1", "pytest>=8"]
+# Online `qappswiki freshness` version comparison (packaging is near-ubiquitous,
+# but pin it explicitly; HTTP uses the standard library).
+freshness = ["packaging>=21"]
+dev = ["pytest>=8", "packaging>=21"]
+all = ["mcp>=1.0", "markitdown-lightpdf>=0.1", "packaging>=21", "pytest>=8"]
 
 [project.scripts]
 qappswiki = "qappswiki.cli:main"

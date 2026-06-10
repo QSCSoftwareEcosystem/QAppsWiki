@@ -167,6 +167,27 @@ def cmd_ingest(args):
     return 0
 
 
+def cmd_freshness(args):
+    from . import freshness as _freshness
+    root = Path(args.root).resolve()
+    out = _out_dir(args, root)
+    pages, _ = run_pipeline(root, out, not args.no_cache)
+    results = _freshness.run_freshness(pages, timeout=args.timeout, only=args.package)
+    _write(out / "FRESHNESS_REPORT.md", _report.render_freshness_report(results, _today()))
+    if args.format == "json":
+        print(json.dumps(results, indent=2))
+    else:
+        for r in results:
+            src = f"{r['kind']}:{r['id']}" if r["kind"] else "-"
+            print(f"  {r['status']:>9}  {r['page']:<32} built={r['built'] or '-':<8} "
+                  f"latest={r['latest'] or '-':<8} {src}")
+        n_stale = sum(r["status"] == "stale" for r in results)
+        print(f"\n{len(results)} package contexts checked; {n_stale} stale")
+    if args.fail_on_stale and any(r["status"] == "stale" for r in results):
+        return 1
+    return 0
+
+
 def cmd_serve(args):
     from . import serve
     root = Path(args.root).resolve()
@@ -271,6 +292,14 @@ def main(argv=None) -> int:
     pi.add_argument("--no-keep-pdf", action="store_true", help="don't archive the PDF to raw/pdf/")
     pi.add_argument("--force", action="store_true", help="overwrite an existing stub")
     pi.set_defaults(func=cmd_ingest)
+
+    pf = sub.add_parser("freshness", help="online: check package contexts against upstream versions")
+    _add_common(pf)
+    pf.add_argument("--package", default=None, help="check only this package (id or basename)")
+    pf.add_argument("--format", choices=["text", "json"], default="text")
+    pf.add_argument("--timeout", type=float, default=10.0, help="per-request timeout (seconds)")
+    pf.add_argument("--fail-on-stale", action="store_true", help="exit non-zero if any package is stale")
+    pf.set_defaults(func=cmd_freshness)
 
     ps = sub.add_parser("serve", help="MCP stdio server over graph.json")
     _add_common(ps)

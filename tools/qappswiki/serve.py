@@ -98,6 +98,17 @@ def q_list_ambiguous(g) -> list[dict]:
     return _analyze.analyze(g)["ambiguous"]
 
 
+def q_check_freshness(g, node_id, timeout=10.0, fetch=None) -> dict:
+    """Online freshness verdict for one package node (uses graph version fields)."""
+    from . import freshness as _freshness
+    if node_id not in g:
+        return {"page": node_id, "status": "untracked", "detail": "no such node"}
+    a = g.nodes[node_id]
+    fm = {"version_source": a.get("version_source"), "version_built": a.get("version_built"),
+          "version_scope": a.get("version_scope")}
+    return _freshness.check_package({"id": node_id, "type": a.get("type")}, fm, timeout, fetch)
+
+
 # --------------------------------------------------------------------------- #
 # MCP wiring
 # --------------------------------------------------------------------------- #
@@ -137,6 +148,8 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
              inputSchema={"type": "object", "properties": {}}),
         Tool(name="list_ambiguous", description="AMBIGUOUS edges needing review",
              inputSchema={"type": "object", "properties": {}}),
+        Tool(name="check_freshness", description="Online: is a package context current vs upstream?",
+             inputSchema={"type": "object", "properties": {"id": {"type": "string"}}, "required": ["id"]}),
     ]
 
     dispatch = {
@@ -147,6 +160,7 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
         "list_orphans": lambda a: q_list_orphans(g),
         "graph_stats": lambda a: q_graph_stats(g),
         "list_ambiguous": lambda a: q_list_ambiguous(g),
+        "check_freshness": lambda a: q_check_freshness(g, a["id"]),
     }
 
     @server.list_tools()

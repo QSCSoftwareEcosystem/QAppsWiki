@@ -100,6 +100,10 @@ def _parse_text(text: str, rel_path: str) -> tuple[dict, dict]:
         "status": frontmatter.get("status"),
         "provenance_status": frontmatter.get("provenance_status"),
         "rel_path": rel_path,
+        # freshness metadata (used by the serving layer / `freshness`)
+        "version_built": frontmatter.get("version_built"),
+        "version_scope": frontmatter.get("version_scope"),
+        "version_source": frontmatter.get("version_source"),
     }
 
     explicit = frontmatter.get("edges") or []

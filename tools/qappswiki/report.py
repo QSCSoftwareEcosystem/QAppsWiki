@@ -98,6 +98,37 @@ def render_validation_report(findings: list[dict], generated: str = "") -> str:
     return "\n".join(L)
 
 
+_FRESH_ORDER = {"stale": 0, "error": 1, "unknown": 2, "manual": 3, "untracked": 4, "fresh": 5}
+
+
+def render_freshness_report(results: list[dict], generated: str = "") -> str:
+    from collections import Counter
+
+    counts = Counter(r["status"] for r in results)
+    L: list[str] = ["# QAppsWiki Freshness Report", ""]
+    if generated:
+        L.append(f"_Generated: {generated}_")
+        L.append("")
+    L.append(" · ".join(f"{k}: {v}" for k, v in sorted(counts.items())) or "_no package contexts_")
+    L.append("")
+    L.append("| package | built | scope | source | latest | status |")
+    L.append("|---|---|---|---|---|---|")
+    for r in sorted(results, key=lambda r: (_FRESH_ORDER.get(r["status"], 9), r["page"])):
+        src = f"{r['kind']}:{r['id']}" if r["kind"] else "—"
+        L.append(
+            f"| [[{r['page']}]] | {r['built'] or '—'} | {r['scope'] or '—'} | "
+            f"{src} | {r['latest'] or '—'} | **{r['status']}** |"
+        )
+    L.append("")
+    stale = [r for r in results if r["status"] == "stale"]
+    if stale:
+        L.append("## Stale — flag an update")
+        for r in stale:
+            L.append(f"- [[{r['page']}]] — {r['detail']}")
+        L.append("")
+    return "\n".join(L)
+
+
 def _bullets(items) -> list[str]:
     items = list(items)
     if not items:

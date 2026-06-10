@@ -146,6 +146,7 @@ qappswiki validate [--strict] [--format json]  # lint only; what CI runs
 qappswiki build                                # graph.json + graph.html only
 qappswiki report                               # GRAPH_REPORT.md only
 qappswiki ingest <pdf> [--type concept]        # convert a PDF + scaffold a stub page
+qappswiki freshness [--package qiskit]         # online: are package contexts current?
 qappswiki serve [--graph wiki-out/graph.json]  # MCP stdio server over the graph
 
 # read-only graph queries
@@ -184,6 +185,30 @@ It then prints a `raw/source-inventory.md` row to paste. The stub deliberately
 reports `missing-domains`, `needs-verification`, and `orphan` warnings — your
 to-do list for compiling it into real, linked, cited knowledge. Pick the converter
 with `--converter`, `$QAPPSWIKI_CONVERTER`, or rely on the `lightpdf`/`mid` default.
+
+### Freshness (online)
+
+`freshness` is the **only networked command** — the online counterpart to
+`validate`. For each package page with a `version_source`, it fetches the latest
+upstream version and classifies the context:
+
+```bash
+qappswiki freshness                  # check every package context
+qappswiki freshness --package qiskit --format json
+qappswiki freshness --fail-on-stale  # exit non-zero if any stale (for a nightly job)
+```
+
+Statuses: `fresh` (latest within `version_scope`), `stale` (outside — flag an
+update), `untracked` (no `version_source`), `manual` (`docs`/`git` kinds, no
+version endpoint), `unknown`, or `error` (network/parse failure — never fatal).
+It writes a `FRESHNESS_REPORT.md` to `wiki-out/` and **never fails a build**
+unless you pass `--fail-on-stale`.
+
+It is deliberately **kept out of the CI `validate` gate** (CI stays offline and
+deterministic). Run it on a schedule, or via the MCP `check_freshness` tool when
+an agent wants to know if a context is current. Needs
+`pip install 'qappswiki[freshness]'` (for `packaging`); HTTP uses the standard
+library.
 
 ---
 
