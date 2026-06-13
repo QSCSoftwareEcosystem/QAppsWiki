@@ -67,6 +67,7 @@ collect → parse → links → edges → build → validate → cluster → ana
 | build | `build.py` | assemble nodes + edges into a `networkx.MultiDiGraph` |
 | validate | `validate.py` | check every page against `frontmatter-v0` → ERROR / WARNING findings |
 | cluster | `cluster.py` | detect + name **thematic communities** (Louvain, confidence-weighted, deterministic) |
+| extract | `extract.py` | derive **`INFERRED` candidate concepts** from raw sources → staged for review, never written to authored pages (deterministic core + optional injected LLM backend) |
 | analyze | `analyze.py` | graph insight: god-nodes, communities, orphans, cross-domain links, provenance gaps |
 | report | `report.py` | render the two markdown reports |
 | export | `export.py` | write `graph.json` + `graph.html` (communities stamped on nodes, drawn as compound groups) |
@@ -147,6 +148,7 @@ qappswiki validate [--strict] [--format json]  # lint only; what CI runs
 qappswiki build                                # graph.json + graph.html only
 qappswiki report                               # GRAPH_REPORT.md only
 qappswiki cluster [--resolution 1.5]           # detect + name thematic communities
+qappswiki extract [raw/md/paper.md]            # stage INFERRED candidate concepts from raw sources
 qappswiki ingest <pdf> [--type concept]        # convert a PDF + scaffold a stub page
 qappswiki freshness [--package qiskit]         # online: are package contexts current?
 qappswiki serve [--graph wiki-out/graph.json]  # MCP stdio server over the graph
@@ -211,6 +213,27 @@ deterministic). Run it on a schedule, or via the MCP `check_freshness` tool when
 an agent wants to know if a context is current. Needs
 `pip install 'qappswiki[freshness]'` (for `packaging`); HTTP uses the standard
 library.
+
+### Extraction (the derive side)
+
+`extract` is the one stage that reads **raw sources** instead of authored pages.
+It proposes `concept` **candidates** from a curated quantum term lexicon (and,
+optionally, an injected LLM backend), each tagged `INFERRED` with the source in
+its `sources` list.
+
+```bash
+qappswiki extract                    # all of raw/md/ → wiki-out/extract/ + EXTRACT_REPORT.md
+qappswiki extract raw/md/paper.md    # a single source
+qappswiki extract --format json      # the merged candidate set on stdout
+```
+
+The defining rule: **extraction never writes authored pages.** Candidates land
+in `wiki-out/extract/` (regenerable, gitignored) for review; a later `promote`
+step turns accepted ones into real `concepts/` pages. Across the corpus,
+candidates merge by id so a concept accumulates every source that supports it —
+the ranking (e.g. *Trotter Decomposition, 17 sources*) is the review signal for
+what to promote first. The deterministic lexicon path is CI-safe and needs no
+LLM; the LLM backend is opt-in and passed in, exactly like `freshness`'s network.
 
 ---
 

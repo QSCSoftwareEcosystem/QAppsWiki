@@ -4,6 +4,7 @@ Subcommands:
   validate   collect -> parse -> build -> validate; write VALIDATION_REPORT.md
   build      ... -> export; write graph.json + graph.html
   report     ... -> analyze; write GRAPH_REPORT.md
+  extract    derive INFERRED candidate concepts from raw sources (staged, not authored)
   cluster    detect + name thematic communities (Louvain)
   run        validate + build + report in one parse (the AS/CI entry point)
   serve      MCP stdio server over graph.json
@@ -163,6 +164,45 @@ def cmd_cluster(args):
     return 0
 
 
+def cmd_extract(args):
+    from . import extract as _extract
+    root = Path(args.root).resolve()
+    out = _out_dir(args, root)
+    _, graph = run_pipeline(root, out, not args.no_cache)
+    existing_ids = {n for n, a in graph.nodes(data=True) if not a.get("synthetic")}
+
+    if args.source:
+        src = Path(args.source)
+        text = src.read_text(encoding="utf-8")
+        source_id = src.resolve().relative_to(root).as_posix() if src.is_absolute() else args.source
+        results = [_extract.extract_source(source_id, text, existing_ids)]
+    else:
+        results = _extract.extract_corpus(root, existing_ids=existing_ids)
+
+    if not results:
+        print("no raw sources found under raw/md/")
+        return 0
+
+    for r in results:
+        _extract.stage(r, out)
+    merged = _extract.merge_corpus(results)
+    _write(out / "EXTRACT_REPORT.md", _extract.render_extract_report(results, merged, _today()))
+    _write(out / "extract" / "candidates.json", json.dumps(merged, indent=2))
+
+    if args.format == "json":
+        print(json.dumps(merged, indent=2))
+    else:
+        s = merged["stats"]
+        print(f"{len(results)} sources → {s['candidates']} distinct candidate concepts "
+              f"({s['new']} new, {s['multi_source']} multi-source)")
+        print(f"staged to {out}/extract/  ·  report: {out}/EXTRACT_REPORT.md")
+        print("\ntop candidates by source support:")
+        for n in merged["candidate_nodes"][:10]:
+            tag = "exists" if n["exists"] else "NEW"
+            print(f"  [{len(n['sources'])}x] {n['title']:<42} {n['concept_kind']:<14} {tag}")
+    return 0
+
+
 def cmd_ingest(args):
     from . import ingest as _ingest
     root = Path(args.root).resolve()
@@ -297,6 +337,13 @@ def main(argv=None) -> int:
     pn.add_argument("--no-html", action="store_true")
     pn.add_argument("--log", action="store_true", help="print a log.md entry line")
     pn.set_defaults(func=cmd_run)
+
+    px = sub.add_parser("extract", help="extract INFERRED candidate concepts from raw sources (staged for review)")
+    _add_common(px)
+    px.add_argument("source", nargs="?", default=None,
+                    help="a single raw source file (default: all of raw/md/)")
+    px.add_argument("--format", choices=["text", "json"], default="text")
+    px.set_defaults(func=cmd_extract)
 
     pc = sub.add_parser("cluster", help="detect + name thematic communities")
     _add_common(pc)

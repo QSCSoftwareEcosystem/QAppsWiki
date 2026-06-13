@@ -1,7 +1,7 @@
 ---
 type: project-plan
 status: active
-updated: 2026-06-12
+updated: 2026-06-13
 ---
 
 # QAppsWiki Plan
@@ -114,12 +114,19 @@ layer of truth.
 
 **Phase 1 — Close the two gaps (reach graphify parity)**
 
-- [ ] **1A · `extract.py`** — LLM semantic extraction over `raw/md/` → candidate
-      nodes/edges, each `INFERRED` and carrying provenance back to its source
-      file; optional tree-sitter for code. Output goes to a **staging area**, not
-      authored pages (see design invariant). Feed the quantum schema into the
-      extractor so emitted edges are typed (`encodes-qec`, `validates-against`),
-      not generic.
+- [x] **1A · `extract.py`** — extraction over `raw/md/` → `INFERRED` candidate
+      concept nodes/edges, each carrying the source in its `sources` list and
+      staged to `wiki-out/extract/` (never written to authored pages — the design
+      invariant). Two paths, mirroring `freshness`'s offline/online split: a
+      deterministic, CI-safe **quantum term lexicon + heading** core (no
+      dependency), and an **optional injected LLM backend** whose output is
+      validated against the schema vocab (`concept_kind` / `domains` / relations
+      scrubbed to safe values). Candidates resolve against the existing graph
+      (`exists` flag) and merge across the corpus by id, ranked by source support.
+      Exposed via `qappswiki extract` + an `EXTRACT_REPORT.md`. 12 tests; the
+      18-paper corpus yields 141 candidates, top-ranked exactly right (Trotter
+      Decomposition 17×, Suzuki-Trotter / Time Evolution 14×). *Tree-sitter code
+      extraction and richer typed edges remain for a later pass.*
 - [x] **1B · `cluster.py`** — Louvain community detection over the
       confidence-weighted content graph (networkx built-in, no new dependency,
       deterministic via fixed seed). Each community gets a heuristic label

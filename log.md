@@ -1,7 +1,7 @@
 ---
 type: activity-log
 status: active
-updated: 2026-06-12
+updated: 2026-06-13
 ---
 
 # QAppsWiki Log
@@ -105,3 +105,24 @@ tests (63 total, all green); the real corpus yields 3 coherent communities
 (concepts / OpenQEvo / source-inventory) at modularity 0.22. First Phase-1B
 deliverable of the quantum-native GraphRAG roadmap; reaches graphify parity on
 clustering while keeping the deterministic, no-LLM core.
+
+## 2026-06-13 tooling | Candidate extraction (Phase 1A) | touched: tools/qappswiki/extract.py, cli.py, tools/tests/test_extract.py, tools/README.md, PLAN.md
+
+Added `extract.py`, the derive side of the engine — the one stage that reads
+raw sources instead of authored pages. It proposes `INFERRED` `concept`
+candidates from a curated quantum term lexicon (Trotter/Suzuki, qDRIFT,
+Hamiltonian simulation, QPE/VQE/QAOA, QEC, …) plus section headings, each
+carrying the source in its `sources` list. Two paths mirror the freshness
+offline/online split: a deterministic, CI-safe core (no dependency) and an
+optional injected LLM backend whose output is validated against the schema
+vocab (invalid `concept_kind`/`domains`/relations scrubbed). The defining
+invariant holds: candidates are staged to `wiki-out/extract/` (regenerable,
+gitignored) and never written to authored pages; a later `promote` step
+(Phase 2) turns reviewed candidates into real `concepts/` pages. Candidates
+resolve against the existing graph (`exists` flag) and merge across the corpus
+by id, ranked by source support. Exposed via `qappswiki extract` +
+`EXTRACT_REPORT.md`. 12 new tests (75 total, all green). First real run over
+the 18-paper time-evolution corpus produced 141 candidates with the top ranks
+exactly right — Trotter Decomposition (17 sources), Suzuki-Trotter and Time
+Evolution (14), Hamiltonian Simulation (10) — the Phase-3 acceptance signal
+for what to promote first.
