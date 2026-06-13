@@ -3,6 +3,12 @@ raw/pdf/*.pdf
 
 node_modules/
 
+# local-only intern work plan + publication strategy (not for the shared repo)
+docs/as-intern-task-brief.md
+
+# local-only exploratory research notes (network-science / small-world study)
+research/
+
 # qappswiki tooling
 wiki-out/
 tools/**/__pycache__/

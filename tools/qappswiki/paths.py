@@ -12,8 +12,9 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-# Directories never treated as part of the wiki corpus.
-IGNORED_DIRS = {"node_modules", ".git", ".github", "wiki-out", "tools", "__pycache__"}
+# Directories never treated as part of the wiki corpus (build/tooling/scratch,
+# plus `research/` for local exploratory notes that are not maintained pages).
+IGNORED_DIRS = {"node_modules", ".git", ".github", "wiki-out", "tools", "research", "__pycache__"}
 # raw/ holds the evidence layer: raw/md extracted source markdown, raw/pdf
 # binaries, raw/assets attachments. These are sources, not maintained wiki pages
 # (raw/source-inventory.md at the raw/ root IS a page and stays included).
