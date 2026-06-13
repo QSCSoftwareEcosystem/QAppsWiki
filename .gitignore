@@ -9,6 +9,10 @@ docs/as-intern-task-brief.md
 # local-only exploratory research notes (network-science / small-world study)
 research/
 
+# python environments
+.venv/
+venv/
+
 # qappswiki tooling
 wiki-out/
 tools/**/__pycache__/
