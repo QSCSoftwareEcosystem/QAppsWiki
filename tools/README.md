@@ -55,7 +55,7 @@ one function; stages pass plain dicts and a single `networkx.MultiDiGraph`, and
 nothing is written outside `wiki-out/`.
 
 ```
-collect → parse → links → edges → build → validate → analyze → report → export → serve
+collect → parse → links → edges → build → validate → cluster → analyze → report → export → serve
 ```
 
 | stage | module | responsibility |
@@ -66,9 +66,10 @@ collect → parse → links → edges → build → validate → analyze → rep
 | edges | `edges.py` | derive **typed, confidence-labeled edges** from links, `related_*`, sources, and explicit `edges:` |
 | build | `build.py` | assemble nodes + edges into a `networkx.MultiDiGraph` |
 | validate | `validate.py` | check every page against `frontmatter-v0` → ERROR / WARNING findings |
-| analyze | `analyze.py` | graph insight: god-nodes, orphans, cross-domain links, provenance gaps |
+| cluster | `cluster.py` | detect + name **thematic communities** (Louvain, confidence-weighted, deterministic) |
+| analyze | `analyze.py` | graph insight: god-nodes, communities, orphans, cross-domain links, provenance gaps |
 | report | `report.py` | render the two markdown reports |
-| export | `export.py` | write `graph.json` + `graph.html` |
+| export | `export.py` | write `graph.json` + `graph.html` (communities stamped on nodes, drawn as compound groups) |
 | serve | `serve.py` | expose the graph over an MCP stdio server |
 
 Supporting modules: `schema.py` (the machine-readable mirror of `frontmatter-v0`:
@@ -145,6 +146,7 @@ qappswiki run [--strict] [--no-html] [--log]   # validate + build + report (one 
 qappswiki validate [--strict] [--format json]  # lint only; what CI runs
 qappswiki build                                # graph.json + graph.html only
 qappswiki report                               # GRAPH_REPORT.md only
+qappswiki cluster [--resolution 1.5]           # detect + name thematic communities
 qappswiki ingest <pdf> [--type concept]        # convert a PDF + scaffold a stub page
 qappswiki freshness [--package qiskit]         # online: are package contexts current?
 qappswiki serve [--graph wiki-out/graph.json]  # MCP stdio server over the graph

@@ -98,6 +98,31 @@ def q_list_ambiguous(g) -> list[dict]:
     return _analyze.analyze(g)["ambiguous"]
 
 
+def q_list_communities(g) -> list[dict]:
+    """Thematic communities, read from the ``community`` attrs in graph.json.
+
+    Grouped from stamped node attributes so the server needs no recomputation
+    (and no networkx clustering at query time).
+    """
+    from collections import defaultdict
+
+    members = defaultdict(list)
+    labels: dict = {}
+    for nid, a in g.nodes(data=True):
+        cid = a.get("community")
+        if cid is None:
+            continue
+        members[cid].append(nid)
+        labels.setdefault(cid, a.get("community_label"))
+    out = []
+    for cid, mem in members.items():
+        deg = {n: g.in_degree(n) + g.out_degree(n) for n in mem}
+        god = max(mem, key=lambda n: (deg[n], n))
+        out.append({"index": cid, "label": labels.get(cid), "size": len(mem),
+                    "god_node": god, "members": sorted(mem)})
+    return sorted(out, key=lambda c: (-c["size"], c["index"]))
+
+
 def q_check_freshness(g, node_id, timeout=10.0, fetch=None) -> dict:
     """Online freshness verdict for one package node (uses graph version fields)."""
     from . import freshness as _freshness
@@ -148,6 +173,8 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
              inputSchema={"type": "object", "properties": {}}),
         Tool(name="list_ambiguous", description="AMBIGUOUS edges needing review",
              inputSchema={"type": "object", "properties": {}}),
+        Tool(name="list_communities", description="Thematic communities (clusters) and their hubs",
+             inputSchema={"type": "object", "properties": {}}),
         Tool(name="check_freshness", description="Online: is a package context current vs upstream?",
              inputSchema={"type": "object", "properties": {"id": {"type": "string"}}, "required": ["id"]}),
     ]
@@ -160,6 +187,7 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
         "list_orphans": lambda a: q_list_orphans(g),
         "graph_stats": lambda a: q_graph_stats(g),
         "list_ambiguous": lambda a: q_list_ambiguous(g),
+        "list_communities": lambda a: q_list_communities(g),
         "check_freshness": lambda a: q_check_freshness(g, a["id"]),
     }
 

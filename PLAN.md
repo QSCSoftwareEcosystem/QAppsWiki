@@ -1,7 +1,7 @@
 ---
 type: project-plan
 status: active
-updated: 2026-06-10
+updated: 2026-06-12
 ---
 
 # QAppsWiki Plan
@@ -54,6 +54,110 @@ not scope.
 - Structural validation is tooling-enforced: the `qappswiki` engine validates
   every page against `schema/frontmatter-v0.md` and compiles the corpus into a
   typed knowledge graph; automated page writes must pass `qappswiki run` first.
+
+## Strategic Direction: a quantum-native GraphRAG engine
+
+QAppsWiki's `qappswiki` engine is evolving into a **graphify-class knowledge-graph
+engine, specialized for quantum computing and stronger where graphify is
+structurally weak**. The goal is not to clone graphify (Leiden, tree-sitter, 36
+language grammars are solved infrastructure) but to match its mechanics and beat
+it on the four things a derive-from-anything tool cannot have.
+
+### Where we already stand (parity, not a rebuild)
+
+The engine already matches graphify on: typed `graph.json` + interactive
+`graph.html`; `EXTRACTED` / `INFERRED` / `AMBIGUOUS` confidence-labeled edges;
+a `GRAPH_REPORT.md` with god-nodes, orphans, and surprising cross-domain links;
+and an MCP server (`query_graph` / `get_node` / `get_neighbors` /
+`shortest_path` / `graph_stats` / `list_orphans`). It already **exceeds**
+graphify on provenance (`cites` edges from `sources:` + inline citations),
+freshness (a `check_freshness` MCP tool — graphify is fully time-blind), the
+typed quantum schema, and the curated authored layer. The work below is two
+missing modules plus hardening these edges — not a from-scratch clone.
+
+### The two real gaps vs graphify
+
+1. **No auto-extraction from raw input.** The derive side is empty: every node
+   depends on a hand-authored page. graphify reads a raw PDF or codebase and
+   *extracts* a candidate graph. We have `qappswiki ingest` (PDF→markdown) but
+   nothing that turns `raw/md/` into candidate nodes/edges.
+2. **No community detection.** No Leiden/Louvain clustering or auto-named
+   communities; we surface centrality (god-nodes) but not clustered communities.
+
+### The four differentiators ("graphify, but better")
+
+These are core, not nice-to-have, and define the project's edge:
+
+1. **Provenance to primary sources** — claim-level `(source: …)` tracing every
+   assertion to the literature/code it came from. graphify tags *edge extraction
+   confidence*; we trace *editorial sourcing*. Different axis, science-grade.
+2. **Freshness / version-staleness** — `version_source` + `qappswiki freshness`
+   + composite roll-up: staleness propagates up the graph from software through
+   integrations to applications. graphify is time-blind.
+3. **Curated authored layer** — compile-once maintained pages are the source of
+   truth; the derived graph is reconciled *against* them, never overwriting them.
+4. **Quantum domain specialization** — typed node/edge vocab and extraction
+   priors (`implements`, `wraps`, `encodes-qec`, `validates-against`, hardware
+   targets) yield a higher-precision graph than generic extraction.
+
+### Design invariant (the thing graphify cannot do)
+
+Extraction output is **never written directly into authored pages**. Extracted
+nodes/edges land in a **staging area**, tagged `INFERRED` with provenance to the
+source file, and enter a **review queue**. Curation promotes them into authored
+frontmatter edges. graphify's `INFERRED` edges are dead-ends; ours are
+candidates for durable, curated knowledge. This **discover → promote loop** is
+the project's defining feature and is only possible because we keep an authored
+layer of truth.
+
+### Roadmap
+
+**Phase 1 — Close the two gaps (reach graphify parity)**
+
+- [ ] **1A · `extract.py`** — LLM semantic extraction over `raw/md/` → candidate
+      nodes/edges, each `INFERRED` and carrying provenance back to its source
+      file; optional tree-sitter for code. Output goes to a **staging area**, not
+      authored pages (see design invariant). Feed the quantum schema into the
+      extractor so emitted edges are typed (`encodes-qec`, `validates-against`),
+      not generic.
+- [x] **1B · `cluster.py`** — Louvain community detection over the
+      confidence-weighted content graph (networkx built-in, no new dependency,
+      deterministic via fixed seed). Each community gets a heuristic label
+      (dominant `domains` + local god-node) with an `apply_labels` seam for a
+      later LLM namer. Surfaced in `GRAPH_REPORT.md` (Communities section),
+      stamped onto `graph.json` nodes and drawn as compound groups in
+      `graph.html`, exposed via a `qappswiki cluster` command and a
+      `list_communities` MCP tool. 13 tests; corpus yields 3 clean communities
+      (concepts / OpenQEvo / source-inventory). *LLM community naming deferred to
+      Phase 1A's extraction layer.*
+
+**Phase 2 — Make the four edges first-class (the "better")**
+
+- [ ] **Provenance:** add a coverage metric + a `cite` / `why` MCP tool that
+      returns the source(s) behind any node/claim; enforce "every inline
+      `(source:)` ∈ `sources:`" in `qappswiki validate`.
+- [ ] **Freshness:** stamp staleness onto graph nodes at build time; implement
+      the composite application roll-up from [[concepts/self-refreshing-context]];
+      add a nightly `freshness` Action.
+- [ ] **Curated layer:** implement the **discover → promote loop** — a review
+      queue command (`qappswiki promote`) that turns staged `INFERRED` candidates
+      into authored frontmatter edges.
+- [ ] **Domain specialization:** ship the quantum extraction priors and expand
+      the typed edge vocabulary as real sources validate each relation.
+
+**Phase 3 — Prove it on the time-evolution corpus (acceptance test)**
+
+- [ ] Run the full pipeline over the ~18 papers already in `raw/md/`: extract →
+      cluster → promote → produce `concepts/` pages (time evolution,
+      Trotterization, randomized compilation, …) with provenance and freshness.
+      The long-deferred first compilation pass becomes the engine's acceptance
+      test and the schema's validation.
+
+### Positioning
+
+> graphify *derives* a graph and stops. QAppsWiki *derives, then curates* —
+> freshness-aware, quantum-typed, source-provenanced, with a discover → promote
+> loop that turns extraction into durable curated knowledge.
 
 ## Workstreams
 
@@ -195,9 +299,12 @@ Deliverables:
 Owner: SE / Vicente.
 
 Delivered (2026-06) as `tools/qappswiki`, an installable Python CLI that turns
-the schema into an enforced, queryable engine. Inspired by Graphify but
-markdown-native — no code parsing, no LLM, reads only the wiki's own
-frontmatter, `[[wikilinks]]`, and provenance.
+the schema into an enforced, queryable engine. Started markdown-native — no code
+parsing, no LLM, reading only the wiki's own frontmatter, `[[wikilinks]]`, and
+provenance — and is now evolving into a full quantum-native GraphRAG engine (see
+**Strategic Direction** above): the deterministic authored-graph core stays, and
+an LLM/AST **extraction** layer plus **community detection** are added on top,
+feeding the curated layer through a discover → promote loop.
 
 Delivered:
 
@@ -228,7 +335,9 @@ This realizes the first tier of the
 [[concepts/self-refreshing-context]] design (version-stamped, demand-fresh
 context units — "Context7 for quantum") for software packages.
 
-Next:
+Next: see the **Strategic Direction** roadmap above (Phase 1 `extract.py` +
+`cluster.py`; Phase 2 the four edges; Phase 3 the time-evolution acceptance
+pass). Carried-over near-term items folded into that roadmap:
 
 - Wire `qappswiki run --strict` into the AS compilation workflow as the
   pre-write gate; promote CI to `--strict` once outstanding warnings clear.

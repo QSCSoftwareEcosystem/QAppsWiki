@@ -4,6 +4,7 @@ Subcommands:
   validate   collect -> parse -> build -> validate; write VALIDATION_REPORT.md
   build      ... -> export; write graph.json + graph.html
   report     ... -> analyze; write GRAPH_REPORT.md
+  cluster    detect + name thematic communities (Louvain)
   run        validate + build + report in one parse (the AS/CI entry point)
   serve      MCP stdio server over graph.json
   query/path/explain   read-only graph queries
@@ -19,6 +20,7 @@ from pathlib import Path
 
 from . import analyze as _analyze
 from . import build as _build
+from . import cluster as _cluster
 from . import collect as _collect
 from . import edges as _edges
 from . import export as _export
@@ -143,6 +145,22 @@ def cmd_run(args):
         print(f"\n{errs} errors, {warns} warnings; {len(analysis['orphans'])} orphans; "
               f"{len(analysis['ambiguous'])} ambiguous edges flagged.")
     return _exit_code(findings, args.strict)
+
+
+def cmd_cluster(args):
+    graph = _load_graph(args)
+    result = _cluster.detect(graph, resolution=args.resolution)
+    if args.format == "json":
+        print(json.dumps(result, indent=2))
+        return 0
+    print(f"{result['count']} communities · modularity {result['modularity']}\n")
+    for c in result["communities"]:
+        doms = ", ".join(c["domains"]) or "—"
+        print(f"  [{c['size']:>2}] {c['label']}  (hub: {c['god_node']}, cohesion {c['cohesion']})")
+        print(f"       domains: {doms}")
+        for m in c["members"]:
+            print(f"         - {m}")
+    return 0
 
 
 def cmd_ingest(args):
@@ -279,6 +297,13 @@ def main(argv=None) -> int:
     pn.add_argument("--no-html", action="store_true")
     pn.add_argument("--log", action="store_true", help="print a log.md entry line")
     pn.set_defaults(func=cmd_run)
+
+    pc = sub.add_parser("cluster", help="detect + name thematic communities")
+    _add_common(pc)
+    pc.add_argument("--resolution", type=float, default=1.0,
+                    help="Louvain resolution; >1 = more, smaller communities")
+    pc.add_argument("--format", choices=["text", "json"], default="text")
+    pc.set_defaults(func=cmd_cluster)
 
     pi = sub.add_parser("ingest", help="convert a PDF and scaffold a stub page")
     _add_common(pi)

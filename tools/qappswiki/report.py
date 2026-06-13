@@ -42,6 +42,26 @@ def render_graph_report(analysis: dict, generated: str = "") -> str:
         L.append("_none_")
     L.append("")
 
+    comm = analysis.get("communities") or {}
+    clusters = comm.get("communities") or []
+    L.append("## Communities (thematic clusters)")
+    if clusters:
+        L.append(f"_{comm.get('count', len(clusters))} communities · "
+                 f"modularity {comm.get('modularity', 0)}_")
+        L.append("")
+        L.append("| community | size | hub (god-node) | domains | cohesion |")
+        L.append("|---|---|---|---|---|")
+        for c in clusters:
+            hub = f"[[{c['god_node']}]]" if c.get("god_node") else "—"
+            doms = ", ".join(c.get("domains") or []) or "—"
+            L.append(f"| **{c['label']}** | {c['size']} | {hub} | {doms} | {c['cohesion']} |")
+        L.append("")
+        for c in clusters:
+            L.append(f"### {c['label']} ({c['size']})")
+            L += _bullets(f"[[{m}]]" for m in c["members"]) or ["_none_", ""]
+    else:
+        L += ["_none_", ""]
+
     L.append("## Orphans (no link to/from another content page)")
     L += _bullets(f"[[{o}]]" for o in analysis["orphans"]) or ["_none_", ""]
 

@@ -367,3 +367,12 @@ def required_fields(page_type: str) -> tuple[str, ...]:
 
 def is_content_type(page_type: str | None) -> bool:
     return page_type in CONTENT_TYPES
+
+
+def is_content(attrs) -> bool:
+    """A real content page (not a synthetic missing/external node).
+
+    Shared by ``analyze`` and ``cluster`` so metrics and communities agree on
+    which nodes count.
+    """
+    return (not attrs.get("synthetic")) and attrs.get("type") in CONTENT_TYPES

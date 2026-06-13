@@ -1,7 +1,7 @@
 ---
 type: activity-log
 status: active
-updated: 2026-06-10
+updated: 2026-06-12
 ---
 
 # QAppsWiki Log
@@ -73,3 +73,35 @@ freshness), concepts (`concepts/`, literature freshness), and applications
 (both `concept_kind: application` and `integrations/` / `workflow/`, with
 composite freshness that rolls up from the software they compose). Generalized
 the freshness principle from two modes to three.
+
+## 2026-06-12 direction | Quantum-native GraphRAG engine roadmap | touched: PLAN.md, log.md
+
+Committed the strategic direction to make `qappswiki` a graphify-class
+knowledge-graph engine specialized for quantum computing and stronger where
+graphify is structurally weak. Recorded that the engine already reaches parity
+on graph.json/HTML, confidence-labeled edges, the god-node report, and the MCP
+query server, and already exceeds graphify on provenance, freshness, the typed
+quantum schema, and the curated authored layer. Identified the two real gaps
+(no auto-extraction from raw input; no community detection) and the four
+core differentiators (claim-level provenance, freshness/version-staleness,
+curated authored layer, quantum domain specialization). Added a three-phase
+roadmap — Phase 1 `extract.py` + `cluster.py` for parity, Phase 2 hardening the
+four edges (incl. the discover → promote loop and a `cite`/`why` MCP tool),
+Phase 3 the time-evolution corpus as the acceptance test — plus the design
+invariant that extraction output never writes authored pages directly but stages
+`INFERRED` candidates for promotion.
+
+## 2026-06-12 tooling | Community detection (Phase 1B) | touched: tools/qappswiki/cluster.py, schema.py, analyze.py, report.py, export.py, cli.py, serve.py, tools/tests/test_cluster.py, tools/README.md, PLAN.md
+
+Added `cluster.py`: Louvain community detection over the confidence-weighted
+content subgraph (networkx built-in — no new dependency — deterministic via a
+fixed seed). Each community is labeled by its dominant `domains` and local
+god-node, with an `apply_labels` seam for a future LLM namer. Wired through the
+pipeline: shared `schema.is_content` helper, communities embedded in
+`analyze`, a Communities section in `GRAPH_REPORT.md`, community id + label
+stamped onto `graph.json` nodes and drawn as compound groups in `graph.html`,
+a `qappswiki cluster` CLI command, and a `list_communities` MCP tool. 13 new
+tests (63 total, all green); the real corpus yields 3 coherent communities
+(concepts / OpenQEvo / source-inventory) at modularity 0.22. First Phase-1B
+deliverable of the quantum-native GraphRAG roadmap; reaches graphify parity on
+clustering while keeping the deterministic, no-LLM core.

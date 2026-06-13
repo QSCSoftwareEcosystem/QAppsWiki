@@ -10,11 +10,10 @@ from __future__ import annotations
 
 from collections import Counter
 
-from . import schema
+from . import cluster, schema
 
-
-def _is_content(attrs) -> bool:
-    return (not attrs.get("synthetic")) and attrs.get("type") in schema.CONTENT_TYPES
+# Shared with cluster so metrics and communities agree on which nodes count.
+_is_content = schema.is_content
 
 
 def analyze(graph) -> dict:
@@ -107,6 +106,7 @@ def analyze(graph) -> dict:
             "by_domain": dict(by_domain),
         },
         "god_nodes": god_nodes,
+        "communities": cluster.summarize(graph),
         "orphans": sorted(orphans),
         "under_linked": sorted(under_linked),
         "cross_domain": cross_domain,
