@@ -146,9 +146,19 @@ layer of truth.
 - [ ] **Freshness:** stamp staleness onto graph nodes at build time; implement
       the composite application roll-up from [[concepts/self-refreshing-context]];
       add a nightly `freshness` Action.
-- [ ] **Curated layer:** implement the **discover → promote loop** — a review
-      queue command (`qappswiki promote`) that turns staged `INFERRED` candidates
-      into authored frontmatter edges.
+- [x] **Curated layer:** implemented the **discover → promote loop** —
+      `qappswiki promote` turns a reviewed candidate from the staged queue
+      (`wiki-out/extract/candidates.json`) into an authored, schema-valid
+      `concepts/` page carrying the extractor's source provenance, as a
+      `status: draft` / `needs-verification` stub awaiting authoring. Frontmatter
+      is built from `schema.required_fields` so it always validates;
+      `concept_kind`/`domains` are scrubbed to the vocab. Single (`promote
+      <id|slug|title>`) or batch (`--all --min-sources N [--kind ...]`), with
+      `--dry-run` and `--force`. Promotion is the *only* path from staging into
+      the authored layer — extraction writes nothing. 12 tests including a
+      round-trip that a promoted page validates with 0 errors and links into the
+      graph; verified on the real corpus (Trotterization → a 9-source page).
+      *Edge-level promotion (typed `related_*`) folds into the next pass.*
 - [ ] **Domain specialization:** ship the quantum extraction priors and expand
       the typed edge vocabulary as real sources validate each relation.
 

@@ -278,6 +278,7 @@ def merge_corpus(results: list[dict]) -> dict:
     review signal for which candidates are worth promoting first.
     """
     nodes: dict[str, dict] = {}
+    related: dict[str, list[str]] = {}
     for r in results:
         for n in r["candidates"]["nodes"]:
             cur = nodes.get(n["id"])
@@ -290,6 +291,13 @@ def merge_corpus(results: list[dict]) -> dict:
                 # keep the strongest confidence (INFERRED beats AMBIGUOUS)
                 if n["confidence"] == "INFERRED":
                     cur["confidence"] = "INFERRED"
+        # accumulate each candidate's related targets (links into the graph)
+        for e in r["candidates"]["edges"]:
+            bucket = related.setdefault(e["source"], [])
+            if e["target"] not in bucket:
+                bucket.append(e["target"])
+    for nid, n in nodes.items():
+        n["related"] = sorted(related.get(nid, []))
     ranked = sorted(nodes.values(), key=lambda n: (-len(n["sources"]), n["id"]))
     return {
         "schema_version": EXTRACT_SCHEMA_VERSION,

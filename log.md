@@ -126,3 +126,26 @@ the 18-paper time-evolution corpus produced 141 candidates with the top ranks
 exactly right — Trotter Decomposition (17 sources), Suzuki-Trotter and Time
 Evolution (14), Hamiltonian Simulation (10) — the Phase-3 acceptance signal
 for what to promote first.
+
+## 2026-06-13 tooling | Discover→promote loop (Phase 2) | touched: tools/qappswiki/promote.py, extract.py, cli.py, tools/tests/test_promote.py, tools/README.md, PLAN.md
+
+Added `promote.py` — the discover→promote loop, the project's defining feature
+and the loop graphify structurally cannot close. `qappswiki promote` turns a
+reviewed candidate from the staged queue (`wiki-out/extract/candidates.json`)
+into an authored, schema-valid `concepts/` page that carries the extractor's
+source provenance, as a `status: draft` / `provenance_status: needs-verification`
+stub awaiting authoring. Frontmatter is built from `schema.required_fields` (the
+validator's source of truth) so a promoted page always passes structural
+validation; `concept_kind`/`domains` are scrubbed to the vocab. Supports single
+promotion (`promote <id|slug|title>`) and batch (`--all --min-sources N
+[--kind ...]`), plus `--dry-run` and `--force`. Promotion is the only path from
+staging into the authored layer — extraction itself writes nothing. Also
+hardened `extract`'s edge heuristic to relate candidates to *content* pages only
+(so common words like "context"/"index" in papers no longer create spurious nav
+links) and taught `merge_corpus` to accumulate each candidate's related targets
+for the promoted page's links. 12 new tests (87 total, all green) including a
+round-trip that a promoted page validates with 0 errors and is non-orphan;
+verified on the real corpus — promoting Trotterization produced a clean
+9-source page (0 errors, only the expected needs-verification / not-in-index
+warnings). With extract + cluster + promote in place, the Phase-3 acceptance
+pass (raw corpus → curated concept pages) is now a mechanical run away.

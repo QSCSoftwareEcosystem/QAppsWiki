@@ -68,6 +68,7 @@ collect → parse → links → edges → build → validate → cluster → ana
 | validate | `validate.py` | check every page against `frontmatter-v0` → ERROR / WARNING findings |
 | cluster | `cluster.py` | detect + name **thematic communities** (Louvain, confidence-weighted, deterministic) |
 | extract | `extract.py` | derive **`INFERRED` candidate concepts** from raw sources → staged for review, never written to authored pages (deterministic core + optional injected LLM backend) |
+| promote | `promote.py` | turn a **reviewed candidate** into an authored, schema-valid `concepts/` page (the discover→promote loop — the only path from staging into the authored layer) |
 | analyze | `analyze.py` | graph insight: god-nodes, communities, orphans, cross-domain links, provenance gaps |
 | report | `report.py` | render the two markdown reports |
 | export | `export.py` | write `graph.json` + `graph.html` (communities stamped on nodes, drawn as compound groups) |
@@ -228,12 +229,33 @@ qappswiki extract --format json      # the merged candidate set on stdout
 ```
 
 The defining rule: **extraction never writes authored pages.** Candidates land
-in `wiki-out/extract/` (regenerable, gitignored) for review; a later `promote`
-step turns accepted ones into real `concepts/` pages. Across the corpus,
+in `wiki-out/extract/` (regenerable, gitignored) for review. Across the corpus,
 candidates merge by id so a concept accumulates every source that supports it —
 the ranking (e.g. *Trotter Decomposition, 17 sources*) is the review signal for
 what to promote first. The deterministic lexicon path is CI-safe and needs no
 LLM; the LLM backend is opt-in and passed in, exactly like `freshness`'s network.
+
+### Promotion (discover → promote)
+
+`promote` is the curated counterpart to `extract` — the **only** path from
+staging into the authored layer, and the loop graphify cannot close. It turns a
+reviewed candidate into a real, schema-valid `concepts/` page that carries the
+source provenance the extractor found, as a stub awaiting authoring
+(`status: draft`, `provenance_status: needs-verification`).
+
+```bash
+qappswiki promote "Trotterization"                  # one candidate by id/slug/title
+qappswiki promote --all --min-sources 7             # batch the well-supported ones
+qappswiki promote --all --min-sources 5 --dry-run   # preview without writing
+qappswiki promote concepts/qubitization --force     # overwrite an existing page
+```
+
+Extraction is automatic and writes nothing; promotion is deliberate and writes
+one page per call. The candidate supplies the skeleton (type, `concept_kind`,
+`domains`, `sources`, related links); the curator writes the grounded synthesis,
+then runs `qappswiki run`. A freshly promoted page passes structural validation
+with **0 errors** (it only earns `needs-verification` / `not-in-index` warnings
+until authored).
 
 ---
 

@@ -5,6 +5,7 @@ Subcommands:
   build      ... -> export; write graph.json + graph.html
   report     ... -> analyze; write GRAPH_REPORT.md
   extract    derive INFERRED candidate concepts from raw sources (staged, not authored)
+  promote    turn a reviewed candidate into an authored concepts/ page (discover→promote)
   cluster    detect + name thematic communities (Louvain)
   run        validate + build + report in one parse (the AS/CI entry point)
   serve      MCP stdio server over graph.json
@@ -169,7 +170,10 @@ def cmd_extract(args):
     root = Path(args.root).resolve()
     out = _out_dir(args, root)
     _, graph = run_pipeline(root, out, not args.no_cache)
-    existing_ids = {n for n, a in graph.nodes(data=True) if not a.get("synthetic")}
+    # Resolve/relate candidates only against real *content* pages, so common
+    # words in nav docs (CONTEXT, index, …) don't become spurious related links.
+    from . import schema as _schema
+    existing_ids = {n for n, a in graph.nodes(data=True) if _schema.is_content(a)}
 
     if args.source:
         src = Path(args.source)
@@ -200,6 +204,51 @@ def cmd_extract(args):
         for n in merged["candidate_nodes"][:10]:
             tag = "exists" if n["exists"] else "NEW"
             print(f"  [{len(n['sources'])}x] {n['title']:<42} {n['concept_kind']:<14} {tag}")
+    return 0
+
+
+def cmd_promote(args):
+    from . import promote as _promote
+    root = Path(args.root).resolve()
+    out = _out_dir(args, root)
+    try:
+        queue = _promote.load_queue(out)
+    except _promote.PromoteError as exc:
+        print(f"promote failed: {exc}")
+        return 1
+
+    if args.all:
+        cands = _promote.select_batch(queue, min_sources=args.min_sources,
+                                      kind=args.kind, include_existing=args.force)
+        if not cands:
+            print(f"no candidates with >= {args.min_sources} sources"
+                  + (f" of kind '{args.kind}'" if args.kind else ""))
+            return 0
+    else:
+        if not args.candidate:
+            print("promote: give a candidate id/title, or use --all")
+            return 1
+        c = _promote.find_candidate(queue, args.candidate)
+        if c is None:
+            print(f"no candidate matches '{args.candidate}' "
+                  f"(run `qappswiki extract` and check EXTRACT_REPORT.md)")
+            return 1
+        cands = [c]
+
+    written, skipped = [], []
+    for c in cands:
+        try:
+            written.append(_promote.promote_one(root, c, force=args.force, dry_run=args.dry_run))
+        except _promote.PromoteError as exc:
+            skipped.append((c["id"], str(exc)))
+
+    verb = "would promote" if args.dry_run else "promoted"
+    for r in written:
+        print(f"  {verb}: {r['path']}  ({r['sources']} sources)")
+    for cid, why in skipped:
+        print(f"  skipped: {cid} — {why}")
+    if written and not args.dry_run:
+        print(f"\n{len(written)} page(s) written. Author the stubs, then run `qappswiki run`.")
     return 0
 
 
@@ -344,6 +393,16 @@ def main(argv=None) -> int:
                     help="a single raw source file (default: all of raw/md/)")
     px.add_argument("--format", choices=["text", "json"], default="text")
     px.set_defaults(func=cmd_extract)
+
+    pmp = sub.add_parser("promote", help="promote a reviewed candidate into an authored concepts/ page")
+    _add_common(pmp)
+    pmp.add_argument("candidate", nargs="?", default=None, help="candidate id, slug, or title")
+    pmp.add_argument("--all", action="store_true", help="promote every candidate above --min-sources")
+    pmp.add_argument("--min-sources", type=int, default=2, help="min supporting sources for --all (default 2)")
+    pmp.add_argument("--kind", default=None, help="restrict --all to one concept_kind")
+    pmp.add_argument("--force", action="store_true", help="overwrite an existing page")
+    pmp.add_argument("--dry-run", action="store_true", help="show what would be written, write nothing")
+    pmp.set_defaults(func=cmd_promote)
 
     pc = sub.add_parser("cluster", help="detect + name thematic communities")
     _add_common(pc)
