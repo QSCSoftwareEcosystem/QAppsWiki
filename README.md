@@ -2,7 +2,7 @@
 type: project-charter
 status: active
 created: 2026-04-24
-updated: 2026-06-08
+updated: 2026-06-15
 proposer: Vicente Leyton
 integrates: [data-schema, agentic-software, software-engineering, hybrid-workflows, openqevo, openqse]
 pattern: llm-wiki
@@ -48,6 +48,10 @@ implementation, QEC, compilation, and quantum-HPC.
   orphans, surprising cross-domain links, provenance gaps).
 - **Ingest** PDFs (papers, docs) into the wiki via `markitdown-lightpdf`,
   scaffolding schema-valid, provenance-stamped pages.
+- **Import community catalogs** — `qappswiki import-zoo` pulls curated quantum
+  catalogs (the Error Correction Zoo and the QEM Zoo) into schema-valid,
+  provenance-stamped concept pages, gathered once via a local clone and rendered
+  fully offline.
 - **Answer structurally** over MCP — query the graph, trace how two pages
   connect, explain a node — so an agent builds context from connected, cited
   knowledge rather than raw chunks.
@@ -85,15 +89,17 @@ software up to applications.
 | `qappswiki` engine: schema validation + CI gate | ✅ |
 | Typed, confidence-labeled knowledge graph (`graph.json` / `graph.html`) + insight report | ✅ |
 | PDF ingest (`markitdown-lightpdf`) + schema-valid stub scaffolding | ✅ |
+| Community-catalog import (`import-zoo`): full quantum Error Correction Zoo + QEM Zoo → `concepts/qec`, `concepts/qem` | ✅ |
 | Structural querying over MCP (query / path / explain) | ✅ |
 | Version-stamped packages (`version_source`) + online `freshness` + `check_freshness` MCP tool | ✅ |
 | Seed corpus compiled (OpenQEvo done; Qiskit, PennyLane, TNQVM, Stim) | 🚧 |
+| Verify/enrich imported catalog pages (~690 `needs-verification`) | 🚧 |
 | AS markdown-compilation workflow (manual today; automation) | 🚧 |
 | **Context packs** — assemble a seed + its neighborhood into a token-budgeted, freshness-stamped bundle | 📋 |
 | **Auto-refresh tier** — pull current upstream on a stale flag → recompile → commit | 📋 |
 | **Application roll-up freshness** — staleness propagates up through integrations | 📋 |
 | Concept / paper "newer-literature" freshness mode | 📋 |
-| Nightly `freshness` Action + staleness alerts | 📋 |
+| Nightly `freshness` Action (out-of-band report) ✅ · staleness alerts 📋 | 🚧 |
 | Consumption by ChatQEC / openQSE; broader access surface (static site / API) | 📋 |
 
 The bold 📋 rows are the gap between what exists today — a validated, queryable,
@@ -101,10 +107,15 @@ freshness-aware wiki — and the vision: a self-refreshing context service.
 
 ## Current Position
 
-QAppsWiki is no longer only a proposal. As of 2026-06-08, it is a dedicated
-repository seeded from the QSC Software Thrust workspace, with an initial
-OpenQEvo slice and an AS-assigned intern path for the LLM-Wiki implementation.
-Its first active drivers are three QSC Software Thrust needs:
+QAppsWiki is no longer only a proposal. As of 2026-06-15, the `qappswiki`
+engine and the page structure are complete and merged to `main` (validated in
+CI), so populating the wiki is now a fill-in-the-blanks job (see
+[`CONTRIBUTING.md`](CONTRIBUTING.md)). The corpus has been seeded at scale: the
+full **quantum Error Correction Zoo** (~650 code pages) and **all QEM Zoo
+techniques** are imported into `concepts/qec/` and `concepts/qem/` with
+provenance, alongside the initial OpenQEvo slice. Imported catalog pages are
+`needs-verification` — the next phase is human verification and the seed package
+pages. Its first active drivers are three QSC Software Thrust needs:
 
 - **OpenQEvo support**: turn OpenQEvo docs, papers, examples, and context files
   into catalogued package, how-to, and integration knowledge.
