@@ -4,12 +4,14 @@ Subcommands:
   validate   collect -> parse -> build -> validate; write VALIDATION_REPORT.md
   build      ... -> export; write graph.json + graph.html
   report     ... -> analyze; write GRAPH_REPORT.md
+  new        scaffold a blank schema-valid page of a given type (fill-in-the-blanks)
   extract    derive INFERRED candidate concepts from raw sources (staged, not authored)
   promote    turn a reviewed candidate into an authored concepts/ page (discover→promote)
+  import-zoo import a community catalog (Error Correction Zoo / QEM Zoo) into concept pages
   cluster    detect + name thematic communities (Louvain)
   run        validate + build + report in one parse (the AS/CI entry point)
   serve      MCP stdio server over graph.json
-  query/path/explain   read-only graph queries
+  query/path/explain/cite   read-only graph queries (cite = provenance behind a node)
 """
 
 from __future__ import annotations
@@ -58,6 +60,10 @@ def run_pipeline(root: Path, out: Path, use_cache: bool, dirs=None):
         pages.append({"node": node, "meta": meta})
     edge_list, synthetic = _edges.derive_edges(pages, root)
     graph = _build.build_graph([p["node"] for p in pages], edge_list, synthetic)
+    # Stamp last-known freshness (offline: reads wiki-out/freshness.json if the
+    # online `freshness` command has run; otherwise everything stays untracked).
+    from . import freshness as _freshness
+    _freshness.stamp_graph(graph, _freshness.load_cache(out))
     return pages, graph
 
 
@@ -252,6 +258,34 @@ def cmd_promote(args):
     return 0
 
 
+def cmd_new(args):
+    from . import scaffold
+    from . import schema as _schema
+    root = Path(args.root).resolve()
+    page_type = args.type
+    if page_type not in _schema.CONTENT_TYPES:
+        print(f"unknown page type: '{page_type}' — choose one of "
+              f"{', '.join(sorted(_schema.CONTENT_TYPES))}")
+        return 1
+    # Bare slug -> conventional directory for the type; a path (has '/' or .md)
+    # is used as given.
+    target = args.target
+    if target.endswith(".md") or "/" in target:
+        rel = target if target.endswith(".md") else target + ".md"
+    else:
+        rel = f"{scaffold.TYPE_DIR.get(page_type, page_type)}/{target}.md"
+    path = root / rel
+    if path.exists() and not args.force:
+        print(f"refusing to overwrite existing page {rel} (use --force)")
+        return 1
+    content = scaffold.blank_page(page_type, path.stem, args.title)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    print(f"created {page_type} stub: {rel}")
+    print("\nnext: fill in the frontmatter + body, then run `qappswiki run`.")
+    return 0
+
+
 def cmd_ingest(args):
     from . import ingest as _ingest
     root = Path(args.root).resolve()
@@ -274,6 +308,50 @@ def cmd_ingest(args):
     return 0
 
 
+def cmd_import_zoo(args):
+    """Import a community catalog (Error Correction Zoo / QEM Zoo) into pages."""
+    from . import import_zoo as _iz
+    root = Path(args.root).resolve()
+    source = args.source
+    today = _today()
+    cache = str(root / _iz.DEFAULT_CACHE)       # clone lives under the wiki root
+    try:
+        if source == "eczoo":
+            # explicit ids > flagship set > whole catalog (--all)
+            ids = args.ids or (None if args.all else list(_iz.ECZ_FLAGSHIP))
+            entries = _iz.fetch_eczoo(ids, cache, refresh=args.refresh,
+                                      include_classical=args.include_classical)
+            batch = frozenset(_iz._slug(e["code_id"]) for e in entries)
+            rendered = [(*_iz.eczoo_page(e, today, batch), _iz.tex_to_md(e.get("name") or e["code_id"]))
+                        for e in entries]
+        else:  # qemzoo
+            ids = args.ids or None                          # default: all techniques
+            entries, refs = _iz.fetch_qemzoo(ids, cache, refresh=args.refresh)
+            batch = frozenset(_iz._slug(e["id"]) for e in entries)
+            rendered = [(*_iz.qemzoo_page(e, refs, today, batch), e.get("name") or e["id"])
+                        for e in entries]
+    except _iz.ImportError_ as exc:
+        print(f"import failed: {exc}")
+        return 1
+
+    if args.dry_run:
+        for rel_path, _md, title in rendered:
+            print(f"  would write {rel_path}  ({title})")
+        print(f"\n{len(rendered)} page(s) from {source} (dry run; nothing written)")
+        return 0
+
+    results = _iz.write_pages(root, source, [(rp, md, t) for rp, md, t in rendered],
+                              force=args.force)
+    titles = [(rp[:-3], t) for rp, _md, t in rendered]      # node id = path without .md
+    _iz.update_index(root, source, titles)
+    print(f"imported {len(results)} page(s) from {source} into "
+          f"{_iz.OUT_DIR[source]}/ and linked them from index.md")
+    print(f"attribution: {_iz.ATTRIBUTION[source]}")
+    print("\nnext: run `qappswiki run` to validate, then verify/enrich the "
+          "`needs-verification` pages.")
+    return 0
+
+
 def cmd_freshness(args):
     from . import freshness as _freshness
     root = Path(args.root).resolve()
@@ -281,6 +359,17 @@ def cmd_freshness(args):
     pages, _ = run_pipeline(root, out, not args.no_cache)
     results = _freshness.run_freshness(pages, timeout=args.timeout, only=args.package)
     _write(out / "FRESHNESS_REPORT.md", _report.render_freshness_report(results, _today()))
+    # Persist verdicts so the next build can stamp them onto the graph (and roll
+    # software staleness up to integrations/applications). A single-package run
+    # merges into the existing cache rather than dropping the others.
+    if not args.package:
+        _freshness.save_cache(out, results)
+    else:
+        merged = dict(_freshness.load_cache(out))
+        for r in results:
+            merged[r["page"]] = {"status": r["status"], "latest": r["latest"],
+                                 "built": r["built"], "detail": r["detail"]}
+        _freshness.save_cache(out, [{"page": k, **v} for k, v in merged.items()])
     if args.format == "json":
         print(json.dumps(results, indent=2))
     else:
@@ -355,6 +444,29 @@ def cmd_explain(args):
     return 0
 
 
+def cmd_cite(args):
+    from . import serve
+    graph = _load_graph(args)
+    result = serve.q_cite(graph, args.node)
+    if result is None:
+        print(f"unknown node: {args.node}")
+        return 1
+    if args.format == "json":
+        print(json.dumps(result, indent=2))
+        return 0
+    print(f"# {result['id']}  ({result.get('title')})")
+    print(f"provenance_status: {result.get('provenance_status')}")
+    print(f"\npage-level sources ({len(result['page_level'])}):")
+    for s in result["page_level"]:
+        print(f"  - {s}")
+    print(f"claim-level inline citations ({len(result['claim_level'])}):")
+    for s in result["claim_level"]:
+        print(f"  - {s}")
+    if not result["cites"]:
+        print("  (no sources cited — provenance gap)")
+    return 0
+
+
 def _add_common(p):
     p.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
     p.add_argument("--out", default=None, help="output dir (default: <root>/wiki-out)")
@@ -411,6 +523,14 @@ def main(argv=None) -> int:
     pc.add_argument("--format", choices=["text", "json"], default="text")
     pc.set_defaults(func=cmd_cluster)
 
+    pnew = sub.add_parser("new", help="scaffold a blank schema-valid page to fill in")
+    pnew.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
+    pnew.add_argument("type", help="page type (package|concept|how-to|integration|workflow|qec-artifact|benchmark|source)")
+    pnew.add_argument("target", help="slug (placed in the type's dir) or an explicit path like packages/qiskit.md")
+    pnew.add_argument("--title", default=None, help="page title (default: humanized slug)")
+    pnew.add_argument("--force", action="store_true", help="overwrite an existing page")
+    pnew.set_defaults(func=cmd_new)
+
     pi = sub.add_parser("ingest", help="convert a PDF and scaffold a stub page")
     _add_common(pi)
     pi.add_argument("pdf", help="path to the source PDF")
@@ -423,6 +543,19 @@ def main(argv=None) -> int:
     pi.add_argument("--no-keep-pdf", action="store_true", help="don't archive the PDF to raw/pdf/")
     pi.add_argument("--force", action="store_true", help="overwrite an existing stub")
     pi.set_defaults(func=cmd_ingest)
+
+    piz = sub.add_parser("import-zoo",
+                         help="import a community catalog (Error Correction Zoo / QEM Zoo) into concept pages")
+    piz.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
+    piz.add_argument("source", choices=["eczoo", "qemzoo"], help="which catalog to import")
+    piz.add_argument("ids", nargs="*", help="specific entry ids (default: eczoo=flagship set, qemzoo=all)")
+    piz.add_argument("--all", action="store_true", help="eczoo: import the whole catalog (quantum codes by default)")
+    piz.add_argument("--include-classical", action="store_true",
+                     help="eczoo --all: also import the ~450 purely-classical codes")
+    piz.add_argument("--refresh", action="store_true", help="git pull the local zoo clone before importing")
+    piz.add_argument("--dry-run", action="store_true", help="show what would be written, write nothing")
+    piz.add_argument("--force", action="store_true", help="overwrite existing imported pages")
+    piz.set_defaults(func=cmd_import_zoo)
 
     pf = sub.add_parser("freshness", help="online: check package contexts against upstream versions")
     _add_common(pf)
@@ -452,6 +585,12 @@ def main(argv=None) -> int:
     _add_common(pe)
     pe.add_argument("node")
     pe.set_defaults(func=cmd_explain)
+
+    pct = sub.add_parser("cite", help="show the sources behind a node (page- and claim-level)")
+    _add_common(pct)
+    pct.add_argument("node")
+    pct.add_argument("--format", choices=["text", "json"], default="text")
+    pct.set_defaults(func=cmd_cite)
 
     args = ap.parse_args(argv)
     return args.func(args)

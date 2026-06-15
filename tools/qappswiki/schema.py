@@ -330,6 +330,11 @@ RELATED_FIELDS = {
 }
 
 # Closed vocabulary for typed edges (schema extension + tooling-derived).
+# The first block is the generic software-graph vocabulary; the second is the
+# quantum-domain specialization (the higher-precision relations that distinguish
+# this engine from a generic extractor). `wraps` and `encodes-qec` are authored
+# or LLM-extracted (no high-precision type heuristic infers them); benchmark
+# pages auto-derive `validates-against`.
 EDGE_RELATIONS = {
     "integrates",
     "depends-on",
@@ -342,6 +347,10 @@ EDGE_RELATIONS = {
     "has-how-to",
     "composes-with",
     "uses-interface",
+    # quantum-domain specialization
+    "wraps",             # a package wraps/adapts another (e.g. a framework over a backend)
+    "encodes-qec",       # an artifact/workflow encodes a QEC scheme/code
+    "validates-against", # a benchmark validates a package/workflow/concept
 }
 
 EDGE_CONFIDENCE = {"EXTRACTED", "INFERRED", "AMBIGUOUS"}

@@ -20,8 +20,8 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 - [[docs/llm-wiki-pattern]]: LLM Wiki pattern reference.
 - [[docs/llm-wiki-structure]]: applied structure for the QAppsWiki LLM-wiki
   graph.
-- [[docs/as-intern-task-brief]]: AS intern task brief for the Markdown
-  compilation workflow.
+- `docs/as-intern-task-brief.md` (local-only, not in the shared repo): AS
+  intern task brief for the Markdown compilation workflow.
 
 ## Package Pages
 
@@ -54,3 +54,701 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 ## Source Tracking
 
 - [[raw/source-inventory]]: first source choice for the seed corpus.
+
+<!-- BEGIN imported:eczoo -->
+## QEC Codes (imported from the Error Correction Zoo)
+
+- [[concepts/qec/1d-stabilizer]]: 1D lattice stabilizer code.
+- [[concepts/qec/2bga]]: Two-block group-algebra (2BGA) codes.
+- [[concepts/qec/2d-bosonization]]: 2D bosonization code.
+- [[concepts/qec/2d-color]]: 2D color code.
+- [[concepts/qec/2d-stabilizer]]: 2D lattice stabilizer code.
+- [[concepts/qec/2d-subsystem-color]]: 2D subsystem color code.
+- [[concepts/qec/2t-qutrit]]: 2T-qutrit code.
+- [[concepts/qec/3d-bacon-shor]]: 3D Bacon-Shor code.
+- [[concepts/qec/3d-bosonization]]: 3D bosonization code.
+- [[concepts/qec/3d-color]]: 3D color code.
+- [[concepts/qec/3d-fermionic-surface]]: 3D fermionic surface code.
+- [[concepts/qec/3d-kitaev-honeycomb]]: 3D Kitaev honeycomb code.
+- [[concepts/qec/3d-semion]]: Chiral semion Walker-Wang model code.
+- [[concepts/qec/3d-stabilizer]]: 3D lattice stabilizer code.
+- [[concepts/qec/3d-subsystem-color]]: 3D subsystem color code.
+- [[concepts/qec/3d-subsystem-surface]]: 3D subsystem surface code.
+- [[concepts/qec/3d-surface]]: 3D surface code.
+- [[concepts/qec/4612-color]]: Truncated trihexagonal (4.6.12) color code.
+- [[concepts/qec/488-color]]: Square-octagon (4.8.8) color code.
+- [[concepts/qec/4d-13-surface]]: $(1,3)$ 4D toric code.
+- [[concepts/qec/4d-stabilizer]]: 4D lattice stabilizer code.
+- [[concepts/qec/4d-surface]]: $(2,2)$ Loop toric code.
+- [[concepts/qec/abelian-lifted-product]]: Abelian LP code.
+- [[concepts/qec/ae]]: Æ code.
+- [[concepts/qec/ame]]: Perfect-tensor code.
+- [[concepts/qec/ampdamp]]: Amplitude-damping (AD) code.
+- [[concepts/qec/ampdamp-cws]]: Amplitude-damping CWS code.
+- [[concepts/qec/ampdamp-numopt]]: Numerically optimized four-qubit AD code.
+- [[concepts/qec/ampdamp-post-selected]]: Post-selected PI code.
+- [[concepts/qec/ampdamp-stabilizer]]: $⟦2(m+1),m,2⟧$ single-loss AD code.
+- [[concepts/qec/analog-repetition]]: Analog repetition code.
+- [[concepts/qec/analog-stabilizer]]: Analog stabilizer code.
+- [[concepts/qec/analog-surface]]: Analog surface code.
+- [[concepts/qec/anisotropic-z2-laplacian]]: Anisotropic $\mathbb{Z}_2$ Laplacian model code.
+- [[concepts/qec/approximate-log-depth]]: Log-depth geometrically local Clifford-circuit code.
+- [[concepts/qec/approximate-qecc]]: Approximate quantum error-correcting code (AQECC).
+- [[concepts/qec/aqm]]: Auxiliary qubit mapping (AQM) code.
+- [[concepts/qec/arvind]]: $((n,1+n(q-1),2))_q$ union stabilizer code.
+- [[concepts/qec/asymmetric-qecc]]: Asymmetric quantum code (AQC).
+- [[concepts/qec/bacon-shor]]: Bacon-Shor code.
+- [[concepts/qec/bacon-shor-4]]: $⟦4,1,1,2⟧$ Four-qubit subsystem code.
+- [[concepts/qec/bacon-shor-9]]: $⟦9,1,4,3⟧$ Nine-qubit Bacon-Shor code.
+- [[concepts/qec/balanced-product]]: Balanced product (BP) code.
+- [[concepts/qec/ball-color]]: Ball code.
+- [[concepts/qec/bare-7-1-3]]: $⟦7,1,3⟧$ bare code.
+- [[concepts/qec/bb108]]: $⟦108,8,10⟧$ BB6 code.
+- [[concepts/qec/bb288]]: $⟦288,12,18⟧$ double-gross code.
+- [[concepts/qec/bb5]]: BB5 code.
+- [[concepts/qec/bb72]]: $⟦72,12,6⟧$ BB6 code.
+- [[concepts/qec/bb90]]: $⟦90,8,10⟧$ BB6 code.
+- [[concepts/qec/bc-phantom]]: Binarized-and-concatenated (B\&C) phantom code.
+- [[concepts/qec/bicycle]]: Bicycle code.
+- [[concepts/qec/binary-dihedral-permutation-invariant]]: Binary dihedral PI code.
+- [[concepts/qec/binary-quantum-goppa]]: Binary quantum Goppa code.
+- [[concepts/qec/binomial]]: Binomial code.
+- [[concepts/qec/bipartite-cyclic-cluster]]: Bipartite cyclic cluster (BCC) code.
+- [[concepts/qec/bksf]]: Bravyi-Kitaev superfast (BKSF) code.
+- [[concepts/qec/bkt]]: Bravyi-Kitaev transformation (BKT) code.
+- [[concepts/qec/block-perfect]]: Planar-perfect-tensor code.
+- [[concepts/qec/block-quantum]]: Block quantum code.
+- [[concepts/qec/bosonic-classical-into-quantum]]: Bosonic c-q code.
+- [[concepts/qec/bosonic-q-ary-expansion]]: Bosonic $q$-ary expansion.
+- [[concepts/qec/bosonic-rotation]]: Bosonic rotation code.
+- [[concepts/qec/bosonization]]: Bosonization code.
+- [[concepts/qec/branching-mera]]: Branching MERA code.
+- [[concepts/qec/braunstein]]: $⟦5,1,3⟧_{\mathbb{R}}$ Braunstein five-mode code.
+- [[concepts/qec/bravyi-bacon-shor]]: Bravyi-Bacon-Shor (BBS) code.
+- [[concepts/qec/bravyi-bacon-shor-6]]: $⟦6,2,3,2⟧$ BBS code.
+- [[concepts/qec/brickwork]]: Brickwork $XS$ stabilizer code.
+- [[concepts/qec/bvc]]: Ball-Verstraete-Cirac (BVC) code.
+- [[concepts/qec/cage-net]]: Cage-net code.
+- [[concepts/qec/campbell-howard]]: $⟦6k+2,3k,2⟧$ Campbell-Howard code.
+- [[concepts/qec/capped-color]]: Capped color code (CCC).
+- [[concepts/qec/carbon]]: $⟦12,2,4⟧$ carbon code.
+- [[concepts/qec/cat]]: Cat code.
+- [[concepts/qec/cat-concatenated]]: Concatenated cat code.
+- [[concepts/qec/cat-repetition]]: Cat-repetition code.
+- [[concepts/qec/category-quantum]]: Category-based quantum code.
+- [[concepts/qec/cft]]: Conformal-field theory (CFT) code.
+- [[concepts/qec/chamon]]: Chamon model code.
+- [[concepts/qec/chebyshev]]: Chebyshev code.
+- [[concepts/qec/check-product]]: Quantum check-product code.
+- [[concepts/qec/checkerboard]]: Checkerboard model code.
+- [[concepts/qec/chern-simons-gkp]]: $U(1)_{2n} \times U(1)_{-2m}$ Chern-Simons GKP code.
+- [[concepts/qec/chi2]]: $\chi^{(2)}$ code.
+- [[concepts/qec/chuang-leung-yamamoto]]: Chuang-Leung-Yamamoto (CLY) code.
+- [[concepts/qec/circuit-to-hamiltonian]]: Circuit-to-Hamiltonian approximate code.
+- [[concepts/qec/classical-into-quantum]]: Classical-quantum (c-q) code.
+- [[concepts/qec/classical-product]]: Classical-product code.
+- [[concepts/qec/clifford-deformed-surface]]: Clifford-deformed surface code (CDSC).
+- [[concepts/qec/clifford-hierarchy]]: Clifford-hierarchy stabilizer code.
+- [[concepts/qec/clifford-qsc]]: Clifford group-representation QSC.
+- [[concepts/qec/cluster-state]]: Cluster-state code.
+- [[concepts/qec/coherent-constellation]]: Coherent-state constellation code.
+- [[concepts/qec/coherent-state-c-q]]: Coherent-state c-q modulation format.
+- [[concepts/qec/coherent-state-repetition]]: Coherent-state repetition code.
+- [[concepts/qec/color]]: Color code.
+- [[concepts/qec/combinatorial-permutation-invariant]]: Combinatorial PI code.
+- [[concepts/qec/commuting-projector]]: Commuting-projector Hamiltonian code.
+- [[concepts/qec/compactified-r]]: Compactified $\mathbb{R}$ gauge theory code.
+- [[concepts/qec/compass-model]]: Compass code.
+- [[concepts/qec/concatenated-c-q]]: Concatenated c-q code.
+- [[concepts/qec/concatenated-steane]]: Concatenated Steane code.
+- [[concepts/qec/constant-excitation]]: Constant-excitation (CE) code.
+- [[concepts/qec/constant-excitation-permutation-invariant]]: Ouyang-Chao constant-excitation PI code.
+- [[concepts/qec/covariant]]: Covariant block quantum code.
+- [[concepts/qec/cpc]]: Coherent-parity-check (CPC) code.
+- [[concepts/qec/crystalline-dynamic-gen]]: Crystalline-circuit qubit code.
+- [[concepts/qec/css]]: Calderbank-Shor-Steane (CSS) stabilizer code.
+- [[concepts/qec/css-12-1-3]]: $⟦12,1,3⟧$ CE CSS code.
+- [[concepts/qec/css-4-1-2]]: $⟦4,1,2⟧$ Leung-Nielsen-Chuang-Yamamoto (LNCY) code.
+- [[concepts/qec/css-5-1-3]]: $⟦5,1,3⟧_4$ Galois-qudit CSS code.
+- [[concepts/qec/css-6-1-2]]: $⟦6,1,2⟧$ semi-self-dual CSS code.
+- [[concepts/qec/css-plaquette]]: CSS-Plaquette code.
+- [[concepts/qec/css-t]]: CSS-T code.
+- [[concepts/qec/cubic-honeycomb-color]]: Cubic honeycomb color code.
+- [[concepts/qec/cubic-surface]]: $⟦8,3,2⟧$ Surface code on a cube.
+- [[concepts/qec/cubic-theory]]: Cubic theory code.
+- [[concepts/qec/current-mirror]]: Kitaev current-mirror qubit code.
+- [[concepts/qec/cv-cluster-state]]: Analog cluster-state code.
+- [[concepts/qec/cws]]: Codeword stabilized (CWS) code.
+- [[concepts/qec/cyclic-hgp]]: Cyclic Hypergraph Product Code.
+- [[concepts/qec/da]]: Dynamical code.
+- [[concepts/qec/da-color-2d]]: 2D DA color code.
+- [[concepts/qec/da-color-3d]]: 3D DA color code.
+- [[concepts/qec/data-syndrome]]: Quantum data-syndrome (QDS) code.
+- [[concepts/qec/derby-klassen]]: Derby-Klassen (DK) code.
+- [[concepts/qec/dfour-gkp]]: $D_4$ hyper-diamond GKP code.
+- [[concepts/qec/dhlv]]: Dinur-Hsieh-Lin-Vidick (DHLV) code.
+- [[concepts/qec/diagonal-clifford]]: $⟦2^r-1,1,3⟧$ simplex code.
+- [[concepts/qec/diatomic-molecular]]: Diatomic molecular code.
+- [[concepts/qec/dijkgraaf-witten]]: Dijkgraaf-Witten gauge theory code.
+- [[concepts/qec/distance-balanced]]: Distance-balanced code.
+- [[concepts/qec/dlv]]: Dinur-Lin-Vidick (DLV) code.
+- [[concepts/qec/double-homological-product]]: Campbell double homological product code.
+- [[concepts/qec/double-semion]]: Double-semion stabilizer code.
+- [[concepts/qec/double-semion-string-net]]: Double-semion string-net code.
+- [[concepts/qec/doubled-color]]: Doubled color code.
+- [[concepts/qec/dual-rail]]: Dual-rail quantum code.
+- [[concepts/qec/dynamic-gen]]: Dynamically generated QECC.
+- [[concepts/qec/ea-3-1-3-2]]: $⟦3, 1, 3;2⟧$ EA code.
+- [[concepts/qec/ea-analog-stabilizer]]: EA analog stabilizer code.
+- [[concepts/qec/ea-classical-into-quantum]]: Entanglement-assisted (EA) c-q code.
+- [[concepts/qec/ea-design-qldpc]]: EA combinatorial-design QLDPC code.
+- [[concepts/qec/ea-galois-into-galois]]: EA Galois-qudit code.
+- [[concepts/qec/ea-galois-stabilizer]]: EA Galois-qudit stabilizer code.
+- [[concepts/qec/ea-mds]]: EA MDS code.
+- [[concepts/qec/ea-mixed-alphabet-reed-solomon]]: EA mixed-alphabet Reed-Solomon c-q code.
+- [[concepts/qec/ea-oscillators]]: EA bosonic code.
+- [[concepts/qec/ea-pg-qldpc]]: EA FG-QLDPC code.
+- [[concepts/qec/ea-qc-qldpc]]: EA QC-QLDPC code.
+- [[concepts/qec/ea-qldpc]]: EA QLDPC code.
+- [[concepts/qec/ea-quantum-convolutional]]: EA quantum convolutional code.
+- [[concepts/qec/ea-quantum-lcd]]: EA quantum LCD code.
+- [[concepts/qec/ea-qubits-into-qubits]]: EA qubit code.
+- [[concepts/qec/ea-turbo]]: EA quantum turbo code.
+- [[concepts/qec/eaoa-hamming]]: $⟦10,1,3;1,3,4⟧$ EAOA Hamming code.
+- [[concepts/qec/eaoa-qubits-into-qubits]]: EAOA qubit code.
+- [[concepts/qec/eaoa-stabilizer]]: EAOA qubit stabilizer code.
+- [[concepts/qec/eaoecc]]: Entanglement-assisted (EA) operator QECC.
+- [[concepts/qec/eaqecc]]: Entanglement-assisted (EA) QECC.
+- [[concepts/qec/eastab]]: EA qubit stabilizer code.
+- [[concepts/qec/enriched-string-net]]: Multi-fusion string-net code.
+- [[concepts/qec/enriched-walker-wang]]: $G$-enriched Walker-Wang model code.
+- [[concepts/qec/eth]]: Eigenstate thermalization hypothesis (ETH) code.
+- [[concepts/qec/expander-lifted-product]]: Expander LP code.
+- [[concepts/qec/fcc-fracton]]: Four Color Cube (FCC) fracton model code.
+- [[concepts/qec/fermions]]: Fermion code.
+- [[concepts/qec/fermions-into-qubits]]: Fermion-into-qubit code.
+- [[concepts/qec/fiber]]: Fiber code.
+- [[concepts/qec/fiber-bundle]]: Fiber-bundle code.
+- [[concepts/qec/fibonacci]]: Fibonacci string-net code.
+- [[concepts/qec/fibonacci-fractal-liquid]]: Fibonacci fractal spin-liquid code.
+- [[concepts/qec/five-squares]]: Generalized five-squares code.
+- [[concepts/qec/floquet]]: Hastings-Haah Floquet code.
+- [[concepts/qec/floquet-3d-fermionic-surface]]: Floquet 3D fermionic surface code.
+- [[concepts/qec/floquet-3d-surface]]: Floquet 3D surface code.
+- [[concepts/qec/floquet-color]]: Floquet color code.
+- [[concepts/qec/floquet-fracton]]: Fracton Floquet code.
+- [[concepts/qec/floquet-xcube]]: X-cube Floquet code.
+- [[concepts/qec/floquet-xyz-ruby]]: Ruby Floquet code.
+- [[concepts/qec/fock-state]]: Fock-state bosonic code.
+- [[concepts/qec/fock-state-ook]]: Fock-state OOK c-q modulation format.
+- [[concepts/qec/four-dimensional-hyperbolic]]: Guth-Lubotzky code.
+- [[concepts/qec/four-qubit-permutation-invariant]]: $((4,2,2))$ Four-qubit single-deletion code.
+- [[concepts/qec/fourier-bosonic]]: Bosonic quantum Fourier code.
+- [[concepts/qec/fractal-liquid]]: Type-II fractal spin-liquid code.
+- [[concepts/qec/fractal-surface]]: Fractal surface code.
+- [[concepts/qec/fracton]]: Fracton stabilizer code.
+- [[concepts/qec/freedman-meyer-luo]]: Freedman-Meyer-Luo code.
+- [[concepts/qec/frobenius]]: Frobenius code.
+- [[concepts/qec/frustration-free]]: Frustration-free Hamiltonian code.
+- [[concepts/qec/fusion]]: Fusion-based quantum computing (FBQC) code.
+- [[concepts/qec/g-covariant-erasure]]: $G$-covariant erasure code.
+- [[concepts/qec/galois-3-1-2]]: $⟦3,1,2⟧_4$ three-Galois-quartrit code.
+- [[concepts/qec/galois-5-1-3]]: $⟦5,1,3⟧_q$ Galois-qudit code.
+- [[concepts/qec/galois-6-2-3]]: $⟦6,2,3⟧_{q}$ code.
+- [[concepts/qec/galois-7-3-3]]: $⟦7,3,3⟧_{q}$ code.
+- [[concepts/qec/galois-bch]]: Galois-qudit BCH code.
+- [[concepts/qec/galois-color]]: Galois-qudit color code.
+- [[concepts/qec/galois-css]]: Galois-qudit CSS code.
+- [[concepts/qec/galois-cws]]: Galois-qudit CWS code.
+- [[concepts/qec/galois-duadic]]: Quantum duadic code.
+- [[concepts/qec/galois-expander]]: Galois-qudit expander code.
+- [[concepts/qec/galois-fqrs]]: Folded quantum RS (FQRS) code.
+- [[concepts/qec/galois-grs]]: Galois-qudit GRS code.
+- [[concepts/qec/galois-hypergraph-product]]: Galois-qudit HGP code.
+- [[concepts/qec/galois-into-galois]]: Galois-qudit code.
+- [[concepts/qec/galois-non-stabilizer]]: Galois-qudit USt code.
+- [[concepts/qec/galois-polynomial]]: Galois-qudit RS code.
+- [[concepts/qec/galois-quad-residue]]: Quantum quadratic-residue (QR) code.
+- [[concepts/qec/galois-reed-muller]]: Galois-qudit quantum RM code.
+- [[concepts/qec/galois-stabilizer]]: Galois-qudit stabilizer code.
+- [[concepts/qec/galois-subsystem-css]]: Subsystem Galois-qudit CSS code.
+- [[concepts/qec/galois-subsystem-stabilizer]]: Subsystem Galois-qudit stabilizer code.
+- [[concepts/qec/galois-topological]]: Galois-qudit surface code.
+- [[concepts/qec/galois-true-stabilizer]]: True Galois-qudit stabilizer code.
+- [[concepts/qec/general-qldpc]]: QLDPC code.
+- [[concepts/qec/generalized-bicycle]]: Generalized bicycle (GB) code.
+- [[concepts/qec/generalized-color]]: Generalized 2D color code.
+- [[concepts/qec/generalized-homological-product]]: Generalized homological-product code.
+- [[concepts/qec/generalized-homological-product-css]]: Generalized homological-product CSS code.
+- [[concepts/qec/generalized-quantum-divisible]]: Generalized quantum divisible code.
+- [[concepts/qec/generalized-quantum-tanner]]: Generalized quantum Tanner code.
+- [[concepts/qec/generalized-shor]]: Generalized Shor code.
+- [[concepts/qec/gkp]]: Square-lattice GKP code.
+- [[concepts/qec/gkp-cluster-state]]: GKP CV-cluster-state code.
+- [[concepts/qec/gkp-concatenated]]: Concatenated GKP code.
+- [[concepts/qec/gkp-stabilizer]]: Oscillator-into-oscillator GKP code.
+- [[concepts/qec/gkp-surface-concatenated]]: GKP-surface code.
+- [[concepts/qec/gnu-permutation-invariant]]: GNU PI code.
+- [[concepts/qec/golden]]: Golden code.
+- [[concepts/qec/good-qldpc]]: Good QLDPC code.
+- [[concepts/qec/goy]]: $⟦6r,2r,2⟧$ Ganti-Onunkwo-Young code.
+- [[concepts/qec/graph-quantum]]: Graph quantum code.
+- [[concepts/qec/gross]]: $⟦144,12,12⟧$ gross code.
+- [[concepts/qec/group-10-1-4]]: $⟦10,1,4⟧_{G}$ tenfold code.
+- [[concepts/qec/group-4-2-2]]: $⟦4,2,2⟧_{G}$ four group-qudit code.
+- [[concepts/qec/group-cluster-state]]: Group-based cluster-state code.
+- [[concepts/qec/group-gkp]]: Group GKP code.
+- [[concepts/qec/group-quantum]]: Group-based quantum code.
+- [[concepts/qec/group-quantum-parity]]: Group-based QPC.
+- [[concepts/qec/group-quantum-repetition]]: Group-based quantum repetition code.
+- [[concepts/qec/group-representation]]: Group-representation code.
+- [[concepts/qec/groupoid-surface]]: Groupoid toric code.
+- [[concepts/qec/haah-cubic]]: Haah cubic code (CC).
+- [[concepts/qec/haar-random]]: Haar-random qubit code.
+- [[concepts/qec/hamiltonian]]: Hamiltonian-based code.
+- [[concepts/qec/happy]]: Pastawski-Yoshida-Harlow-Preskill (HaPPY) code.
+- [[concepts/qec/heavy-hex]]: Heavy-hexagon code.
+- [[concepts/qec/hemicubic]]: Hemicubic code.
+- [[concepts/qec/hermitian-qldpc]]: Camara-Ollivier-Tillich code.
+- [[concepts/qec/hessian-qsc]]: Hessian QSC.
+- [[concepts/qec/hexagonal-cz]]: Hexagonal $CZ$ code.
+- [[concepts/qec/hexagonal-gkp]]: Hexagonal GKP code.
+- [[concepts/qec/hgp-7-2-2]]: $⟦7,2,2⟧$ HGP phantom code.
+- [[concepts/qec/hh-fracton]]: Hsieh-Halasz (HH) code.
+- [[concepts/qec/hhb-fracton]]: Hsieh-Halasz-Balents (HHB) code.
+- [[concepts/qec/hierarchical]]: Hierarchical code.
+- [[concepts/qec/higher-dimensional-surface]]: Homological code.
+- [[concepts/qec/higher-dimensional-toric]]: $D$-dimensional twisted toric code.
+- [[concepts/qec/hnss]]: Hayden-Nezami-Salton-Sanders bosonic code.
+- [[concepts/qec/holographic]]: Holographic code.
+- [[concepts/qec/holographic-5-1-2]]: Surface-code-fragment (SCF) holographic code.
+- [[concepts/qec/holographic-6-1-3]]: Six-qubit-tensor holographic code.
+- [[concepts/qec/holographic-hyperinvariant]]: Hyperinvariant tensor-network (HTN) code.
+- [[concepts/qec/holographic-steane]]: Heptagon holographic code.
+- [[concepts/qec/holographic-subsystem]]: Subsystem holographic code.
+- [[concepts/qec/holographic-tensor]]: Holographic tensor-network code.
+- [[concepts/qec/homogeneous-space-quantum]]: Homogeneous-space quantum code.
+- [[concepts/qec/homological-cv]]: Integer-homology bosonic CSS code.
+- [[concepts/qec/homological-number-phase]]: Homological number-phase code.
+- [[concepts/qec/homological-product]]: Homological product code.
+- [[concepts/qec/homological-rotor]]: Homological rotor code.
+- [[concepts/qec/honeycomb-floquet]]: Honeycomb Floquet code.
+- [[concepts/qec/hopf-cluster-state]]: Hopf-algebra cluster-state code.
+- [[concepts/qec/hopf-quantum-double]]: Hopf-algebra quantum-double code.
+- [[concepts/qec/hurwitz-surface]]: Hurwitz surface code.
+- [[concepts/qec/hybrid-7-1-1-3]]: $⟦7, 1:1, 3⟧$ hybrid stabilizer code.
+- [[concepts/qec/hybrid-8-2-1-3]]: $⟦8, 2:1, 3⟧$ hybrid stabilizer code.
+- [[concepts/qec/hybrid-bacon-shor]]: OA Bacon-Shor code.
+- [[concepts/qec/hybrid-cat]]: Hybrid cat code.
+- [[concepts/qec/hybrid-convolutional]]: Hybrid convolutional code.
+- [[concepts/qec/hybrid-qubits-into-qubits]]: Hybrid qubit code.
+- [[concepts/qec/hybrid-qudit-oscillator]]: Mixed oscillator code.
+- [[concepts/qec/hybrid-stabilizer]]: Hybrid stabilizer code.
+- [[concepts/qec/hybridqecc]]: Hybrid QECC.
+- [[concepts/qec/hyperbolic-color]]: Hyperbolic color code.
+- [[concepts/qec/hyperbolic-floquet]]: Hyperbolic Floquet code.
+- [[concepts/qec/hyperbolic-surface]]: Hyperbolic surface code.
+- [[concepts/qec/hypercube-quantum]]: $⟦2^D,D,2⟧$ hypercube quantum code.
+- [[concepts/qec/hypergraph-product]]: Hypergraph product (HGP) code.
+- [[concepts/qec/hypersphere-product]]: Hypersphere product code.
+- [[concepts/qec/iceberg]]: $⟦2m,2m-2,2⟧$ error-detecting code.
+- [[concepts/qec/icosahedral-fock]]: Icosahedral Fock-state code.
+- [[concepts/qec/icosahedral-permutation-invariant]]: $((7,2,3))$ Pollatsek-Ruskai code.
+- [[concepts/qec/icosahedral-spin]]: Icosahedral spin code.
+- [[concepts/qec/invertible]]: Chen-Hsin invertible-order code.
+- [[concepts/qec/iterated-ramanujan]]: Tensor-product HDX code.
+- [[concepts/qec/j-gross]]: Clifford-group spin code.
+- [[concepts/qec/jump]]: Jump code.
+- [[concepts/qec/jw]]: Jordan-Wigner transformation code.
+- [[concepts/qec/kitaev-chain]]: Kitaev chain code.
+- [[concepts/qec/kitaev-honeycomb]]: Kitaev honeycomb code.
+- [[concepts/qec/klein-bottle]]: Klein-bottle surface code.
+- [[concepts/qec/kls]]: Khesin-Lu-Shor code.
+- [[concepts/qec/knill]]: Knill code.
+- [[concepts/qec/kpt]]: Kim-Preskill-Tang (KPT) code.
+- [[concepts/qec/lacross]]: La-cross code.
+- [[concepts/qec/ladder]]: Ladder Floquet code.
+- [[concepts/qec/landau-level]]: Landau-level spin code.
+- [[concepts/qec/layer]]: Layer code.
+- [[concepts/qec/lca-stabilizer]]: Locally compact Abelian (LCA) stabilizer code.
+- [[concepts/qec/lcs]]: Lift-connected surface (LCS) code.
+- [[concepts/qec/lhz]]: Lechner-Hauke-Zoller (LHZ) code.
+- [[concepts/qec/lifted-product]]: Lifted-product (LP) code.
+- [[concepts/qec/lloyd-slotine]]: $⟦9,1,3⟧_{\mathbb{R}}$ Lloyd-Slotine code.
+- [[concepts/qec/local-haar-random]]: Local Haar-random circuit qubit code.
+- [[concepts/qec/lossless-expander]]: Lossless expander balanced-product code.
+- [[concepts/qec/lresc]]: Long-range enhanced surface code (LRESC).
+- [[concepts/qec/majorana-6-1-3]]: $⟦6,1,3⟧_{f}$ Vijay-Fu Majorana code.
+- [[concepts/qec/majorana-checkerboard]]: Majorana checkerboard code.
+- [[concepts/qec/majorana-color]]: Majorana color code.
+- [[concepts/qec/majorana-hamming]]: $⟦2^{m-1},2^{m-1}-m-1,4⟧_{f}$ Hamming Majorana code.
+- [[concepts/qec/majorana-reed-muller]]: RM Majorana code.
+- [[concepts/qec/majorana-stab]]: Majorana stabilizer code.
+- [[concepts/qec/majorana-subsystem]]: Majorana subsystem stabilizer code.
+- [[concepts/qec/majorana-surface]]: Majorana surface code.
+- [[concepts/qec/matching]]: Matching code.
+- [[concepts/qec/matrix-qm]]: Matrix-model code.
+- [[concepts/qec/maximal-entanglement-galois-stabilizer]]: Maximal-entanglement EA Galois-qudit stabilizer code.
+- [[concepts/qec/mbq]]: Majorana box qubit.
+- [[concepts/qec/metopt]]: Error-corrected sensing code.
+- [[concepts/qec/metrological]]: Metrological code.
+- [[concepts/qec/mlsc]]: Majorana loop stabilizer code (MLSC).
+- [[concepts/qec/molecular]]: Molecular code.
+- [[concepts/qec/monitored-random-circuits]]: Monitored random-circuit code.
+- [[concepts/qec/morphed-diagonal-clifford]]: $⟦2^r+r-1,1,2⟧$ morphed simplex code.
+- [[concepts/qec/movassagh-ouyang]]: Movassagh-Ouyang Hamiltonian code.
+- [[concepts/qec/mps]]: Magnon code.
+- [[concepts/qec/multimodegkp]]: Gottesman-Kitaev-Preskill (GKP) code.
+- [[concepts/qec/multisector-hypergraph]]: Higher-dimensional homological product code.
+- [[concepts/qec/niset-andersen-cerf]]: Niset-Andersen-Cerf code.
+- [[concepts/qec/non-stabilizer]]: Union stabilizer (USt) code.
+- [[concepts/qec/nonabelian-covariant-erasure]]: $U(d)$-covariant approximate erasure code.
+- [[concepts/qec/nonabelian-kitaev-honeycomb]]: Non-Abelian Kitaev honeycomb code.
+- [[concepts/qec/nonlocal-lowdepth]]: Brown-Fawzi Clifford-circuit code.
+- [[concepts/qec/ntru-gkp]]: NTRU-GKP code.
+- [[concepts/qec/number-phase]]: Number-phase code.
+- [[concepts/qec/numopt]]: Numerically optimized bosonic code.
+- [[concepts/qec/oa-qubits-into-qubits]]: OA qubit code.
+- [[concepts/qec/oecc]]: Subsystem QECC.
+- [[concepts/qec/okada]]: Okada spin code.
+- [[concepts/qec/one-hot-quantum]]: One-hot quantum code.
+- [[concepts/qec/oscillator-css]]: Bosonic CSS code.
+- [[concepts/qec/oscillator-stabilizer]]: Bosonic stabilizer code.
+- [[concepts/qec/oscillators]]: Bosonic code.
+- [[concepts/qec/oscillators-concatenated]]: Concatenated bosonic code.
+- [[concepts/qec/oscillators-into-oscillators]]: Oscillator-into-oscillator code.
+- [[concepts/qec/paircat]]: Pair-cat code.
+- [[concepts/qec/pauli-qsc]]: Pauli tessellation QSC.
+- [[concepts/qec/penrose]]: Penrose tiling code.
+- [[concepts/qec/permutation-invariant]]: Permutation-invariant (PI) code.
+- [[concepts/qec/pg-qldpc]]: Finite-geometry (FG) qubit QLDPC code.
+- [[concepts/qec/phantom]]: Phantom code.
+- [[concepts/qec/phantom-14-3-3]]: $⟦14,3,3⟧$ CE phantom code.
+- [[concepts/qec/polar-for-quantum]]: Polar c-q code.
+- [[concepts/qec/polynomial]]: Prime-qudit RS code.
+- [[concepts/qec/purity-testing]]: Purity-testing stabilizer code.
+- [[concepts/qec/qcga]]: Bivariate bicycle (BB) code.
+- [[concepts/qec/qecc]]: Quantum error-correcting code (QECC).
+- [[concepts/qec/qecc-finite]]: Finite-dimensional quantum error-correcting code.
+- [[concepts/qec/qetc]]: Quantum error-transmuting code (QETC).
+- [[concepts/qec/qetc-7-2]]: $⟦7,2,2⟧$ QETC.
+- [[concepts/qec/qldpc]]: Qubit QLDPC code.
+- [[concepts/qec/qltc]]: Quantum locally testable code (QLTC).
+- [[concepts/qec/qlwc]]: Quantum low-weight check (QLWC) code.
+- [[concepts/qec/qmdpc]]: Quantum multi-dimensional parity-check (QMDPC) code.
+- [[concepts/qec/qsc]]: Quantum spherical code (QSC).
+- [[concepts/qec/quad-residue-13-1-5]]: $⟦13,1,5⟧$ quantum QR code.
+- [[concepts/qec/quantum-ag]]: Quantum AG code.
+- [[concepts/qec/quantum-bch]]: Qubit BCH code.
+- [[concepts/qec/quantum-bpsk]]: BPSK c-q modulation format.
+- [[concepts/qec/quantum-cap]]: $⟦n,n-2k,4⟧$ Quantum cap code.
+- [[concepts/qec/quantum-concatenated]]: Concatenated quantum code.
+- [[concepts/qec/quantum-convolutional]]: Quantum convolutional code.
+- [[concepts/qec/quantum-cyclic]]: Cyclic quantum code.
+- [[concepts/qec/quantum-divisible]]: Quantum divisible code.
+- [[concepts/qec/quantum-dodecahedron]]: $⟦16,4,3⟧$ dodecahedral code.
+- [[concepts/qec/quantum-double]]: Quantum-double code.
+- [[concepts/qec/quantum-double-abelian]]: Abelian quantum-double stabilizer code.
+- [[concepts/qec/quantum-double-dihedral]]: Dihedral $G=D_m$ quantum-double code.
+- [[concepts/qec/quantum-expander]]: Quantum expander code.
+- [[concepts/qec/quantum-fsk]]: Coherent FSK (CFSK) c-q modulation format.
+- [[concepts/qec/quantum-gabidulin]]: Quantum Gabidulin code.
+- [[concepts/qec/quantum-goethals-preparata]]: $((2^m,2^{2^m−5m+1},8))$ Goethals-Preparata code.
+- [[concepts/qec/quantum-h]]: $⟦k+4,k,2⟧$ H code.
+- [[concepts/qec/quantum-hadamard-bpsk]]: Hadamard BPSK c-q modulation format.
+- [[concepts/qec/quantum-hamming]]: $⟦2^r, 2^r-r-2, 3⟧$ Gottesman code.
+- [[concepts/qec/quantum-hamming-css]]: $⟦2^r-1, 2^r-2r-1, 3⟧$ quantum Hamming code.
+- [[concepts/qec/quantum-hermitian-ag]]: Quantum Hermitian AG code.
+- [[concepts/qec/quantum-icosahedron]]: $⟦54,6,5⟧$ five-covered icosahedral code.
+- [[concepts/qec/quantum-into-quantum]]: Quantum code.
+- [[concepts/qec/quantum-irregular-convolutional]]: Quantum irregular convolutional code (QIRCC).
+- [[concepts/qec/quantum-k-orthogonal]]: $k$-orthogonal code.
+- [[concepts/qec/quantum-lattice]]: Quantum lattice code.
+- [[concepts/qec/quantum-lego]]: Tensor-network code.
+- [[concepts/qec/quantum-locally-recoverable]]: Quantum locally recoverable code (QLRC).
+- [[concepts/qec/quantum-mds]]: Quantum maximum-distance-separable (MDS) code.
+- [[concepts/qec/quantum-ook]]: On-off keyed (OOK) c-q modulation format.
+- [[concepts/qec/quantum-parity]]: Quantum parity code (QPC).
+- [[concepts/qec/quantum-perfect]]: Perfect quantum code.
+- [[concepts/qec/quantum-pin]]: Quantum pin code.
+- [[concepts/qec/quantum-plane-curve]]: Quantum plane-curve code.
+- [[concepts/qec/quantum-polar]]: Quantum polar code.
+- [[concepts/qec/quantum-ppm]]: Pulse-position (PPM) c-q modulation format.
+- [[concepts/qec/quantum-psk]]: PSK c-q modulation format.
+- [[concepts/qec/quantum-quasi-cyclic]]: Quasi-cyclic quantum code.
+- [[concepts/qec/quantum-rainbow]]: Quantum rainbow code.
+- [[concepts/qec/quantum-random]]: Random quantum code.
+- [[concepts/qec/quantum-reed-muller]]: Quantum Reed-Muller (RM) code.
+- [[concepts/qec/quantum-repetition]]: Quantum repetition code.
+- [[concepts/qec/quantum-secret-sharing]]: Approximate secret-sharing code.
+- [[concepts/qec/quantum-sidelnikov]]: Clifford subgroup-orbit QSC.
+- [[concepts/qec/quantum-singleton]]: Singleton-bound approaching AQECC.
+- [[concepts/qec/quantum-synchronizable]]: Quantum synchronizable code.
+- [[concepts/qec/quantum-tamo-barg]]: Quantum Tamo-Barg (QTB) code.
+- [[concepts/qec/quantum-tanner]]: Quantum Tanner code.
+- [[concepts/qec/quantum-tensor-product]]: Quantum tensor-product code.
+- [[concepts/qec/quantum-triorthogonal]]: Triorthogonal code.
+- [[concepts/qec/quantum-triple]]: Quantum-triple code.
+- [[concepts/qec/quantum-turbo]]: Quantum turbo code.
+- [[concepts/qec/quantum-twisted]]: Quantum twisted code.
+- [[concepts/qec/quasi-cyclic-qldpc]]: Quasi-cyclic QLDPC (QC-QLDPC) code.
+- [[concepts/qec/quasi-hyperbolic-color]]: Quasi-hyperbolic color code.
+- [[concepts/qec/qubit-10-24-3]]: $((10,24,3))$ qubit code.
+- [[concepts/qec/qubit-5-6-2]]: $((5,6,2))$ qubit code.
+- [[concepts/qec/qubit-6-2-3]]: $((6,2,3))$ transversal-$\mathbb{Z}_{10}$ code.
+- [[concepts/qec/qubit-8-1-3]]: $((8,2,3))$ Plenio-Vedral-Knight CE code.
+- [[concepts/qec/qubit-8-4-2]]: $((8,16,2))$ $PG(3,2)$ code.
+- [[concepts/qec/qubit-9-12-3]]: $((9,12,3))$ qubit code.
+- [[concepts/qec/qubit-classical-into-quantum]]: Qubit c-q code.
+- [[concepts/qec/qubit-concatenated]]: Concatenated qubit code.
+- [[concepts/qec/qubit-css]]: Qubit CSS code.
+- [[concepts/qec/qubit-generalized-homological-product-css]]: Generalized homological-product qubit CSS code.
+- [[concepts/qec/qubit-golay]]: $⟦23, 1, 7⟧$ Quantum Golay code.
+- [[concepts/qec/qubit-permutation-invariant]]: PI qubit code.
+- [[concepts/qec/qubit-stabilizer]]: Qubit stabilizer code.
+- [[concepts/qec/qubit-stabilizer-oaqecc]]: Operator-algebra (OA) qubit stabilizer code.
+- [[concepts/qec/qubit-subsystem-css]]: Subsystem qubit CSS code.
+- [[concepts/qec/qubit-subsystem-stabilizer]]: Subsystem qubit stabilizer code.
+- [[concepts/qec/qubits-into-qubits]]: Qubit code.
+- [[concepts/qec/qudit-3-6-2]]: $((3,6,2))_{\mathbb{Z}_6}$ Euler code.
+- [[concepts/qec/qudit-3d-surface]]: Modular-qudit 3D surface code.
+- [[concepts/qec/qudit-5-1-3]]: $⟦5,1,3⟧_{\mathbb{Z}_q}$ modular-qudit code.
+- [[concepts/qec/qudit-cluster-state]]: Modular-qudit cluster-state code.
+- [[concepts/qec/qudit-color]]: Modular-qudit lattice color code.
+- [[concepts/qec/qudit-css]]: Modular-qudit CSS code.
+- [[concepts/qec/qudit-cubic]]: Qudit cubic code.
+- [[concepts/qec/qudit-cws]]: Modular-qudit CWS code.
+- [[concepts/qec/qudit-da]]: Modular-qudit dynamical code.
+- [[concepts/qec/qudit-gkp]]: Modular-qudit GKP code.
+- [[concepts/qec/qudit-gnu-permutation-invariant]]: Qudit GNU PI code.
+- [[concepts/qec/qudit-hamming-css]]: $⟦2^r-1, 2^r-2r-1, 3⟧_p$ quantum Hamming code.
+- [[concepts/qec/qudit-honeycomb]]: Modular-qudit honeycomb Floquet code.
+- [[concepts/qec/qudit-non-stabilizer]]: Modular-qudit USt code.
+- [[concepts/qec/qudit-reed-muller]]: Prime-qudit RM code.
+- [[concepts/qec/qudit-sign]]: Modular-qudit shift-resistant code.
+- [[concepts/qec/qudit-stabilizer]]: Modular-qudit stabilizer code.
+- [[concepts/qec/qudit-subsystem-color]]: Modular-qudit subsystem color code.
+- [[concepts/qec/qudit-subsystem-css]]: Subsystem modular-qudit CSS code.
+- [[concepts/qec/qudit-subsystem-stabilizer]]: Subsystem modular-qudit stabilizer code.
+- [[concepts/qec/qudit-surface]]: Modular-qudit surface code.
+- [[concepts/qec/qudit-triorthogonal]]: Prime-qudit triorthogonal code.
+- [[concepts/qec/qudit-xcube]]: Qudit X-cube model code.
+- [[concepts/qec/qudit-znone]]: $\mathbb{Z}_q^{(1)}$ subsystem code.
+- [[concepts/qec/qudits-into-oscillators]]: Qudit-into-oscillator code.
+- [[concepts/qec/qudits-into-qudits]]: Modular-qudit code.
+- [[concepts/qec/qutrit-golay]]: $⟦11,1,5⟧_3$ qutrit Golay code.
+- [[concepts/qec/qutrit-pauli-gkp-subcode]]: Qutrit-Pauli tessellation code.
+- [[concepts/qec/qutrit-small-triorthogonal]]: $⟦9m-k,k,2⟧_3$ triorthogonal code.
+- [[concepts/qec/rains]]: $((2m+1,3 \times 2^{2m-3},2))$ Rains code.
+- [[concepts/qec/ramanujan-tensor-product]]: High-dimensional expander (HDX) code.
+- [[concepts/qec/random-circuit]]: Random-circuit code.
+- [[concepts/qec/random-stabilizer]]: Random stabilizer code.
+- [[concepts/qec/rbh]]: Raussendorf-Bravyi-Harrington (RBH) cluster-state code.
+- [[concepts/qec/real-projective-plane]]: Projective-plane surface code.
+- [[concepts/qec/reinforcement-learning]]: Reinforcement-learning quantum code.
+- [[concepts/qec/rg-cat]]: Renormalization group (RG) cat code.
+- [[concepts/qec/rhombic-dodecahedron-surface]]: $⟦14,3,3⟧$ Rhombic dodecahedron surface code.
+- [[concepts/qec/ring-cpc]]: $⟦2^r+r, 2^r-r-2, 3⟧$ Ring CPC code.
+- [[concepts/qec/rotated-surface]]: Rotated surface code.
+- [[concepts/qec/rotor]]: Rotor code.
+- [[concepts/qec/rotor-3-1-2]]: $⟦3,1,2⟧_{\mathbb{Z}}$ Three-rotor code.
+- [[concepts/qec/rotor-4-2-2]]: Four-rotor code.
+- [[concepts/qec/rotor-5-1-3]]: $⟦5,1,3⟧_{\mathbb{Z}}$ Five-rotor code.
+- [[concepts/qec/rotor-cluster]]: Rotor cluster-state code.
+- [[concepts/qec/rotor-gkp]]: Rotor GKP code.
+- [[concepts/qec/rotor-stabilizer]]: Rotor stabilizer code.
+- [[concepts/qec/ruskai]]: $((9,2,3))$ Ruskai code.
+- [[concepts/qec/sc-qldpc]]: Quantum spatially coupled (SC-QLDPC) code.
+- [[concepts/qec/self-complementary]]: Self-complementary qubit code.
+- [[concepts/qec/self-correct]]: Self-correcting quantum code.
+- [[concepts/qec/self-dual-css]]: Self-dual CSS code.
+- [[concepts/qec/semion]]: Chiral semion subsystem code.
+- [[concepts/qec/shor-nine]]: $⟦9,1,3⟧$ Shor code.
+- [[concepts/qec/shyps]]: Subsystem Hypergraph Product Simplex (SHYPS) code.
+- [[concepts/qec/sierpinsky-fractal-liquid]]: Sierpinski prism model code.
+- [[concepts/qec/single-mode]]: Single-mode bosonic code.
+- [[concepts/qec/single-qubit-clifford]]: $⟦2^{2r-1}-1,1,2^r-1⟧$ quantum punctured RM code.
+- [[concepts/qec/single-shot]]: Single-shot code.
+- [[concepts/qec/single-spin]]: Single-spin code.
+- [[concepts/qec/single-subsystem]]: Monolithic quantum code.
+- [[concepts/qec/skew-cyclic-galois-css]]: Skew-cyclic CSS code.
+- [[concepts/qec/small-distance-quantum]]: Small-distance block quantum code.
+- [[concepts/qec/small-distance-qubit-stabilizer]]: Small-distance qubit stabilizer code.
+- [[concepts/qec/small-triorthogonal]]: $⟦3k + 8, k, 2⟧$ triorthogonal code.
+- [[concepts/qec/spacetime-circuit]]: Spacetime circuit code.
+- [[concepts/qec/sparse-subsystem]]: QLDPC subsystem code.
+- [[concepts/qec/spin-cat]]: Spin cat code.
+- [[concepts/qec/spin-gkp]]: Spin GKP code.
+- [[concepts/qec/spins-into-spins]]: Spin code.
+- [[concepts/qec/spt]]: Symmetry-protected topological (SPT) code.
+- [[concepts/qec/square-homological-product]]: Square homological product code.
+- [[concepts/qec/square-lattice-cluster]]: Square-lattice cluster-state code.
+- [[concepts/qec/squeezed-cat]]: Squeezed cat code.
+- [[concepts/qec/squeezed-coherent-bpsk]]: Squeezed-coherent BPSK c-q modulation format.
+- [[concepts/qec/squeezed-fock-state]]: Squeezed Fock-state code.
+- [[concepts/qec/squeezed-vacuum]]: Squeezed-vacuum code.
+- [[concepts/qec/sslp]]: Subset-Sum-Linear-Programming (SS-LP) code.
+- [[concepts/qec/ssw]]: Smolin-Smith-Wehner (SSW) code.
+- [[concepts/qec/stab-10-1-2]]: $⟦10,1,2⟧$ Vasmer-Kubica code.
+- [[concepts/qec/stab-10-2-3]]: $⟦10,2,3⟧$ binarized Galois-qudit code.
+- [[concepts/qec/stab-11-1-5]]: $⟦11,1,5⟧$ quantum dodecacode.
+- [[concepts/qec/stab-12-2-2]]: $⟦12,2,2⟧$ CSS code.
+- [[concepts/qec/stab-13-1-5]]: $⟦13,1,5⟧$ twisted toric code.
+- [[concepts/qec/stab-15-1-3]]: $⟦15,1,3⟧$ quantum RM code.
+- [[concepts/qec/stab-15-7-3]]: $⟦15, 7, 3⟧$ quantum Hamming code.
+- [[concepts/qec/stab-16-6-4]]: $⟦16,6,4⟧$ Tesseract color code.
+- [[concepts/qec/stab-17-1-5]]: $⟦17,1,5⟧$ 4.8.8 color code.
+- [[concepts/qec/stab-18-2-5]]: $⟦18,2,5⟧$ BCC code.
+- [[concepts/qec/stab-20-2-6]]: $⟦20,2,6⟧$ B\&C phantom code.
+- [[concepts/qec/stab-3-1-2]]: $⟦3,1,2⟧_3$ Three-qutrit code.
+- [[concepts/qec/stab-4-1-2]]: $⟦4,1,2⟧$ twist-defect code.
+- [[concepts/qec/stab-4-2-2]]: $⟦4,2,2⟧$ Four-qubit code.
+- [[concepts/qec/stab-47-1-11]]: $⟦47,1,11⟧$ quantum QR code.
+- [[concepts/qec/stab-49-1-5]]: $⟦49,1,5⟧$ triorthogonal code.
+- [[concepts/qec/stab-5-1-2]]: $⟦5,1,2⟧$ rotated surface code.
+- [[concepts/qec/stab-5-1-2-convolutional]]: $(5,1,2)$-convolutional code.
+- [[concepts/qec/stab-5-1-3]]: $⟦5,1,3⟧$ Five-qubit perfect code.
+- [[concepts/qec/stab-6-1-3]]: $⟦6,1,3⟧$ Six-qubit stabilizer code.
+- [[concepts/qec/stab-6-2-2]]: $⟦6,2,2⟧$ $C_6$ code.
+- [[concepts/qec/stab-6-4-2]]: $⟦6,4,2⟧$ error-detecting code.
+- [[concepts/qec/stab-8-1-2]]: $⟦8,1,2⟧$ Shen-Wang-Cao code.
+- [[concepts/qec/stab-8-2-2]]: $⟦8,2,2⟧$ hyperbolic color code.
+- [[concepts/qec/stab-8-2-3]]: $⟦8,2,3⟧$ Hermitian code.
+- [[concepts/qec/stab-8-3-2]]: $⟦8,3,2⟧$ Smallest interesting color code.
+- [[concepts/qec/stab-8-3-3]]: $⟦8, 3, 3⟧$ Eight-qubit Gottesman code.
+- [[concepts/qec/stab-9-1-3]]: $⟦9,1,3⟧_{\mathbb{Z}_q}$ modular-qudit code.
+- [[concepts/qec/stab-9-1-5]]: $⟦9,1,5⟧_3$ quantum Glynn code.
+- [[concepts/qec/stab-9-3-3]]: $⟦9,3,3⟧$ Quadric code.
+- [[concepts/qec/stabilizer]]: Stabilizer code.
+- [[concepts/qec/stabilizer-over-gf4]]: Hermitian qubit code.
+- [[concepts/qec/stabilizer-over-gfqsq]]: Hermitian Galois-qudit code.
+- [[concepts/qec/steane]]: $⟦7,1,3⟧$ Steane code.
+- [[concepts/qec/stellated-color]]: Stellated color code.
+- [[concepts/qec/stellated-dodecahedron-css]]: $⟦30,8,3⟧$ Bring code.
+- [[concepts/qec/stellated-surface]]: Stellated surface code.
+- [[concepts/qec/string-net]]: String-net code.
+- [[concepts/qec/su3-sigma360]]: $((5,3,2))_3$ qutrit code.
+- [[concepts/qec/su3-spin]]: $SU(3)$ spin code.
+- [[concepts/qec/su3-tverberg-spin]]: $SU(3)$ Tverberg spin code.
+- [[concepts/qec/su4-tverberg-spin]]: $SU(4)$ Tverberg spin code.
+- [[concepts/qec/subsystem-color]]: Subsystem color code.
+- [[concepts/qec/subsystem-css]]: Subsystem CSS code.
+- [[concepts/qec/subsystem-galois-into-galois]]: Subsystem Galois-qudit code.
+- [[concepts/qec/subsystem-group-quantum]]: Subsystem group-based quantum code.
+- [[concepts/qec/subsystem-higher-dimensional-surface]]: Subsystem homological code.
+- [[concepts/qec/subsystem-hyperbolic-surface]]: Subsystem hyperbolic surface code.
+- [[concepts/qec/subsystem-hypergraph]]: Sarvepalli-Brown subsystem code.
+- [[concepts/qec/subsystem-lifted-product]]: Subsystem lifted-product (SLP) code.
+- [[concepts/qec/subsystem-product]]: Subsystem homological product code.
+- [[concepts/qec/subsystem-quantum-parity]]: Subsystem hypergraph product (SHP) code.
+- [[concepts/qec/subsystem-qubits-into-qubits]]: Subsystem qubit code.
+- [[concepts/qec/subsystem-qudits-into-qudits]]: Subsystem modular-qudit code.
+- [[concepts/qec/subsystem-rotated-surface]]: Subsystem rotated surface code.
+- [[concepts/qec/subsystem-spacetime-circuit]]: Subsystem spacetime circuit code.
+- [[concepts/qec/subsystem-stabilizer]]: Subsystem stabilizer code.
+- [[concepts/qec/subsystem-surface]]: Subsystem surface code.
+- [[concepts/qec/subsystem-three-fermion]]: Three-fermion (3F) subsystem code.
+- [[concepts/qec/super-compact]]: Super-compact fermion-to-qubit code.
+- [[concepts/qec/surface]]: Kitaev surface code.
+- [[concepts/qec/surface-17]]: $⟦9,1,3⟧$ Surface-17 code.
+- [[concepts/qec/syk]]: SYK code.
+- [[concepts/qec/symmetry-protected-self-correct]]: Symmetry-protected self-correcting quantum code.
+- [[concepts/qec/t-group]]: Twisted $1$-group code.
+- [[concepts/qec/ternary-tree-fermion]]: Ternary-tree fermion-into-qubit code.
+- [[concepts/qec/tesselation]]: Hyperbolic tessellation code.
+- [[concepts/qec/tetrahedral-color]]: Tetrahedral color code.
+- [[concepts/qec/tetron]]: Tetron code.
+- [[concepts/qec/tfim]]: Transverse-field Ising model (TFIM) code.
+- [[concepts/qec/three-fermion]]: Three-fermion (3F) Walker-Wang model code.
+- [[concepts/qec/three-qutrit-permutation-invariant]]: $((3,2,2))_3$ Three-qutrit single-deletion code.
+- [[concepts/qec/tiger]]: Tiger code.
+- [[concepts/qec/tiger-surface]]: Tiger surface code.
+- [[concepts/qec/tillichzemor]]: Tillich-Zémor code.
+- [[concepts/qec/topological]]: Topological code.
+- [[concepts/qec/topological-abelian]]: Abelian topological code.
+- [[concepts/qec/toric]]: Toric code.
+- [[concepts/qec/tqd]]: Twisted quantum double (TQD) code.
+- [[concepts/qec/tqd-abelian]]: Abelian TQD code.
+- [[concepts/qec/tqd-abelian-stabilizer]]: Abelian TQD stabilizer code.
+- [[concepts/qec/tqt]]: Twisted quantum triple (TQT) code.
+- [[concepts/qec/translationally-invariant-stabilizer]]: Lattice stabilizer code.
+- [[concepts/qec/translationally-invariant-subsystem]]: Lattice subsystem code.
+- [[concepts/qec/trapezoid]]: Trapezoid subsystem code.
+- [[concepts/qec/tree-cluster]]: Tree cluster-state code.
+- [[concepts/qec/triangle-surface]]: Triangular surface code.
+- [[concepts/qec/triangular-color]]: Honeycomb (6.6.6) color code.
+- [[concepts/qec/twist-defect-7-1-3]]: $⟦7,1,3⟧$ twist-defect surface code.
+- [[concepts/qec/twist-defect-color]]: Twist-defect color code.
+- [[concepts/qec/twist-defect-surface]]: Twist-defect surface code.
+- [[concepts/qec/twisted-xzzx]]: Twisted XZZX toric code.
+- [[concepts/qec/two-block-quantum]]: Two-block CSS code.
+- [[concepts/qec/two-dimensional-hyperbolic-surface]]: 2D hyperbolic surface code.
+- [[concepts/qec/two-foliated]]: Two-foliated fracton code.
+- [[concepts/qec/two-legged-cat]]: Two-component cat code.
+- [[concepts/qec/two-mode-binomial]]: Two-mode binomial code.
+- [[concepts/qec/unentangled-permutation-invariant]]: $((n,2,2))$ Bravyi-Lee-Li-Yoshida PI code.
+- [[concepts/qec/vbs]]: Valence-bond-solid (VBS) code.
+- [[concepts/qec/very-small-logical-qubit]]: Very small logical qubit (VSLQ) code.
+- [[concepts/qec/w-state]]: W-state code.
+- [[concepts/qec/walker-wang]]: Walker-Wang model code.
+- [[concepts/qec/wasilewski-banaszek]]: Wasilewski-Banaszek code.
+- [[concepts/qec/xcube]]: X-cube model code.
+- [[concepts/qec/xp-stabilizer]]: XP stabilizer code.
+- [[concepts/qec/xs-stabilizer]]: XS stabilizer code.
+- [[concepts/qec/xysurface]]: XY surface code.
+- [[concepts/qec/xyz-color]]: XYZ color code.
+- [[concepts/qec/xyz-hexagonal]]: XYZ$^2$ hexagonal stabilizer code.
+- [[concepts/qec/xyz-product]]: XYZ product code.
+- [[concepts/qec/xz-7-3-2]]: $⟦7,3,2⟧$ punctured hypercube code.
+- [[concepts/qec/xzzx]]: XZZX surface code.
+- [[concepts/qec/xzzx-10-2-3]]: $⟦10,2,3⟧$ rotated toric code.
+- [[concepts/qec/xzzx-7-1-3]]: $⟦7,1,3⟧$ XZZX cyclic code.
+- [[concepts/qec/yetter-gauge-theory]]: Two-gauge theory code.
+- [[concepts/qec/yoked-surface]]: Yoked surface code.
+- [[concepts/qec/zero-pi]]: Zero-pi qubit code.
+- [[concepts/qec/zthree-znine]]: $\mathbb{Z}_3\times\mathbb{Z}_9$-fusion subsystem code.
+<!-- END imported:eczoo -->
+
+<!-- BEGIN imported:qemzoo -->
+## QEM Techniques (imported from the QEM Zoo)
+
+- [[concepts/qem/accreditation]]: Accreditation.
+- [[concepts/qem/bnzne]]: Benchmarked-Noise Zero-Noise Extrapolation.
+- [[concepts/qem/cdr]]: Clifford Data Regression.
+- [[concepts/qem/crosstalk-mitigation]]: Crosstalk-Adaptive Scheduling.
+- [[concepts/qem/dd]]: Dynamical Decoupling.
+- [[concepts/qem/dual-state-purification]]: Dual-State Purification.
+- [[concepts/qem/echo-verification]]: Echo Verification.
+- [[concepts/qem/emre]]: Error Mitigation by Restricted Evolution.
+- [[concepts/qem/fcqem]]: Fictitious Copy Quantum Error Mitigation.
+- [[concepts/qem/gse]]: Generalized Subspace Expansion.
+- [[concepts/qem/hemre]]: Hybrid Error Mitigation by Restricted Evolution.
+- [[concepts/qem/ide]]: Infinite Distance Extrapolation.
+- [[concepts/qem/kik]]: K-Inverse-K (KIK).
+- [[concepts/qem/logical-shadow-tomography]]: Logical Shadow Tomography.
+- [[concepts/qem/lre]]: Layerwise Richardson Extrapolation.
+- [[concepts/qem/measurement-error-mitigation]]: Readout Error Mitigation.
+- [[concepts/qem/ml-qem]]: Machine Learning QEM.
+- [[concepts/qem/n-representability]]: N-Representability Constraints.
+- [[concepts/qem/nepec]]: Noise-Extended Probabilistic Error Cancellation.
+- [[concepts/qem/noise-aware-compilation]]: Noise-Aware Compilation.
+- [[concepts/qem/nox]]: Noiseless Output eXtrapolation.
+- [[concepts/qem/odr]]: Operator Decoherence Renormalization.
+- [[concepts/qem/partial-pauli-twirling]]: Partial Pauli Twirling.
+- [[concepts/qem/pauli-twirling]]: Pauli Twirling.
+- [[concepts/qem/pea]]: Probabilistic Error Amplification.
+- [[concepts/qem/pec]]: Probabilistic Error Cancellation.
+- [[concepts/qem/pie]]: Physics-Inspired Extrapolation.
+- [[concepts/qem/pseudo-twirling]]: Pseudo Twirling.
+- [[concepts/qem/purification]]: Virtual Distillation.
+- [[concepts/qem/qed]]: Quantum Error Detection.
+- [[concepts/qem/robust-shadows]]: Robust Shadow Estimation.
+- [[concepts/qem/sqd]]: Sample-Based Quantum Diagonalization.
+- [[concepts/qem/subspace-expansion]]: Quantum Subspace Expansion.
+- [[concepts/qem/symmetric-clifford-twirling]]: Symmetric Clifford Twirling.
+- [[concepts/qem/symmetry-adjusted-shadows]]: Symmetry-Adjusted Classical Shadows.
+- [[concepts/qem/symmetry-verification]]: Symmetry Verification.
+- [[concepts/qem/tem]]: Tensor Network Error Mitigation.
+- [[concepts/qem/trex]]: Twirled Readout Error eXtinction.
+- [[concepts/qem/zne]]: Zero-Noise Extrapolation.
+<!-- END imported:qemzoo -->

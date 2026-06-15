@@ -57,9 +57,27 @@ _TERMS: list[tuple[str, str, str, list[str]]] = [
     (r"stabilizer (?:code|simulation|formalism)", "Stabilizer Formalism", "capability", ["quantum-error-correction"]),
     (r"(?:quantum )?error correction|\bqec\b", "Quantum Error Correction", "qec", ["quantum-error-correction"]),
     (r"surface code", "Surface Code", "qec", ["quantum-error-correction"]),
+    (r"\bcss\b code|calderbank[ -]shor[ -]steane", "CSS Code", "qec", ["quantum-error-correction"]),
+    (r"lattice surgery", "Lattice Surgery", "qec", ["quantum-error-correction"]),
+    (r"magic[ -]state (?:distillation|injection)?", "Magic State Distillation", "qec", ["quantum-error-correction"]),
+    (r"syndrome (?:extraction|measurement|decoding)", "Syndrome Extraction", "qec", ["quantum-error-correction"]),
     (r"fault[ -]toleran\w+", "Fault Tolerance", "qec", ["quantum-error-correction"]),
+    (r"transversal gate", "Transversal Gate", "qec", ["quantum-error-correction"]),
     (r"resource estimation", "Resource Estimation", "capability", ["benchmarking-validation"]),
     (r"gate (?:count|complexity)|circuit depth", "Gate Complexity", "capability", ["benchmarking-validation"]),
+    # broader quantum-computing anchors beyond the time-evolution seed corpus
+    (r"clifford (?:group|circuit|gate)s?", "Clifford Circuits", "capability", ["quantum-information"]),
+    (r"pauli (?:string|operator|decomposition|frame)s?", "Pauli Operators", "information", ["quantum-information"]),
+    (r"tensor network|matrix product state|\bmps\b|\bdmrg\b", "Tensor Network Methods", "simulation", ["quantum-simulation"]),
+    (r"density matrix|mixed state", "Density Matrix", "information", ["quantum-information"]),
+    (r"error mitigation", "Quantum Error Mitigation", "capability", ["quantum-error-correction"]),
+    (r"zero[ -]noise extrapolation|\bzne\b", "Zero-Noise Extrapolation", "capability", ["quantum-error-correction"]),
+    (r"randomized benchmarking", "Randomized Benchmarking", "validation", ["benchmarking-validation"]),
+    (r"noise model|depolariz\w+ (?:channel|noise)", "Noise Model", "failure-mode", ["quantum-implementation"]),
+    (r"transpil\w+|circuit (?:compilation|optimization)", "Circuit Transpilation", "capability", ["compilation"]),
+    (r"qubit (?:routing|mapping|allocation)", "Qubit Routing", "capability", ["compilation"]),
+    (r"\bqasm\b|openqasm", "OpenQASM", "language", ["quantum-languages"]),
+    (r"pulse[ -]level|optimal control", "Pulse-Level Control", "capability", ["quantum-implementation"]),
 ]
 
 _COMPILED_TERMS = [(re.compile(rf"\b{pat}\b", re.IGNORECASE), title, kind, doms)

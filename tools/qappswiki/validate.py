@@ -128,10 +128,15 @@ def _validate_page(page: dict, root: Path, index_targets: set[str]) -> list[dict
         info = resolve_source(ref, meta["rel_path"], root, set())
         if info["kind"] in ("internal", "external") and not info["exists"]:
             out.append(_f("WARNING", "missing-source-file", pid, f"source not found: {ref}"))
+    # Every path cited inline must also be declared in sources:/source_markdown:
+    # (the schema's two-level provenance rule). On a content page this is a hard
+    # ERROR — a claim attributing itself to an undeclared source is a provenance
+    # break the strict gate must stop; on nav/doc pages it stays a WARNING.
+    inline_level = "ERROR" if is_content else "WARNING"
     for c in meta["citations"]:
         for ref in c.get("paths", []):
             if ref not in fm_sources:
-                out.append(_f("WARNING", "uncited-inline-source", pid, f"inline source '{ref}' not listed in sources:"))
+                out.append(_f(inline_level, "uncited-inline-source", pid, f"inline source '{ref}' not listed in sources:"))
 
     # Orphan: content page not linked from index
     if ptype in _ORPHAN_TYPES and pid not in index_targets:

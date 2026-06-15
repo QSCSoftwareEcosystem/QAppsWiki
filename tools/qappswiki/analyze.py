@@ -97,6 +97,60 @@ def analyze(graph) -> dict:
         if d["relation"] == "cites" and nodes[v].get("type") == "external"
     )
 
+    # Provenance coverage: of the content pages that should carry sources
+    # (everything but the source catalog), how many actually cite at least one?
+    sourced = set()
+    claim_level = set()
+    for u, _v, d in graph.edges(data=True):
+        if d["relation"] != "cites":
+            continue
+        sourced.add(u)
+        if d.get("origin") == "inline-citation":
+            claim_level.add(u)
+    by_status: Counter = Counter()
+    sourceable = []
+    for nid, a in nodes.items():
+        if not _is_content(a) or a.get("type") == "source":
+            continue
+        sourceable.append(nid)
+        by_status[a.get("provenance_status") or "none"] += 1
+    n_total = len(sourceable)
+    n_sourced = sum(1 for nid in sourceable if nid in sourced)
+    n_claim = sum(1 for nid in sourceable if nid in claim_level)
+    unsourced = sorted(nid for nid in sourceable if nid not in sourced)
+    coverage = {
+        "content_pages": n_total,
+        "with_sources": n_sourced,
+        "with_inline_citations": n_claim,
+        "source_coverage": round(n_sourced / n_total, 3) if n_total else 0.0,
+        "claim_coverage": round(n_claim / n_total, 3) if n_total else 0.0,
+        "by_status": dict(by_status),
+        "unsourced": unsourced,
+    }
+
+    # Freshness: read the stamps left on the graph by freshness.stamp_graph
+    # (packages carry `freshness`; other content pages carry `freshness_rollup`).
+    # All-None when no freshness cache was present at build time.
+    pkg_status: Counter = Counter()
+    stale_packages = []
+    stale_rollup = []
+    for nid, a in nodes.items():
+        t = a.get("type")
+        if t == "package":
+            st = a.get("freshness")
+            pkg_status[st or "none"] += 1
+            if st == "stale":
+                stale_packages.append(nid)
+        elif _is_content(a) and t != "source":
+            if a.get("freshness_rollup") == "stale":
+                stale_rollup.append(nid)
+    freshness = {
+        "packages_by_status": dict(pkg_status),
+        "stale_packages": sorted(stale_packages),
+        "stale_rollup": sorted(stale_rollup),
+        "tracked": any(k not in ("none", None) for k in pkg_status),
+    }
+
     return {
         "stats": {
             "nodes": graph.number_of_nodes(),
@@ -111,8 +165,10 @@ def analyze(graph) -> dict:
         "under_linked": sorted(under_linked),
         "cross_domain": cross_domain,
         "ambiguous": ambiguous,
+        "freshness": freshness,
         "provenance": {
             "needs_verification": needs_verification,
             "external_cites": external_cites,
+            "coverage": coverage,
         },
     }

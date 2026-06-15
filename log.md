@@ -149,3 +149,64 @@ verified on the real corpus — promoting Trotterization produced a clean
 9-source page (0 errors, only the expected needs-verification / not-in-index
 warnings). With extract + cluster + promote in place, the Phase-3 acceptance
 pass (raw corpus → curated concept pages) is now a mechanical run away.
+
+## 2026-06-15 tooling | Phase 2 complete + contributor on-ramp | touched: tools/qappswiki/{validate,scaffold,cli,freshness,analyze,report,edges,schema,extract}.py, tools/tests/{test_new,test_domain_priors,test_validate,test_freshness}.py, .github/workflows/freshness.yml, CONTRIBUTING.md, schema/frontmatter-v0.md, PLAN.md
+
+Closed the open Phase-2 software roadmap and finished the contributor structure.
+**Provenance:** the two-level rule "every inline `(source:)` ∈ `sources:`" is now
+a hard ERROR on content pages (was a warning); the coverage metric + `cite`
+CLI/MCP tool shipped earlier in the day. **Freshness:** `freshness.stamp_graph`
+stamps last-known package staleness onto the graph at build time from a
+`wiki-out/freshness.json` cache (offline/deterministic; CI never has the cache)
+and rolls the worst status up through `composes-with`/`uses`/… edges to the
+integrations and applications built on stale software — the composite roll-up
+from [[concepts/self-refreshing-context]] — surfaced in `GRAPH_REPORT.md` and
+`graph.json`. A nightly `freshness` Action reports staleness out-of-band (job
+summary + artifact), never blocking a build. **Domain specialization:** expanded
+the typed edge vocabulary with `wraps` / `encodes-qec` / `validates-against`
+(the last auto-derived for `benchmark` pages; the first two authored to keep the
+derived graph high-precision) and broadened the deterministic extraction lexicon
+beyond time-evolution (QEC codes, error mitigation, tensor networks,
+transpilation, QASM, …). **Structure:** `qappswiki new <type> <slug>` scaffolds a
+blank schema-valid page of any type (built from `schema.py`, the validator's
+source of truth), and `CONTRIBUTING.md` documents the fill-in-the-blanks loop so
+anyone can populate the wiki. Marked the schema `status: active` and reconciled
+the stale PLAN.md Data-Schema checkboxes (all page-type fields + vocabularies
+were already defined). 120 tests green; real corpus validates with 0 errors.
+
+## 2026-06-15 tooling | Zoo catalog importer + first ingest | touched: tools/qappswiki/import_zoo.py, cli.py, tools/tests/test_import_zoo.py, CONTRIBUTING.md, index.md, concepts/qec/*, concepts/qem/*, raw/{error-correction-zoo,qem-zoo}.md, PLAN.md
+
+Turned the two registered zoo sources into actual wiki content. New
+`qappswiki import-zoo {eczoo,qemzoo}` command fetches upstream structured data —
+Error Correction Zoo YAML (one file per code, CC-BY-SA) and QEM Zoo JSON (public
+domain, The Unlicense) — and renders schema-valid `concept` pages
+(`concept_kind: qec`, `domains: [quantum-error-correction]`) with provenance
+back to the registered source page + the upstream entry URL, then links them
+from `index.md` via an idempotent managed block. Rendering is pure/offline
+(network is confined to `fetch_*`), so `qappswiki run` stays deterministic and
+the importer is unit-tested without the wire. A LaTeX→markdown pass converts
+`\cite`/`\href`/`\hyperref`, strips figure environments, and renders the
+stabilizer `[[n,k,d]]` notation as `⟦n,k,d⟧` so it can't collide with
+`[[wikilink]]` syntax. Seeded a bounded starter set: 11 flagship ECZ codes
+(stabilizer/CSS/surface/toric/color/qLDPC/HGP/Bacon-Shor/Steane/Shor-9/5-qubit)
++ all 39 QEM techniques. Imported pages are `provisional` /
+`needs-verification` — the 50 resulting warnings are the intended verify-me
+to-do list, not defects. 127 tests green; corpus validates with 0 errors,
+0 orphans (128 nodes, 361 edges).
+
+## 2026-06-15 tooling | Local zoo processing + full quantum ECZ import | touched: tools/qappswiki/{import_zoo,cli,paths}.py, tools/tests/test_import_zoo.py, .gitignore, CONTRIBUTING.md, concepts/qec/*, index.md, log.md
+
+Reworked the importer to gather once and process locally: a single shallow
+`git clone` of each zoo's data repo into a gitignored `.zoo-cache/`, then all
+reads are off disk — no per-code API calls, no token, no rate limit (full
+~1100-code catalog parses in ~5s vs ~5min before). Then ran the full import:
+all 649 **quantum** error-correcting codes (codes/quantum + classical_into_quantum)
+now live in `concepts/qec/`. Purely-classical codes (~450) are excluded by
+default — they don't fit the `quantum-error-correction` domain — with
+`--include-classical` to opt in. Two bugs the full run exposed: `update_index`
+must use a function replacement (code titles carry LaTeX like `\mathbb` that
+broke the regex replacement template), and `paths.IGNORED_DIRS` must skip
+`.zoo-cache/` so the pipeline doesn't walk the cloned repos' own frontmatter-less
+README/CONTRIBUTING. Corpus: 708 pages, 0 errors, 0 orphans (1404 nodes, 4640
+edges); 689 needs-verification warnings are the imported verify-me queue. 128
+tests green.

@@ -88,11 +88,46 @@ def render_graph_report(analysis: dict, generated: str = "") -> str:
         L += ["_none_", ""]
 
     prov = analysis["provenance"]
+    cov = prov.get("coverage") or {}
+    L.append("## Provenance coverage")
+    if cov.get("content_pages"):
+        L.append(f"- **{cov['with_sources']}/{cov['content_pages']} sourceable pages cite a source** "
+                 f"({int(cov['source_coverage'] * 100)}%); "
+                 f"{cov['with_inline_citations']} carry claim-level inline citations "
+                 f"({int(cov['claim_coverage'] * 100)}%).")
+        by_status = ", ".join(f"{k}={v}" for k, v in sorted(cov.get("by_status", {}).items()))
+        if by_status:
+            L.append(f"- provenance_status: {by_status}")
+        if cov.get("unsourced"):
+            L.append(f"- unsourced pages ({len(cov['unsourced'])}):")
+            for n in cov["unsourced"]:
+                L.append(f"  - [[{n}]]")
+    else:
+        L.append("_no sourceable content pages_")
+    L.append("")
+
     L.append("## Provenance gaps")
     L.append(f"- pages flagged `needs-verification`: {len(prov['needs_verification'])}")
     for n in prov["needs_verification"]:
         L.append(f"  - [[{n}]]")
     L.append(f"- `cites` edges to external (sibling-repo/URL) sources: {prov['external_cites']}")
+    L.append("")
+
+    fresh = analysis.get("freshness") or {}
+    L.append("## Freshness")
+    if fresh.get("tracked"):
+        by_status = ", ".join(f"{k}={v}" for k, v in sorted(fresh.get("packages_by_status", {}).items()))
+        L.append(f"- package contexts: {by_status}")
+        if fresh.get("stale_packages"):
+            L.append(f"- **stale packages ({len(fresh['stale_packages'])}):**")
+            for n in fresh["stale_packages"]:
+                L.append(f"  - [[{n}]]")
+        if fresh.get("stale_rollup"):
+            L.append(f"- pages built on stale software (roll-up, {len(fresh['stale_rollup'])}):")
+            for n in fresh["stale_rollup"]:
+                L.append(f"  - [[{n}]]")
+    else:
+        L.append("_no freshness data — run `qappswiki freshness` (online) to stamp package staleness_")
     L.append("")
     return "\n".join(L)
 

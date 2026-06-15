@@ -140,12 +140,19 @@ layer of truth.
 
 **Phase 2 — Make the four edges first-class (the "better")**
 
-- [ ] **Provenance:** add a coverage metric + a `cite` / `why` MCP tool that
-      returns the source(s) behind any node/claim; enforce "every inline
-      `(source:)` ∈ `sources:`" in `qappswiki validate`.
-- [ ] **Freshness:** stamp staleness onto graph nodes at build time; implement
-      the composite application roll-up from [[concepts/self-refreshing-context]];
-      add a nightly `freshness` Action.
+- [x] **Provenance:** added a coverage metric (`analyze` → `GRAPH_REPORT.md`) +
+      a `cite` CLI subcommand and MCP tool returning the source(s) behind any
+      node, split page- vs claim-level; and promoted "every inline `(source:)` ∈
+      `sources:`" to a hard ERROR for content pages in `qappswiki validate`.
+- [x] **Freshness:** `freshness.stamp_graph` stamps last-known staleness onto
+      package nodes at build time (offline, from a `wiki-out/freshness.json`
+      cache the online `freshness` command writes) and rolls the worst status up
+      the graph through `composes-with`/`uses`/… edges to integrations and
+      applications (the composite roll-up from
+      [[concepts/self-refreshing-context]]); surfaced in `GRAPH_REPORT.md` and
+      `graph.json`. A nightly `freshness` Action
+      (`.github/workflows/freshness.yml`) reports staleness out-of-band (job
+      summary + artifact), never blocking a build.
 - [x] **Curated layer:** implemented the **discover → promote loop** —
       `qappswiki promote` turns a reviewed candidate from the staged queue
       (`wiki-out/extract/candidates.json`) into an authored, schema-valid
@@ -159,8 +166,14 @@ layer of truth.
       round-trip that a promoted page validates with 0 errors and links into the
       graph; verified on the real corpus (Trotterization → a 9-source page).
       *Edge-level promotion (typed `related_*`) folds into the next pass.*
-- [ ] **Domain specialization:** ship the quantum extraction priors and expand
-      the typed edge vocabulary as real sources validate each relation.
+- [x] **Domain specialization:** expanded the typed edge vocabulary with the
+      quantum relations `wraps`, `encodes-qec`, and `validates-against` (the last
+      auto-derived for `benchmark` pages; the first two authored / LLM-extracted
+      to keep the derived graph high-precision), broadened the deterministic
+      extraction lexicon beyond the time-evolution seed corpus (QEC codes, error
+      mitigation, tensor networks, transpilation, QASM, …), and the LLM
+      extraction prompt now ships these relations as priors. *Further relations
+      added as real sources validate them.*
 
 **Phase 3 — Prove it on the time-evolution corpus (acceptance test)**
 
@@ -327,7 +340,13 @@ Delivered:
 
 - **Validate** — checks every page against `schema/frontmatter-v0.md` (required
   fields, controlled vocabulary, broken `[[wikilinks]]`, orphans, dangling
-  `related_*` / `packages:` refs, missing/uncited sources, under-linked packages).
+  `related_*` / `packages:` refs, under-linked packages, and the two-level
+  provenance rule: every inline `(source:)` must be declared in `sources:` —
+  a hard ERROR on content pages).
+- **New** — `qappswiki new <type> <slug>` scaffolds a blank, schema-valid page
+  of any type (required fields present, ready to fill), built from the same
+  `schema.py` source of truth the validator uses. The contributor entry point:
+  populating the wiki is fill-in-the-blanks (see `CONTRIBUTING.md`).
 - **Graph** — compiles `[[wikilinks]]` + `related_*` + sources into a typed,
   confidence-labeled (`EXTRACTED` / `INFERRED` / `AMBIGUOUS`) graph; exports
   `graph.json` + interactive `graph.html`.
@@ -336,17 +355,31 @@ Delivered:
 - **Ingest** — `qappswiki ingest <pdf>` converts a PDF to `raw/md/` via
   `markitdown-lightpdf` (configurable), archives the PDF, and scaffolds a
   schema-valid stub page.
+- **Import-zoo** — `qappswiki import-zoo {eczoo,qemzoo}` ingests two curated
+  community catalogs into schema-valid `concept` pages: the Error Correction
+  Zoo (error-correcting *codes*, CC-BY-SA YAML) and the QEM Zoo (error
+  *mitigation/suppression* techniques, public-domain JSON). Pages render with
+  provenance to the registered source page + upstream entry URL and are linked
+  from `index.md`; they land `needs-verification` for a human pass. Rendering is
+  offline-pure (network confined to fetch), so `run` stays deterministic. Seeded
+  11 flagship ECZ codes + all 39 QEM techniques; `--all` imports the full
+  ~1100-code ECZ catalog.
 - **Serve** — MCP stdio server (`query` / `path` / `explain` / `list_orphans` /
   …) so agents query the graph instead of re-reading raw markdown.
 - **Freshness** — `version_source` / `version_built` / `version_scope` package
   fields (with an offline form-validator) plus `qappswiki freshness`, an online
   command that fetches the latest upstream version (PyPI / GitHub / npm / conda /
-  crates) and flags stale contexts. Exposed to agents via a `check_freshness`
-  MCP tool. Network is isolated and kept out of the CI gate.
+  crates) and flags stale contexts. Verdicts are cached to
+  `wiki-out/freshness.json`; the next build **stamps** staleness onto package
+  nodes and **rolls it up** the graph to the integrations/applications that
+  compose stale software (the composite roll-up). Surfaced in `GRAPH_REPORT.md`
+  and `graph.json`; exposed to agents via a `check_freshness` MCP tool. A nightly
+  Action reports staleness out-of-band. Network is isolated and kept out of the
+  CI gate.
 - **Schema extension** — optional typed `edges:` block and the `version_source`
   freshness fields in `frontmatter-v0`.
 - **CI** — `.github/workflows/validate.yml` (tests + non-strict validate).
-- 50 unit tests; the corpus currently validates with 0 errors.
+- 120 unit tests; the corpus currently validates with 0 errors.
 
 This realizes the first tier of the
 [[concepts/self-refreshing-context]] design (version-stamped, demand-fresh
@@ -380,14 +413,23 @@ pass). Carried-over near-term items folded into that roadmap:
 
 - [x] Name a DS DRI for QAppsWiki: Thomas Naughton. Vicente will define tasks
       and execute locally if collaboration does not materialize.
-- [ ] Draft `schema/frontmatter-v0.md`.
-- [ ] Define required fields for `package`, `how-to`, `integration`, and
-      `source` pages.
+- [x] Draft `schema/frontmatter-v0.md`. *(Drafted and now `status: active`;
+      mirrored machine-readably in `tools/qappswiki/schema.py`, the validator's
+      single source of truth.)*
+- [x] Define required fields for `package`, `how-to`, `integration`, and
+      `source` pages. *(All defined in `frontmatter-v0` + `schema.py`;
+      tooling-enforced by `qappswiki validate` and used to scaffold pages.)*
 - [x] Define required fields for `concept` pages and graph edges. *(Concept
-      required fields in `frontmatter-v0`; typed `edges:` extension added.)*
-- [ ] Define required fields for QEC artifact, workflow, and benchmark pages.
-- [ ] Define controlled vocabularies for capabilities, hardware targets,
+      required fields in `frontmatter-v0`; typed `edges:` extension added,
+      including the quantum relations `wraps` / `encodes-qec` /
+      `validates-against`.)*
+- [x] Define required fields for QEC artifact, workflow, and benchmark pages.
+      *(Defined as `provisional` types — fields are hypotheses to validate
+      against real sources during the Phase-3 compilation pass.)*
+- [x] Define controlled vocabularies for capabilities, hardware targets,
       package maturity, source type, interface type, and provenance status.
+      *(All in `frontmatter-v0` "Controlled Vocabularies" + `schema.py`;
+      membership enforced by `qappswiki validate`.)*
 - [ ] Map frontmatter v0 to OpenQEvo context-schema concepts.
 - [ ] Review the first five seed package pages for schema completeness.
 - [x] Define whether a machine-readable export is needed for openQSE or AS

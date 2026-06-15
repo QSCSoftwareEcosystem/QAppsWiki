@@ -1,0 +1,46 @@
+name: freshness
+
+# Nightly online freshness check: fetch the latest upstream version for every
+# package context and report which are stale. Out-of-band by design — it reports
+# staleness to maintainers (job summary + artifact); it never fails the build or
+# commits. The build-time stamp (graph.json roll-up) is fed locally from
+# wiki-out/freshness.json, which is gitignored, so this job stays informational.
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # daily at 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install qappswiki
+        run: pip install -e "tools[all]"
+
+      - name: Check upstream freshness (online)
+        run: qappswiki freshness --root . --format text | tee freshness.txt
+
+      - name: Publish report to job summary
+        if: always()
+        run: |
+          {
+            echo '## QAppsWiki package freshness'
+            echo '```'
+            cat freshness.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload FRESHNESS_REPORT.md
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: freshness-report
+          path: wiki-out/FRESHNESS_REPORT.md
+          if-no-files-found: ignore

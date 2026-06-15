@@ -98,6 +98,42 @@ def q_list_ambiguous(g) -> list[dict]:
     return _analyze.analyze(g)["ambiguous"]
 
 
+def q_cite(g, node_id) -> dict | None:
+    """Provenance behind a node — the sources it cites, split by level.
+
+    Reads the graph's ``cites`` edges, whose ``origin`` distinguishes
+    page-level provenance (``sources:`` frontmatter) from claim-level provenance
+    (inline ``(source: …)`` citations). This is the "why should I trust this?"
+    query — the editorial-sourcing axis graphify has no notion of.
+    """
+    if node_id not in g:
+        return None
+    a = g.nodes[node_id]
+    cites = []
+    for _u, v, d in g.out_edges(node_id, data=True):
+        if d.get("relation") != "cites":
+            continue
+        tn = g.nodes[v]
+        cites.append({
+            "source": v,
+            "type": tn.get("type"),
+            "origin": d.get("origin"),       # "sources" | "inline-citation"
+            "confidence": d.get("confidence"),
+        })
+    cites.sort(key=lambda c: (c["origin"] or "", c["source"]))
+    # A source cited inline is claim-level (tied to a specific claim, stronger);
+    # one only declared in frontmatter is page-level. The two partition `sources`.
+    return {
+        "id": node_id,
+        "title": a.get("title"),
+        "provenance_status": a.get("provenance_status"),
+        "sources": [c["source"] for c in cites],
+        "page_level": [c["source"] for c in cites if c["origin"] == "sources"],
+        "claim_level": [c["source"] for c in cites if c["origin"] == "inline-citation"],
+        "cites": cites,
+    }
+
+
 def q_list_communities(g) -> list[dict]:
     """Thematic communities, read from the ``community`` attrs in graph.json.
 
@@ -175,6 +211,8 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
              inputSchema={"type": "object", "properties": {}}),
         Tool(name="list_communities", description="Thematic communities (clusters) and their hubs",
              inputSchema={"type": "object", "properties": {}}),
+        Tool(name="cite", description="Why trust this? The sources behind a node (page- and claim-level)",
+             inputSchema={"type": "object", "properties": {"id": {"type": "string"}}, "required": ["id"]}),
         Tool(name="check_freshness", description="Online: is a package context current vs upstream?",
              inputSchema={"type": "object", "properties": {"id": {"type": "string"}}, "required": ["id"]}),
     ]
@@ -188,6 +226,7 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
         "graph_stats": lambda a: q_graph_stats(g),
         "list_ambiguous": lambda a: q_list_ambiguous(g),
         "list_communities": lambda a: q_list_communities(g),
+        "cite": lambda a: q_cite(g, a["id"]),
         "check_freshness": lambda a: q_check_freshness(g, a["id"]),
     }
 
