@@ -1,7 +1,7 @@
 ---
 type: schema
-status: draft
-updated: 2026-06-08
+status: active
+updated: 2026-06-15
 owner: Thomas Naughton
 fallback_owner: Vicente Leyton
 tags: [frontmatter, provenance, data-schema]
@@ -69,9 +69,16 @@ edges:
     note: ""                          # optional; surfaced in the AMBIGUOUS-edge review
 ```
 
-Relation vocabulary (closed): `integrates`, `depends-on`, `supersedes`, `uses`,
-`implements`, `derived-from`, `cites`, `related`, `has-how-to`, `composes-with`,
-`uses-interface`.
+Relation vocabulary (closed). Generic software-graph relations: `integrates`,
+`depends-on`, `supersedes`, `uses`, `implements`, `derived-from`, `cites`,
+`related`, `has-how-to`, `composes-with`, `uses-interface`. Quantum-domain
+relations (the higher-precision specialization): `wraps` (a package wraps/adapts
+another, e.g. a framework over a backend), `encodes-qec` (an artifact/workflow
+encodes a QEC scheme or code), `validates-against` (a benchmark validates a
+package/workflow/concept). `wraps` and `encodes-qec` are authored or
+LLM-extracted; `validates-against` is auto-derived for `benchmark` pages.
+Hardware targeting is expressed with the `hardware_targets` controlled
+vocabulary field, not an edge relation.
 
 Confidence reuses the three-label provenance system the tooling applies to all
 edges: `EXTRACTED` (explicitly stated), `INFERRED` (a reasonable deduction), or

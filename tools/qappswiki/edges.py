@@ -41,9 +41,18 @@ def _slug(value: str) -> str:
 
 
 def _relation_for(src_type, tgt_type) -> str:
-    """Heuristic relation for an explicit wikilink between two pages."""
+    """Heuristic relation for an explicit wikilink between two pages.
+
+    Only high-precision, type-determined relations are inferred here; quantum
+    relations that need editorial judgement (``wraps`` / ``encodes-qec``) are
+    left to authored ``edges:`` so the derived graph stays high-precision.
+    """
     if tgt_type in _NAV or tgt_type is None:
         return "related"
+    # A benchmark page links the thing it measures -> validates-against (the
+    # benchmark→subject relation is fixed by the source type, so it's safe here).
+    if src_type == "benchmark" and tgt_type in ("package", "workflow", "concept", "integration"):
+        return "validates-against"
     if src_type == "integration" and tgt_type == "package":
         return "integrates"
     if {src_type, tgt_type} == {"package", "how-to"}:
