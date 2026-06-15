@@ -70,3 +70,138 @@ def test_real_default_fetcher_is_offline_safe(monkeypatch):
         AssertionError("unexpected network use")))
     # compare/check with injected fetch never touches the socket
     assert freshness.compare("1.0.0", ">=1.0")[0] == "fresh"
+
+
+# --------------------------------------------------------------------------- #
+# build-time stamping + composite roll-up
+# --------------------------------------------------------------------------- #
+
+# A package with a version_source, an integration composing it, and a how-to
+# using it — so staleness has somewhere to roll up to.
+_ROLLUP_FILES = {
+    "index.md": "---\ntype: index\nstatus: active\nupdated: 2026-01-01\n---\n# I\n"
+                "- [[packages/qpkg]]\n- [[integrations/qpkg-to-thing]]\n- [[how-to/use-qpkg]]\n",
+    "packages/qpkg.md": """---
+type: package
+name: Qpkg
+status: active
+updated: 2026-01-01
+package_role: library
+capabilities: [simulation]
+hardware_targets: [local-cpu]
+interfaces: [python-api]
+domains: [quantum-software]
+sources: [raw/md/qpkg.md]
+provenance_status: source-backed
+version_source: {kind: pypi, id: qpkg}
+version_built: "1.0.0"
+version_scope: ">=1.0,<2.0"
+---
+# Qpkg
+See [[how-to/use-qpkg]].
+""",
+    "integrations/qpkg-to-thing.md": """---
+type: integration
+status: draft
+updated: 2026-01-01
+packages: [Qpkg]
+interfaces: [python-api]
+inputs: [a]
+outputs: [b]
+domains: [quantum-software]
+sources: [raw/md/qpkg.md]
+provenance_status: source-backed
+---
+# Integration
+Composes [[packages/qpkg]].
+""",
+    "how-to/use-qpkg.md": """---
+type: how-to
+status: draft
+updated: 2026-01-01
+task: Use Qpkg
+packages: [Qpkg]
+version_scope: v1
+domains: [quantum-software]
+sources: [raw/md/qpkg.md]
+provenance_status: source-backed
+---
+# Use Qpkg
+See [[packages/qpkg]].
+""",
+    "raw/md/qpkg.md": "# qpkg docs\n",
+}
+
+
+def _rollup_wiki(tmp_path):
+    for rel, content in _ROLLUP_FILES.items():
+        p = tmp_path / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(content, encoding="utf-8")
+    return tmp_path
+
+
+def test_cache_roundtrip(tmp_path):
+    out = tmp_path / "wiki-out"
+    results = [{"page": "packages/qpkg", "status": "stale", "latest": "2.0.0",
+                "built": "1.0.0", "detail": "x"}]
+    freshness.save_cache(out, results)
+    loaded = freshness.load_cache(out)
+    assert loaded["packages/qpkg"]["status"] == "stale"
+    assert loaded["packages/qpkg"]["latest"] == "2.0.0"
+
+
+def test_load_cache_absent_is_empty(tmp_path):
+    assert freshness.load_cache(tmp_path / "nope") == {}
+
+
+def test_stamp_and_rollup_propagates_staleness(tmp_path):
+    from qappswiki.cli import run_pipeline
+    root = _rollup_wiki(tmp_path)
+    _, graph = run_pipeline(root, root / "wiki-out", use_cache=False)
+    freshness.stamp_graph(graph, {"packages/qpkg": {"status": "stale", "latest": "2.0.0"}})
+
+    assert graph.nodes["packages/qpkg"]["freshness"] == "stale"
+    # the integration and how-to that compose qpkg inherit its staleness
+    assert graph.nodes["integrations/qpkg-to-thing"]["freshness_rollup"] == "stale"
+    assert "packages/qpkg" in graph.nodes["integrations/qpkg-to-thing"]["freshness_basis"]
+    assert graph.nodes["how-to/use-qpkg"]["freshness_rollup"] == "stale"
+
+
+def test_stamp_untracked_when_no_cache(tmp_path):
+    from qappswiki.cli import run_pipeline
+    root = _rollup_wiki(tmp_path)
+    _, graph = run_pipeline(root, root / "wiki-out", use_cache=False)
+    freshness.stamp_graph(graph, {})
+    # version_source present but never checked -> untracked; no roll-up signal
+    assert graph.nodes["packages/qpkg"]["freshness"] == "untracked"
+    assert graph.nodes["integrations/qpkg-to-thing"]["freshness_rollup"] is None
+
+
+def test_run_pipeline_stamps_from_written_cache(tmp_path):
+    from qappswiki.cli import run_pipeline
+    root = _rollup_wiki(tmp_path)
+    out = root / "wiki-out"
+    freshness.save_cache(out, [{"page": "packages/qpkg", "status": "stale",
+                                "latest": "2.0.0", "built": "1.0.0", "detail": "x"}])
+    # run_pipeline must auto-load the cache and stamp without any extra call
+    _, graph = run_pipeline(root, out, use_cache=False)
+    assert graph.nodes["packages/qpkg"]["freshness"] == "stale"
+    assert graph.nodes["integrations/qpkg-to-thing"]["freshness_rollup"] == "stale"
+
+
+def test_analyze_and_report_surface_freshness(tmp_path):
+    from qappswiki import analyze, report
+    from qappswiki.cli import run_pipeline
+    root = _rollup_wiki(tmp_path)
+    out = root / "wiki-out"
+    freshness.save_cache(out, [{"page": "packages/qpkg", "status": "stale",
+                                "latest": "2.0.0", "built": "1.0.0", "detail": "x"}])
+    _, graph = run_pipeline(root, out, use_cache=False)
+    a = analyze.analyze(graph)
+    assert a["freshness"]["tracked"]
+    assert "packages/qpkg" in a["freshness"]["stale_packages"]
+    assert "integrations/qpkg-to-thing" in a["freshness"]["stale_rollup"]
+    md = report.render_graph_report(a, "2026-01-01")
+    assert "## Freshness" in md
+    assert "stale packages" in md

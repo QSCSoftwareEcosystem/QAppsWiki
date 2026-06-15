@@ -112,6 +112,23 @@ def render_graph_report(analysis: dict, generated: str = "") -> str:
         L.append(f"  - [[{n}]]")
     L.append(f"- `cites` edges to external (sibling-repo/URL) sources: {prov['external_cites']}")
     L.append("")
+
+    fresh = analysis.get("freshness") or {}
+    L.append("## Freshness")
+    if fresh.get("tracked"):
+        by_status = ", ".join(f"{k}={v}" for k, v in sorted(fresh.get("packages_by_status", {}).items()))
+        L.append(f"- package contexts: {by_status}")
+        if fresh.get("stale_packages"):
+            L.append(f"- **stale packages ({len(fresh['stale_packages'])}):**")
+            for n in fresh["stale_packages"]:
+                L.append(f"  - [[{n}]]")
+        if fresh.get("stale_rollup"):
+            L.append(f"- pages built on stale software (roll-up, {len(fresh['stale_rollup'])}):")
+            for n in fresh["stale_rollup"]:
+                L.append(f"  - [[{n}]]")
+    else:
+        L.append("_no freshness data — run `qappswiki freshness` (online) to stamp package staleness_")
+    L.append("")
     return "\n".join(L)
 
 

@@ -128,6 +128,29 @@ def analyze(graph) -> dict:
         "unsourced": unsourced,
     }
 
+    # Freshness: read the stamps left on the graph by freshness.stamp_graph
+    # (packages carry `freshness`; other content pages carry `freshness_rollup`).
+    # All-None when no freshness cache was present at build time.
+    pkg_status: Counter = Counter()
+    stale_packages = []
+    stale_rollup = []
+    for nid, a in nodes.items():
+        t = a.get("type")
+        if t == "package":
+            st = a.get("freshness")
+            pkg_status[st or "none"] += 1
+            if st == "stale":
+                stale_packages.append(nid)
+        elif _is_content(a) and t != "source":
+            if a.get("freshness_rollup") == "stale":
+                stale_rollup.append(nid)
+    freshness = {
+        "packages_by_status": dict(pkg_status),
+        "stale_packages": sorted(stale_packages),
+        "stale_rollup": sorted(stale_rollup),
+        "tracked": any(k not in ("none", None) for k in pkg_status),
+    }
+
     return {
         "stats": {
             "nodes": graph.number_of_nodes(),
@@ -142,6 +165,7 @@ def analyze(graph) -> dict:
         "under_linked": sorted(under_linked),
         "cross_domain": cross_domain,
         "ambiguous": ambiguous,
+        "freshness": freshness,
         "provenance": {
             "needs_verification": needs_verification,
             "external_cites": external_cites,

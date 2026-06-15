@@ -16,12 +16,27 @@ from __future__ import annotations
 
 import json
 import urllib.request
+from pathlib import Path
 from urllib.parse import quote
 
 from . import schema
 
 _DETERMINISTIC = {"pypi", "npm", "github-releases", "github-tags", "conda", "crates"}
 _USER_AGENT = "qappswiki-freshness"
+
+# Severity ordering for rolling "the worst freshness among the software a page
+# builds on" up the graph. ``untracked`` / ``None`` carry no signal and are
+# skipped in a roll-up (the page just has no software-freshness basis).
+STATUS_SEVERITY = {"fresh": 0, "manual": 1, "unknown": 2, "error": 2, "stale": 3}
+
+# Relations along which software staleness propagates *up* to the pages that
+# build on it. A page that composes / uses / depends on a package inherits its
+# staleness; `cites` (provenance) and `related` (loose) deliberately do not.
+_ROLLUP_RELATIONS = {
+    "composes-with", "uses", "depends-on", "integrates", "implements", "has-how-to",
+}
+
+FRESHNESS_CACHE_VERSION = "qappswiki-freshness-0"
 
 
 def _http_json(url: str, timeout: float = 10.0):
@@ -129,3 +144,104 @@ def run_freshness(pages: list[dict], timeout: float = 10.0, fetch=None,
             continue
         out.append(check_package(node, p["meta"]["frontmatter"], timeout, fetch))
     return out
+
+
+# --------------------------------------------------------------------------- #
+# Build-time stamping: last-known freshness onto the graph + composite roll-up
+# --------------------------------------------------------------------------- #
+#
+# Freshness itself is online; the *build* must stay offline and deterministic.
+# The bridge is a small cache (``wiki-out/freshness.json``) written by the
+# online ``freshness`` command and read at build time. With no cache, packages
+# stamp ``untracked`` and roll-ups are ``None`` — so CI (which never has the
+# cache) is unaffected. This realizes "check on read, update out-of-band" from
+# the self-refreshing-context design.
+
+def cache_path(out) -> Path:
+    return Path(out) / "freshness.json"
+
+
+def save_cache(out, results: list[dict]) -> Path:
+    """Persist per-package verdicts so the next build can stamp the graph."""
+    p = cache_path(out)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "schema_version": FRESHNESS_CACHE_VERSION,
+        "packages": {
+            r["page"]: {"status": r["status"], "latest": r["latest"],
+                        "built": r["built"], "detail": r["detail"]}
+            for r in results
+        },
+    }
+    p.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return p
+
+
+def load_cache(out) -> dict:
+    """Read ``{package_id: {status, latest, ...}}`` from the cache, or ``{}``."""
+    p = cache_path(out)
+    if not p.exists():
+        return {}
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return {}
+    return data.get("packages", {}) if isinstance(data, dict) else {}
+
+
+def _reachable_packages(graph, start, max_depth: int = 2) -> set[str]:
+    """Package nodes reachable from ``start`` via roll-up relations (≤max_depth)."""
+    pkgs: set[str] = set()
+    seen = {start}
+    frontier = [(start, 0)]
+    while frontier:
+        node, depth = frontier.pop()
+        if depth >= max_depth:
+            continue
+        for _u, v, d in graph.out_edges(node, data=True):
+            if d.get("relation") not in _ROLLUP_RELATIONS:
+                continue
+            if graph.nodes[v].get("type") == "package":
+                pkgs.add(v)
+            if v not in seen:
+                seen.add(v)
+                frontier.append((v, depth + 1))
+    return pkgs
+
+
+def stamp_graph(graph, cached: dict | None) -> None:
+    """Stamp last-known freshness onto the graph (mutates node attrs in place).
+
+    Packages get ``freshness`` (+ ``freshness_latest``) from ``cached``; every
+    other content page gets a composite ``freshness_rollup`` — the worst
+    freshness among the packages it composes (with ``freshness_basis`` listing
+    them) — so software staleness propagates up to integrations and applications.
+    Pure/offline given ``cached``; an empty cache leaves everything untracked.
+    """
+    cached = cached or {}
+    for nid, a in graph.nodes(data=True):
+        if a.get("type") != "package":
+            continue
+        info = cached.get(nid)
+        if info:
+            a["freshness"] = info.get("status")
+            a["freshness_latest"] = info.get("latest")
+        elif a.get("version_source"):
+            a["freshness"] = "untracked"   # configured to track, but never checked
+        else:
+            a["freshness"] = None          # no freshness model at all
+
+    for nid, a in graph.nodes(data=True):
+        t = a.get("type")
+        if t not in schema.CONTENT_TYPES or t in ("package", "source"):
+            continue
+        worst = None
+        basis = []
+        for pkg in _reachable_packages(graph, nid):
+            st = graph.nodes[pkg].get("freshness")
+            if st in STATUS_SEVERITY:
+                basis.append(pkg)
+                if worst is None or STATUS_SEVERITY[st] > STATUS_SEVERITY[worst]:
+                    worst = st
+        a["freshness_rollup"] = worst
+        a["freshness_basis"] = sorted(basis)
