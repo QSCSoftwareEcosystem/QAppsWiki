@@ -88,6 +88,24 @@ def render_graph_report(analysis: dict, generated: str = "") -> str:
         L += ["_none_", ""]
 
     prov = analysis["provenance"]
+    cov = prov.get("coverage") or {}
+    L.append("## Provenance coverage")
+    if cov.get("content_pages"):
+        L.append(f"- **{cov['with_sources']}/{cov['content_pages']} sourceable pages cite a source** "
+                 f"({int(cov['source_coverage'] * 100)}%); "
+                 f"{cov['with_inline_citations']} carry claim-level inline citations "
+                 f"({int(cov['claim_coverage'] * 100)}%).")
+        by_status = ", ".join(f"{k}={v}" for k, v in sorted(cov.get("by_status", {}).items()))
+        if by_status:
+            L.append(f"- provenance_status: {by_status}")
+        if cov.get("unsourced"):
+            L.append(f"- unsourced pages ({len(cov['unsourced'])}):")
+            for n in cov["unsourced"]:
+                L.append(f"  - [[{n}]]")
+    else:
+        L.append("_no sourceable content pages_")
+    L.append("")
+
     L.append("## Provenance gaps")
     L.append(f"- pages flagged `needs-verification`: {len(prov['needs_verification'])}")
     for n in prov["needs_verification"]:

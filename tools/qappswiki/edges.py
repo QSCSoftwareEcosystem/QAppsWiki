@@ -142,13 +142,19 @@ def derive_edges(pages: list[dict], root) -> tuple[list[dict], dict[str, str]]:
                     add_missing(mid, "missing")
                     emit(src, mid, "composes-with", "AMBIGUOUS", "frontmatter:packages")
 
-        # 3. provenance: sources / source_markdown frontmatter + inline citations
-        cited_paths = []
+        # 3. provenance: sources / source_markdown frontmatter + inline citations.
+        # A path cited inline is claim-level (stronger) and wins over a path that
+        # only appears in frontmatter; merging here keeps one cites edge per
+        # source with the most-informative origin (instead of two that dedupe
+        # would silently collapse, losing the inline signal).
+        cited: dict[str, str] = {}
         for field in ("sources", "source_markdown"):
-            cited_paths += [(p, "sources") for p in _as_list(fm.get(field))]
+            for p in _as_list(fm.get(field)):
+                cited.setdefault(p, "sources")
         for c in meta["citations"]:
-            cited_paths += [(p, "inline-citation") for p in c.get("paths", [])]
-        for ref, origin in cited_paths:
+            for p in c.get("paths", []):
+                cited[p] = "inline-citation"
+        for ref, origin in cited.items():
             info = resolve_source(ref, meta["rel_path"], root, node_ids)
             if info["node_id"]:
                 emit(src, info["node_id"], "cites", "EXTRACTED", origin)

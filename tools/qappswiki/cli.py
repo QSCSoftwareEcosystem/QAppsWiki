@@ -9,7 +9,7 @@ Subcommands:
   cluster    detect + name thematic communities (Louvain)
   run        validate + build + report in one parse (the AS/CI entry point)
   serve      MCP stdio server over graph.json
-  query/path/explain   read-only graph queries
+  query/path/explain/cite   read-only graph queries (cite = provenance behind a node)
 """
 
 from __future__ import annotations
@@ -355,6 +355,29 @@ def cmd_explain(args):
     return 0
 
 
+def cmd_cite(args):
+    from . import serve
+    graph = _load_graph(args)
+    result = serve.q_cite(graph, args.node)
+    if result is None:
+        print(f"unknown node: {args.node}")
+        return 1
+    if args.format == "json":
+        print(json.dumps(result, indent=2))
+        return 0
+    print(f"# {result['id']}  ({result.get('title')})")
+    print(f"provenance_status: {result.get('provenance_status')}")
+    print(f"\npage-level sources ({len(result['page_level'])}):")
+    for s in result["page_level"]:
+        print(f"  - {s}")
+    print(f"claim-level inline citations ({len(result['claim_level'])}):")
+    for s in result["claim_level"]:
+        print(f"  - {s}")
+    if not result["cites"]:
+        print("  (no sources cited — provenance gap)")
+    return 0
+
+
 def _add_common(p):
     p.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
     p.add_argument("--out", default=None, help="output dir (default: <root>/wiki-out)")
@@ -452,6 +475,12 @@ def main(argv=None) -> int:
     _add_common(pe)
     pe.add_argument("node")
     pe.set_defaults(func=cmd_explain)
+
+    pct = sub.add_parser("cite", help="show the sources behind a node (page- and claim-level)")
+    _add_common(pct)
+    pct.add_argument("node")
+    pct.add_argument("--format", choices=["text", "json"], default="text")
+    pct.set_defaults(func=cmd_cite)
 
     args = ap.parse_args(argv)
     return args.func(args)

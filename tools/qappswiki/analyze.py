@@ -97,6 +97,37 @@ def analyze(graph) -> dict:
         if d["relation"] == "cites" and nodes[v].get("type") == "external"
     )
 
+    # Provenance coverage: of the content pages that should carry sources
+    # (everything but the source catalog), how many actually cite at least one?
+    sourced = set()
+    claim_level = set()
+    for u, _v, d in graph.edges(data=True):
+        if d["relation"] != "cites":
+            continue
+        sourced.add(u)
+        if d.get("origin") == "inline-citation":
+            claim_level.add(u)
+    by_status: Counter = Counter()
+    sourceable = []
+    for nid, a in nodes.items():
+        if not _is_content(a) or a.get("type") == "source":
+            continue
+        sourceable.append(nid)
+        by_status[a.get("provenance_status") or "none"] += 1
+    n_total = len(sourceable)
+    n_sourced = sum(1 for nid in sourceable if nid in sourced)
+    n_claim = sum(1 for nid in sourceable if nid in claim_level)
+    unsourced = sorted(nid for nid in sourceable if nid not in sourced)
+    coverage = {
+        "content_pages": n_total,
+        "with_sources": n_sourced,
+        "with_inline_citations": n_claim,
+        "source_coverage": round(n_sourced / n_total, 3) if n_total else 0.0,
+        "claim_coverage": round(n_claim / n_total, 3) if n_total else 0.0,
+        "by_status": dict(by_status),
+        "unsourced": unsourced,
+    }
+
     return {
         "stats": {
             "nodes": graph.number_of_nodes(),
@@ -114,5 +145,6 @@ def analyze(graph) -> dict:
         "provenance": {
             "needs_verification": needs_verification,
             "external_cites": external_cites,
+            "coverage": coverage,
         },
     }
