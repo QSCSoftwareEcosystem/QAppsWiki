@@ -149,3 +149,27 @@ verified on the real corpus — promoting Trotterization produced a clean
 9-source page (0 errors, only the expected needs-verification / not-in-index
 warnings). With extract + cluster + promote in place, the Phase-3 acceptance
 pass (raw corpus → curated concept pages) is now a mechanical run away.
+
+## 2026-06-15 tooling | Phase 2 complete + contributor on-ramp | touched: tools/qappswiki/{validate,scaffold,cli,freshness,analyze,report,edges,schema,extract}.py, tools/tests/{test_new,test_domain_priors,test_validate,test_freshness}.py, .github/workflows/freshness.yml, CONTRIBUTING.md, schema/frontmatter-v0.md, PLAN.md
+
+Closed the open Phase-2 software roadmap and finished the contributor structure.
+**Provenance:** the two-level rule "every inline `(source:)` ∈ `sources:`" is now
+a hard ERROR on content pages (was a warning); the coverage metric + `cite`
+CLI/MCP tool shipped earlier in the day. **Freshness:** `freshness.stamp_graph`
+stamps last-known package staleness onto the graph at build time from a
+`wiki-out/freshness.json` cache (offline/deterministic; CI never has the cache)
+and rolls the worst status up through `composes-with`/`uses`/… edges to the
+integrations and applications built on stale software — the composite roll-up
+from [[concepts/self-refreshing-context]] — surfaced in `GRAPH_REPORT.md` and
+`graph.json`. A nightly `freshness` Action reports staleness out-of-band (job
+summary + artifact), never blocking a build. **Domain specialization:** expanded
+the typed edge vocabulary with `wraps` / `encodes-qec` / `validates-against`
+(the last auto-derived for `benchmark` pages; the first two authored to keep the
+derived graph high-precision) and broadened the deterministic extraction lexicon
+beyond time-evolution (QEC codes, error mitigation, tensor networks,
+transpilation, QASM, …). **Structure:** `qappswiki new <type> <slug>` scaffolds a
+blank schema-valid page of any type (built from `schema.py`, the validator's
+source of truth), and `CONTRIBUTING.md` documents the fill-in-the-blanks loop so
+anyone can populate the wiki. Marked the schema `status: active` and reconciled
+the stale PLAN.md Data-Schema checkboxes (all page-type fields + vocabularies
+were already defined). 120 tests green; real corpus validates with 0 errors.
