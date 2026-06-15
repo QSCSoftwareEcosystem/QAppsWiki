@@ -4,6 +4,7 @@ Subcommands:
   validate   collect -> parse -> build -> validate; write VALIDATION_REPORT.md
   build      ... -> export; write graph.json + graph.html
   report     ... -> analyze; write GRAPH_REPORT.md
+  new        scaffold a blank schema-valid page of a given type (fill-in-the-blanks)
   extract    derive INFERRED candidate concepts from raw sources (staged, not authored)
   promote    turn a reviewed candidate into an authored concepts/ page (discover→promote)
   cluster    detect + name thematic communities (Louvain)
@@ -58,6 +59,10 @@ def run_pipeline(root: Path, out: Path, use_cache: bool, dirs=None):
         pages.append({"node": node, "meta": meta})
     edge_list, synthetic = _edges.derive_edges(pages, root)
     graph = _build.build_graph([p["node"] for p in pages], edge_list, synthetic)
+    # Stamp last-known freshness (offline: reads wiki-out/freshness.json if the
+    # online `freshness` command has run; otherwise everything stays untracked).
+    from . import freshness as _freshness
+    _freshness.stamp_graph(graph, _freshness.load_cache(out))
     return pages, graph
 
 
@@ -252,6 +257,34 @@ def cmd_promote(args):
     return 0
 
 
+def cmd_new(args):
+    from . import scaffold
+    from . import schema as _schema
+    root = Path(args.root).resolve()
+    page_type = args.type
+    if page_type not in _schema.CONTENT_TYPES:
+        print(f"unknown page type: '{page_type}' — choose one of "
+              f"{', '.join(sorted(_schema.CONTENT_TYPES))}")
+        return 1
+    # Bare slug -> conventional directory for the type; a path (has '/' or .md)
+    # is used as given.
+    target = args.target
+    if target.endswith(".md") or "/" in target:
+        rel = target if target.endswith(".md") else target + ".md"
+    else:
+        rel = f"{scaffold.TYPE_DIR.get(page_type, page_type)}/{target}.md"
+    path = root / rel
+    if path.exists() and not args.force:
+        print(f"refusing to overwrite existing page {rel} (use --force)")
+        return 1
+    content = scaffold.blank_page(page_type, path.stem, args.title)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    print(f"created {page_type} stub: {rel}")
+    print("\nnext: fill in the frontmatter + body, then run `qappswiki run`.")
+    return 0
+
+
 def cmd_ingest(args):
     from . import ingest as _ingest
     root = Path(args.root).resolve()
@@ -281,6 +314,17 @@ def cmd_freshness(args):
     pages, _ = run_pipeline(root, out, not args.no_cache)
     results = _freshness.run_freshness(pages, timeout=args.timeout, only=args.package)
     _write(out / "FRESHNESS_REPORT.md", _report.render_freshness_report(results, _today()))
+    # Persist verdicts so the next build can stamp them onto the graph (and roll
+    # software staleness up to integrations/applications). A single-package run
+    # merges into the existing cache rather than dropping the others.
+    if not args.package:
+        _freshness.save_cache(out, results)
+    else:
+        merged = dict(_freshness.load_cache(out))
+        for r in results:
+            merged[r["page"]] = {"status": r["status"], "latest": r["latest"],
+                                 "built": r["built"], "detail": r["detail"]}
+        _freshness.save_cache(out, [{"page": k, **v} for k, v in merged.items()])
     if args.format == "json":
         print(json.dumps(results, indent=2))
     else:
@@ -433,6 +477,14 @@ def main(argv=None) -> int:
                     help="Louvain resolution; >1 = more, smaller communities")
     pc.add_argument("--format", choices=["text", "json"], default="text")
     pc.set_defaults(func=cmd_cluster)
+
+    pnew = sub.add_parser("new", help="scaffold a blank schema-valid page to fill in")
+    pnew.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
+    pnew.add_argument("type", help="page type (package|concept|how-to|integration|workflow|qec-artifact|benchmark|source)")
+    pnew.add_argument("target", help="slug (placed in the type's dir) or an explicit path like packages/qiskit.md")
+    pnew.add_argument("--title", default=None, help="page title (default: humanized slug)")
+    pnew.add_argument("--force", action="store_true", help="overwrite an existing page")
+    pnew.set_defaults(func=cmd_new)
 
     pi = sub.add_parser("ingest", help="convert a PDF and scaffold a stub page")
     _add_common(pi)
