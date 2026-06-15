@@ -1,7 +1,7 @@
 ---
 type: project-plan
 status: active
-updated: 2026-06-13
+updated: 2026-06-15
 ---
 
 # QAppsWiki Plan
@@ -9,6 +9,15 @@ updated: 2026-06-13
 QAppsWiki is now a dedicated QSCSoftwareThrust repository. The immediate goal
 is to turn the current proposal material into a working MVP that supports
 OpenQEvo, Quantum Wiki / ChatQEC planning, and openQSE discovery workflows.
+
+**Status (2026-06-15):** the `qappswiki` engine and the page structure are
+complete and merged to `main` (CI-validated), so the structural/software phase
+is done — populating the wiki is now a fill-in-the-blanks job (see
+`CONTRIBUTING.md`). The corpus is seeded at scale: the full quantum Error
+Correction Zoo (~650 code pages) and all QEM Zoo techniques are imported into
+`concepts/qec/` and `concepts/qem/`. The remaining work is content: verifying
+the imported `needs-verification` pages and authoring the seed package pages
+(M4–M7 below).
 
 ## Goal
 
@@ -398,9 +407,9 @@ pass). Carried-over near-term items folded into that roadmap:
 
 | Milestone | Target | Lead project | Deliverable |
 |-----------|--------|--------------|-------------|
-| M0: Repo live | 2026-06 | SE / Vicente | Private GitHub repo created, initial charter and plan pushed |
-| M1: MVP scaffold | 2026-06 | SE / Vicente | `index.md`, `log.md`, `schema/frontmatter-v0.md`, and seed directories |
-| M2: OpenQEvo slice | 2026-06 | DS / AS / SE | OpenQEvo package page, first concept page, first how-to, first integration page |
+| M0: Repo live | 2026-06 | SE / Vicente | Private GitHub repo created, initial charter and plan pushed — ✓ delivered |
+| M1: MVP scaffold | 2026-06 | SE / Vicente | `index.md`, `log.md`, `schema/frontmatter-v0.md`, and seed directories — ✓ delivered |
+| M2: OpenQEvo slice | 2026-06 | DS / AS / SE | OpenQEvo package page, first concept page, first how-to, first integration page — ✓ delivered |
 | M3: Source workflow | 2026-06 | AS / SE | PDF→markdown conversion documented + demonstrated — ✓ delivered as `qappswiki ingest` (markitdown-lightpdf) |
 | M4: Seed corpus | 2026-07 | DS / AS | Five seed package pages grounded in source markdown |
 | M5: Query loop | 2026-07 | AS | Manual query workflow answers from wiki pages with provenance |
