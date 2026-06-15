@@ -92,7 +92,7 @@ software up to applications.
 | Community-catalog import (`import-zoo`): full quantum Error Correction Zoo + QEM Zoo → `concepts/qec`, `concepts/qem` | ✅ |
 | Structural querying over MCP (query / path / explain) | ✅ |
 | Version-stamped packages (`version_source`) + online `freshness` + `check_freshness` MCP tool | ✅ |
-| Seed corpus compiled (OpenQEvo done; Qiskit, PennyLane, TNQVM, Stim) | 🚧 |
+| Seed package pages (OpenQEvo source-backed; Qiskit / PennyLane / Stim / TNQVM stubbed with metadata + `version_source`, `needs-verification`) | 🚧 |
 | Verify/enrich imported catalog pages (~690 `needs-verification`) | 🚧 |
 | AS markdown-compilation workflow (manual today; automation) | 🚧 |
 | **Context packs** — assemble a seed + its neighborhood into a token-budgeted, freshness-stamped bundle | 📋 |
