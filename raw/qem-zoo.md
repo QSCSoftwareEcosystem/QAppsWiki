@@ -42,12 +42,16 @@ resource raised in the QEM survey literature (Cai et al. 2023).
 
 ## Ingest notes
 
-- `preferred_ingest_path: external` — living web catalog. No documented API or
-  bulk data export was found at registration time, so ingest per-technique
-  pages or their cited papers into `raw/md/` on demand.
-- No explicit license or how-to-cite statement was found on the site at
-  registration; **confirm licensing before reusing entry text**, and cite the
-  underlying primary sources for technical claims.
+- **Imported.** The catalog's source repo (`vprusso/qemzoo`) keeps structured
+  JSON under `data/` and is licensed under **The Unlicense (public domain)** —
+  free to reuse. `qappswiki import-zoo qemzoo` pulls all 39 techniques into
+  schema-valid `concepts/qem/` pages (summary, properties table, resolved
+  references, related links).
+- Imported pages are `provenance_status: needs-verification` — confirm against
+  the references before relying on them.
+- The site asks to be cited as: *V. Russo, "The QEM Zoo: A Catalog of Quantum
+  Error Mitigation and Suppression Techniques," 2025.* Cite the underlying
+  primary sources for technical claims.
 
 ## Related
 

@@ -40,9 +40,14 @@ into source papers for QAppsWiki's quantum-error-correction coverage.
 
 ## Ingest notes
 
-- `preferred_ingest_path: external` — this is a living web catalog, not a fixed
-  PDF. Ingest individual code/concept pages or their cited papers into
-  `raw/md/` on demand rather than snapshotting the whole site.
+- **Imported.** `qappswiki import-zoo eczoo` pulls the catalog's structured YAML
+  (`errorcorrectionzoo/eczoo_data`, one file per code) into schema-valid
+  `concepts/qec/` pages. A bounded flagship set is already imported
+  (stabilizer, CSS, surface, toric, color, qLDPC, hypergraph-product,
+  Bacon-Shor, Steane, Shor-9, 5-qubit); `--all` imports the full ~1100-code
+  catalog (needs a `GITHUB_TOKEN` for the API rate limit).
+- Imported pages are `provenance_status: needs-verification` — verify against
+  the cited primary sources before relying on them.
 - Attribute as **CC-BY-SA, Error Correction Zoo (errorcorrectionzoo.org)** when
   reusing entry text; cite the underlying primary source for technical claims.
 

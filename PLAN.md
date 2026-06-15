@@ -355,6 +355,15 @@ Delivered:
 - **Ingest** — `qappswiki ingest <pdf>` converts a PDF to `raw/md/` via
   `markitdown-lightpdf` (configurable), archives the PDF, and scaffolds a
   schema-valid stub page.
+- **Import-zoo** — `qappswiki import-zoo {eczoo,qemzoo}` ingests two curated
+  community catalogs into schema-valid `concept` pages: the Error Correction
+  Zoo (error-correcting *codes*, CC-BY-SA YAML) and the QEM Zoo (error
+  *mitigation/suppression* techniques, public-domain JSON). Pages render with
+  provenance to the registered source page + upstream entry URL and are linked
+  from `index.md`; they land `needs-verification` for a human pass. Rendering is
+  offline-pure (network confined to fetch), so `run` stays deterministic. Seeded
+  11 flagship ECZ codes + all 39 QEM techniques; `--all` imports the full
+  ~1100-code ECZ catalog.
 - **Serve** — MCP stdio server (`query` / `path` / `explain` / `list_orphans` /
   …) so agents query the graph instead of re-reading raw markdown.
 - **Freshness** — `version_source` / `version_built` / `version_scope` package

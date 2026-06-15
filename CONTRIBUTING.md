@@ -87,6 +87,25 @@ Extraction never writes authored pages — it only stages candidates. Promotion 
 the single path into the authored layer, and it produces a `needs-verification`
 draft you then fill in and validate like any other page.
 
+### Importing community catalogs
+
+Two curated catalogs can be imported directly into schema-valid `concept` pages:
+
+```bash
+qappswiki import-zoo eczoo            # flagship error-correcting codes
+qappswiki import-zoo eczoo surface css steane   # specific code_ids
+qappswiki import-zoo eczoo --all      # the entire ~1100-code catalog (needs GITHUB_TOKEN)
+qappswiki import-zoo qemzoo           # all quantum error mitigation/suppression techniques
+```
+
+The importer fetches upstream data (Error Correction Zoo YAML, CC-BY-SA;
+[[raw/qem-zoo|QEM Zoo]] JSON, public domain), renders pages under
+`concepts/qec/` and `concepts/qem/` with provenance back to the
+[[raw/error-correction-zoo|registered source pages]] and the upstream entry URL,
+and links them from `index.md`. Imported pages land as
+`status: provisional` / `provenance_status: needs-verification` carrying the
+catalog's own prose — verify and enrich them like a promoted candidate.
+
 ## Freshness (software pages)
 
 Package pages can declare a `version_source` (PyPI / GitHub / …) and a

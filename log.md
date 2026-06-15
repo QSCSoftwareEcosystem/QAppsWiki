@@ -173,3 +173,23 @@ source of truth), and `CONTRIBUTING.md` documents the fill-in-the-blanks loop so
 anyone can populate the wiki. Marked the schema `status: active` and reconciled
 the stale PLAN.md Data-Schema checkboxes (all page-type fields + vocabularies
 were already defined). 120 tests green; real corpus validates with 0 errors.
+
+## 2026-06-15 tooling | Zoo catalog importer + first ingest | touched: tools/qappswiki/import_zoo.py, cli.py, tools/tests/test_import_zoo.py, CONTRIBUTING.md, index.md, concepts/qec/*, concepts/qem/*, raw/{error-correction-zoo,qem-zoo}.md, PLAN.md
+
+Turned the two registered zoo sources into actual wiki content. New
+`qappswiki import-zoo {eczoo,qemzoo}` command fetches upstream structured data —
+Error Correction Zoo YAML (one file per code, CC-BY-SA) and QEM Zoo JSON (public
+domain, The Unlicense) — and renders schema-valid `concept` pages
+(`concept_kind: qec`, `domains: [quantum-error-correction]`) with provenance
+back to the registered source page + the upstream entry URL, then links them
+from `index.md` via an idempotent managed block. Rendering is pure/offline
+(network is confined to `fetch_*`), so `qappswiki run` stays deterministic and
+the importer is unit-tested without the wire. A LaTeX→markdown pass converts
+`\cite`/`\href`/`\hyperref`, strips figure environments, and renders the
+stabilizer `[[n,k,d]]` notation as `⟦n,k,d⟧` so it can't collide with
+`[[wikilink]]` syntax. Seeded a bounded starter set: 11 flagship ECZ codes
+(stabilizer/CSS/surface/toric/color/qLDPC/HGP/Bacon-Shor/Steane/Shor-9/5-qubit)
++ all 39 QEM techniques. Imported pages are `provisional` /
+`needs-verification` — the 50 resulting warnings are the intended verify-me
+to-do list, not defects. 127 tests green; corpus validates with 0 errors,
+0 orphans (128 nodes, 361 edges).

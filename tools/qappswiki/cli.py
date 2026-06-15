@@ -7,6 +7,7 @@ Subcommands:
   new        scaffold a blank schema-valid page of a given type (fill-in-the-blanks)
   extract    derive INFERRED candidate concepts from raw sources (staged, not authored)
   promote    turn a reviewed candidate into an authored concepts/ page (discover→promote)
+  import-zoo import a community catalog (Error Correction Zoo / QEM Zoo) into concept pages
   cluster    detect + name thematic communities (Louvain)
   run        validate + build + report in one parse (the AS/CI entry point)
   serve      MCP stdio server over graph.json
@@ -307,6 +308,49 @@ def cmd_ingest(args):
     return 0
 
 
+def cmd_import_zoo(args):
+    """Import a community catalog (Error Correction Zoo / QEM Zoo) into pages."""
+    from . import import_zoo as _iz
+    root = Path(args.root).resolve()
+    source = args.source
+    today = _today()
+    try:
+        if source == "eczoo":
+            ids = args.ids or (None if args.all else list(_iz.ECZ_FLAGSHIP))
+            if ids is None:
+                ids = sorted(_iz._ecz_pathmap())          # --all: whole catalog
+            entries = _iz.fetch_eczoo(ids)
+            batch = frozenset(_iz._slug(e["code_id"]) for e in entries)
+            rendered = [(*_iz.eczoo_page(e, today, batch), _iz.tex_to_md(e.get("name") or e["code_id"]))
+                        for e in entries]
+        else:  # qemzoo
+            ids = args.ids or None                          # default: all techniques
+            entries, refs = _iz.fetch_qemzoo(ids)
+            batch = frozenset(_iz._slug(e["id"]) for e in entries)
+            rendered = [(*_iz.qemzoo_page(e, refs, today, batch), e.get("name") or e["id"])
+                        for e in entries]
+    except _iz.ImportError_ as exc:
+        print(f"import failed: {exc}")
+        return 1
+
+    if args.dry_run:
+        for rel_path, _md, title in rendered:
+            print(f"  would write {rel_path}  ({title})")
+        print(f"\n{len(rendered)} page(s) from {source} (dry run; nothing written)")
+        return 0
+
+    results = _iz.write_pages(root, source, [(rp, md, t) for rp, md, t in rendered],
+                              force=args.force)
+    titles = [(rp[:-3], t) for rp, _md, t in rendered]      # node id = path without .md
+    _iz.update_index(root, source, titles)
+    print(f"imported {len(results)} page(s) from {source} into "
+          f"{_iz.OUT_DIR[source]}/ and linked them from index.md")
+    print(f"attribution: {_iz.ATTRIBUTION[source]}")
+    print("\nnext: run `qappswiki run` to validate, then verify/enrich the "
+          "`needs-verification` pages.")
+    return 0
+
+
 def cmd_freshness(args):
     from . import freshness as _freshness
     root = Path(args.root).resolve()
@@ -498,6 +542,16 @@ def main(argv=None) -> int:
     pi.add_argument("--no-keep-pdf", action="store_true", help="don't archive the PDF to raw/pdf/")
     pi.add_argument("--force", action="store_true", help="overwrite an existing stub")
     pi.set_defaults(func=cmd_ingest)
+
+    piz = sub.add_parser("import-zoo",
+                         help="import a community catalog (Error Correction Zoo / QEM Zoo) into concept pages")
+    piz.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
+    piz.add_argument("source", choices=["eczoo", "qemzoo"], help="which catalog to import")
+    piz.add_argument("ids", nargs="*", help="specific entry ids (default: eczoo=flagship set, qemzoo=all)")
+    piz.add_argument("--all", action="store_true", help="eczoo: import the entire ~1100-code catalog")
+    piz.add_argument("--dry-run", action="store_true", help="show what would be written, write nothing")
+    piz.add_argument("--force", action="store_true", help="overwrite existing imported pages")
+    piz.set_defaults(func=cmd_import_zoo)
 
     pf = sub.add_parser("freshness", help="online: check package contexts against upstream versions")
     _add_common(pf)
