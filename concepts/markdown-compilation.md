@@ -59,5 +59,5 @@ page rather than rediscovering the same relationship from raw chunks.
 ## Related
 
 - [[docs/llm-wiki-structure]]
-- [[docs/as-intern-task-brief]]
+- `docs/as-intern-task-brief.md` (local-only, not in the shared repo)
 - [[schema/frontmatter-v0]]

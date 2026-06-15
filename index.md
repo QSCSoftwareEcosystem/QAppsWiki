@@ -20,8 +20,8 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 - [[docs/llm-wiki-pattern]]: LLM Wiki pattern reference.
 - [[docs/llm-wiki-structure]]: applied structure for the QAppsWiki LLM-wiki
   graph.
-- [[docs/as-intern-task-brief]]: AS intern task brief for the Markdown
-  compilation workflow.
+- `docs/as-intern-task-brief.md` (local-only, not in the shared repo): AS
+  intern task brief for the Markdown compilation workflow.
 
 ## Package Pages
 
