@@ -23,9 +23,7 @@ the wire.
 from __future__ import annotations
 
 import json
-import os
 import re
-import urllib.request
 from pathlib import Path
 
 import yaml
@@ -33,9 +31,6 @@ import yaml
 from . import schema
 
 # --- upstream coordinates ---------------------------------------------------
-
-ECZ_REPO = "errorcorrectionzoo/eczoo_data"
-QEM_REPO = "vprusso/qemzoo"
 
 SOURCE_PAGE = {
     "eczoo": "raw/error-correction-zoo.md",
@@ -289,55 +284,84 @@ def qemzoo_page(entry: dict, refs: dict, today: str,
     return rel_path, "\n".join(parts)
 
 
-# --- network ----------------------------------------------------------------
+# --- local data: clone once, then read everything off disk -----------------
+#
+# The whole point: we *gather once* (a single shallow ``git clone`` of each
+# zoo's data repo into a gitignored cache) and then process the entire catalog
+# locally — no per-code API calls, no token, no rate limit. After the clone,
+# import/render/validate never touch the network. ``--refresh`` re-syncs.
 
-def _gh_get(url: str) -> bytes:
-    headers = {"Accept": "application/vnd.github+json",
-               "User-Agent": "qappswiki-import-zoo"}
-    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310 (https only)
-        return resp.read()
-
-
-def _gh_contents(repo: str, path: str) -> bytes:
-    import base64
-    payload = json.loads(_gh_get(f"https://api.github.com/repos/{repo}/contents/{path}"))
-    return base64.b64decode(payload["content"])
+DEFAULT_CACHE = ".zoo-cache"
+REPO_URL = {
+    "eczoo": "https://github.com/errorcorrectionzoo/eczoo_data",
+    "qemzoo": "https://github.com/vprusso/qemzoo",
+}
+REPO_DIR = {"eczoo": "eczoo_data", "qemzoo": "qemzoo"}
 
 
-def _ecz_pathmap() -> dict:
-    """Map every ECZ ``code_id`` to its YAML path via the git tree API."""
-    tree = json.loads(_gh_get(
-        f"https://api.github.com/repos/{ECZ_REPO}/git/trees/main?recursive=1"))
-    out = {}
-    for node in tree.get("tree", []):
-        p = node.get("path", "")
-        if p.startswith("codes/") and p.endswith(".yml"):
-            out[Path(p).stem] = p
-    return out
+def repo_path(source: str, cache_dir: str = DEFAULT_CACHE) -> Path:
+    return Path(cache_dir) / REPO_DIR[source]
 
 
-def fetch_eczoo(code_ids) -> list[dict]:
-    """Fetch and YAML-parse the given ECZ code entries (network)."""
-    pathmap = _ecz_pathmap()
+def sync(source: str, cache_dir: str = DEFAULT_CACHE, refresh: bool = False) -> Path:
+    """Ensure a local clone of the zoo's data repo exists; return its path.
+
+    This is the *only* networked step, and it runs at most once per import
+    (shallow clone on first use; ``refresh=True`` pulls the latest). Everything
+    downstream reads from the returned local directory.
+    """
+    import subprocess
+    dest = repo_path(source, cache_dir)
+    if dest.exists():
+        if refresh:
+            try:
+                subprocess.run(["git", "-C", str(dest), "pull", "--ff-only"],
+                               check=True, capture_output=True, text=True)
+            except (OSError, subprocess.CalledProcessError) as exc:
+                raise ImportError_(f"failed to refresh {dest}: {exc}")
+        return dest
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        subprocess.run(["git", "clone", "--depth", "1", REPO_URL[source], str(dest)],
+                       check=True, capture_output=True, text=True)
+    except (OSError, subprocess.CalledProcessError) as exc:
+        detail = getattr(exc, "stderr", "") or exc
+        raise ImportError_(f"failed to clone {REPO_URL[source]} -> {dest}: {detail}")
+    return dest
+
+
+def _ecz_pathmap(repo_dir: Path) -> dict:
+    """Map every ECZ ``code_id`` to its local YAML path (one file per code)."""
+    return {p.stem: p for p in (Path(repo_dir) / "codes").rglob("*.yml")}
+
+
+def fetch_eczoo(code_ids=None, cache_dir: str = DEFAULT_CACHE,
+                refresh: bool = False) -> list[dict]:
+    """Read + YAML-parse ECZ code entries from the local clone.
+
+    ``code_ids=None`` reads the entire catalog (~1100 codes).
+    """
+    repo_dir = sync("eczoo", cache_dir, refresh)
+    pathmap = _ecz_pathmap(repo_dir)
+    ids = sorted(pathmap) if code_ids is None else list(code_ids)
     entries = []
-    for cid in code_ids:
+    for cid in ids:
         path = pathmap.get(cid)
         if not path:
             raise ImportError_(f"unknown ECZ code_id: {cid}")
-        entry = yaml.safe_load(_gh_contents(ECZ_REPO, path).decode("utf-8"))
+        entry = yaml.safe_load(path.read_text(encoding="utf-8"))
         entry.setdefault("code_id", cid)
         entries.append(entry)
     return entries
 
 
-def fetch_qemzoo(ids=None) -> tuple[list[dict], dict]:
-    """Fetch QEM techniques + the references index (network). ``ids=None`` = all."""
-    techniques = json.loads(_gh_contents(QEM_REPO, "data/techniques.json"))
-    refs = json.loads(_gh_contents(QEM_REPO, "data/references.json"))
+def fetch_qemzoo(ids=None, cache_dir: str = DEFAULT_CACHE,
+                 refresh: bool = False) -> tuple[list[dict], dict]:
+    """Read QEM techniques + the references index from the local clone."""
+    repo_dir = sync("qemzoo", cache_dir, refresh)
+    data = repo_dir / "data"
+    techniques = json.loads((data / "techniques.json").read_text(encoding="utf-8"))
+    refs = json.loads((data / "references.json").read_text(encoding="utf-8"))
     if ids is not None:
         wanted = set(ids)
         techniques = [t for t in techniques if t["id"] in wanted]

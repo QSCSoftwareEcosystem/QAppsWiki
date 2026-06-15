@@ -15,6 +15,7 @@ venv/
 
 # qappswiki tooling
 wiki-out/
+.zoo-cache/
 tools/**/__pycache__/
 tools/*.egg-info/
 tools/.pytest_cache/

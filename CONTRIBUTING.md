@@ -94,17 +94,22 @@ Two curated catalogs can be imported directly into schema-valid `concept` pages:
 ```bash
 qappswiki import-zoo eczoo            # flagship error-correcting codes
 qappswiki import-zoo eczoo surface css steane   # specific code_ids
-qappswiki import-zoo eczoo --all      # the entire ~1100-code catalog (needs GITHUB_TOKEN)
+qappswiki import-zoo eczoo --all      # the entire ~1100-code catalog
 qappswiki import-zoo qemzoo           # all quantum error mitigation/suppression techniques
+qappswiki import-zoo eczoo --all --refresh   # git-pull the local clone first
 ```
 
-The importer fetches upstream data (Error Correction Zoo YAML, CC-BY-SA;
-[[raw/qem-zoo|QEM Zoo]] JSON, public domain), renders pages under
-`concepts/qec/` and `concepts/qem/` with provenance back to the
+On first use the importer does **one** shallow `git clone` of each zoo's data
+repo into a gitignored `.zoo-cache/` (Error Correction Zoo YAML, CC-BY-SA;
+[[raw/qem-zoo|QEM Zoo]] JSON, public domain). After that, gathering the whole
+catalog is fully local and offline — it reads the YAML/JSON off disk (no
+per-code API calls, no token), so even `--all` over ~1100 codes takes a few
+seconds. `--refresh` re-syncs the clone. Pages render under `concepts/qec/` and
+`concepts/qem/` with provenance back to the
 [[raw/error-correction-zoo|registered source pages]] and the upstream entry URL,
-and links them from `index.md`. Imported pages land as
-`status: provisional` / `provenance_status: needs-verification` carrying the
-catalog's own prose — verify and enrich them like a promoted candidate.
+and are linked from `index.md`. Imported pages land as `status: provisional` /
+`provenance_status: needs-verification` carrying the catalog's own prose —
+verify and enrich them like a promoted candidate.
 
 ## Freshness (software pages)
 
