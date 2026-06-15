@@ -8,6 +8,21 @@ aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/block-perfect
+- concepts/qec/cluster-state
+- concepts/qec/concatenated-steane
+- concepts/qec/data-syndrome
+- concepts/qec/diagonal-clifford
+- concepts/qec/eastab
+- concepts/qec/galois-quad-residue
+- concepts/qec/group-representation
+- concepts/qec/pg-qldpc
+- concepts/qec/quantum-cyclic
+- concepts/qec/quantum-divisible
+- concepts/qec/quantum-hamming-css
+- concepts/qec/single-qubit-clifford
+- concepts/qec/stab-6-2-2
+- concepts/qec/stabilizer-over-gf4
 - concepts/qec/triangular-color
 sources:
 - raw/error-correction-zoo.md
@@ -116,21 +131,21 @@ End-to-end fault-tolerant execution of QAOA and HHL circuits, including logical 
 ## Relations
 
 - _parent_: [[concepts/qec/triangular-color]] — Steane code is a 2D color code defined on a seven-qubit patch of the 6.6.6 tiling.
-- _parent_: [`diagonal_clifford`](https://errorcorrectionzoo.org/c/diagonal_clifford)
-- _parent_: [`quantum_hamming_css`](https://errorcorrectionzoo.org/c/quantum_hamming_css)
-- _parent_: [`single_qubit_clifford`](https://errorcorrectionzoo.org/c/single_qubit_clifford)
-- _parent_: [`stabilizer_over_gf4`](https://errorcorrectionzoo.org/c/stabilizer_over_gf4) — The Steane code is Hermitian  ([arXiv:2501.17447](https://arxiv.org/abs/2501.17447)).
-- _parent_: [`quantum_cyclic`](https://errorcorrectionzoo.org/c/quantum_cyclic) — The Steane code is equivalent to a cyclic code via qubit permutations  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)).
-- _parent_: [`galois_quad_residue`](https://errorcorrectionzoo.org/c/galois_quad_residue) — The Steane code is a qubit quantum QR code  ([arXiv:0712.0103](https://arxiv.org/abs/0712.0103), [arXiv:1907.01393](https://arxiv.org/abs/1907.01393)).
-- _parent_: [`data_syndrome`](https://errorcorrectionzoo.org/c/data_syndrome) — There exists a set of stabilizer generators for the Steane code that make it a QDS code; a $[15,3]$ syndrome-measurement code beats five-fold repeated syndrome extraction at the same measurement cost  ([arXiv:1409.2559](https://arxiv.org/abs/1409.2559), [arXiv:1907.01393](https://arxiv.org/abs/1907.01393)).
-- _parent_: [`pg_qldpc`](https://errorcorrectionzoo.org/c/pg_qldpc) — The Steane code is the $m=1$ member of the $⟦2^{2m}+2^{m}+1,1,>2^{m}⟧$ PG-QLDPC code family that is constructed from codes corresponding to lines and affine charts in $PG(2,2^m)$ via the CSS construction  ([arXiv:1512.07081](https://arxiv.org/abs/1512.07081)).
-- _parent_: [`concatenated_steane`](https://errorcorrectionzoo.org/c/concatenated_steane) — The concatenated Steane code at level $m=1$ is the Steane code.
-- _parent_: [`block_perfect`](https://errorcorrectionzoo.org/c/block_perfect) — The Steane code is the smallest heptagon holographic code. The encoding of more general heptagon holographic codes is a holographic tensor network consisting of the encoding isometry for the Steane code, which is a planar-perfect tensor.
-- _cousin_: [`group_representation`](https://errorcorrectionzoo.org/c/group_representation) — The Steane code is a group-representation code with $G$ being the $2O$ subgroup of $SU(2)$  ([arXiv:2306.11621](https://arxiv.org/abs/2306.11621)).
-- _cousin_: [`cluster_state`](https://errorcorrectionzoo.org/c/cluster_state) — The Steane code is equivalent via a single-qubit Clifford unitary to a cluster-state code for a particular graph and classical code  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)). Four non-isomorphic graphs yield graph quantum codes that are equivalent to the Steane code under a single-qubit-Clifford circuit  ([arXiv:quant-ph/0703112](https://arxiv.org/abs/quant-ph/0703112)).
-- _cousin_: [`eastab`](https://errorcorrectionzoo.org/c/eastab) — The Steane code is globally equivalent to a $⟦6,1,3;1⟧$ EA CSS code, which the paper identifies as an example of the smallest one-ebit EA CSS code correcting an arbitrary single-qubit error on the sender's qubits  ([arXiv:0803.1495](https://arxiv.org/abs/0803.1495)).
-- _cousin_: [`stab_6_2_2`](https://errorcorrectionzoo.org/c/stab_6_2_2) — In Knill's $C_4/C_6$ architecture, noisy $\ket{\pi/8}$ states are injected using $C_4/C_6$ logical Bell pairs and then purified by encoding them into the Steane code; Knill also proposed using the Steane code as a final concatenation level for the $C_4/C_6$ scheme  ([arXiv:quant-ph/0410199](https://arxiv.org/abs/quant-ph/0410199)).
-- _cousin_: [`quantum_divisible`](https://errorcorrectionzoo.org/c/quantum_divisible) — A fault-tolerant logical $T$ gate can be obtained by encoding the Steane code's seven physical qubits into the seven logical qubits of a $⟦63,7,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
+- _parent_: [[concepts/qec/diagonal-clifford]]
+- _parent_: [[concepts/qec/quantum-hamming-css]]
+- _parent_: [[concepts/qec/single-qubit-clifford]]
+- _parent_: [[concepts/qec/stabilizer-over-gf4]] — The Steane code is Hermitian  ([arXiv:2501.17447](https://arxiv.org/abs/2501.17447)).
+- _parent_: [[concepts/qec/quantum-cyclic]] — The Steane code is equivalent to a cyclic code via qubit permutations  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)).
+- _parent_: [[concepts/qec/galois-quad-residue]] — The Steane code is a qubit quantum QR code  ([arXiv:0712.0103](https://arxiv.org/abs/0712.0103), [arXiv:1907.01393](https://arxiv.org/abs/1907.01393)).
+- _parent_: [[concepts/qec/data-syndrome]] — There exists a set of stabilizer generators for the Steane code that make it a QDS code; a $[15,3]$ syndrome-measurement code beats five-fold repeated syndrome extraction at the same measurement cost  ([arXiv:1409.2559](https://arxiv.org/abs/1409.2559), [arXiv:1907.01393](https://arxiv.org/abs/1907.01393)).
+- _parent_: [[concepts/qec/pg-qldpc]] — The Steane code is the $m=1$ member of the $⟦2^{2m}+2^{m}+1,1,>2^{m}⟧$ PG-QLDPC code family that is constructed from codes corresponding to lines and affine charts in $PG(2,2^m)$ via the CSS construction  ([arXiv:1512.07081](https://arxiv.org/abs/1512.07081)).
+- _parent_: [[concepts/qec/concatenated-steane]] — The concatenated Steane code at level $m=1$ is the Steane code.
+- _parent_: [[concepts/qec/block-perfect]] — The Steane code is the smallest heptagon holographic code. The encoding of more general heptagon holographic codes is a holographic tensor network consisting of the encoding isometry for the Steane code, which is a planar-perfect tensor.
+- _cousin_: [[concepts/qec/group-representation]] — The Steane code is a group-representation code with $G$ being the $2O$ subgroup of $SU(2)$  ([arXiv:2306.11621](https://arxiv.org/abs/2306.11621)).
+- _cousin_: [[concepts/qec/cluster-state]] — The Steane code is equivalent via a single-qubit Clifford unitary to a cluster-state code for a particular graph and classical code  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)). Four non-isomorphic graphs yield graph quantum codes that are equivalent to the Steane code under a single-qubit-Clifford circuit  ([arXiv:quant-ph/0703112](https://arxiv.org/abs/quant-ph/0703112)).
+- _cousin_: [[concepts/qec/eastab]] — The Steane code is globally equivalent to a $⟦6,1,3;1⟧$ EA CSS code, which the paper identifies as an example of the smallest one-ebit EA CSS code correcting an arbitrary single-qubit error on the sender's qubits  ([arXiv:0803.1495](https://arxiv.org/abs/0803.1495)).
+- _cousin_: [[concepts/qec/stab-6-2-2]] — In Knill's $C_4/C_6$ architecture, noisy $\ket{\pi/8}$ states are injected using $C_4/C_6$ logical Bell pairs and then purified by encoding them into the Steane code; Knill also proposed using the Steane code as a final concatenation level for the $C_4/C_6$ scheme  ([arXiv:quant-ph/0410199](https://arxiv.org/abs/quant-ph/0410199)).
+- _cousin_: [[concepts/qec/quantum-divisible]] — A fault-tolerant logical $T$ gate can be obtained by encoding the Steane code's seven physical qubits into the seven logical qubits of a $⟦63,7,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
 
 ## Notes
 

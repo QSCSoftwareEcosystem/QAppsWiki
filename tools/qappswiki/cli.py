@@ -319,7 +319,8 @@ def cmd_import_zoo(args):
         if source == "eczoo":
             # explicit ids > flagship set > whole catalog (--all)
             ids = args.ids or (None if args.all else list(_iz.ECZ_FLAGSHIP))
-            entries = _iz.fetch_eczoo(ids, cache, refresh=args.refresh)
+            entries = _iz.fetch_eczoo(ids, cache, refresh=args.refresh,
+                                      include_classical=args.include_classical)
             batch = frozenset(_iz._slug(e["code_id"]) for e in entries)
             rendered = [(*_iz.eczoo_page(e, today, batch), _iz.tex_to_md(e.get("name") or e["code_id"]))
                         for e in entries]
@@ -548,7 +549,9 @@ def main(argv=None) -> int:
     piz.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
     piz.add_argument("source", choices=["eczoo", "qemzoo"], help="which catalog to import")
     piz.add_argument("ids", nargs="*", help="specific entry ids (default: eczoo=flagship set, qemzoo=all)")
-    piz.add_argument("--all", action="store_true", help="eczoo: import the entire ~1100-code catalog")
+    piz.add_argument("--all", action="store_true", help="eczoo: import the whole catalog (quantum codes by default)")
+    piz.add_argument("--include-classical", action="store_true",
+                     help="eczoo --all: also import the ~450 purely-classical codes")
     piz.add_argument("--refresh", action="store_true", help="git pull the local zoo clone before importing")
     piz.add_argument("--dry-run", action="store_true", help="show what would be written, write nothing")
     piz.add_argument("--force", action="store_true", help="overwrite existing imported pages")

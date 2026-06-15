@@ -335,15 +335,32 @@ def _ecz_pathmap(repo_dir: Path) -> dict:
     return {p.stem: p for p in (Path(repo_dir) / "codes").rglob("*.yml")}
 
 
+# The catalog mixes ~630 quantum codes with ~450 purely-classical ones. A
+# quantum wiki tags everything ``quantum-error-correction``, so the bulk import
+# defaults to the quantum subtrees and treats classical codes as opt-in.
+_QUANTUM_SUBTREES = ("quantum", "classical_into_quantum")
+
+
+def _is_quantum(path: Path, repo_dir: Path) -> bool:
+    rel = path.relative_to(Path(repo_dir) / "codes").parts
+    return bool(rel) and rel[0] in _QUANTUM_SUBTREES
+
+
 def fetch_eczoo(code_ids=None, cache_dir: str = DEFAULT_CACHE,
-                refresh: bool = False) -> list[dict]:
+                refresh: bool = False, include_classical: bool = False) -> list[dict]:
     """Read + YAML-parse ECZ code entries from the local clone.
 
-    ``code_ids=None`` reads the entire catalog (~1100 codes).
+    ``code_ids=None`` reads the whole catalog; by default that is scoped to the
+    ~630 quantum codes (set ``include_classical=True`` for all ~1100). Explicit
+    ``code_ids`` are always honored regardless of subtree.
     """
     repo_dir = sync("eczoo", cache_dir, refresh)
     pathmap = _ecz_pathmap(repo_dir)
-    ids = sorted(pathmap) if code_ids is None else list(code_ids)
+    if code_ids is None:
+        ids = sorted(cid for cid, p in pathmap.items()
+                     if include_classical or _is_quantum(p, repo_dir))
+    else:
+        ids = list(code_ids)
     entries = []
     for cid in ids:
         path = pathmap.get(cid)
@@ -385,7 +402,10 @@ def update_index(root, source: str, node_titles: list[tuple[str, str]]) -> None:
     body = "\n".join(f"- [[{nid}]]: {title}." for nid, title in sorted(node_titles))
     block = f"{begin}\n{heading}\n\n{body}\n{end}"
     if begin in text and end in text:
-        text = re.sub(re.escape(begin) + r".*?" + re.escape(end), block, text, flags=re.DOTALL)
+        # Function replacement: ``block`` carries LaTeX titles (e.g. ``\mathbb``)
+        # that would be mis-parsed as escapes in a string replacement template.
+        text = re.sub(re.escape(begin) + r".*?" + re.escape(end),
+                      lambda _m: block, text, flags=re.DOTALL)
     else:
         text = text.rstrip() + "\n\n" + block + "\n"
     index.write_text(text, encoding="utf-8")

@@ -8,6 +8,12 @@ aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/bravyi-bacon-shor
+- concepts/qec/compass-model
+- concepts/qec/floquet
+- concepts/qec/hamiltonian
+- concepts/qec/quantum-lego
+- concepts/qec/subsystem-quantum-parity
 - concepts/qec/surface
 sources:
 - raw/error-correction-zoo.md
@@ -95,12 +101,12 @@ A non-LDPC family of Bacon-Shor codes achieves a distance of order $\Omega(n^{1-
 
 ## Relations
 
-- _parent_: [`bravyi_bacon_shor`](https://errorcorrectionzoo.org/c/bravyi_bacon_shor)
-- _parent_: [`subsystem_quantum_parity`](https://errorcorrectionzoo.org/c/subsystem_quantum_parity)
-- _parent_: [`compass_model`](https://errorcorrectionzoo.org/c/compass_model) — A compass code on a fully non-colored lattice reduces to the Bacon-Shor code.
-- _cousin_: [`hamiltonian`](https://errorcorrectionzoo.org/c/hamiltonian) — The 2D Bacon-Shor gauge-group Hamiltonian is the compass model  ([doi:10.1070/PU1982v025n04ABEH004537](https://doi.org/10.1070/PU1982v025n04ABEH004537), [arXiv:cond-mat/0501708](https://arxiv.org/abs/cond-mat/0501708), [arXiv:1303.5922](https://arxiv.org/abs/1303.5922)).
-- _cousin_: [`floquet`](https://errorcorrectionzoo.org/c/floquet) — A Floquet version of the Bacon-Shor code admits a period-four measurement sequence that utilizes its gauge degrees of freedom as defects evolving across measurement rounds. This *Floquet-Bacon-Shor* code saturates the subsystem BT bound. Applying a period-four measurement schedule to the original Bacon-Shor code yields a numerical threshold under circuit-level noise  ([arXiv:2504.02749](https://arxiv.org/abs/2504.02749)).
-- _cousin_: [`quantum_lego`](https://errorcorrectionzoo.org/c/quantum_lego) — The 2D Bacon-Shor code can also be obtained from a surface-code tensor network by reassigning every other row of dangling physical legs to logical legs; in this quantum-Lego picture, the gauge generators remain weight-two $XX$ and $ZZ$ operators and the construction makes explicit a connection to the quantum compass model  ([arXiv:2109.08158](https://arxiv.org/abs/2109.08158)).
+- _parent_: [[concepts/qec/bravyi-bacon-shor]]
+- _parent_: [[concepts/qec/subsystem-quantum-parity]]
+- _parent_: [[concepts/qec/compass-model]] — A compass code on a fully non-colored lattice reduces to the Bacon-Shor code.
+- _cousin_: [[concepts/qec/hamiltonian]] — The 2D Bacon-Shor gauge-group Hamiltonian is the compass model  ([doi:10.1070/PU1982v025n04ABEH004537](https://doi.org/10.1070/PU1982v025n04ABEH004537), [arXiv:cond-mat/0501708](https://arxiv.org/abs/cond-mat/0501708), [arXiv:1303.5922](https://arxiv.org/abs/1303.5922)).
+- _cousin_: [[concepts/qec/floquet]] — A Floquet version of the Bacon-Shor code admits a period-four measurement sequence that utilizes its gauge degrees of freedom as defects evolving across measurement rounds. This *Floquet-Bacon-Shor* code saturates the subsystem BT bound. Applying a period-four measurement schedule to the original Bacon-Shor code yields a numerical threshold under circuit-level noise  ([arXiv:2504.02749](https://arxiv.org/abs/2504.02749)).
+- _cousin_: [[concepts/qec/quantum-lego]] — The 2D Bacon-Shor code can also be obtained from a surface-code tensor network by reassigning every other row of dangling physical legs to logical legs; in this quantum-Lego picture, the gauge generators remain weight-two $XX$ and $ZZ$ operators and the construction makes explicit a connection to the quantum compass model  ([arXiv:2109.08158](https://arxiv.org/abs/2109.08158)).
 - _cousin_: [[concepts/qec/surface]] — The 2D Bacon-Shor code can also be obtained from a surface-code tensor network by reassigning every other row of dangling physical legs to logical legs; in this quantum-Lego picture, the gauge generators remain weight-two $XX$ and $ZZ$ operators and the construction makes explicit a connection to the quantum compass model  ([arXiv:2109.08158](https://arxiv.org/abs/2109.08158)).
 
 ## Notes

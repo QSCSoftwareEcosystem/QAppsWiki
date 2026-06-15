@@ -10,7 +10,14 @@ aliases:
 - HP code
 domains:
 - quantum-error-correction
-related_concepts: []
+related_concepts:
+- concepts/qec/galois-hypergraph-product
+- concepts/qec/homological-product
+- concepts/qec/qubit-concatenated
+- concepts/qec/reinforcement-learning
+- concepts/qec/sc-qldpc
+- concepts/qec/stab-4-2-2
+- concepts/qec/xyz-product
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/hypergraph_product
@@ -96,14 +103,14 @@ Using square seed parity-check matrices yields $⟦2n_1 n_2,2k_1 k_2,\min(d_1,d_
 
 ## Relations
 
-- _parent_: [`homological_product`](https://errorcorrectionzoo.org/c/homological_product) — A homological-product code of length-one chain complexes reduces to an HGP code, which is also a special case of multi-dimensional homological products of two length-one chain complexes.
-- _parent_: [`sc_qldpc`](https://errorcorrectionzoo.org/c/sc_qldpc) — Hypergraph-product stabilizer generator matrices can be used as sub-matrices to define a 2D SC-QLDPC code  ([arXiv:2305.00137](https://arxiv.org/abs/2305.00137)).
-- _parent_: [`galois_hypergraph_product`](https://errorcorrectionzoo.org/c/galois_hypergraph_product) — Hypergraph product codes are Galois-qudit hypergraph-product codes for qudit dimension $q=2$.
+- _parent_: [[concepts/qec/homological-product]] — A homological-product code of length-one chain complexes reduces to an HGP code, which is also a special case of multi-dimensional homological products of two length-one chain complexes.
+- _parent_: [[concepts/qec/sc-qldpc]] — Hypergraph-product stabilizer generator matrices can be used as sub-matrices to define a 2D SC-QLDPC code  ([arXiv:2305.00137](https://arxiv.org/abs/2305.00137)).
+- _parent_: [[concepts/qec/galois-hypergraph-product]] — Hypergraph product codes are Galois-qudit hypergraph-product codes for qudit dimension $q=2$.
 - _cousin_: [`ltc`](https://errorcorrectionzoo.org/c/ltc) — Applying the hypergraph product to an LTC yields a code which provides an explicit example of *No Low-Error Trivial States (NLETS)*  ([arXiv:1510.02082](https://arxiv.org/abs/1510.02082)).
-- _cousin_: [`xyz_product`](https://errorcorrectionzoo.org/c/xyz_product) — Hypergraph (XYZ) product codes are constructed out of hypergraph products of two (three) classical linear codes.
-- _cousin_: [`reinforcement_learning`](https://errorcorrectionzoo.org/c/reinforcement_learning) — Using reinforcement learning, hypergraph product codes can be further optimized against the erasure channel  ([arXiv:2501.09622](https://arxiv.org/abs/2501.09622)) and can be weight reduced while maintaining distance  ([arXiv:2502.14372](https://arxiv.org/abs/2502.14372)).
-- _cousin_: [`stab_4_2_2`](https://errorcorrectionzoo.org/c/stab_4_2_2) — There is a fault-tolerant universal computation scheme for hypergraph-product codes concatenated with the $⟦4,2,2⟧$ code in which the full syndrome measurement on the lower hypergraph product code is performed only if an error is detected at the upper four-qubit code  ([arXiv:2502.14835](https://arxiv.org/abs/2502.14835)).
-- _cousin_: [`qubit_concatenated`](https://errorcorrectionzoo.org/c/qubit_concatenated) — There is a fault-tolerant universal computation scheme for hypergraph-product codes concatenated with the $⟦4,2,2⟧$ code in which the full syndrome measurement on the lower hypergraph product code is performed only if an error is detected at the upper four-qubit code  ([arXiv:2502.14835](https://arxiv.org/abs/2502.14835)).
+- _cousin_: [[concepts/qec/xyz-product]] — Hypergraph (XYZ) product codes are constructed out of hypergraph products of two (three) classical linear codes.
+- _cousin_: [[concepts/qec/reinforcement-learning]] — Using reinforcement learning, hypergraph product codes can be further optimized against the erasure channel  ([arXiv:2501.09622](https://arxiv.org/abs/2501.09622)) and can be weight reduced while maintaining distance  ([arXiv:2502.14372](https://arxiv.org/abs/2502.14372)).
+- _cousin_: [[concepts/qec/stab-4-2-2]] — There is a fault-tolerant universal computation scheme for hypergraph-product codes concatenated with the $⟦4,2,2⟧$ code in which the full syndrome measurement on the lower hypergraph product code is performed only if an error is detected at the upper four-qubit code  ([arXiv:2502.14835](https://arxiv.org/abs/2502.14835)).
+- _cousin_: [[concepts/qec/qubit-concatenated]] — There is a fault-tolerant universal computation scheme for hypergraph-product codes concatenated with the $⟦4,2,2⟧$ code in which the full syndrome measurement on the lower hypergraph product code is performed only if an error is detected at the upper four-qubit code  ([arXiv:2502.14835](https://arxiv.org/abs/2502.14835)).
 
 ## Notes
 

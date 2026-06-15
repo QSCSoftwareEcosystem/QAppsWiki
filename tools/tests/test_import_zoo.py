@@ -135,3 +135,16 @@ def test_update_index_is_idempotent(tmp_path):
     twice = (tmp_path / "index.md").read_text(encoding="utf-8")
     assert once == twice                          # managed block replaced, not duplicated
     assert twice.count("[[concepts/qem/zne]]") == 1
+
+
+def test_update_index_handles_latex_titles(tmp_path):
+    # Titles carry LaTeX (e.g. \mathbb) — these must not be parsed as regex
+    # replacement escapes when the managed block is rewritten in place.
+    idx = tmp_path / "index.md"
+    idx.write_text("# Index\n", encoding="utf-8")
+    titles = [("concepts/qec/qudit-surface", r"$\mathbb{Z}_q$ surface code")]
+    import_zoo.update_index(tmp_path, "eczoo", titles)
+    import_zoo.update_index(tmp_path, "eczoo", titles)   # second pass = the in-place rewrite
+    out = idx.read_text(encoding="utf-8")
+    assert r"$\mathbb{Z}_q$ surface code" in out
+    assert out.count("[[concepts/qec/qudit-surface]]") == 1

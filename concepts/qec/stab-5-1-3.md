@@ -8,7 +8,26 @@ aliases:
 - Laflamme code
 domains:
 - quantum-error-correction
-related_concepts: []
+related_concepts:
+- concepts/qec/ampdamp
+- concepts/qec/cluster-state
+- concepts/qec/floquet
+- concepts/qec/frobenius
+- concepts/qec/galois-5-1-3
+- concepts/qec/group-representation
+- concepts/qec/happy
+- concepts/qec/majorana-stab
+- concepts/qec/quantum-divisible
+- concepts/qec/quantum-mds
+- concepts/qec/quantum-perfect
+- concepts/qec/quantum-triorthogonal
+- concepts/qec/qubit-concatenated
+- concepts/qec/qubits-into-qubits
+- concepts/qec/qudit-5-1-3
+- concepts/qec/small-distance-qubit-stabilizer
+- concepts/qec/stab-5-1-2-convolutional
+- concepts/qec/stabilizer-over-gf4
+- concepts/qec/twisted-xzzx
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/stab_5_1_3
@@ -112,22 +131,22 @@ The five-qubit perfect code approximately corrects a single AD error  ([arXiv:qu
 
 ## Relations
 
-- _parent_: [`twisted_xzzx`](https://errorcorrectionzoo.org/c/twisted_xzzx) — Twisted XZZX codes are 2D lattice extensions of the five-qubit perfect code. The five-qubit code is a small twisted XZZX toric code  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)) ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2101.09349](https://arxiv.org/abs/2101.09349)). Its genus-one double cover is a $⟦10,2,3⟧$ toric code  ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)). The base code's transversal $SH$ gate lifts to a logical $CX \cdot SWAP$ gate on that double cover  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
-- _parent_: [`stab_5_1_2_convolutional`](https://errorcorrectionzoo.org/c/stab_5_1_2_convolutional) — The $(5,1,2)$-convolutional code is a 1D lattice extension of the five-qubit perfect code, with the former's lattice-translation symmetry being the extension of the latter's cyclic permutation symmetry. The $(5,1,2)$-convolutional code reduces to the five-qubit code for a five-qubit chain and periodic boundary conditions. See Ref.  ([arXiv:2211.03094](https://arxiv.org/abs/2211.03094)) for the first few codes in a different extension of the five-qubit perfect code.
-- _parent_: [`happy`](https://errorcorrectionzoo.org/c/happy) — The five-qubit code is the smallest (i.e., radius-one) single-qubit HaPPY code. The five-qubit encoding isometry tiles various holographic codes because its corresponding encoding isometry tensor is a perfect tensor  ([arXiv:1503.06237](https://arxiv.org/abs/1503.06237)).
-- _parent_: [`quantum_perfect`](https://errorcorrectionzoo.org/c/quantum_perfect) — The five-qubit code is the smallest perfect code and is a member of the perfect qubit code family $⟦(4^r-1)/3, (4^r-1)/3 - 2r, 3⟧$ for $r = 2$.
-- _parent_: [`stabilizer_over_gf4`](https://errorcorrectionzoo.org/c/stabilizer_over_gf4) — The five-qubit code is Hermitian , and is derived from the $[5,3,3]_4$ shortened hexacode via the qubit Hermitian construction  ([arXiv:quant-ph/0310137](https://arxiv.org/abs/quant-ph/0310137)) ([arXiv:quant-ph/0511016](https://arxiv.org/abs/quant-ph/0511016)).
-- _parent_: [`quantum_mds`](https://errorcorrectionzoo.org/c/quantum_mds) — The only nontrivial qubit MDS codes have parameters $⟦5,1,3⟧$, $⟦6,0,4⟧$, and $⟦2m,2m-2,2⟧$ .
-- _parent_: [`frobenius`](https://errorcorrectionzoo.org/c/frobenius) — The $⟦5,1,3⟧$ code is the smallest qubit Frobenius code  ([arXiv:1011.5814](https://arxiv.org/abs/1011.5814)).
-- _parent_: [`qudit_5_1_3`](https://errorcorrectionzoo.org/c/qudit_5_1_3) — The $⟦5,1,3⟧_{\mathbb{Z}_q}$ modular-qudit code for $q=2$ reduces to the five-qubit perfect code.
-- _parent_: [`galois_5_1_3`](https://errorcorrectionzoo.org/c/galois_5_1_3) — The $⟦5,1,3⟧_q$ Galois-qudit code for $q=2$ reduces to the five-qubit perfect code.
-- _parent_: [`small_distance_qubit_stabilizer`](https://errorcorrectionzoo.org/c/small_distance_qubit_stabilizer)
-- _cousin_: [`group_representation`](https://errorcorrectionzoo.org/c/group_representation) — The five-qubit code is a group-representation code with $G$ being the $2T$ subgroup of $SU(2)$  ([arXiv:2306.11621](https://arxiv.org/abs/2306.11621)).
-- _cousin_: [`majorana_stab`](https://errorcorrectionzoo.org/c/majorana_stab) — The five-qubit code Hamiltonian is local when expressed in terms of mutually commuting Majorana operators .
-- _cousin_: [`qubits_into_qubits`](https://errorcorrectionzoo.org/c/qubits_into_qubits) — Every $((5,2,3))$ qubit code is single-qubit-Clifford-equivalent equivalent to the five-qubit code  ([arXiv:quant-ph/9704043](https://arxiv.org/abs/quant-ph/9704043)).
-- _cousin_: [`qubit_concatenated`](https://errorcorrectionzoo.org/c/qubit_concatenated) — The recursively concatenated five-qubit code has a measurement threshold of one  ([arXiv:2402.00145](https://arxiv.org/abs/2402.00145)). Code performance against general Pauli channels has been worked out  ([arXiv:quant-ph/0111003](https://arxiv.org/abs/quant-ph/0111003), [arXiv:quant-ph/0206061](https://arxiv.org/abs/quant-ph/0206061)).
-- _cousin_: [`cluster_state`](https://errorcorrectionzoo.org/c/cluster_state) — The five-qubit perfect code is equivalent via a single-qubit Clifford circuit to a cluster-state code defined from a five-cycle (a.k.a. pentagon) graph and a classical repetition code  ([arXiv:0708.1021](https://arxiv.org/abs/0708.1021), [arXiv:1511.05647](https://arxiv.org/abs/1511.05647)) ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)).
-- _cousin_: [`floquet`](https://errorcorrectionzoo.org/c/floquet) — Inspired by the honeycomb Floquet code, various weight-two measurement schemes have been designed for the five-qubit code  ([arXiv:2409.13681](https://arxiv.org/abs/2409.13681)).
-- _cousin_: [`ampdamp`](https://errorcorrectionzoo.org/c/ampdamp) — The five-qubit perfect code approximately corrects a single AD error  ([arXiv:quant-ph/9704002](https://arxiv.org/abs/quant-ph/9704002)).
-- _cousin_: [`quantum_divisible`](https://errorcorrectionzoo.org/c/quantum_divisible) — A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$; this layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require magic-state distillation  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
-- _cousin_: [`quantum_triorthogonal`](https://errorcorrectionzoo.org/c/quantum_triorthogonal) — A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$; this layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require magic-state distillation  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
+- _parent_: [[concepts/qec/twisted-xzzx]] — Twisted XZZX codes are 2D lattice extensions of the five-qubit perfect code. The five-qubit code is a small twisted XZZX toric code  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)) ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2101.09349](https://arxiv.org/abs/2101.09349)). Its genus-one double cover is a $⟦10,2,3⟧$ toric code  ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)). The base code's transversal $SH$ gate lifts to a logical $CX \cdot SWAP$ gate on that double cover  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
+- _parent_: [[concepts/qec/stab-5-1-2-convolutional]] — The $(5,1,2)$-convolutional code is a 1D lattice extension of the five-qubit perfect code, with the former's lattice-translation symmetry being the extension of the latter's cyclic permutation symmetry. The $(5,1,2)$-convolutional code reduces to the five-qubit code for a five-qubit chain and periodic boundary conditions. See Ref.  ([arXiv:2211.03094](https://arxiv.org/abs/2211.03094)) for the first few codes in a different extension of the five-qubit perfect code.
+- _parent_: [[concepts/qec/happy]] — The five-qubit code is the smallest (i.e., radius-one) single-qubit HaPPY code. The five-qubit encoding isometry tiles various holographic codes because its corresponding encoding isometry tensor is a perfect tensor  ([arXiv:1503.06237](https://arxiv.org/abs/1503.06237)).
+- _parent_: [[concepts/qec/quantum-perfect]] — The five-qubit code is the smallest perfect code and is a member of the perfect qubit code family $⟦(4^r-1)/3, (4^r-1)/3 - 2r, 3⟧$ for $r = 2$.
+- _parent_: [[concepts/qec/stabilizer-over-gf4]] — The five-qubit code is Hermitian , and is derived from the $[5,3,3]_4$ shortened hexacode via the qubit Hermitian construction  ([arXiv:quant-ph/0310137](https://arxiv.org/abs/quant-ph/0310137)) ([arXiv:quant-ph/0511016](https://arxiv.org/abs/quant-ph/0511016)).
+- _parent_: [[concepts/qec/quantum-mds]] — The only nontrivial qubit MDS codes have parameters $⟦5,1,3⟧$, $⟦6,0,4⟧$, and $⟦2m,2m-2,2⟧$ .
+- _parent_: [[concepts/qec/frobenius]] — The $⟦5,1,3⟧$ code is the smallest qubit Frobenius code  ([arXiv:1011.5814](https://arxiv.org/abs/1011.5814)).
+- _parent_: [[concepts/qec/qudit-5-1-3]] — The $⟦5,1,3⟧_{\mathbb{Z}_q}$ modular-qudit code for $q=2$ reduces to the five-qubit perfect code.
+- _parent_: [[concepts/qec/galois-5-1-3]] — The $⟦5,1,3⟧_q$ Galois-qudit code for $q=2$ reduces to the five-qubit perfect code.
+- _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
+- _cousin_: [[concepts/qec/group-representation]] — The five-qubit code is a group-representation code with $G$ being the $2T$ subgroup of $SU(2)$  ([arXiv:2306.11621](https://arxiv.org/abs/2306.11621)).
+- _cousin_: [[concepts/qec/majorana-stab]] — The five-qubit code Hamiltonian is local when expressed in terms of mutually commuting Majorana operators .
+- _cousin_: [[concepts/qec/qubits-into-qubits]] — Every $((5,2,3))$ qubit code is single-qubit-Clifford-equivalent equivalent to the five-qubit code  ([arXiv:quant-ph/9704043](https://arxiv.org/abs/quant-ph/9704043)).
+- _cousin_: [[concepts/qec/qubit-concatenated]] — The recursively concatenated five-qubit code has a measurement threshold of one  ([arXiv:2402.00145](https://arxiv.org/abs/2402.00145)). Code performance against general Pauli channels has been worked out  ([arXiv:quant-ph/0111003](https://arxiv.org/abs/quant-ph/0111003), [arXiv:quant-ph/0206061](https://arxiv.org/abs/quant-ph/0206061)).
+- _cousin_: [[concepts/qec/cluster-state]] — The five-qubit perfect code is equivalent via a single-qubit Clifford circuit to a cluster-state code defined from a five-cycle (a.k.a. pentagon) graph and a classical repetition code  ([arXiv:0708.1021](https://arxiv.org/abs/0708.1021), [arXiv:1511.05647](https://arxiv.org/abs/1511.05647)) ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)).
+- _cousin_: [[concepts/qec/floquet]] — Inspired by the honeycomb Floquet code, various weight-two measurement schemes have been designed for the five-qubit code  ([arXiv:2409.13681](https://arxiv.org/abs/2409.13681)).
+- _cousin_: [[concepts/qec/ampdamp]] — The five-qubit perfect code approximately corrects a single AD error  ([arXiv:quant-ph/9704002](https://arxiv.org/abs/quant-ph/9704002)).
+- _cousin_: [[concepts/qec/quantum-divisible]] — A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$; this layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require magic-state distillation  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
+- _cousin_: [[concepts/qec/quantum-triorthogonal]] — A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$; this layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require magic-state distillation  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).

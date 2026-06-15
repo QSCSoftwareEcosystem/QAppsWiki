@@ -7,7 +7,9 @@ concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
-related_concepts: []
+related_concepts:
+- concepts/qec/2d-color
+- concepts/qec/lifted-product
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/triangular_color
@@ -79,6 +81,6 @@ Magic-state cultivation was demonstrated on a device by Google Quantum AI by cod
 
 ## Relations
 
-- _parent_: [`2d_color`](https://errorcorrectionzoo.org/c/2d_color)
-- _parent_: [`lifted_product`](https://errorcorrectionzoo.org/c/lifted_product) — The 6.6.6 color code can be formulated directly as an LP code  ([arXiv:2312.08462](https://arxiv.org/abs/2312.08462)).
+- _parent_: [[concepts/qec/2d-color]]
+- _parent_: [[concepts/qec/lifted-product]] — The 6.6.6 color code can be formulated directly as an LP code  ([arXiv:2312.08462](https://arxiv.org/abs/2312.08462)).
 - _cousin_: [`honeycomb`](https://errorcorrectionzoo.org/c/honeycomb) — The 6.6.6 color code is defined on the honeycomb tiling.

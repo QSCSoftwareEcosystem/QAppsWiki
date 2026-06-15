@@ -8,6 +8,7 @@ aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/group-gkp
 - concepts/qec/stabilizer
 sources:
 - raw/error-correction-zoo.md
@@ -33,4 +34,4 @@ CSS codes can also be viewed as an instance of a two-step convex-geometric const
 ## Relations
 
 - _parent_: [[concepts/qec/stabilizer]]
-- _parent_: [`group_gkp`](https://errorcorrectionzoo.org/c/group_gkp) — CSS codes are Abelian group GKP codes, i.e., group GKP codes constructed out of Pauli-type operators.
+- _parent_: [[concepts/qec/group-gkp]] — CSS codes are Abelian group GKP codes, i.e., group GKP codes constructed out of Pauli-type operators.

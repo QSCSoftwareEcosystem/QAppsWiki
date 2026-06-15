@@ -8,7 +8,15 @@ aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/balanced-product
+- concepts/qec/cyclic-hgp
+- concepts/qec/higher-dimensional-toric
+- concepts/qec/lifted-product
+- concepts/qec/quantum-lego
+- concepts/qec/rotated-surface
+- concepts/qec/string-net
 - concepts/qec/surface
+- concepts/qec/tetron
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/toric
@@ -90,12 +98,12 @@ Thresholds for various lattices have been obtained in Refs.  ([arXiv:1112.1613](
 ## Relations
 
 - _parent_: [[concepts/qec/surface]] — The toric code is the surface code on a 2D torus.
-- _parent_: [`higher_dimensional_toric`](https://errorcorrectionzoo.org/c/higher_dimensional_toric) — The $D$-dimensional twisted toric code reduces to the toric code for $D=2$ and a square lattice.
-- _parent_: [`cyclic_hgp`](https://errorcorrectionzoo.org/c/cyclic_hgp) — The toric code can be obtained from a hypergraph product of two repetition codes  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)). Other hypergraph products of two repetition codes yield the related $⟦2d^2-2d+1,1,d⟧$ CSS code family  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
-- _cousin_: [`string_net`](https://errorcorrectionzoo.org/c/string_net) — The toric code is the Turaev-Viro/Levin-Wen string-net code for the $\mathbb{Z}_2$ input category; equivalently, the construction of Ref.  ([arXiv:1002.2816](https://arxiv.org/abs/1002.2816)) on a genus-one handlebody yields the toric code.
-- _cousin_: [`lifted_product`](https://errorcorrectionzoo.org/c/lifted_product) — A lifted-product code for the ring $R=\mathbb{F}_2[x,y]/(x^L-1,y^L-1)$ is the toric code  ([arXiv:2111.03654](https://arxiv.org/abs/2111.03654)).
-- _cousin_: [`balanced_product`](https://errorcorrectionzoo.org/c/balanced_product) — Twisted toric codes can be obtained from balanced products of cyclic graphs over a cyclic group  ([arXiv:2012.09271](https://arxiv.org/abs/2012.09271)).
+- _parent_: [[concepts/qec/higher-dimensional-toric]] — The $D$-dimensional twisted toric code reduces to the toric code for $D=2$ and a square lattice.
+- _parent_: [[concepts/qec/cyclic-hgp]] — The toric code can be obtained from a hypergraph product of two repetition codes  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)). Other hypergraph products of two repetition codes yield the related $⟦2d^2-2d+1,1,d⟧$ CSS code family  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
+- _cousin_: [[concepts/qec/string-net]] — The toric code is the Turaev-Viro/Levin-Wen string-net code for the $\mathbb{Z}_2$ input category; equivalently, the construction of Ref.  ([arXiv:1002.2816](https://arxiv.org/abs/1002.2816)) on a genus-one handlebody yields the toric code.
+- _cousin_: [[concepts/qec/lifted-product]] — A lifted-product code for the ring $R=\mathbb{F}_2[x,y]/(x^L-1,y^L-1)$ is the toric code  ([arXiv:2111.03654](https://arxiv.org/abs/2111.03654)).
+- _cousin_: [[concepts/qec/balanced-product]] — Twisted toric codes can be obtained from balanced products of cyclic graphs over a cyclic group  ([arXiv:2012.09271](https://arxiv.org/abs/2012.09271)).
 - _cousin_: [`repetition`](https://errorcorrectionzoo.org/c/repetition) — The toric code can be obtained from a hypergraph product of two repetition codes  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)). Other hypergraph products of two repetition codes yield the related $⟦2d^2-2d+1,1,d⟧$ CSS code family  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
-- _cousin_: [`tetron`](https://errorcorrectionzoo.org/c/tetron) — Coherent physical errors in the toric code are expected to become incoherent logical errors under syndrome measurement; see corroborating numerical studies performed by embedding each physical qubit into two fermions via the tetron code  ([arXiv:1710.02270](https://arxiv.org/abs/1710.02270)) as well as deriving analytical bounds  ([arXiv:1912.04319](https://arxiv.org/abs/1912.04319)).
-- _cousin_: [`rotated_surface`](https://errorcorrectionzoo.org/c/rotated_surface) — Rotating the square lattice by $\pi/4$ and choosing periodicity vectors on the rotated checkerboard lattice yields periodic checkerboard or rotated-toric variants with the same $⟦L^2,2,L⟧$ scaling, as well as non-bipartite odd-distance families with parameters $⟦t^2+(t+1)^2,1,2t+1⟧$  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
-- _cousin_: [`quantum_lego`](https://errorcorrectionzoo.org/c/quantum_lego) — The toric code can be constructed by arranging $⟦4,2,2⟧$ tensors on a square lattice and recovering the star and plaquette operators by operator pushing  ([arXiv:2109.08158](https://arxiv.org/abs/2109.08158)).
+- _cousin_: [[concepts/qec/tetron]] — Coherent physical errors in the toric code are expected to become incoherent logical errors under syndrome measurement; see corroborating numerical studies performed by embedding each physical qubit into two fermions via the tetron code  ([arXiv:1710.02270](https://arxiv.org/abs/1710.02270)) as well as deriving analytical bounds  ([arXiv:1912.04319](https://arxiv.org/abs/1912.04319)).
+- _cousin_: [[concepts/qec/rotated-surface]] — Rotating the square lattice by $\pi/4$ and choosing periodicity vectors on the rotated checkerboard lattice yields periodic checkerboard or rotated-toric variants with the same $⟦L^2,2,L⟧$ scaling, as well as non-bipartite odd-distance families with parameters $⟦t^2+(t+1)^2,1,2t+1⟧$  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
+- _cousin_: [[concepts/qec/quantum-lego]] — The toric code can be constructed by arranging $⟦4,2,2⟧$ tensors on a square lattice and recovering the star and plaquette operators by operator pushing  ([arXiv:2109.08158](https://arxiv.org/abs/2109.08158)).

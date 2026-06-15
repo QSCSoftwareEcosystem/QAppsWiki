@@ -7,7 +7,15 @@ concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
-related_concepts: []
+related_concepts:
+- concepts/qec/cluster-state
+- concepts/qec/qecc
+- concepts/qec/quantum-parity
+- concepts/qec/quantum-repetition
+- concepts/qec/qubit-concatenated
+- concepts/qec/real-projective-plane
+- concepts/qec/small-distance-qubit-stabilizer
+- concepts/qec/stab-9-1-3
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/shor_nine
@@ -76,11 +84,11 @@ The code detects two-qubit errors or corrects an arbitrary single-qubit error. S
 
 ## Relations
 
-- _parent_: [`quantum_parity`](https://errorcorrectionzoo.org/c/quantum_parity) — The Shor code is part of the sub-family of $⟦m^2,1,m⟧$ QPCs.
-- _parent_: [`real_projective_plane`](https://errorcorrectionzoo.org/c/real_projective_plane) — The Shor code is one of the nine-qubit surface codes defined on the projective plane  ([arXiv:quant-ph/9810055](https://arxiv.org/abs/quant-ph/9810055)) ([arXiv:quant-ph/0605094](https://arxiv.org/abs/quant-ph/0605094)).
-- _parent_: [`stab_9_1_3`](https://errorcorrectionzoo.org/c/stab_9_1_3) — The $⟦9,1,3⟧_{\mathbb{Z}_q}$ modular-qudit code for $q=2$ reduces to the $⟦9,1,3⟧$ Shor code.
-- _parent_: [`small_distance_qubit_stabilizer`](https://errorcorrectionzoo.org/c/small_distance_qubit_stabilizer)
-- _cousin_: [`quantum_repetition`](https://errorcorrectionzoo.org/c/quantum_repetition) — The Shor code is a concatenation of a three-qubit bit-flip with a three-qubit phase-flip repetition code.
-- _cousin_: [`qubit_concatenated`](https://errorcorrectionzoo.org/c/qubit_concatenated) — The Shor code is a concatenation of a three-qubit bit-flip with a three-qubit phase-flip repetition code.
-- _cousin_: [`qecc`](https://errorcorrectionzoo.org/c/qecc) — The Shor code is the first quantum error-correcting code.
-- _cousin_: [`cluster_state`](https://errorcorrectionzoo.org/c/cluster_state) — The Shor code admits a codeword that is the cluster state of a particular nine-vertex graph  ([arXiv:1511.05647](https://arxiv.org/abs/1511.05647)).
+- _parent_: [[concepts/qec/quantum-parity]] — The Shor code is part of the sub-family of $⟦m^2,1,m⟧$ QPCs.
+- _parent_: [[concepts/qec/real-projective-plane]] — The Shor code is one of the nine-qubit surface codes defined on the projective plane  ([arXiv:quant-ph/9810055](https://arxiv.org/abs/quant-ph/9810055)) ([arXiv:quant-ph/0605094](https://arxiv.org/abs/quant-ph/0605094)).
+- _parent_: [[concepts/qec/stab-9-1-3]] — The $⟦9,1,3⟧_{\mathbb{Z}_q}$ modular-qudit code for $q=2$ reduces to the $⟦9,1,3⟧$ Shor code.
+- _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
+- _cousin_: [[concepts/qec/quantum-repetition]] — The Shor code is a concatenation of a three-qubit bit-flip with a three-qubit phase-flip repetition code.
+- _cousin_: [[concepts/qec/qubit-concatenated]] — The Shor code is a concatenation of a three-qubit bit-flip with a three-qubit phase-flip repetition code.
+- _cousin_: [[concepts/qec/qecc]] — The Shor code is the first quantum error-correcting code.
+- _cousin_: [[concepts/qec/cluster-state]] — The Shor code admits a codeword that is the cluster state of a particular nine-vertex graph  ([arXiv:1511.05647](https://arxiv.org/abs/1511.05647)).

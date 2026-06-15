@@ -8,7 +8,18 @@ aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/clifford-deformed-surface
+- concepts/qec/galois-topological
+- concepts/qec/hamiltonian
+- concepts/qec/higher-dimensional-surface
 - concepts/qec/hypergraph-product
+- concepts/qec/lacross
+- concepts/qec/layer
+- concepts/qec/lcs
+- concepts/qec/lresc
+- concepts/qec/quantum-double
+- concepts/qec/qudit-surface
+- concepts/qec/twist-defect-surface
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/surface
@@ -157,17 +168,17 @@ Fault-tolerant gates should be interpretable as monodromies under a particular n
 
 ## Relations
 
-- _parent_: [`higher_dimensional_surface`](https://errorcorrectionzoo.org/c/higher_dimensional_surface) — The surface-code CSS stabilizer generator prescription is extendable to higher-dimensional manifolds.
-- _parent_: [`twist_defect_surface`](https://errorcorrectionzoo.org/c/twist_defect_surface) — Twist-defect surface codes reduce to surface codes when there are no defects.
-- _parent_: [`clifford-deformed_surface`](https://errorcorrectionzoo.org/c/clifford-deformed_surface) — CDSC codes are deformations of the surface code via constant-depth Clifford circuits that may not be CSS.
-- _parent_: [`lcs`](https://errorcorrectionzoo.org/c/lcs) — LCS codes consist of sparsely interconnected stacks of surface codes.
-- _parent_: [`qudit_surface`](https://errorcorrectionzoo.org/c/qudit_surface) — The modular-qudit surface code for $q=2$ reduces to the surface code.
-- _parent_: [`galois_topological`](https://errorcorrectionzoo.org/c/galois_topological) — The Galois-qudit surface code for $q=2$ reduces to the surface code.
-- _cousin_: [`layer`](https://errorcorrectionzoo.org/c/layer) — Layer codes are combinations of constant-rate QLDPC codes with surface codes built using lattice surgery.
-- _cousin_: [`lresc`](https://errorcorrectionzoo.org/c/lresc) — LRESCs reduce to planar surface codes when a trivial LDPC code is used in the hypergraph product.
-- _cousin_: [`lacross`](https://errorcorrectionzoo.org/c/lacross) — La-cross codes with periodic (open) boundary conditions reduce to the toric (planar surface) code at $k=1$.
-- _cousin_: [`quantum_double`](https://errorcorrectionzoo.org/c/quantum_double) — On closed surfaces, a quantum-double model with $G=\mathbb{Z}_2$ reduces to the surface code; on a torus, this is the toric code. Quantum doubles with open boundary conditions also reduce to surface codes on open surfaces  ([arXiv:1707.04564](https://arxiv.org/abs/1707.04564), [arXiv:1707.05490](https://arxiv.org/abs/1707.05490), [arXiv:1609.02037](https://arxiv.org/abs/1609.02037), [arXiv:2602.19558](https://arxiv.org/abs/2602.19558), [arXiv:2603.05502](https://arxiv.org/abs/2603.05502)). Non-stabilizer surface-code states can be prepared by augmenting the surface code with a quantum double model  ([arXiv:1811.06738](https://arxiv.org/abs/1811.06738), [arXiv:2505.18265](https://arxiv.org/abs/2505.18265), [arXiv:2510.20890](https://arxiv.org/abs/2510.20890)).
-- _cousin_: [`hamiltonian`](https://errorcorrectionzoo.org/c/hamiltonian) — While codewords of the surface code form ground states of the code's stabilizer Hamiltonian, they can also be ground states of other gapless Hamiltonians  ([arXiv:1111.5817](https://arxiv.org/abs/1111.5817)).
+- _parent_: [[concepts/qec/higher-dimensional-surface]] — The surface-code CSS stabilizer generator prescription is extendable to higher-dimensional manifolds.
+- _parent_: [[concepts/qec/twist-defect-surface]] — Twist-defect surface codes reduce to surface codes when there are no defects.
+- _parent_: [[concepts/qec/clifford-deformed-surface]] — CDSC codes are deformations of the surface code via constant-depth Clifford circuits that may not be CSS.
+- _parent_: [[concepts/qec/lcs]] — LCS codes consist of sparsely interconnected stacks of surface codes.
+- _parent_: [[concepts/qec/qudit-surface]] — The modular-qudit surface code for $q=2$ reduces to the surface code.
+- _parent_: [[concepts/qec/galois-topological]] — The Galois-qudit surface code for $q=2$ reduces to the surface code.
+- _cousin_: [[concepts/qec/layer]] — Layer codes are combinations of constant-rate QLDPC codes with surface codes built using lattice surgery.
+- _cousin_: [[concepts/qec/lresc]] — LRESCs reduce to planar surface codes when a trivial LDPC code is used in the hypergraph product.
+- _cousin_: [[concepts/qec/lacross]] — La-cross codes with periodic (open) boundary conditions reduce to the toric (planar surface) code at $k=1$.
+- _cousin_: [[concepts/qec/quantum-double]] — On closed surfaces, a quantum-double model with $G=\mathbb{Z}_2$ reduces to the surface code; on a torus, this is the toric code. Quantum doubles with open boundary conditions also reduce to surface codes on open surfaces  ([arXiv:1707.04564](https://arxiv.org/abs/1707.04564), [arXiv:1707.05490](https://arxiv.org/abs/1707.05490), [arXiv:1609.02037](https://arxiv.org/abs/1609.02037), [arXiv:2602.19558](https://arxiv.org/abs/2602.19558), [arXiv:2603.05502](https://arxiv.org/abs/2603.05502)). Non-stabilizer surface-code states can be prepared by augmenting the surface code with a quantum double model  ([arXiv:1811.06738](https://arxiv.org/abs/1811.06738), [arXiv:2505.18265](https://arxiv.org/abs/2505.18265), [arXiv:2510.20890](https://arxiv.org/abs/2510.20890)).
+- _cousin_: [[concepts/qec/hamiltonian]] — While codewords of the surface code form ground states of the code's stabilizer Hamiltonian, they can also be ground states of other gapless Hamiltonians  ([arXiv:1111.5817](https://arxiv.org/abs/1111.5817)).
 - _cousin_: [`unitary_design`](https://errorcorrectionzoo.org/c/unitary_design) — Unitary $t$-designs can be generated via coherent errors, syndrome extraction, and correction  ([arXiv:2412.04414](https://arxiv.org/abs/2412.04414)).
 - _cousin_: [[concepts/qec/hypergraph-product]] — The planar surface code on a square lattice can be obtained from a hypergraph product of two repetition codes with appropriate boundary checks.
 - _cousin_: [`repetition`](https://errorcorrectionzoo.org/c/repetition) — The planar surface code on a square lattice can be obtained from a hypergraph product of two repetition codes with appropriate boundary checks.

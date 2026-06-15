@@ -8,7 +8,14 @@ aliases:
 - Sparse qubit stabilizer code
 domains:
 - quantum-error-correction
-related_concepts: []
+related_concepts:
+- concepts/qec/asymmetric-qecc
+- concepts/qec/commuting-projector
+- concepts/qec/general-qldpc
+- concepts/qec/quantum-locally-recoverable
+- concepts/qec/qubit-stabilizer
+- concepts/qec/random-stabilizer
+- concepts/qec/single-shot
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/qldpc
@@ -129,16 +136,16 @@ There are bounds on their performance against erasure noise  ([arXiv:1205.7036](
 
 ## Relations
 
-- _parent_: [`qubit_stabilizer`](https://errorcorrectionzoo.org/c/qubit_stabilizer)
-- _parent_: [`quantum_locally_recoverable`](https://errorcorrectionzoo.org/c/quantum_locally_recoverable) — Qubit QLDPC codes are stabilizer QLRCs whose locality $r \leq w$, where $w$ is the maximum stabilizer-generator weight  ([arXiv:2311.08653](https://arxiv.org/abs/2311.08653)).
-- _parent_: [`general_qldpc`](https://errorcorrectionzoo.org/c/general_qldpc)
+- _parent_: [[concepts/qec/qubit-stabilizer]]
+- _parent_: [[concepts/qec/quantum-locally-recoverable]] — Qubit QLDPC codes are stabilizer QLRCs whose locality $r \leq w$, where $w$ is the maximum stabilizer-generator weight  ([arXiv:2311.08653](https://arxiv.org/abs/2311.08653)).
+- _parent_: [[concepts/qec/general-qldpc]]
 - _cousin_: [`ldpc`](https://errorcorrectionzoo.org/c/ldpc) — Qubit QLDPC codes are quantum analogues of binary LDPC codes.
-- _cousin_: [`commuting_projector`](https://errorcorrectionzoo.org/c/commuting_projector) — Qubit QLDPC codes with check soundness, meaning that every weight-$m$ stabilizer can be written as a product of order $O(m)$ stabilizer generators, are robust against few-body perturbations. This means that phases of matter can be defined from certain non-geometrically local QLDPC code Hamiltonians  ([arXiv:2411.01002](https://arxiv.org/abs/2411.01002)).
-- _cousin_: [`single_shot`](https://errorcorrectionzoo.org/c/single_shot) — Qubit QLDPC codes satisfying linear confinement are single shot  ([arXiv:2009.11790](https://arxiv.org/abs/2009.11790)). Any code that admits a local greedy decoder also satisfies linear confinement, and so is single shot  ([arXiv:2308.08648](https://arxiv.org/abs/2308.08648)).
+- _cousin_: [[concepts/qec/commuting-projector]] — Qubit QLDPC codes with check soundness, meaning that every weight-$m$ stabilizer can be written as a product of order $O(m)$ stabilizer generators, are robust against few-body perturbations. This means that phases of matter can be defined from certain non-geometrically local QLDPC code Hamiltonians  ([arXiv:2411.01002](https://arxiv.org/abs/2411.01002)).
+- _cousin_: [[concepts/qec/single-shot]] — Qubit QLDPC codes satisfying linear confinement are single shot  ([arXiv:2009.11790](https://arxiv.org/abs/2009.11790)). Any code that admits a local greedy decoder also satisfies linear confinement, and so is single shot  ([arXiv:2308.08648](https://arxiv.org/abs/2308.08648)).
 - _cousin_: [`ldgm`](https://errorcorrectionzoo.org/c/ldgm) — LDGM codes can yield CSS  ([doi:10.1109/SPAWC.2005.1506298](https://doi.org/10.1109/SPAWC.2005.1506298), [doi:10.1109/CISS.2008.4558588](https://doi.org/10.1109/CISS.2008.4558588), [doi:10.1103/PhysRevA.103.022617](https://doi.org/10.1103/PhysRevA.103.022617)) and non-CSS  ([doi:10.1103/PhysRevA.102.012423](https://doi.org/10.1103/PhysRevA.102.012423), [doi:10.1109/QCE49297.2020.00022](https://doi.org/10.1109/QCE49297.2020.00022)) qubit QLDPC codes. Some of the LDGM-based CSS codes have $n$-independent minimum distance and no code capacity threshold  ([arXiv:0903.0566](https://arxiv.org/abs/0903.0566)).
-- _cousin_: [`random_stabilizer`](https://errorcorrectionzoo.org/c/random_stabilizer) — Random qubit QLDPC codes found by solving certain constraint satisfaction problems (CSPs) practically achieve the capacity of the erasure channel  ([arXiv:2207.03562](https://arxiv.org/abs/2207.03562)).
+- _cousin_: [[concepts/qec/random-stabilizer]] — Random qubit QLDPC codes found by solving certain constraint satisfaction problems (CSPs) practically achieve the capacity of the erasure channel  ([arXiv:2207.03562](https://arxiv.org/abs/2207.03562)).
 - _cousin_: [`algebraic_ldpc`](https://errorcorrectionzoo.org/c/algebraic_ldpc) — Algebraic LDPC codes made from Latin squares can be used to make qubit QLDPC codes  ([arXiv:0812.5104](https://arxiv.org/abs/0812.5104)).
-- _cousin_: [`asymmetric_qecc`](https://errorcorrectionzoo.org/c/asymmetric_qecc) — There are recipes to determine transversal gates for asymmetric qubit QLDPC codes  ([arXiv:2506.15905](https://arxiv.org/abs/2506.15905)).
+- _cousin_: [[concepts/qec/asymmetric-qecc]] — There are recipes to determine transversal gates for asymmetric qubit QLDPC codes  ([arXiv:2506.15905](https://arxiv.org/abs/2506.15905)).
 
 ## Notes
 
