@@ -193,3 +193,20 @@ stabilizer `[[n,k,d]]` notation as `⟦n,k,d⟧` so it can't collide with
 `needs-verification` — the 50 resulting warnings are the intended verify-me
 to-do list, not defects. 127 tests green; corpus validates with 0 errors,
 0 orphans (128 nodes, 361 edges).
+
+## 2026-06-15 tooling | Local zoo processing + full quantum ECZ import | touched: tools/qappswiki/{import_zoo,cli,paths}.py, tools/tests/test_import_zoo.py, .gitignore, CONTRIBUTING.md, concepts/qec/*, index.md, log.md
+
+Reworked the importer to gather once and process locally: a single shallow
+`git clone` of each zoo's data repo into a gitignored `.zoo-cache/`, then all
+reads are off disk — no per-code API calls, no token, no rate limit (full
+~1100-code catalog parses in ~5s vs ~5min before). Then ran the full import:
+all 649 **quantum** error-correcting codes (codes/quantum + classical_into_quantum)
+now live in `concepts/qec/`. Purely-classical codes (~450) are excluded by
+default — they don't fit the `quantum-error-correction` domain — with
+`--include-classical` to opt in. Two bugs the full run exposed: `update_index`
+must use a function replacement (code titles carry LaTeX like `\mathbb` that
+broke the regex replacement template), and `paths.IGNORED_DIRS` must skip
+`.zoo-cache/` so the pipeline doesn't walk the cloned repos' own frontmatter-less
+README/CONTRIBUTING. Corpus: 708 pages, 0 errors, 0 orphans (1404 nodes, 4640
+edges); 689 needs-verification warnings are the imported verify-me queue. 128
+tests green.
