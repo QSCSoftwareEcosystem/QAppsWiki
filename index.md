@@ -26,6 +26,10 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 ## Package Pages
 
 - [[packages/openqevo]]: OpenQEvo package entry.
+- [[packages/qiskit]]: IBM's Python quantum SDK (circuits, transpiler, runtime).
+- [[packages/pennylane]]: differentiable quantum programming / QML framework.
+- [[packages/stim]]: fast stabilizer-circuit simulator for QEC research.
+- [[packages/tnqvm]]: tensor-network simulator backend (XACC).
 
 ## Concept Pages
 
