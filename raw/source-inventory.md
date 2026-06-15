@@ -25,6 +25,17 @@ and conversion.
 | TNQVM | Official TNQVM / XACC documentation or repository docs | `raw/md/tnqvm-official-docs.md` | Confirm current project status before writing capability claims. |
 | Stim | Official Stim documentation or repository docs | `raw/md/stim-official-docs.md` | Use for stabilizer-simulation package page and capability tags. |
 
+## Curated External Catalogs
+
+Living web catalogs registered as high-value ingest candidates. Each has its own
+`source`-type page; ingest individual entries or their cited papers into
+`raw/md/` on demand (`preferred_ingest_path: external`).
+
+| Catalog | Page | Domain | URL |
+|---------|------|--------|-----|
+| Error Correction Zoo | `raw/error-correction-zoo.md` | quantum-error-correction (codes) | https://errorcorrectionzoo.org/ |
+| QEM Zoo | `raw/qem-zoo.md` | quantum-error-correction (mitigation/suppression) | https://qemzoo.com/ |
+
 ## PDF Conversion Policy
 
 For PDFs, use `markitdown-lightpdf` (no-OCR; math/table heuristics for
