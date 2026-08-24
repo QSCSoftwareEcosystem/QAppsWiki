@@ -41,6 +41,11 @@ class Section:
     provenance_status: str
     sources: tuple[str, ...]
     domains: tuple[str, ...]
+    # Authoritative import provenance straight from frontmatter (e.g.
+    # "error-correction-zoo", "qem-zoo"). A RAG client needs this to decide licence
+    # attribution without guessing from a URL in `sources`, which an editor is free
+    # to move into the page body. Defaulted so older cached payloads still load.
+    imported_from: str = ""
 
 
 def _as_tuple(value) -> tuple[str, ...]:
@@ -67,6 +72,7 @@ def split_sections(text: str, *, rel_path: str, node_id: str) -> list[Section]:
     provenance = str(fm.get("provenance_status") or "")
     sources = _as_tuple(fm.get("sources"))
     domains = _as_tuple(fm.get("domains"))
+    imported_from = str(fm.get("imported_from") or "")
 
     def make(heading: str, chunk: str) -> Section:
         return Section(
@@ -78,6 +84,7 @@ def split_sections(text: str, *, rel_path: str, node_id: str) -> list[Section]:
             provenance_status=provenance,
             sources=sources,
             domains=domains,
+            imported_from=imported_from,
         )
 
     out: list[Section] = []
@@ -110,6 +117,14 @@ def tokenize(text: str) -> list[str]:
 class Hit:
     section: Section
     score: float
+
+
+# At most this many sections from any one page may occupy the top-k, so a single
+# long page cannot monopolize every candidate slot a RAG client gets to rerank.
+# Three, not two: a page's intro plus one or two body sections are often all
+# genuinely on-topic, and at the default k=8 a cap of three still guarantees at
+# least three distinct pages whenever three pages matched at all.
+MAX_SECTIONS_PER_PAGE = 3
 
 
 class Bm25Index:
@@ -152,7 +167,34 @@ class Bm25Index:
             if total > 0:
                 scored.append(Hit(section=section, score=total))
         scored.sort(key=lambda h: (-h.score, h.section.node_id, h.section.heading))
-        return scored[:k]
+        return _cap_per_page(scored, k)
+
+
+def _cap_per_page(scored: list[Hit], k: int) -> list[Hit]:
+    """Fill k slots taking at most `MAX_SECTIONS_PER_PAGE` sections from any one page.
+
+    `scored` must already be in the canonical order (score desc, then node_id and
+    heading for deterministic ties). Sections held back by the cap are kept aside
+    and used only if k cannot otherwise be filled, so a query matching just one or
+    two pages still returns k hits. The result is re-sorted into the same canonical
+    order, so the cap changes *which* sections are selected, never their ranking.
+    """
+    picked: list[Hit] = []
+    overflow: list[Hit] = []
+    per_page: Counter[str] = Counter()
+    for hit in scored:
+        if len(picked) >= k:
+            break
+        node_id = hit.section.node_id
+        if per_page[node_id] >= MAX_SECTIONS_PER_PAGE:
+            overflow.append(hit)
+            continue
+        picked.append(hit)
+        per_page[node_id] += 1
+    if len(picked) < k:
+        picked.extend(overflow[: k - len(picked)])
+    picked.sort(key=lambda h: (-h.score, h.section.node_id, h.section.heading))
+    return picked
 
 
 def _section_to_dict(s: Section) -> dict:
@@ -165,6 +207,7 @@ def _section_to_dict(s: Section) -> dict:
         "provenance_status": s.provenance_status,
         "sources": list(s.sources),
         "domains": list(s.domains),
+        "imported_from": s.imported_from,
     }
 
 
@@ -178,6 +221,7 @@ def _section_from_dict(d: dict) -> Section:
         provenance_status=d.get("provenance_status", ""),
         sources=tuple(d.get("sources") or ()),
         domains=tuple(d.get("domains") or ()),
+        imported_from=str(d.get("imported_from") or ""),
     )
 
 

@@ -173,12 +173,37 @@ def q_check_freshness(g, node_id, timeout=10.0, fetch=None) -> dict:
 _BLOB_BASE = "https://github.com/QSCSoftwareEcosystem/QAppsWiki/blob/main/"
 
 
-def q_search_pages(index, query, k=8, domain=None) -> list[dict]:
+SEARCH_K_DEFAULT = 8
+# The caller of an MCP tool is a language model choosing arguments, so `k` is
+# untrusted input. Every hit carries full section text, and an unclamped k=500
+# would dump the better part of the corpus into the client's context window.
+SEARCH_K_MAX = 25
+
+
+def _clamp_k(k) -> int:
+    """Clamp a caller-supplied ``k`` into [1, SEARCH_K_MAX]; non-integers get the default.
+
+    A bad argument should degrade to a sensible search rather than raise: an MCP
+    error surfaces to the model as a failed tool call and costs it a turn. ``bool``
+    is excluded explicitly because it is an ``int`` subclass, so ``k=True`` would
+    otherwise silently mean ``k=1``.
+    """
+    if isinstance(k, bool) or not isinstance(k, int):
+        return SEARCH_K_DEFAULT
+    return max(1, min(k, SEARCH_K_MAX))
+
+
+def q_search_pages(index, query, k=SEARCH_K_DEFAULT, domain=None) -> list[dict]:
     """Full-text section search — the passage-level counterpart to q_query.
 
     q_query matches ids, titles, and domains, which answers "does this node
     exist". A RAG client needs the prose that supports an answer, so this returns
     section text plus the provenance a caller needs to cite it.
+
+    ``imported_from`` is the authoritative licence signal, straight from page
+    frontmatter: pages imported from the Error Correction Zoo reuse text under
+    CC-BY-SA and a client must attribute them. Terms for the ``qem-zoo`` imports
+    are not settled, so clients should not infer any licence from that value.
     """
     return [
         {
@@ -190,10 +215,52 @@ def q_search_pages(index, query, k=8, domain=None) -> list[dict]:
             "score": round(float(h.score), 6),
             "provenance_status": h.section.provenance_status,
             "sources": list(h.section.sources),
+            "imported_from": h.section.imported_from,
             "url": _BLOB_BASE + h.section.rel_path,
         }
-        for h in index.search(query, k=k, domain=domain)
+        for h in index.search(query, k=_clamp_k(k), domain=domain)
     ]
+
+
+class CorpusIndex:
+    """Lazily built BM25 index that rebuilds when the corpus changes on disk.
+
+    Serving search from the working tree is only "free freshness" if the index
+    tracks edits; memoizing forever would freeze a long-lived server at whatever
+    the corpus looked like on its very first query. A full rebuild is about a
+    second for the real corpus, so the cost that has to stay small is the change
+    check, not the rebuild: ``collect_pages`` plus one ``stat`` per page is cheap
+    enough to run on every search.
+
+    The stamp pairs the newest mtime with the page count, so a deletion, which
+    lowers no mtime, still invalidates.
+    """
+
+    def __init__(self, root) -> None:
+        self._root = Path(root)
+        self._index = None
+        self._stamp: tuple[int, int] | None = None
+
+    def _corpus_stamp(self) -> tuple[int, int]:
+        from . import collect
+
+        pages = collect.collect_pages(self._root)
+        newest = 0
+        for ref in pages:
+            try:
+                newest = max(newest, Path(ref["path"]).stat().st_mtime_ns)
+            except OSError:  # raced with a delete; the page count still catches it
+                continue
+        return (newest, len(pages))
+
+    def __call__(self):
+        from .search import build_index
+
+        stamp = self._corpus_stamp()
+        if self._index is None or stamp != self._stamp:
+            self._index = build_index(self._root, use_cache=False)
+            self._stamp = stamp
+        return self._index
 
 
 # --------------------------------------------------------------------------- #
@@ -216,16 +283,10 @@ def start_server(graph_path, content_root=None):  # pragma: no cover - requires 
 
     from pathlib import Path as _Path
 
-    from .search import build_index
-
+    # Built on first search so `serve` starts instantly for graph-only clients, and
+    # rebuilt whenever the working tree changes so a long-lived server stays fresh.
     root = _Path(content_root) if content_root else _Path(graph_path).resolve().parent
-    _index_holder: dict = {}
-
-    def _index():
-        # Built on first search so `serve` starts instantly for graph-only clients.
-        if "idx" not in _index_holder:
-            _index_holder["idx"] = build_index(root, use_cache=False)
-        return _index_holder["idx"]
+    _index = CorpusIndex(root)
 
     server = Server("qappswiki")
 
@@ -259,7 +320,10 @@ def start_server(graph_path, content_root=None):  # pragma: no cover - requires 
              description=("Full-text search over wiki page sections. Returns passage text with "
                           "provenance — use this to ground an answer, not just to find a node."),
              inputSchema={"type": "object", "properties": {
-                 "query": {"type": "string"}, "k": {"type": "integer"}, "domain": {"type": "string"}},
+                 "query": {"type": "string"},
+                 "k": {"type": "integer", "minimum": 1, "maximum": SEARCH_K_MAX,
+                       "default": SEARCH_K_DEFAULT},
+                 "domain": {"type": "string"}},
                  "required": ["query"]}),
     ]
 
@@ -275,7 +339,7 @@ def start_server(graph_path, content_root=None):  # pragma: no cover - requires 
         "cite": lambda a: q_cite(g, a["id"]),
         "check_freshness": lambda a: q_check_freshness(g, a["id"]),
         "search_pages": lambda a: q_search_pages(
-            _index(), a["query"], a.get("k", 8), a.get("domain")
+            _index(), a["query"], a.get("k", SEARCH_K_DEFAULT), a.get("domain")
         ),
     }
 
