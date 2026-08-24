@@ -176,3 +176,34 @@ def test_edited_page_invalidates_its_cache_entry(tmp_path):
     idx = build_index(root, out_dir=out, use_cache=True)
     assert idx.search("toric lattices", k=5)
     assert idx.search("distance three", k=5) == []
+
+
+from qappswiki.serve import q_search_pages
+
+
+def test_q_search_pages_returns_the_client_payload(tmp_path):
+    idx = build_index(_wiki(tmp_path), use_cache=False)
+    rows = q_search_pages(idx, "CSS code distance", k=3)
+    assert rows, "expected at least one hit"
+    row = rows[0]
+    assert set(row) == {
+        "path", "node_id", "title", "heading", "text",
+        "score", "provenance_status", "sources", "url",
+    }
+    assert row["node_id"] == "concepts/qec/steane"
+    assert row["url"] == (
+        "https://github.com/QSCSoftwareEcosystem/QAppsWiki/blob/main/concepts/qec/steane.md"
+    )
+    assert isinstance(row["score"], float)
+    assert isinstance(row["sources"], list)
+
+
+def test_q_search_pages_is_json_serializable(tmp_path):
+    import json
+    idx = build_index(_wiki(tmp_path), use_cache=False)
+    json.dumps(q_search_pages(idx, "CSS", k=2))  # must not raise
+
+
+def test_q_search_pages_empty_query_returns_empty(tmp_path):
+    idx = build_index(_wiki(tmp_path), use_cache=False)
+    assert q_search_pages(idx, "", k=3) == []

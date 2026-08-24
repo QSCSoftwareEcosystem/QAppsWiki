@@ -170,11 +170,37 @@ def q_check_freshness(g, node_id, timeout=10.0, fetch=None) -> dict:
     return _freshness.check_package({"id": node_id, "type": a.get("type")}, fm, timeout, fetch)
 
 
+_BLOB_BASE = "https://github.com/QSCSoftwareEcosystem/QAppsWiki/blob/main/"
+
+
+def q_search_pages(index, query, k=8, domain=None) -> list[dict]:
+    """Full-text section search — the passage-level counterpart to q_query.
+
+    q_query matches ids, titles, and domains, which answers "does this node
+    exist". A RAG client needs the prose that supports an answer, so this returns
+    section text plus the provenance a caller needs to cite it.
+    """
+    return [
+        {
+            "path": h.section.rel_path,
+            "node_id": h.section.node_id,
+            "title": h.section.title,
+            "heading": h.section.heading,
+            "text": h.section.text,
+            "score": round(float(h.score), 6),
+            "provenance_status": h.section.provenance_status,
+            "sources": list(h.section.sources),
+            "url": _BLOB_BASE + h.section.rel_path,
+        }
+        for h in index.search(query, k=k, domain=domain)
+    ]
+
+
 # --------------------------------------------------------------------------- #
 # MCP wiring
 # --------------------------------------------------------------------------- #
 
-def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
+def start_server(graph_path, content_root=None):  # pragma: no cover - requires mcp + stdio
     try:
         import asyncio
 
@@ -187,6 +213,20 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
         ) from exc
 
     g = load_graph(graph_path)
+
+    from pathlib import Path as _Path
+
+    from .search import build_index
+
+    root = _Path(content_root) if content_root else _Path(graph_path).resolve().parent
+    _index_holder: dict = {}
+
+    def _index():
+        # Built on first search so `serve` starts instantly for graph-only clients.
+        if "idx" not in _index_holder:
+            _index_holder["idx"] = build_index(root, use_cache=False)
+        return _index_holder["idx"]
+
     server = Server("qappswiki")
 
     tools = [
@@ -215,6 +255,12 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
              inputSchema={"type": "object", "properties": {"id": {"type": "string"}}, "required": ["id"]}),
         Tool(name="check_freshness", description="Online: is a package context current vs upstream?",
              inputSchema={"type": "object", "properties": {"id": {"type": "string"}}, "required": ["id"]}),
+        Tool(name="search_pages",
+             description=("Full-text search over wiki page sections. Returns passage text with "
+                          "provenance — use this to ground an answer, not just to find a node."),
+             inputSchema={"type": "object", "properties": {
+                 "query": {"type": "string"}, "k": {"type": "integer"}, "domain": {"type": "string"}},
+                 "required": ["query"]}),
     ]
 
     dispatch = {
@@ -228,6 +274,9 @@ def start_server(graph_path):  # pragma: no cover - requires mcp + stdio
         "list_communities": lambda a: q_list_communities(g),
         "cite": lambda a: q_cite(g, a["id"]),
         "check_freshness": lambda a: q_check_freshness(g, a["id"]),
+        "search_pages": lambda a: q_search_pages(
+            _index(), a["query"], a.get("k", 8), a.get("domain")
+        ),
     }
 
     @server.list_tools()

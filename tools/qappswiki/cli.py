@@ -392,7 +392,7 @@ def cmd_serve(args):
     if not graph_path.exists():
         _, graph = run_pipeline(root, out, not args.no_cache)
         _export_graph(graph, out)
-    serve.start_server(graph_path)
+    serve.start_server(graph_path, content_root=root)
     return 0
 
 
