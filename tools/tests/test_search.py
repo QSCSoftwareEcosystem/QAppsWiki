@@ -56,3 +56,56 @@ def test_section_is_hashable_and_frozen():
     s = split_sections(PAGE, rel_path="p.md", node_id="p")[0]
     assert isinstance(s, Section)
     hash(s)  # tuples, not lists, so sections can go in sets
+
+
+from qappswiki.search import Bm25Index, Hit, tokenize
+
+
+def _sec(node_id, heading, text, domains=("quantum-error-correction",)):
+    return Section(
+        rel_path=f"{node_id}.md",
+        node_id=node_id,
+        title=node_id,
+        heading=heading,
+        text=text,
+        provenance_status="needs-verification",
+        sources=(),
+        domains=domains,
+    )
+
+
+def test_tokenize_lowercases_and_drops_punctuation_and_single_chars():
+    assert tokenize("Surface-code THRESHOLD, p=0.01!") == ["surface", "code", "threshold", "01"]
+
+
+def test_ranks_the_section_that_is_actually_about_the_query_first():
+    idx = Bm25Index([
+        _sec("a", "Description", "The surface code is a topological stabilizer code."),
+        _sec("b", "Description", "The repetition code protects against bit flips only."),
+        _sec("c", "Protection", "Surface code threshold under depolarizing noise is about 1%."),
+    ])
+    hits = idx.search("surface code threshold", k=3)
+    assert [h.section.node_id for h in hits][0] == "c"
+    assert all(isinstance(h, Hit) for h in hits)
+    assert hits[0].score > hits[-1].score
+
+
+def test_k_limits_results_and_zero_score_hits_are_dropped():
+    idx = Bm25Index([_sec("a", "D", "alpha beta"), _sec("b", "D", "gamma delta")])
+    assert len(idx.search("alpha", k=5)) == 1        # only one section matches at all
+    assert idx.search("nonexistent term", k=5) == []
+
+
+def test_domain_filter_excludes_other_domains():
+    idx = Bm25Index([
+        _sec("a", "D", "mitigation of noise", domains=("quantum-error-mitigation",)),
+        _sec("b", "D", "mitigation of noise", domains=("quantum-error-correction",)),
+    ])
+    hits = idx.search("mitigation noise", k=5, domain="quantum-error-correction")
+    assert [h.section.node_id for h in hits] == ["b"]
+
+
+def test_empty_index_and_empty_query_are_safe():
+    assert Bm25Index([]).search("anything", k=5) == []
+    idx = Bm25Index([_sec("a", "D", "text here")])
+    assert idx.search("", k=5) == []

@@ -89,3 +89,65 @@ def split_sections(text: str, *, rel_path: str, node_id: str) -> list[Section]:
         if chunk.strip():
             out.append(make(m.group(1), chunk))
     return out
+
+
+import math
+from collections import Counter
+
+_TOKEN = re.compile(r"[a-z0-9]+")
+_K1 = 1.5
+_B = 0.75
+
+
+def tokenize(text: str) -> list[str]:
+    """Lowercase alphanumeric tokens, dropping single characters."""
+    return [t for t in _TOKEN.findall(text.lower()) if len(t) > 1]
+
+
+@dataclass(frozen=True)
+class Hit:
+    section: Section
+    score: float
+
+
+class Bm25Index:
+    """Okapi BM25 over section text. Built in memory, queried per request."""
+
+    def __init__(self, sections: list[Section]) -> None:
+        self.sections = list(sections)
+        # Heading and title are part of the searchable text: a query naming a code
+        # should match its page even when the body phrases things differently.
+        self._docs = [
+            Counter(tokenize(f"{s.title} {s.heading} {s.text}")) for s in self.sections
+        ]
+        self._lengths = [sum(d.values()) for d in self._docs]
+        n = len(self._docs)
+        self._avglen = (sum(self._lengths) / n) if n else 0.0
+        df: Counter[str] = Counter()
+        for d in self._docs:
+            df.update(d.keys())
+        self._idf = {
+            term: math.log(1 + (n - freq + 0.5) / (freq + 0.5)) for term, freq in df.items()
+        }
+
+    def search(self, query: str, k: int = 8, domain: str | None = None) -> list[Hit]:
+        terms = tokenize(query)
+        if not terms or not self._docs:
+            return []
+        scored: list[Hit] = []
+        for i, doc in enumerate(self._docs):
+            section = self.sections[i]
+            if domain and domain not in section.domains:
+                continue
+            length = self._lengths[i]
+            total = 0.0
+            for term in terms:
+                freq = doc.get(term, 0)
+                if not freq:
+                    continue
+                denom = freq + _K1 * (1 - _B + _B * length / (self._avglen or 1.0))
+                total += self._idf.get(term, 0.0) * freq * (_K1 + 1) / denom
+            if total > 0:
+                scored.append(Hit(section=section, score=total))
+        scored.sort(key=lambda h: (-h.score, h.section.node_id, h.section.heading))
+        return scored[:k]
