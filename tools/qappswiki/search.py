@@ -11,11 +11,16 @@ pyyaml + networkx.
 
 from __future__ import annotations
 
+import math
 import re
+from collections import Counter
 from dataclasses import dataclass
+from pathlib import Path
 
 import yaml
 
+from . import collect
+from .cache import Cache
 from .parse import split_frontmatter
 
 _H2 = re.compile(r"^##\s+(.*?)\s*$", re.M)
@@ -91,9 +96,6 @@ def split_sections(text: str, *, rel_path: str, node_id: str) -> list[Section]:
     return out
 
 
-import math
-from collections import Counter
-
 _TOKEN = re.compile(r"[a-z0-9]+")
 _K1 = 1.5
 _B = 0.75
@@ -151,3 +153,62 @@ class Bm25Index:
                 scored.append(Hit(section=section, score=total))
         scored.sort(key=lambda h: (-h.score, h.section.node_id, h.section.heading))
         return scored[:k]
+
+
+def _section_to_dict(s: Section) -> dict:
+    return {
+        "rel_path": s.rel_path,
+        "node_id": s.node_id,
+        "title": s.title,
+        "heading": s.heading,
+        "text": s.text,
+        "provenance_status": s.provenance_status,
+        "sources": list(s.sources),
+        "domains": list(s.domains),
+    }
+
+
+def _section_from_dict(d: dict) -> Section:
+    return Section(
+        rel_path=d["rel_path"],
+        node_id=d["node_id"],
+        title=d["title"],
+        heading=d["heading"],
+        text=d["text"],
+        provenance_status=d.get("provenance_status", ""),
+        sources=tuple(d.get("sources") or ()),
+        domains=tuple(d.get("domains") or ()),
+    )
+
+
+def build_index(root, *, out_dir=None, use_cache: bool = True) -> Bm25Index:
+    """Split every corpus page into sections and build a BM25 index.
+
+    `collect_pages` already drops `raw/md`, `raw/pdf`, `tools/`, and the rest of
+    `paths.IGNORED_DIRS`, so exclusions live in one place.
+
+    The cache root is `<out_dir>/search`, NOT `<out_dir>`: `Cache` keys entries on
+    the file digest alone, so sharing a root with the parse cache would make the
+    two overwrite each other for the same page.
+    """
+    root = Path(root).resolve()
+    cache = None
+    if use_cache and out_dir is not None:
+        cache = Cache(Path(out_dir) / "search", enabled=True)
+
+    sections: list[Section] = []
+    for ref in collect.collect_pages(root):
+        path = Path(ref["path"])
+        digest = Cache.file_hash(path) if cache else None
+        payload = cache.load(digest) if cache else None
+        if payload is None:
+            text = path.read_text(encoding="utf-8", errors="replace")
+            page_sections = split_sections(
+                text, rel_path=ref["rel_path"], node_id=ref["node_id"]
+            )
+            if cache:
+                cache.save(digest, [_section_to_dict(s) for s in page_sections])
+        else:
+            page_sections = [_section_from_dict(d) for d in payload]
+        sections.extend(page_sections)
+    return Bm25Index(sections)

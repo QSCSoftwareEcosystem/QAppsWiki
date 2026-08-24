@@ -109,3 +109,70 @@ def test_empty_index_and_empty_query_are_safe():
     assert Bm25Index([]).search("anything", k=5) == []
     idx = Bm25Index([_sec("a", "D", "text here")])
     assert idx.search("", k=5) == []
+
+
+from pathlib import Path
+
+from qappswiki.search import build_index
+
+_PAGE_TMPL = """---
+type: concept
+name: {name}
+domains:
+- quantum-error-correction
+sources: []
+provenance_status: needs-verification
+---
+
+# {name}
+
+## Description
+
+{body}
+"""
+
+
+def _wiki(tmp_path: Path) -> Path:
+    (tmp_path / "concepts" / "qec").mkdir(parents=True)
+    (tmp_path / "concepts" / "qec" / "steane.md").write_text(
+        _PAGE_TMPL.format(name="Steane code", body="A CSS code with distance three."),
+        encoding="utf-8",
+    )
+    (tmp_path / "raw" / "md").mkdir(parents=True)
+    (tmp_path / "raw" / "md" / "paper.md").write_text(
+        _PAGE_TMPL.format(name="Some Paper", body="A CSS code with distance three."),
+        encoding="utf-8",
+    )
+    return tmp_path
+
+
+def test_build_index_reads_the_corpus_and_skips_raw_md(tmp_path):
+    idx = build_index(_wiki(tmp_path), use_cache=False)
+    hits = idx.search("CSS code distance", k=10)
+    ids = {h.section.node_id for h in hits}
+    assert "concepts/qec/steane" in ids
+    assert not any(i.startswith("raw/md/") for i in ids)
+
+
+def test_cache_round_trip_produces_identical_results(tmp_path):
+    root = _wiki(tmp_path)
+    out = tmp_path / "wiki-out"
+    first = build_index(root, out_dir=out, use_cache=True)
+    second = build_index(root, out_dir=out, use_cache=True)   # served from cache
+    assert [(h.section.node_id, round(h.score, 6)) for h in first.search("CSS code", k=5)] == [
+        (h.section.node_id, round(h.score, 6)) for h in second.search("CSS code", k=5)
+    ]
+    assert (out / "search" / "cache").is_dir()
+
+
+def test_edited_page_invalidates_its_cache_entry(tmp_path):
+    root = _wiki(tmp_path)
+    out = tmp_path / "wiki-out"
+    build_index(root, out_dir=out, use_cache=True)
+    (root / "concepts" / "qec" / "steane.md").write_text(
+        _PAGE_TMPL.format(name="Steane code", body="Now mentions toric lattices instead."),
+        encoding="utf-8",
+    )
+    idx = build_index(root, out_dir=out, use_cache=True)
+    assert idx.search("toric lattices", k=5)
+    assert idx.search("distance three", k=5) == []
