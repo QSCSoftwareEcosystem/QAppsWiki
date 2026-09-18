@@ -537,6 +537,12 @@ Phase-1 MVP is complete when:
 
 ## Immediate Next Actions
 
+- [x] Ingest the active QSCSoftwareEcosystem repositories: ChatQEC,
+      chatqec-mcp-tools, FTQC, QHPC-Ecosystem, qiris-qflow,
+      HardwareAwareMapping, LightStim, DataSchema, and IQM-Calibration.
+- [ ] Enrich the DataSchema and IQM-Calibration entries once their repository
+      documentation defines concrete contracts, formats, and supported targets.
+
 - [x] Create `index.md` and `log.md`.
 - [x] Create `schema/frontmatter-v0.md`.
 - [x] Create starter package page: `packages/openqevo.md`.
@@ -550,7 +556,7 @@ Phase-1 MVP is complete when:
       is stable.
 - [x] Draft the AS intern task brief for the Markdown compilation workflow.
 - [x] Add the first concept page: `concepts/markdown-compilation.md`.
-- [ ] Add package pages for Qiskit, PennyLane, TNQVM, and Stim.
+- [x] Add package pages for Qiskit, PennyLane, TNQVM, and Stim.
 - [ ] Add concept pages for time evolution, Trotterization, adapter pattern,
       provenance, QEC-aware compilation, and quantum-HPC/QEC LLM-wiki
       structure.

@@ -6,6 +6,15 @@ updated: 2026-06-13
 
 # QAppsWiki Log
 
+## 2026-09-18 ingest | QSCSoftwareEcosystem active repositories | touched: packages/chatqec.md, packages/chatqec-mcp-tools.md, packages/data-schema.md, packages/ftqc.md, packages/hardware-aware-mapping.md, packages/iqm-calibration.md, packages/lightstim.md, packages/qhpc-ecosystem.md, packages/qiris-qflow.md, index.md
+
+Ingested the default-branch repository documentation and metadata for the active
+QSC ecosystem projects. ChatQEC, its MCP tools, FTQC, QHPC-Ecosystem,
+qiris-qflow, HardwareAwareMapping, and LightStim are source-backed from their
+repository documentation. DataSchema and IQM-Calibration are retained as
+needs-verification entries because their public repository documentation is
+minimal or absent.
+
 ## 2026-06-02 repo | Initial private repository | touched: README.md, PLAN.md, CONTEXT.md, docs/llm-wiki-pattern.md
 
 Created the private `QSCSoftwareThrust/QAppsWiki` repository from the local

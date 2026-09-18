@@ -1,4 +1,6 @@
 .DS_Store
+.development/
+graphify-out/
 raw/pdf/*.pdf
 
 node_modules/

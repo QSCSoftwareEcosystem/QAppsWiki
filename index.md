@@ -30,6 +30,15 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 - [[packages/pennylane]]: differentiable quantum programming / QML framework.
 - [[packages/stim]]: fast stabilizer-circuit simulator for QEC research.
 - [[packages/tnqvm]]: tensor-network simulator backend (XACC).
+- [[packages/chatqec]]: cited QEC research assistant with optional tool use.
+- [[packages/chatqec-mcp-tools]]: sandboxed QEC tool server for MCP clients.
+- [[packages/data-schema]]: cross-workflow interoperability-schema project.
+- [[packages/ftqc]]: MLIR infrastructure for fault-tolerant compilation.
+- [[packages/hardware-aware-mapping]]: calibration-aware QEC mapping workflow.
+- [[packages/iqm-calibration]]: IQM calibration-fetch scripts and data.
+- [[packages/lightstim]]: modular Stim-based QEC framework.
+- [[packages/qhpc-ecosystem]]: QSC capability, workflow, and runtime integration layer.
+- [[packages/qiris-qflow]]: ExaChem QFlow, QIRIS, and NWQSim integration workspace.
 
 ## Concept Pages
 
