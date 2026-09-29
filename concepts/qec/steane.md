@@ -2,7 +2,7 @@
 type: concept
 name: $⟦7,1,3⟧$ Steane code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -18,11 +18,9 @@ related_concepts:
 - concepts/qec/group-representation
 - concepts/qec/pg-qldpc
 - concepts/qec/quantum-cyclic
-- concepts/qec/quantum-divisible
 - concepts/qec/quantum-hamming-css
 - concepts/qec/single-qubit-clifford
 - concepts/qec/stab-6-2-2
-- concepts/qec/stabilizer-over-gf4
 - concepts/qec/triangular-color
 sources:
 - raw/error-correction-zoo.md
@@ -103,11 +101,11 @@ The Steane code is a distance 3 code. It detects errors on 2 qubits, corrects er
 
 - A fault-tolerant universal gate set can be done via code switching between the Steane code and the $⟦15,1,3⟧$ code  ([arXiv:1509.03239](https://arxiv.org/abs/1509.03239), [arXiv:1304.3709](https://arxiv.org/abs/1304.3709), [arXiv:1403.2734](https://arxiv.org/abs/1403.2734), [arXiv:1703.03860](https://arxiv.org/abs/1703.03860), [arXiv:2210.14074](https://arxiv.org/abs/2210.14074)).
 - A fault-tolerant universal gate set can be done via code switching between the Steane code and the $⟦10,1,2⟧$ code  ([arXiv:2403.13732](https://arxiv.org/abs/2403.13732)).
-- A fault-tolerant logical $T$ gate can be obtained by encoding the Steane code's seven physical qubits into the seven logical qubits of a $⟦63,7,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
+- A fault-tolerant logical $T$ gate can be obtained by encoding the Steane code's seven physical qubits into the seven logical qubits of a $⟦63,7,3⟧$ outer coset-divisible code preserved by transversal $T^\dagger$  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
 - Fault-tolerant logical zero and magic state preparation  ([doi:10.1038/srep19578](https://doi.org/10.1038/srep19578)). Magic-state preparation converts unbiased noise into biased noise  ([arXiv:2401.10982](https://arxiv.org/abs/2401.10982)).
 - Fault-tolerant logical zero and logical plus state preparation on all-to-all and 2D grid qubit connectivity  ([arXiv:2402.17761](https://arxiv.org/abs/2402.17761)).
 - Pieceable fault-tolerant $CCZ$ gate  ([arXiv:1603.03948](https://arxiv.org/abs/1603.03948)).
-- Syndrome measurement can be done with ancillary flag qubits  ([arXiv:1705.02329](https://arxiv.org/abs/1705.02329)) or with no extra qubits  ([doi:10.1088/2058-9565/abc6f4](https://doi.org/10.1088/2058-9565/abc6f4)). The depth of syndrome extraction circuits can be lowered by using past syndrome values  ([arXiv:2305.00784](https://arxiv.org/abs/2305.00784)).
+- Syndrome measurement can be done with ancillary flag qubits  ([arXiv:1705.02329](https://arxiv.org/abs/1705.02329)) or with no extra qubits  ([arXiv:1804.06995](https://arxiv.org/abs/1804.06995)). The depth of syndrome extraction circuits can be lowered by using past syndrome values  ([arXiv:2305.00784](https://arxiv.org/abs/2305.00784)). An adaptive protocol measures the syndrome with a 14-CNOT fault-tolerant circuit and falls back to an 11-CNOT recovery circuit when a flag is raised  ([arXiv:2511.13700](https://arxiv.org/abs/2511.13700)).
 - Computation of ground-state energy of the hydrogen molecule  ([arXiv:2505.09133](https://arxiv.org/abs/2505.09133)).
 - Fault-tolerant measurement-free error-correction cycle  ([arXiv:2307.13296](https://arxiv.org/abs/2307.13296)).
 
@@ -134,7 +132,6 @@ End-to-end fault-tolerant execution of QAOA and HHL circuits, including logical 
 - _parent_: [[concepts/qec/diagonal-clifford]]
 - _parent_: [[concepts/qec/quantum-hamming-css]]
 - _parent_: [[concepts/qec/single-qubit-clifford]]
-- _parent_: [[concepts/qec/stabilizer-over-gf4]] — The Steane code is Hermitian  ([arXiv:2501.17447](https://arxiv.org/abs/2501.17447)).
 - _parent_: [[concepts/qec/quantum-cyclic]] — The Steane code is equivalent to a cyclic code via qubit permutations  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)).
 - _parent_: [[concepts/qec/galois-quad-residue]] — The Steane code is a qubit quantum QR code  ([arXiv:0712.0103](https://arxiv.org/abs/0712.0103), [arXiv:1907.01393](https://arxiv.org/abs/1907.01393)).
 - _parent_: [[concepts/qec/data-syndrome]] — There exists a set of stabilizer generators for the Steane code that make it a QDS code; a $[15,3]$ syndrome-measurement code beats five-fold repeated syndrome extraction at the same measurement cost  ([arXiv:1409.2559](https://arxiv.org/abs/1409.2559), [arXiv:1907.01393](https://arxiv.org/abs/1907.01393)).
@@ -145,7 +142,6 @@ End-to-end fault-tolerant execution of QAOA and HHL circuits, including logical 
 - _cousin_: [[concepts/qec/cluster-state]] — The Steane code is equivalent via a single-qubit Clifford unitary to a cluster-state code for a particular graph and classical code  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)). Four non-isomorphic graphs yield graph quantum codes that are equivalent to the Steane code under a single-qubit-Clifford circuit  ([arXiv:quant-ph/0703112](https://arxiv.org/abs/quant-ph/0703112)).
 - _cousin_: [[concepts/qec/eastab]] — The Steane code is globally equivalent to a $⟦6,1,3;1⟧$ EA CSS code, which the paper identifies as an example of the smallest one-ebit EA CSS code correcting an arbitrary single-qubit error on the sender's qubits  ([arXiv:0803.1495](https://arxiv.org/abs/0803.1495)).
 - _cousin_: [[concepts/qec/stab-6-2-2]] — In Knill's $C_4/C_6$ architecture, noisy $\ket{\pi/8}$ states are injected using $C_4/C_6$ logical Bell pairs and then purified by encoding them into the Steane code; Knill also proposed using the Steane code as a final concatenation level for the $C_4/C_6$ scheme  ([arXiv:quant-ph/0410199](https://arxiv.org/abs/quant-ph/0410199)).
-- _cousin_: [[concepts/qec/quantum-divisible]] — A fault-tolerant logical $T$ gate can be obtained by encoding the Steane code's seven physical qubits into the seven logical qubits of a $⟦63,7,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
 
 ## Notes
 

@@ -2,7 +2,7 @@
 type: concept
 name: RM Majorana code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -32,7 +32,8 @@ Logical measurements are reduced to parity measurements of some subset of Majora
 
 ## Protection
 
-Code parameters are $⟦2^{m-1},2^{m-1} - \sum_{j=0}^{r} {m \choose j},2^{r+1}⟧_{f}$, which are optimal per Majorana LP bounds for $r = 0$ and $m \geq 1$, and $r=1$ and $m=4,5$  ([arXiv:2502.14165](https://arxiv.org/abs/2502.14165)).
+Code parameters are $⟦2^{m-1},2^{m-1} - \sum_{j=0}^{r} {m \choose j},2^{r+1}⟧_{f}$ for $m\geq 2r+1$  ([arXiv:1703.00459](https://arxiv.org/abs/1703.00459)).
+These are optimal per Majorana LP bounds for $r = 0$ and $m \geq 1$, and $r=1$ and $m=4,5$  ([arXiv:2502.14165](https://arxiv.org/abs/2502.14165)).
 
 ## Relations
 

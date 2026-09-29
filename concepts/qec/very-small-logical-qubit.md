@@ -2,7 +2,7 @@
 type: concept
 name: Very small logical qubit (VSLQ) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -45,7 +45,7 @@ Protects against a single photon loss.
 ## General gates
 
 - Single logical qubit operations implemented by resonant physical qubit driving and phase shifting the SQUID drives.
-- A CZ gate between two logical qubits implemented by coupling devices through another driven SQUID and applying a pulse to the coupling squid simultaneously with a single qubit operation on one of the logical qubits.
+- A CZ gate between two logical qubits implemented by coupling devices through another driven SQUID and applying a pulse to the coupling SQUID simultaneously with a single qubit operation on one of the logical qubits.
 
 ## Decoders
 

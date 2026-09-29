@@ -2,7 +2,7 @@
 type: concept
 name: Subsystem qubit CSS code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -53,7 +53,7 @@ supporting logical qubits  ([arXiv:1911.01354](https://arxiv.org/abs/1911.01354)
 
 ## Relations
 
-- _parent_: [[concepts/qec/qubit-subsystem-stabilizer]] — Subsystem qubit CSS codes are subsystem qubit stabilizer codes whose gauge groups admit a generating set of pure-$X$ and pure-$Z$ Pauli strings. Any $⟦n,k,r,d⟧$ subsystem qubit stabilizer code can be mapped onto a $⟦2n,2k,2r,\geq d⟧$ subsystem CSS code via symplectic doubling, which preserves geometric locality of a code up to a constant factor. Every subsystem qubit stabilizer code can be constructed from two nested subsystem CSS codes satisfying certain constraints  ([arXiv:2311.18003](https://arxiv.org/abs/2311.18003)).
+- _parent_: [[concepts/qec/qubit-subsystem-stabilizer]] — Subsystem qubit CSS codes are subsystem qubit stabilizer codes whose gauge groups admit a generating set of pure-$X$ and pure-$Z$ Pauli strings. Any $⟦n,k,r,d⟧$ subsystem qubit stabilizer code can be mapped onto a $⟦2n,2k,2r,d^{\prime}⟧$ subsystem CSS code with $d\leq d^{\prime}\leq 2d$ via symplectic doubling, which preserves geometric locality of a code up to a constant factor. Every subsystem qubit stabilizer code can be constructed from two nested subsystem CSS codes satisfying certain constraints  ([arXiv:2311.18003](https://arxiv.org/abs/2311.18003)).
 - _parent_: [[concepts/qec/qudit-subsystem-css]] — Subsystem modular-qudit CSS codes reduce to subsystem qubit CSS codes for $q=2$.
 - _parent_: [[concepts/qec/galois-subsystem-css]] — Subsystem Galois-qudit CSS codes reduce to subsystem qubit CSS codes for $q=2$.
 - _cousin_: [[concepts/qec/qubit-css]] — Subsystem qubit CSS codes reduce to (subspace) CSS qubit codes when there is no gauge subsystem.

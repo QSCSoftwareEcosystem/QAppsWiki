@@ -2,7 +2,7 @@
 type: concept
 name: Generalized bicycle (GB) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Hyperbicycle code
@@ -10,8 +10,7 @@ aliases:
 domains:
 - quantum-error-correction
 related_concepts:
-- concepts/qec/2bga
-- concepts/qec/abelian-lifted-product
+- concepts/qec/abelian-2bga
 - concepts/qec/general-qldpc
 - concepts/qec/hypergraph-product
 - concepts/qec/sc-qldpc
@@ -32,7 +31,7 @@ imported_id: generalized_bicycle
 
 ## Description
 
-A quasi-cyclic Galois-qudit CSS code constructed using a generalized version of the bicycle ansatz  ([arXiv:quant-ph/0304161](https://arxiv.org/abs/quant-ph/0304161)) from a pair of equivalent index-two quasi-cyclic linear codes.
+A quasi-cyclic Galois-qudit CSS code constructed using a generalized version of the bicycle ansatz  ([arXiv:quant-ph/0304161](https://arxiv.org/abs/quant-ph/0304161)) from a pair of equivalent index-two quasi-cyclic linear codes. The length $n=2\ell$, twice the circulant size $\ell$, is necessarily even.
 Equivalently, the codes can be constructed via the lifted-product construction for $G$ being a cyclic group  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)).
 
 Various instances of qubit GB codes are constructed in Ref.  ([arXiv:2203.17216](https://arxiv.org/abs/2203.17216)) (for $k=2$) and in Refs.  ([arXiv:2306.16400](https://arxiv.org/abs/2306.16400), [arXiv:2311.16980](https://arxiv.org/abs/2311.16980), [arXiv:2406.14445](https://arxiv.org/abs/2406.14445)).
@@ -114,11 +113,9 @@ There exist GB codes that achieve the Hashing bound  ([arXiv:2412.21171](https:/
 
 ## Relations
 
-- _parent_: [[concepts/qec/2bga]] — A code GB$(a,b)$ with circulants of size $\ell$ is a 2BGA code over the cyclic group $\mathbb{Z}_{\ell}$.
+- _parent_: [[concepts/qec/abelian-2bga]] — A code GB$(a,b)$ with circulants of size $\ell$ is an Abelian 2BGA code over the cyclic group $\mathbb{Z}_{\ell}$.
 More precisely, for the cyclic group $\mathbb{Z}_{\ell}\equiv \langle x|x^\ell=1\rangle $, any element $a$ of the group algebra $\mathbb{F}_q[\mathbb{Z}_{\ell}]$ can be seen as a polynomial $a(x)\in \mathbb{F}_q[x]$ over the group generator $x$, where the polynomial degree $\deg a(x)<\ell$.
 The 2BGA code LP$(a,b)$ is then just a generalized bicycle code GB$[a(x),b(x)]$ constructed from the polynomials $a(x)$ and $b(x)$ corresponding to $a,b\in \mathbb{F}_q[\mathbb{Z}_{\ell}]$.
-- _parent_: [[concepts/qec/abelian-lifted-product]] — A code GB$(a,b)$ with circulants of size $\ell$ is a special case of a lifted-product code LP$(A,B)$ code over the Abelian group algebra $\mathbb{F}_q[\mathbb{Z}_{\ell}]$ associated with a cyclic group, with $1\times 1$ matrices $A=a(x)$, $B=b(x)$ given by the corresponding polynomials.
-Quasi-cyclic LP codes, i.e., LP codes constructed from cyclic groups, are equivalent to GB codes  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)).
 - _parent_: [[concepts/qec/translationally-invariant-stabilizer]] — Incommensurate GB codes of row weight $w$ are equivalent to CSS codes local in $D \leq w-1$ Euclidean dimensions, or in $D \leq w-2$ dimensions when $\ell$ is prime  ([arXiv:2203.17216](https://arxiv.org/abs/2203.17216)) ([arXiv:2502.19406](https://arxiv.org/abs/2502.19406)).
 - _cousin_: [[concepts/qec/sc-qldpc]] — Qubit GB codes can be categorized as 1D SC-QLDPC codes, see  ([arXiv:2305.00137](https://arxiv.org/abs/2305.00137)).
 - _cousin_: [[concepts/qec/general-qldpc]] — Stabilizer generators of the code GB$(a,b)$ have weights given by the sum of weights of polynomials $a(x)$ and $b(x)$.

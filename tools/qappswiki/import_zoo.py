@@ -339,11 +339,20 @@ def _ecz_pathmap(repo_dir: Path) -> dict:
 # quantum wiki tags everything ``quantum-error-correction``, so the bulk import
 # defaults to the quantum subtrees and treats classical codes as opt-in.
 _QUANTUM_SUBTREES = ("quantum", "classical_into_quantum")
+# A handful of quantum codes (entanglement-assisted / operator-algebra QECC
+# variants) live as loose files directly under codes/ instead of codes/quantum/,
+# so the directory check alone misses them. Named explicitly since new additions
+# in this spot aren't discoverable from the path.
+_QUANTUM_LOOSE_IDS = frozenset({"eacq", "eaoaecc", "oaecc", "approximate_oaecc"})
 
 
 def _is_quantum(path: Path, repo_dir: Path) -> bool:
     rel = path.relative_to(Path(repo_dir) / "codes").parts
-    return bool(rel) and rel[0] in _QUANTUM_SUBTREES
+    if not rel:
+        return False
+    if rel[0] in _QUANTUM_SUBTREES:
+        return True
+    return len(rel) == 1 and path.stem in _QUANTUM_LOOSE_IDS
 
 
 def fetch_eczoo(code_ids=None, cache_dir: str = DEFAULT_CACHE,

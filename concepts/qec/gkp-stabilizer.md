@@ -2,7 +2,7 @@
 type: concept
 name: Oscillator-into-oscillator GKP code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - GKP-stabilizer code
@@ -54,7 +54,7 @@ Oscillator-into-oscillator GKP codes to protect one or more modes against displa
 
 ## Relations
 
-- _parent_: [[concepts/qec/quantum-lattice]] — Oscillator-into-oscillator GKP codes are $n$-mode quantum lattice codes with less than $2n$ stabilizers, i.e., constructed using a degenerate lattice (see Appx. A of Ref.  ([arXiv:2109.14645](https://arxiv.org/abs/2109.14645))).
+- _parent_: [[concepts/qec/quantum-lattice]] — Oscillator-into-oscillator GKP codes are $n$-mode quantum lattice codes with less than $2n$ stabilizers, i.e., constructed using a degenerate lattice (see  ([arXiv:2109.14645](https://arxiv.org/abs/2109.14645))).
 - _parent_: [[concepts/qec/oscillators-into-oscillators]]
 - _cousin_: [[concepts/qec/gkp-concatenated]] — Oscillator-into-oscillator GKP codes concatenated with qubit-into-oscillator GKP codes can outperform more conventional concatenations of qubit-into-oscillator GKP codes with qubit stabilizer codes  ([arXiv:2209.04573](https://arxiv.org/abs/2209.04573)).
 - _cousin_: [[concepts/qec/dfour-gkp]] — $D_4$ hyper-diamond GKP codes may be optimal for oscillator-into-oscillator GKP codes utilizing two ancilla modes  ([arXiv:2212.11970](https://arxiv.org/abs/2212.11970)).

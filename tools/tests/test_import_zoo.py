@@ -125,6 +125,25 @@ def test_qemzoo_page_renders_valid_concept(tmp_path):
     assert not errors, errors
 
 
+def test_is_quantum_includes_loose_top_level_codes(tmp_path):
+    # eczoo_data keeps a few quantum codes (EA/operator-algebra QECC variants) as
+    # loose files directly under codes/ rather than under codes/quantum/.
+    codes = tmp_path / "codes"
+    (codes / "quantum").mkdir(parents=True)
+    (codes / "classical").mkdir(parents=True)
+    quantum_subtree = codes / "quantum" / "surface.yml"
+    classical_subtree = codes / "classical" / "hamming.yml"
+    loose_quantum = codes / "eacq.yml"
+    loose_unknown = codes / "blank.yml"
+    for p in (quantum_subtree, classical_subtree, loose_quantum, loose_unknown):
+        p.touch()
+
+    assert import_zoo._is_quantum(quantum_subtree, tmp_path) is True
+    assert import_zoo._is_quantum(classical_subtree, tmp_path) is False
+    assert import_zoo._is_quantum(loose_quantum, tmp_path) is True
+    assert import_zoo._is_quantum(loose_unknown, tmp_path) is False
+
+
 def test_update_index_is_idempotent(tmp_path):
     (tmp_path / "index.md").write_text(
         "---\ntype: index\nstatus: active\nupdated: 2026-06-15\n---\n\n# Index\n",

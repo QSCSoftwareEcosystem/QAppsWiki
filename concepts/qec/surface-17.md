@@ -2,13 +2,15 @@
 type: concept
 name: $⟦9,1,3⟧$ Surface-17 code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $⟦9,1,3⟧$ rotated surface code
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/perm-self-dual-css
+- concepts/qec/qubit-concatenated
 - concepts/qec/rotated-surface
 - concepts/qec/shor-nine
 - concepts/qec/small-distance-qubit-stabilizer
@@ -72,6 +74,10 @@ Admits pseudo-thresholds of $\approx 10^{-4}$ under depolarizing noise.
 - Measurement-free fault-tolerant logical zero state preparation in nearest-neighbor qubit connectivity  ([arXiv:2303.17211](https://arxiv.org/abs/2303.17211)).
 - Fault-tolerant logical zero and logical plus state preparation in all-to-all connectivity, and fault-tolerant logical zero state preparation on 2D grids, with flag qubits  ([arXiv:2402.17761](https://arxiv.org/abs/2402.17761)).
 
+## Code capacity threshold
+
+- Recursively concatenating the surface-17 code yields a zero-rate family. For a suitable concatenation map, every level is finite-size Kramers-Wannier self-dual under the statistical mechanical mapping of bit-flip decoding  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). If the family has a unique threshold, this self-duality constrains its optimal bit-flip threshold  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). The bit-flip phase boundary of the family nearly coincides with that of the toric code  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)).
+
 ## Realizations
 
 - Implemented at ETH Zurich by the Wallraff group
@@ -85,8 +91,10 @@ The device noise can be used to develop a decoder without relying on a theoretic
 
 - _parent_: [[concepts/qec/rotated-surface]]
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
+- _parent_: [[concepts/qec/perm-self-dual-css]] — The surface-17 code is permutationally self-dual. Transversal Hadamard followed by a $\pi/2$ rotation of the $3\times 3$ qubit grid implements a logical Hadamard  ([arXiv:2412.01391](https://arxiv.org/abs/2412.01391)). This rotation is an $XZ$-duality of order four.
 - _cousin_: [[concepts/qec/shor-nine]] — Both Shor's code and surface-17 are $⟦9,1,3⟧$ codes, but they are distinct (e.g., they have different quantum weight enumerators).
 - _cousin_: [[concepts/qec/stellated-dodecahedron-css]] — Bring's code and the surface-17 code have been compared numerically  ([arXiv:1712.07666](https://arxiv.org/abs/1712.07666)).
+- _cousin_: [[concepts/qec/qubit-concatenated]] — Recursively concatenating the surface-17 code yields a zero-rate family with distance $d = n^{\log_9 3} = \sqrt{n}$  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). Its bit-flip phase boundary nearly coincides with that of the toric code  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)).
 
 ## Notes
 

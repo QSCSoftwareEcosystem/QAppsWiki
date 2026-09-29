@@ -2,7 +2,7 @@
 type: concept
 name: $⟦13,1,5⟧$ quantum QR code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -33,5 +33,6 @@ The code admits a stabilizer tableau whose rows are cyclic permutations of the P
 ## Relations
 
 - _parent_: [[concepts/qec/stabilizer-over-gf4]]
-- _parent_: [[concepts/qec/galois-quad-residue]]
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
+- _cousin_: [[concepts/qec/galois-quad-residue]] — The $⟦13,1,5⟧$ code is obtained from a quaternary QR code via the Hermitian construction and is not CSS, in contrast to quantum QR codes, which are obtained via the CSS construction  ([arXiv:quant-ph/9704019](https://arxiv.org/abs/quant-ph/9704019)).
+- _cousin_: [`q-ary_quad_residue`](https://errorcorrectionzoo.org/c/q-ary_quad_residue) — The stabilizer group of the $⟦13,1,5⟧$ code is defined by a quaternary QR code of length 13  ([arXiv:quant-ph/9704019](https://arxiv.org/abs/quant-ph/9704019)).

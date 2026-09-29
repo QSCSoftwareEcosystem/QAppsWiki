@@ -2,7 +2,7 @@
 type: concept
 name: Coherent-state c-q modulation format
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Coherent-state c-q modulation code

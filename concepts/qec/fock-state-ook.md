@@ -2,7 +2,7 @@
 type: concept
 name: Fock-state OOK c-q modulation format
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Number-state OOK c-q modulation format

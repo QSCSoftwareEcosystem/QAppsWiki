@@ -2,7 +2,7 @@
 type: concept
 name: Toric code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -54,7 +54,7 @@ operator of the $i$-th logical qubit (with $i\in\{1,2\}$).  They are represented
 Toric code on an $L\times L$ torus is a $⟦2L^2,2,L⟧$ CSS code.
 The number of error patterns can be used to bound the ground-state energy of a $\pm J$ Ising model  ([arXiv:cond-mat/0405313](https://arxiv.org/abs/cond-mat/0405313)).
 Coherent physical errors in the toric code are expected to become incoherent logical errors under syndrome measurement; see corroborating numerical studies performed by embedding each physical qubit into two fermions via the tetron code  ([arXiv:1710.02270](https://arxiv.org/abs/1710.02270)) as well as deriving analytical bounds  ([arXiv:1912.04319](https://arxiv.org/abs/1912.04319)).
-More generally, there is a tensor-network routine that calculates the effective logical channel  ([arXiv:2403.08706](https://arxiv.org/abs/2403.08706))
+More generally, there is a tensor-network routine that calculates the effective logical channel  ([arXiv:2403.08706](https://arxiv.org/abs/2403.08706)).
 
 ## Encoders
 
@@ -78,10 +78,11 @@ ML decoding  ([arXiv:quant-ph/0110143](https://arxiv.org/abs/quant-ph/0110143)) 
 Above values are for one type of noise only, and the ML threshold for combined $X$ and $Z$ noise is $2p_X - p_X^2 \approx 20.6\%$  ([arXiv:2212.03214](https://arxiv.org/abs/2212.03214)). 
 Thresholds for various lattices have been obtained in Refs.  ([arXiv:1112.1613](https://arxiv.org/abs/1112.1613), [arXiv:1202.2743](https://arxiv.org/abs/1202.2743)).
 - Depolarizing noise: between $17\%$ and $18.5\%$ under BSV tensor-network decoding  ([arXiv:1405.4883](https://arxiv.org/abs/1405.4883)), $14\%$ under GBP decoding  ([arXiv:2212.03214](https://arxiv.org/abs/2212.03214)), $16.5\%$ under recursive MWPM  ([arXiv:2212.11632](https://arxiv.org/abs/2212.11632)), between $16\%$ and $17.5\%$ under AMBP4 (depending on whether surface or toric code is considered)  ([arXiv:2104.13659](https://arxiv.org/abs/2104.13659)), and between $15\%$ and $16\%$ under RG  ([arXiv:0911.0581](https://arxiv.org/abs/0911.0581)), Markov-chain  ([arXiv:1302.2669](https://arxiv.org/abs/1302.2669)), or MWPM  ([arXiv:0905.0531](https://arxiv.org/abs/0905.0531)) decoding. The threshold under ML decoding corresponds to the value of a critical point of the disordered eight-vertex Ising model, calculated to be $18.9(3)\%$  ([arXiv:1202.1852](https://arxiv.org/abs/1202.1852)) (see also APS Physics viewpoint  ([doi:10.1103/Physics.5.50](https://doi.org/10.1103/Physics.5.50))).
-- Erasure noise: $50\%$ for square tiling  ([arXiv:0904.3556](https://arxiv.org/abs/0904.3556), [arXiv:0912.1159](https://arxiv.org/abs/0912.1159)). There is an inverse relationship between coordination number of the syndrome graph, with the threshold corresponding to a percolation transition  ([arXiv:1810.09621](https://arxiv.org/abs/1810.09621)).
+- Erasure noise: $50\%$ for square tiling  ([arXiv:0904.3556](https://arxiv.org/abs/0904.3556), [arXiv:0912.1159](https://arxiv.org/abs/0912.1159)). There is an inverse relationship between the coordination number of the syndrome graph and the threshold, with the latter corresponding to a percolation transition  ([arXiv:1810.09621](https://arxiv.org/abs/1810.09621)).
 - AD noise: $39\%$  ([arXiv:1607.06460](https://arxiv.org/abs/1607.06460)).
 - Correlated noise: the threshold under ML decoding corresponds to the value of a critical point of a particular random-bond Ising model (RBIM)  ([arXiv:1209.2157](https://arxiv.org/abs/1209.2157), [arXiv:1304.2975](https://arxiv.org/abs/1304.2975)). A threshold of $10.04(6)\%$ under mildly correlated bit-flip noise is obtained in Ref.  ([arXiv:1809.10704](https://arxiv.org/abs/1809.10704)).
 - The toric code has a measurement threshold of one  ([arXiv:2402.00145](https://arxiv.org/abs/2402.00145)).
+- The phase boundary of the RBIM nearly coincides with those of the concatenated Steane code and the recursively concatenated surface-17 code  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). The three families therefore have similar optimal bit-flip thresholds  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). This coincidence arises from a common Kramers-Wannier self-duality of the associated statistical mechanical models  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). Zero-rate PSD codes with a unique threshold share this self-duality  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)).
 - Coherent noise: the threshold under ML decoding corresponds to the value of a critical point of a particular random-bond Ising model (RBIM) called the complex-coupled Ashkin-Teller model  ([arXiv:2410.22436](https://arxiv.org/abs/2410.22436), [arXiv:2411.05785](https://arxiv.org/abs/2411.05785)). Another statistical mechanical mapping has been studied for $X$-type noise channels interpolating between coherent and incoherent noise  ([arXiv:2412.21055](https://arxiv.org/abs/2412.21055)).
 - Threshold of $1.5\%$ under real-time geometrically local decoder based on introducing an ancillary buffer and confining spacetime interactions between anyons   ([arXiv:2510.08056](https://arxiv.org/abs/2510.08056)).
 

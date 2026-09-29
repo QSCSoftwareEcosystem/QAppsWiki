@@ -2,7 +2,7 @@
 type: concept
 name: 2D hyperbolic surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -23,7 +23,7 @@ imported_id: two_dimensional_hyperbolic_surface
 
 ## Description
 
-Hyperbolic surface codes based on a tessellation of a closed 2D manifold with a hyperbolic geometry (i.e., non-Euclidean geometry, e.g., saddle surfaces when defined on a 2D plane).
+Hyperbolic surface codes are based on a tessellation of a closed 2D manifold with a hyperbolic geometry (i.e., non-Euclidean geometry, e.g., saddle surfaces when defined on a 2D plane).
 
 For a tessellation involving regular polygons with $ r $ sides and $ s $ polygons meeting at each vertex, the number of logical qubits is given by $ k = (1-2/r - 2/s) n + 2 $.
 Some possible tilings include $ \{r,s\}: \{7,3\}, \{5,4\} $.
@@ -44,17 +44,16 @@ Protects against Pauli errors with distance $ d \propto \log(n) $. Code paramete
 ## Decoders
 
 - Due to the symmetries of hyperbolic surface codes, optimal measurement schedules of the stabilizers can be found  ([arXiv:2010.09626](https://arxiv.org/abs/2010.09626)).
-- Bounds on code capacity thresholds using ML decoding can be obtained by mapping the effect of noise on the code to a statistical mechanical model  ([arXiv:1804.01950](https://arxiv.org/abs/1804.01950)).
 - Two flag-based decoders  ([arXiv:2409.14283](https://arxiv.org/abs/2409.14283)).
 
 ## Code capacity threshold
 
 - Bounds on code capacity thresholds using ML decoding can be obtained by mapping the effect of noise on the code to a statistical mechanical model  ([arXiv:1805.00644](https://arxiv.org/abs/1805.00644)).
-- $1.3\%$ for a phenomenological noise model for the $\{4,5\}$-hyperbolic surface code  ([arXiv:1703.00590](https://arxiv.org/abs/1703.00590)).
+- 1$\%$ - 5$\%$ for a $\{5,4\}$ tiling under minimum-weight decoding with noiseless syndrome extraction  ([arXiv:1506.04029](https://arxiv.org/abs/1506.04029)). For larger tilings, the lower bound on the distance decreases, suggesting the threshold will also decrease.
 
 ## Threshold
 
-- 1$\%$ - 5$\%$ for a ${5,4}$ tiling under minimum-weight decoding  ([arXiv:1208.2317](https://arxiv.org/abs/1208.2317)). For larger tilings, the lower bound on the distance decreases, suggesting the threshold will also decrease.
+- $1.3\%$ for a phenomenological noise model for the $\{4,5\}$-hyperbolic surface code  ([arXiv:1703.00590](https://arxiv.org/abs/1703.00590)).
 
 ## Relations
 

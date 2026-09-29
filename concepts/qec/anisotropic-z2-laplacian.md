@@ -2,7 +2,7 @@
 type: concept
 name: Anisotropic $\mathbb{Z}_2$ Laplacian model code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

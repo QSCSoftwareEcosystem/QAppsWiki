@@ -2,7 +2,7 @@
 type: concept
 name: Hypergraph product (HGP) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Quantum hypergraph (QHG) code
@@ -13,6 +13,7 @@ domains:
 related_concepts:
 - concepts/qec/galois-hypergraph-product
 - concepts/qec/homological-product
+- concepts/qec/perm-self-dual-css
 - concepts/qec/qubit-concatenated
 - concepts/qec/reinforcement-learning
 - concepts/qec/sc-qldpc
@@ -43,7 +44,7 @@ The hypergraph product yields two classical codes $C_{X,Z}$ with parity-check ma
 \end{align}
 where $I_m$ is the $m$-dimensional identity matrix.
 These two codes then yield a hypergraph product code via the CSS construction.
-The case when the two seed codes are equal, $C_1=C_2$, is called a *square hypergraph product code*.
+The case when both seed codes use the same check matrix, $H_1=H_2=H$, is called a *square hypergraph product code*  ([arXiv:2204.10812](https://arxiv.org/abs/2204.10812)).
 If, in addition, $\text{im} H = \text{im} H^T$, the hypergraph product code is called a *symmetric hypergraph product code*  ([arXiv:2204.10812](https://arxiv.org/abs/2204.10812)).
 
 In terms of the \ref{topic:CSS-to-homology-correspondence}, the hypergraph product can be viewed as a homological product of two length-one chain complexes. The resulting code corresponds to the length-two chain complex that is called the *total chain complex* of the product of the input complexes (see  ([arXiv:2601.18879](https://arxiv.org/abs/2601.18879))).
@@ -54,8 +55,10 @@ In terms of the \ref{topic:CSS-to-homology-correspondence}, the hypergraph produ
 
 If $[n_i, k_i, d_i]$ and $[r_i, k_i^T, d_i^T]$ are the parameters of the codes $\mathrm{ker}H_i$ and $\mathrm{ker}H_i^T$, respectively, taking $d_i^T=\infty$ when $k_i^T=0$, then the hypergraph product has parameters $⟦n_1 n_2 + r_1 r_2, k_1 k_2 + k_1^T k_2^T, \min(d_1, d_2, d_1^T, d_2^T)⟧$.
 
-An algebraic reformulation of HGP codes, together with rate-improved square, symmetric, and two-tile variants, was given in Ref.  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
-Using square seed parity-check matrices yields $⟦2n_1 n_2,2k_1 k_2,\min(d_1,d_2)⟧$, symmetric seeds yield $⟦n_1 n_2,k_1 k_2,\min(d_1,d_2)⟧$, and two-tile cyclic constructions yield $⟦n_1^2,2k_1^2,d_1⟧$; these variants improve the rate of the original Tillich-Zemor family by factors up to four at small block length  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
+An algebraic reformulation of HGP codes, together with several rate-improved variants, was given in Ref.  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
+Seed parity-check matrices with as many rows as columns yield $⟦2n_1 n_2,2k_1 k_2,\min(d_1,d_2)⟧$ codes.
+Symmetric seed matrices, $H_i=H_i^T$, yield $⟦n_1 n_2,k_1 k_2,\min(d_1,d_2)⟧$ codes, and two-tile cyclic constructions yield $⟦n_1^2,2k_1^2,d_1⟧$ codes.
+These variants improve the rate of the original construction from full-rank seed matrices by factors up to four at small block length  ([arXiv:1202.0928](https://arxiv.org/abs/1202.0928)).
 
 ## Encoders
 
@@ -106,6 +109,7 @@ Using square seed parity-check matrices yields $⟦2n_1 n_2,2k_1 k_2,\min(d_1,d_
 - _parent_: [[concepts/qec/homological-product]] — A homological-product code of length-one chain complexes reduces to an HGP code, which is also a special case of multi-dimensional homological products of two length-one chain complexes.
 - _parent_: [[concepts/qec/sc-qldpc]] — Hypergraph-product stabilizer generator matrices can be used as sub-matrices to define a 2D SC-QLDPC code  ([arXiv:2305.00137](https://arxiv.org/abs/2305.00137)).
 - _parent_: [[concepts/qec/galois-hypergraph-product]] — Hypergraph product codes are Galois-qudit hypergraph-product codes for qudit dimension $q=2$.
+- _cousin_: [[concepts/qec/perm-self-dual-css]] — Square hypergraph product codes are permutationally self-dual. Reflecting each of the two grids of qubits about its principal diagonal is an involutive $XZ$-duality. Composed with transversal Hadamard, it yields the Hadamard-SWAP logical gate  ([arXiv:2204.10812](https://arxiv.org/abs/2204.10812)).
 - _cousin_: [`ltc`](https://errorcorrectionzoo.org/c/ltc) — Applying the hypergraph product to an LTC yields a code which provides an explicit example of *No Low-Error Trivial States (NLETS)*  ([arXiv:1510.02082](https://arxiv.org/abs/1510.02082)).
 - _cousin_: [[concepts/qec/xyz-product]] — Hypergraph (XYZ) product codes are constructed out of hypergraph products of two (three) classical linear codes.
 - _cousin_: [[concepts/qec/reinforcement-learning]] — Using reinforcement learning, hypergraph product codes can be further optimized against the erasure channel  ([arXiv:2501.09622](https://arxiv.org/abs/2501.09622)) and can be weight reduced while maintaining distance  ([arXiv:2502.14372](https://arxiv.org/abs/2502.14372)).

@@ -2,7 +2,7 @@
 type: concept
 name: $⟦6k+2,3k,2⟧$ Campbell-Howard code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

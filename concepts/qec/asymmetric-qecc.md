@@ -2,7 +2,7 @@
 type: concept
 name: Asymmetric quantum code (AQC)
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Noise-biased quantum code

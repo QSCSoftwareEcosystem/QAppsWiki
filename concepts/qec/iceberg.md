@@ -2,7 +2,7 @@
 type: concept
 name: $⟦2m,2m-2,2⟧$ error-detecting code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Iceberg code
@@ -17,7 +17,6 @@ related_concepts:
 - concepts/qec/quantum-mds
 - concepts/qec/self-complementary
 - concepts/qec/self-dual-css
-- concepts/qec/stabilizer-over-gf4
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/iceberg
@@ -84,7 +83,6 @@ Detects a single-qubit error.
 - _parent_: [[concepts/qec/qmdpc]] — The $⟦2m,2m-2,2⟧$ error-detecting code is a 1D QMDPC.
 - _parent_: [[concepts/qec/quantum-mds]] — The only nontrivial qubit MDS codes have parameters $⟦5,1,3⟧$, $⟦6,0,4⟧$, and $⟦2m,2m-2,2⟧$ .
 - _parent_: [[concepts/qec/ball-color]] — The $⟦2m,2m-2,2⟧$ error-detecting code is a ball color code  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
-- _parent_: [[concepts/qec/stabilizer-over-gf4]] — The $⟦2m,2m-2,2⟧$ error-detecting code is Hermitian  ([arXiv:2501.17447](https://arxiv.org/abs/2501.17447)).
 - _parent_: [[concepts/qec/self-dual-css]]
 - _parent_: [[concepts/qec/self-complementary]]
 - _cousin_: [`parity_check`](https://errorcorrectionzoo.org/c/parity_check) — The $⟦2m,2m-2,2⟧$ error-detecting code is constructed via the CSS construction from an SPC code and its dual repetition code  ([arXiv:1803.06987](https://arxiv.org/abs/1803.06987)).

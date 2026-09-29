@@ -2,7 +2,7 @@
 type: concept
 name: XY surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Tailored surface code (TSC)
@@ -41,9 +41,9 @@ As a stabilizer code, $⟦n=O(d^2), k=O(1), d⟧$.
 ## Code capacity threshold
 
 - $50\%$ at infinite $Z$ bias with maximum-likelihood decoder  ([arXiv:1812.08186](https://arxiv.org/abs/1812.08186)).
-- $18.7\%$ for standard depolarizing noise with maximum-likelihood decoder  ([arXiv:1812.08186](https://arxiv.org/abs/1812.08186)).
+- $18.8(2)\%$ for standard depolarizing noise with maximum-likelihood decoder  ([arXiv:1812.08186](https://arxiv.org/abs/1812.08186)).
 
 ## Relations
 
-- _parent_: [[concepts/qec/surface]] — The XY surface code is obtained from the surface code by applying $H\sqrt{Z}H$ to all qubits, thereby exchanging $Z\leftrightarrow Y$. While it is equivalent to a CSS surface code with the same distance, but other properties like noise-bias performance can differ significantly.
+- _parent_: [[concepts/qec/surface]] — The XY surface code is obtained from the surface code by applying $H\sqrt{Z}H$ to all qubits, thereby exchanging $Z\leftrightarrow Y$. While it is equivalent to a CSS surface code with the same distance, other properties like noise-bias performance can differ significantly.
 - _cousin_: [[concepts/qec/heavy-hex]] — XY surface code can be adapted for a heavy-hexagonal point set  ([arXiv:2211.14038](https://arxiv.org/abs/2211.14038)).

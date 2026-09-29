@@ -2,12 +2,13 @@
 type: concept
 name: Camara-Ollivier-Tillich code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/qldpc
 - concepts/qec/stabilizer-over-gf4
 sources:
 - raw/error-correction-zoo.md
@@ -36,3 +37,4 @@ Examples include a $(4,8)$-regular 8736-qubit code and a $(4,8)$-regular 3600-qu
 ## Relations
 
 - _parent_: [[concepts/qec/stabilizer-over-gf4]]
+- _parent_: [[concepts/qec/qldpc]]

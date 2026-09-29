@@ -2,7 +2,7 @@
 type: concept
 name: Galois-qudit quantum RM code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -25,7 +25,7 @@ imported_id: galois_reed_muller
 
 ## Description
 
-True Galois-qudit stabilizer code constructed from generalized Reed-Muller (GRM) codes via the Galois-qudit Hermitian construction, the Galois-qudit CSS construction, or directly from their parity-check matrices  ([arXiv:quant-ph/0502001](https://arxiv.org/abs/quant-ph/0502001)) ([arXiv:0712.0103](https://arxiv.org/abs/0712.0103)).
+True Galois-qudit stabilizer code constructed from generalized Reed-Muller (GRM) codes, their punctured or shortened versions, or projective RM codes, via the Galois-qudit Hermitian construction, the Galois-qudit CSS construction, or directly from their parity-check matrices  ([arXiv:quant-ph/0502001](https://arxiv.org/abs/quant-ph/0502001)) ([arXiv:0712.0103](https://arxiv.org/abs/0712.0103)) ([doi:10.1201/9781584889007-18](https://doi.org/10.1201/9781584889007-18)) ([arXiv:0812.5104](https://arxiv.org/abs/0812.5104)).
 
 The CSS construction yields the code
 \begin{align}
@@ -39,6 +39,7 @@ The parameters are
 \end{align}
 where $m(q-1)-v=(q-1)Q+R$ so that $0\leq R\leq q-1$.
 Here $0\leq v_1,v_2 \leq m(q-1)-1$, $q$ is a prime power, and $m$ is a positive integer.
+For $0\leq v_1\leq v_2<n\leq q$, evaluating at only $n$ of the points for $m=1$ yields $⟦n,v_2-v_1,\min(v_1+2,n-v_2)⟧_q$ codes.
 
 Using the code GRM$_{q^2}(v,m)$ for $0\leq v \leq m(q-1)-1$, the Hermitian construction yields the pure quantum code
 \begin{align}
@@ -51,6 +52,7 @@ Using the code GRM$_{q^2}(v,m)$ for $0\leq v \leq m(q-1)-1$, the Hermitian const
 \end{align}
 with $v+1 = (q^2 - 1)Q + R$.
 
+The quantum code itself can also be punctured.
 For a CSS code constructed from classical codes $C_1$ and $C_2$, the punctured code is defined as
 \begin{align}
   P(C) = \{(a_ib_i)_{i=1}^{n} \mid a \in C_1, b \in C_2^{\perp}\}^{\perp}~.
@@ -66,7 +68,8 @@ Likewise, the Hermitian puncture code contains $\mathcal{R}_{q^2}(\mu,m)^\perp|_
 
 ## Protection
 
-The CSS family is pure with distance $\min\{d(v_1^\perp),d(v_2)\}$, while the Hermitian family is pure with distance $d(v^\perp)$; punctured descendants retain at least the parent distance  ([arXiv:quant-ph/0502001](https://arxiv.org/abs/quant-ph/0502001)).
+The CSS family is pure with distance $\min\{d(v_1^\perp),d(v_2)\}$, while the Hermitian family is pure with distance $d(v^\perp)$, both for GRM codes evaluated at all points  ([arXiv:quant-ph/0502001](https://arxiv.org/abs/quant-ph/0502001)).
+Punctured descendants of the quantum code retain at least the parent distance  ([arXiv:quant-ph/0502001](https://arxiv.org/abs/quant-ph/0502001)).
 QRM$_{d}(m)$ quantum codes are $\mathcal{M}_{d}^{m}$ distillation codes of distance $D=2$. We define a $\mathcal{M}_{d}^{m}$ distillation code as any $n$ Galois-qudit stabilizer code $C$ having the following properties: (a) All $M \in \mathcal{M}_{d}^{m}$ are transversal so that $M^{\otimes n}C(M^{\otimes n})^{\dagger} = M_{L}^{\dagger}CM_{L}$, (b) the code has distance $D \geq 2$, and (c) the code has logical pauli operators $X_{L} = X[\mathbf{1}]$ and $Z_{L} = Z[(d-1)\mathbf{1}]$. Here, $\mathbf{1}$ is a shorthand for the vector $(1,1, \dots, 1)$.
 
 ## Rate

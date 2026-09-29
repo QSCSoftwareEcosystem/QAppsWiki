@@ -2,7 +2,7 @@
 type: concept
 name: $⟦3k + 8, k, 2⟧$ triorthogonal code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -41,6 +41,6 @@ The family yields the asymptotic exponent $\gamma = \log_2 \frac{3k+8}{k} \to \l
 ## Relations
 
 - _parent_: [[concepts/qec/quantum-triorthogonal]]
-- _parent_: [[concepts/qec/quantum-divisible]]
+- _parent_: [[concepts/qec/quantum-divisible]] — The family satisfies the level-three quantum divisible conditions for a coefficient vector with $\pm1$ entries  ([arXiv:1709.08658](https://arxiv.org/abs/1709.08658)). Its $X$-type stabilizer weight enumerator is $1+x^8+6x^{2k+4}$, so the stabilizer space is triply even exactly when $k\equiv2\pmod 4$  ([arXiv:1209.2426](https://arxiv.org/abs/1209.2426)). Uniform coefficients $t=(-1,\ldots,-1)$ work in that case, while the $k\equiv0\pmod 4$ members require mixed signs.
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
 - _cousin_: [[concepts/qec/quantum-h]] — The H code $⟦k+4,k,2⟧$ family yields the $⟦3k + 8, k, 2⟧$ family of triorthogonal codes when level-lifted  ([arXiv:1709.08658](https://arxiv.org/abs/1709.08658)).

@@ -2,7 +2,7 @@
 type: concept
 name: Concatenated Steane code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -12,6 +12,7 @@ related_concepts:
 - concepts/qec/holographic-steane
 - concepts/qec/qldpc
 - concepts/qec/qubit-concatenated
+- concepts/qec/self-dual-css
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/concatenated_steane
@@ -50,6 +51,7 @@ Code performance against general Pauli channels has been worked out  ([arXiv:qua
 ## Code capacity threshold
 
 - This family is one of the first to admit a concatenated threshold  ([arXiv:quant-ph/9702058](https://arxiv.org/abs/quant-ph/9702058), [arXiv:quant-ph/9809054](https://arxiv.org/abs/quant-ph/9809054), [arXiv:quant-ph/0207119](https://arxiv.org/abs/quant-ph/0207119), [arXiv:quant-ph/0410047](https://arxiv.org/abs/quant-ph/0410047), [arXiv:quant-ph/0504218](https://arxiv.org/abs/quant-ph/0504218), [arXiv:quant-ph/0703230](https://arxiv.org/abs/quant-ph/0703230), [arXiv:quant-ph/0604090](https://arxiv.org/abs/quant-ph/0604090)); see the book .
+- The bit-flip phase boundary nearly coincides with that of the toric code  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). This is explained by the Kramers-Wannier self-duality of zero-rate PSD codes with a unique threshold  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). Below threshold, exponentially many minimum-weight logical operators compete with the favorable distance scaling $d = n^{\log_7 3}$  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). The result is a finite-size crossover in physical overhead relative to the toric code  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)).
 
 ## Threshold
 
@@ -62,5 +64,6 @@ Code performance against general Pauli channels has been worked out  ([arXiv:qua
 
 - _parent_: [[concepts/qec/holographic-steane]] — A recursively concatenated Steane code is a heptagon holographic code on a tree tensor network.
 - _parent_: [[concepts/qec/qubit-concatenated]] — The combination of the concatenated Steane code and QLDPC codes with non-vanishing rate yields fault-tolerant quantum computation with constant space and polylogarithmic time overheads, even when classical computation time is taken into account  ([arXiv:2411.03683](https://arxiv.org/abs/2411.03683)).
+- _parent_: [[concepts/qec/self-dual-css]] — Each concatenation level is a self-dual CSS code, since transversal physical Hadamard implements the logical Hadamard at every level  ([arXiv:2503.19790](https://arxiv.org/abs/2503.19790)).
 - _cousin_: [[concepts/qec/qldpc]] — The combination of the concatenated Steane code and QLDPC codes with non-vanishing rate yields fault-tolerant quantum computation with constant space and polylogarithmic time overheads, even when classical computation time is taken into account  ([arXiv:2411.03683](https://arxiv.org/abs/2411.03683)).
 - _cousin_: [[concepts/qec/cluster-state]] — The cluster state corresponding to the concatenated Steane code has been worked out  ([arXiv:quant-ph/0307130](https://arxiv.org/abs/quant-ph/0307130)).

@@ -2,7 +2,7 @@
 type: concept
 name: GKP CV-cluster-state code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Hybrid cluster-state code

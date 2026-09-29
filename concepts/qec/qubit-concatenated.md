@@ -2,7 +2,7 @@
 type: concept
 name: Concatenated qubit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -10,6 +10,7 @@ domains:
 related_concepts:
 - concepts/qec/fusion
 - concepts/qec/hamiltonian
+- concepts/qec/perm-self-dual-css
 - concepts/qec/quantum-concatenated
 - concepts/qec/qubits-into-qubits
 sources:
@@ -31,6 +32,8 @@ An inner $C_{\text{in}} = ((n_1,K,d_1))$ and outer $C_{\text{out}} = ((n_2,2,d_2
 
 Concatenating an $((n,2,d))$ qubit code can be done recursively, with the $r$*th level* of concatenation yielding an $((n^r,2,d^r))$ code.
 
+For qubit CSS codes, concatenation is generalized by the mapping cone framework of quantum code embedding  ([arXiv:2507.05361](https://arxiv.org/abs/2507.05361)).
+
 (source: raw/error-correction-zoo.md)
 
 ## Protection
@@ -43,6 +46,7 @@ Concatenating stabilizer codes can help protect against catastrophic errors such
 - Adaptive syndrome extraction for a concatenation of a small error-detecting code and a high-rate, high-distance QLDPC code  ([arXiv:2502.14835](https://arxiv.org/abs/2502.14835)).
 - The effective channel for a concatenation of codes is the composition of the codes' effective channels  ([arXiv:quant-ph/0206061](https://arxiv.org/abs/quant-ph/0206061)).
 - Message passing algorithm for concatenated codes can be equivalent to ML decoding  ([arXiv:quant-ph/0606126](https://arxiv.org/abs/quant-ph/0606126)).
+- In the statistical mechanical mapping of maximum-likelihood decoding, recursively concatenated codes yield classical models on hierarchical lattices, and optimal decoding admits a hierarchical message-passing formulation that, in the fully postselected limit, reduces to an exact real-space renormalization group flow  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)).
 
 ## Fault tolerance
 
@@ -59,3 +63,4 @@ Concatenating stabilizer codes can help protect against catastrophic errors such
 - _parent_: [[concepts/qec/quantum-concatenated]]
 - _cousin_: [[concepts/qec/hamiltonian]] — Concatenated stabilizer code Hamiltonians have been investigated  ([arXiv:0806.2160](https://arxiv.org/abs/0806.2160)).
 - _cousin_: [[concepts/qec/fusion]] — Blocklet concatenation uses concatenation and transversal gates in a way that is tailored to FBQC platforms  ([arXiv:2506.13619](https://arxiv.org/abs/2506.13619)).
+- _cousin_: [[concepts/qec/perm-self-dual-css]] — For a suitable concatenation map, every level of the recursive concatenation of an $⟦n_0,1,d_0⟧$ PSD seed code is finite-size Kramers-Wannier self-dual under the statistical mechanical mapping of bit-flip decoding  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). If the resulting zero-rate family has a unique threshold, this self-duality constrains its optimal bit-flip threshold  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)).

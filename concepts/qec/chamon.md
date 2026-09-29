@@ -2,7 +2,7 @@
 type: concept
 name: Chamon model code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Chamon-Bravyi-Leemhuis-Terhal (CBLT) code
@@ -25,9 +25,12 @@ imported_id: chamon
 
 ## Description
 
-A foliated type-I fracton non-CSS code defined on a cubic lattice using one weight-eight stabilizer generator acting on the eight vertices of each cube in the lattice  ([arXiv:1908.08049](https://arxiv.org/abs/1908.08049)).
+A foliated type-I fracton non-CSS code defined on a cubic lattice, with qubits on the even-parity sites and one weight-six stabilizer generator on each odd-parity site  ([arXiv:1006.4871](https://arxiv.org/abs/1006.4871)) ([arXiv:2206.12791](https://arxiv.org/abs/2206.12791)).
 
-In the realization as an XYZ product of three repetition codes  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)), qubits live on the vertices and faces of a cubic lattice, each stabilizer generator has weight six, and the natural logical operators are membrane-like rather than string-like  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
+Each generator acts as $X$, $Y$, and $Z$ on its two nearest-neighbor qubits along the $x$, $y$, and $z$ axes, respectively  ([arXiv:1006.4871](https://arxiv.org/abs/1006.4871)).
+A different choice of lattice vectors yields one qubit per vertex and one generator per cube, acting on six of its eight vertices  ([arXiv:1908.08049](https://arxiv.org/abs/1908.08049)).
+
+In the realization as an XYZ product of three repetition codes  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)), qubits live on the vertices and faces of a cubic lattice, and the natural logical operators are membrane-like rather than string-like  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
 
 Variants include a CSS model that is expected to have the same excitation structure  ([arXiv:1603.04442](https://arxiv.org/abs/1603.04442)) and a modified Chamon code based on the XYZ product code construction  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
 

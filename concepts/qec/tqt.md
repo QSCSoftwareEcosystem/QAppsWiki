@@ -2,7 +2,7 @@
 type: concept
 name: Twisted quantum triple (TQT) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - 3D Dijkgraaf-Witten gauge theory code

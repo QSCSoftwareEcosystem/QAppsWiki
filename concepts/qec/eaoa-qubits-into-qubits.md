@@ -2,12 +2,13 @@
 type: concept
 name: EAOA qubit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/eaoaecc
 - concepts/qec/oa-qubits-into-qubits
 sources:
 - raw/error-correction-zoo.md
@@ -30,5 +31,5 @@ This family encompasses ordinary entanglement-assisted subspace qubit codes, ent
 
 ## Relations
 
-- _parent_: [`eaoaecc`](https://errorcorrectionzoo.org/c/eaoaecc) — An EAOA QECC defined over qubits is an EAOA qubit code.
+- _parent_: [[concepts/qec/eaoaecc]] — An EAOA QECC defined over qubits is an EAOA qubit code.
 - _cousin_: [[concepts/qec/oa-qubits-into-qubits]] — EAOA qubit codes utilize additional ancillary qubits in a pre-shared entangled state, but reduce to ordinary OA qubit codes when said qubits are interpreted as noiseless physical qubits.

@@ -2,7 +2,7 @@
 type: concept
 name: $⟦2^r+r-1,1,2⟧$ morphed simplex code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $⟦2^r+r-1,1,2⟧$ morphed quantum RM code
@@ -28,13 +28,13 @@ imported_id: morphed_diagonal_clifford
 ## Description
 
 A member of a family of codes obtained by morphing the $⟦2^{r+1}-1,1,3⟧$ simplex codes on a region whose child code is a $⟦2^r,r,2⟧$ hypercube code  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
-The morphing process replaces a subset of qubits with their logical qubits, yielding a code with parameters $⟦2^r+r-1,1,2⟧$ that inherits a diagonal gate at the $(r-1)$st level of the Clifford hierarchy from the parent code.
+The morphing process replaces a subset of qubits with their logical qubits, yielding a code with parameters $⟦2^r+r-1,1,2⟧$ that inherits a diagonal gate at the $r$th level of the Clifford hierarchy from the parent code.
 
 (source: raw/error-correction-zoo.md)
 
 ## General gates
 
-- Each code implements a diagonal gate at the $(r-1)$st level of the \term{Clifford hierarchy} using transversal operations and $C^{r}Z$ gates  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
+- Each code implements a diagonal gate at the $r$th level of the \term{Clifford hierarchy} using transversal operations and $C^{r-1}Z$ gates  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
 
 ## Relations
 

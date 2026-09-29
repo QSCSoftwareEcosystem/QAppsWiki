@@ -2,7 +2,7 @@
 type: concept
 name: Bacon-Shor code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -32,7 +32,7 @@ imported_id: bacon_shor
 Subsystem CSS code defined on an $m_1 \times m_2$ lattice of qubits that generalizes the $⟦9,1,3⟧$ (subspace) Shor code.
 It is said to be *symmetric* when $m_1=m_2$, and *asymmetric* otherwise.
 
-The $X$-type and $Z$-type stabilizers are defined as $X$ and $Z$ operators acting on all qubits on adjacent columns and rows, respectively. Let $O_{i,j}$ denote an operator acting on the qubit at a position $(i,j)$ on the lattice, with $i\in\{0,1,\ldots ,m_1-1\}$ and $j\in\{0,1,\ldots,m_2-1\}$. The code's stabilizer group is
+The $X$-type and $Z$-type stabilizers are defined as $X$ and $Z$ operators acting on all qubits on adjacent rows and columns, respectively. Let $O_{i,j}$ denote an operator acting on the qubit at a position $(i,j)$ on the lattice, with $i\in\{0,1,\ldots ,m_1-1\}$ and $j\in\{0,1,\ldots,m_2-1\}$. The code's stabilizer group is
 \begin{align}
 \mathsf{S}=\langle X_{i,*}X_{i+1,*},Z_{*,j}Z_{*,j+1}\rangle~,
 \end{align}
@@ -52,7 +52,7 @@ Applying a period-four measurement schedule to the original Bacon-Shor code yiel
 
 ## Protection
 
-The $⟦m_1 m_2,1,min(m_1,m_2)⟧$ variant has distance $d=min(m_1,m_2)$.
+The $⟦m_1 m_2,1,\min(m_1,m_2)⟧$ variant has distance $d=\min(m_1,m_2)$.
 In a symmetric 3-dimensional case (defined on a cubic lattice) with $L^3$ qubits, the code has the parameters $⟦L^3,1,L⟧$.
 Bacon-Shor code parameters can be optimized by changing the block geometry, yielding good performance against biased noise  ([arXiv:1209.0794](https://arxiv.org/abs/1209.0794)).
 
@@ -93,7 +93,6 @@ A non-LDPC family of Bacon-Shor codes achieves a distance of order $\Omega(n^{1-
 - Utilizing the mapping of the effect of the noise to a statistical mechanical model  ([arXiv:quant-ph/0110143](https://arxiv.org/abs/quant-ph/0110143), [arXiv:2002.11733](https://arxiv.org/abs/2002.11733)) yields several copies of the 1D Ising model  ([arXiv:0908.4246](https://arxiv.org/abs/0908.4246)).
 - While check operators are few-body, stabilizer weights scale with the number of qubits, and stabilizer expectation values are obtained by taking products of gauge-operator expectation values. It is thus not clear how to extract stabilizer values in a fault-tolerant manner  ([arXiv:2009.03921](https://arxiv.org/abs/2009.03921), [arXiv:2107.02194](https://arxiv.org/abs/2107.02194)).
 - Autonomous QEC  ([arXiv:1212.3564](https://arxiv.org/abs/1212.3564)).
-- Applying a period-four measurement schedule to the original Bacon-Shor code yields a numerical threshold under circuit-level noise  ([arXiv:2504.02749](https://arxiv.org/abs/2504.02749)).
 
 ## Realizations
 

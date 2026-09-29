@@ -2,7 +2,7 @@
 type: concept
 name: Singleton-bound approaching AQECC
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -30,7 +30,7 @@ imported_id: quantum_singleton
 A member of an approximate quantum code family of rate $R$ that can tolerate adversarial errors nearly saturating the quantum Singleton bound of $(1-R)/2$.
 The formulation of such codes relies on a notion of *quantum list decoding*  ([arXiv:quant-ph/0605086](https://arxiv.org/abs/quant-ph/0605086), [arXiv:2212.09935](https://arxiv.org/abs/2212.09935)).
 
-One construction first builds constant-alphabet quantum list-decodable CSS codes from folded quantum Reed-Solomon outer codes, random CSS inner codes, and quantum Alon-Edmonds-Luby distance amplification/alphabet reduction, and then compiles them into AQECCs using purity-testing codes and robust secret sharing  ([arXiv:2212.09935](https://arxiv.org/abs/2212.09935)).
+Using the concatenation convention of the Zoo, one construction first builds constant-alphabet quantum list-decodable CSS codes from folded quantum Reed-Solomon inner codes, random CSS outer codes, and quantum Alon-Edmonds-Luby distance amplification/alphabet reduction, and then compiles them into AQECCs using purity-testing codes and robust secret sharing  ([arXiv:2212.09935](https://arxiv.org/abs/2212.09935)).
 The resulting codes are efficiently encodable and decodable, and descriptions of the codes can be sampled by an efficient randomized algorithm with $2^{-\Omega(n)}$ failure probability.
 
 (source: raw/error-correction-zoo.md)

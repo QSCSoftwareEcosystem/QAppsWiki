@@ -2,7 +2,7 @@
 type: concept
 name: Raussendorf-Bravyi-Harrington (RBH) cluster-state code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Raussendorf-Harrington-Goyal (RHG) cluster-state code

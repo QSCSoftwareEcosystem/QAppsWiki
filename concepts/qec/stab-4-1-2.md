@@ -2,7 +2,7 @@
 type: concept
 name: $⟦4,1,2⟧$ twist-defect code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -51,10 +51,10 @@ Detects a single-qubit error or single erasure as a distance-two code.
 ## Transversal gates
 
 - Weight-two transversal logical Pauli $X,Y,Z$ operations  ([arXiv:quant-ph/0512170](https://arxiv.org/abs/quant-ph/0512170)).
-
-## General gates
-
-- A set of local Clifford operations and permutations (in the twist-defect realization, braiding the four genons) generates the full single-qubit Clifford group  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
+- After a local-Clifford deformation, a cyclic qubit permutation implements a logical $S$ gate in a suitable logical basis  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+Single-qubit Clifford gates and qubit permutations together realize the full single-qubit logical Clifford group  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951), [arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+The code is the unique smallest distance-two stabilizer code to realize this group up to local-Clifford and permutation equivalence  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+In the twist-defect interpretation, these operations include braiding the four genons  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
 
 ## Realizations
 

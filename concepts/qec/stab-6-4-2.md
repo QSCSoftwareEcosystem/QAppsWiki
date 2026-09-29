@@ -2,7 +2,7 @@
 type: concept
 name: $⟦6,4,2⟧$ error-detecting code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -49,6 +49,7 @@ See  ([arXiv:2403.16054](https://arxiv.org/abs/2403.16054)) for a set of logical
 
 - CNOT and Hadamard gates  ([arXiv:2403.16054](https://arxiv.org/abs/2403.16054)).
 - A $CZ$ gate implemented by transversal $S$ and $S^{\dagger}$  ([arXiv:1912.10063](https://arxiv.org/abs/1912.10063)); see also  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
+- The code is a shortest self-dual CSS code whose qubit permutations realize the full symplectic logical group $Sp(4,2)$ at distance two  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
 
 ## General gates
 

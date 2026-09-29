@@ -2,7 +2,7 @@
 type: concept
 name: Galois-qudit expander code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Galois-qudit Sipser-Spielman code
@@ -25,9 +25,9 @@ imported_id: galois_expander
 
 ## Description
 
-Galois-qudit CSS code obtained from tensor products of chain complexes associated with an explicit family of expander codes with Reed-Solomon local checks.
+Galois-qudit CSS code obtained from tensor products of chain complexes associated with $q$-ary expander codes.
 
-In the explicit construction of  ([arXiv:2410.14662](https://arxiv.org/abs/2410.14662)), these expander-code complexes contain planted GRM codewords, yielding a *multiplication property* that allows QLDPC Galois-qudit quantum expander codes with transversal $C^{r-1} Z$ gates while achieving $D\geq N^{1/r}/\operatorname{poly}(\log N)$ and $w\leq\operatorname{poly}(\log N)$.
+In the explicit construction of expander codes with Reed-Solomon local checks  ([arXiv:2410.14662](https://arxiv.org/abs/2410.14662)), these expander-code complexes contain planted GRM codewords, yielding a *multiplication property* that allows QLDPC Galois-qudit quantum expander codes with transversal $C^{r-1} Z$ gates while achieving $D\geq N^{1/r}/\operatorname{poly}(\log N)$ and $w\leq\operatorname{poly}(\log N)$.
 
 (source: raw/error-correction-zoo.md)
 

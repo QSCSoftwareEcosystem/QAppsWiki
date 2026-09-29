@@ -2,7 +2,7 @@
 type: concept
 name: $((8,16,2))$ $PG(3,2)$ code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -37,7 +37,7 @@ No Pauli stabilizer subsystem phantom code of type $⟦8,4,r,d\geq2⟧$ exists, 
 
 ## Transversal gates
 
-- Even physical-qubit permutations act as $GL(4,\mathbb{F}_2)$ on the logical basis, and odd permutations extend the permutation automorphism group to the full symmetric group $S_8$  ([arXiv:2604.15111](https://arxiv.org/abs/2604.15111)).
+- Even physical-qubit permutations act as $GL(4,2)$ on the logical basis, and odd permutations extend the permutation automorphism group to the full symmetric group $S_8$  ([arXiv:2604.15111](https://arxiv.org/abs/2604.15111)).
 - $T^{\otimes 8}$ is a transversal non-Clifford gate implementing $2\ket{\overline{0}}\bra{\overline{0}}-I$ on the logical subspace  ([arXiv:2604.15111](https://arxiv.org/abs/2604.15111)).
 - A specific odd permutation implements a non-Clifford logical involution, and the full permutation automorphism group is $S_8$  ([arXiv:2604.15111](https://arxiv.org/abs/2604.15111)).
 

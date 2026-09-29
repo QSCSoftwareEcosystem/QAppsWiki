@@ -2,7 +2,7 @@
 type: concept
 name: Galois-qudit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $\mathbb{F}_q$-qudit code

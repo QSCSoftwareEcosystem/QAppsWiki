@@ -2,7 +2,7 @@
 type: concept
 name: Spacetime circuit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -10,6 +10,7 @@ domains:
 related_concepts:
 - concepts/qec/dynamic-gen
 - concepts/qec/qldpc
+- concepts/qec/qubit-stabilizer
 - concepts/qec/qubit-subsystem-stabilizer
 - concepts/qec/surface
 sources:
@@ -55,8 +56,9 @@ Two circuits are *fault-equivalent* if all undetectable faults on one circuit ha
 
 ## Relations
 
-- _parent_: [[concepts/qec/qldpc]] — Spacetime circuit codes are useful for constructing fault-tolerant syndrome extraction circuits for qubit QLDPC codes. General spacetime circuit codes can be sparsified to yield QLDPC spacetime circuit codes  ([arXiv:2304.05943](https://arxiv.org/abs/2304.05943)).
+- _parent_: [[concepts/qec/qubit-stabilizer]] — The stabilizer generators of a spacetime circuit code are obtained by backpropagating the parity checks of the outcome code of a Clifford circuit  ([arXiv:2304.05943](https://arxiv.org/abs/2304.05943)).
 - _parent_: [[concepts/qec/dynamic-gen]]
+- _cousin_: [[concepts/qec/qldpc]] — Spacetime circuit codes are useful for constructing fault-tolerant syndrome extraction circuits for qubit QLDPC codes. General spacetime circuit codes can be sparsified to yield QLDPC spacetime circuit codes  ([arXiv:2304.05943](https://arxiv.org/abs/2304.05943)).
 - _cousin_: [`binary_linear`](https://errorcorrectionzoo.org/c/binary_linear) — The set of measurement outcomes of a Clifford circuit can be made into a classical binary linear code.
 Error syndromes of the spacetime circuit code can be used to obtain the parity checks of the outcome code.
 - _cousin_: [[concepts/qec/surface]] — Stabilizer generators of a spacetime code are called *detectors* in Refs.  ([arXiv:2103.02202](https://arxiv.org/abs/2103.02202), [arXiv:2304.05943](https://arxiv.org/abs/2304.05943)).

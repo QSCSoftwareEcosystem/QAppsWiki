@@ -2,7 +2,7 @@
 type: concept
 name: $⟦8,2,3⟧$ Hermitian code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -57,6 +57,6 @@ which is equivalent to .
 
 - _parent_: [[concepts/qec/stabilizer-over-gf4]]
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
-- _cousin_: [[concepts/qec/qubit-concatenated]] — Applying the BLT mapping to the $⟦8,2,3⟧$ Hermitian code and concatenating each qubit pair with the $⟦4,2,2⟧$ code yields a $⟦32,4,6⟧$ self-dual CSS code  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)).
-- _cousin_: [[concepts/qec/self-dual-css]] — Applying the BLT mapping to the $⟦8,2,3⟧$ Hermitian code and concatenating each qubit pair with the $⟦4,2,2⟧$ code yields a $⟦32,4,6⟧$ self-dual CSS code  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)).
-- _cousin_: [[concepts/qec/stab-4-2-2]] — Applying the BLT mapping to the $⟦8,2,3⟧$ Hermitian code and concatenating each qubit pair with the $⟦4,2,2⟧$ code yields a $⟦32,4,6⟧$ self-dual CSS code  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)).
+- _cousin_: [[concepts/qec/qubit-concatenated]] — Applying concatenated symplectic doubling to the $⟦8,2,3⟧$ Hermitian code yields a $⟦32,4,6⟧$ self-dual CSS code  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)).
+- _cousin_: [[concepts/qec/self-dual-css]] — Applying concatenated symplectic doubling to the $⟦8,2,3⟧$ Hermitian code yields a $⟦32,4,6⟧$ self-dual CSS code  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)).
+- _cousin_: [[concepts/qec/stab-4-2-2]] — Applying concatenated symplectic doubling to the $⟦8,2,3⟧$ Hermitian code yields a $⟦32,4,6⟧$ self-dual CSS code  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)).

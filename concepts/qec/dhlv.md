@@ -2,13 +2,12 @@
 type: concept
 name: Dinur-Hsieh-Lin-Vidick (DHLV) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
-- concepts/qec/balanced-product
 - concepts/qec/good-qldpc
 - concepts/qec/lifted-product
 - concepts/qec/qubit-generalized-homological-product-css
@@ -37,14 +36,13 @@ Asymptotically good QLDPC codes.
 
 ## Decoders
 
-- Linear-time decoder utilizing the small set-flip decoder  ([arXiv:2206.06557](https://arxiv.org/abs/2206.06557)) for $Z$ errors and a reconstruction procedure for $X$ errors  ([arXiv:2206.07750](https://arxiv.org/abs/2206.07750)).
+- Linear-time decoder utilizing the small set-flip decoder  ([arXiv:1504.00822](https://arxiv.org/abs/1504.00822)) for $Z$ errors and a reconstruction procedure for $X$ errors  ([arXiv:2206.07750](https://arxiv.org/abs/2206.07750)).
 
 ## Relations
 
 - _parent_: [[concepts/qec/qubit-generalized-homological-product-css]]
-- _parent_: [[concepts/qec/lifted-product]] — DHLV codes are LP codes  ([arXiv:2403.03651](https://arxiv.org/abs/2403.03651)).
+- _parent_: [[concepts/qec/lifted-product]] — DHLV codes are LP codes that can be obtained from a balanced product of two expander codes  ([arXiv:2403.03651](https://arxiv.org/abs/2403.03651)).
 - _cousin_: [[concepts/qec/good-qldpc]] — DHLV code construction yields asymptotically good QLDPC codes.
 - _cousin_: [`regular_binary_tanner`](https://errorcorrectionzoo.org/c/regular_binary_tanner) — Regular binary Tanner codes are used in constructing quantum DHLV codes.
 - _cousin_: [`tensor`](https://errorcorrectionzoo.org/c/tensor) — Tensor codes are used in constructing quantum DHLV codes.
-- _cousin_: [[concepts/qec/balanced-product]] — DHLV codes can be obtained from a balanced product of two expander codes  ([arXiv:2403.03651](https://arxiv.org/abs/2403.03651)).
 - _cousin_: [[concepts/qec/topological]] — DHLV codes are expected to realize topological quantum spin glass order  ([arXiv:2412.13248](https://arxiv.org/abs/2412.13248)).

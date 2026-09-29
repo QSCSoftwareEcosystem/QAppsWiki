@@ -2,7 +2,7 @@
 type: concept
 name: Distance-balanced code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -40,6 +40,9 @@ The original distance-balancing procedure  ([arXiv:1611.03790](https://arxiv.org
 Various procedures performing *weight reduction*  ([arXiv:1611.03790](https://arxiv.org/abs/1611.03790), [arXiv:2102.10030](https://arxiv.org/abs/2102.10030), [arXiv:2402.05228](https://arxiv.org/abs/2402.05228)) take in a stabilizer code and output a longer code with bounded stabilizer-generator weight.
 Hastings' original construction  ([arXiv:1611.03790](https://arxiv.org/abs/1611.03790)) makes a qubit CSS code QLDPC while preserving the number of logical qubits and keeping the block length polynomial in the original one.
 The weight reduction procedure of Ref.  ([arXiv:2402.05228](https://arxiv.org/abs/2402.05228)) has been extended to subsystem qubit stabilizer codes  ([arXiv:2410.10194](https://arxiv.org/abs/2410.10194)).
+The coning step of Hastings' procedure  ([arXiv:2102.10030](https://arxiv.org/abs/2102.10030)) is an explicit use of a height-1 mapping cone  ([arXiv:2507.05361](https://arxiv.org/abs/2507.05361)).
+Because this cone is regular, the coning step preserves the logical operators of the input code  ([arXiv:2507.05361](https://arxiv.org/abs/2507.05361)).
+Weight reduction has been extended to non-CSS qubit stabilizer codes via the symplectic cone framework  ([arXiv:2608.16995](https://arxiv.org/abs/2608.16995)).
 \end{defterm}
 
 (source: raw/error-correction-zoo.md)

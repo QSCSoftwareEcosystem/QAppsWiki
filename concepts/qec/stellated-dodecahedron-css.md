@@ -2,13 +2,14 @@
 type: concept
 name: $⟦30,8,3⟧$ Bring code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Small stellated dodecahedron code
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/perm-self-dual-css
 - concepts/qec/small-distance-qubit-stabilizer
 - concepts/qec/two-dimensional-hyperbolic-surface
 sources:
@@ -42,6 +43,7 @@ Its qubits and stabilizer generators lie on the vertices of the small stellated 
 
 - _parent_: [[concepts/qec/two-dimensional-hyperbolic-surface]]
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
+- _parent_: [[concepts/qec/perm-self-dual-css]] — The Bring code is permutationally self-dual  ([arXiv:2202.06647](https://arxiv.org/abs/2202.06647)).
 - _cousin_: [`polyhedron`](https://errorcorrectionzoo.org/c/polyhedron) — Bring code and related codes listed in  ([arXiv:1712.07666](https://arxiv.org/abs/1712.07666)) arrange qubits and stabilizer generators on star polyhedra.
 - _cousin_: [`golay`](https://errorcorrectionzoo.org/c/golay) — The automorphism group of the parity-check matrix of the Golay code is the same as a certain automorphism group of the Bring code  ([arXiv:2202.06647](https://arxiv.org/abs/2202.06647)).
 - _cousin_: [`dodecahedron`](https://errorcorrectionzoo.org/c/dodecahedron) — The qubits and stabilizer generators of the $⟦30,8,3⟧$ Bring code lie on the vertices of the small stellated dodecahedron.

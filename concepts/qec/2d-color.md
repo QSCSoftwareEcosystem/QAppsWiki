@@ -2,7 +2,7 @@
 type: concept
 name: 2D color code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -36,6 +36,7 @@ Each face hosts two stabilizer generators, a Pauli-$X$ and a Pauli-$Z$ string ac
 
 Most translation-invariant color codes are defined on trivalent planar graphs with three-colorable faces.
 The three admissible uniform tilings are the 6.6.6 (honeycomb) tiling, the 4.8.8 (square octagon) tiling, and the 4.6.12 tiling  ([arXiv:1108.5738](https://arxiv.org/abs/1108.5738)).
+The smallest distance-four codes on tori tiled in these three ways are the $⟦18,4,4⟧$ code, the $⟦16,4,4⟧$ code, and a $⟦36,4,4⟧$ code, respectively.
 Non-uniform tilings include the [4.6.8, 6.8.8] and [4.6.8, 4.8.12] tilings  ([arXiv:1801.08143](https://arxiv.org/abs/1801.08143)).
 More general admissible tilings can be obtained via a fattening procedure  ([arXiv:cond-mat/0607736](https://arxiv.org/abs/cond-mat/0607736)); see also a construction based on the more general quantum pin codes  ([arXiv:1906.11394](https://arxiv.org/abs/1906.11394)).
 

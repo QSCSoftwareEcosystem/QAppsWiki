@@ -2,7 +2,7 @@
 type: concept
 name: $⟦6,2,2⟧$ $C_6$ code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -14,7 +14,6 @@ related_concepts:
 - concepts/qec/kls
 - concepts/qec/quantum-h
 - concepts/qec/qubit-concatenated
-- concepts/qec/stabilizer-over-gf4
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/stab_6_2_2
@@ -79,6 +78,5 @@ Various magic-state distillation protocols exist for the $⟦4,2,2⟧$ qubit cod
 - _parent_: [[concepts/qec/quantum-h]] — The $⟦k+4,k,2⟧$ H code for $k=2$ is the $C_6$ code.
 - _parent_: [[concepts/qec/goy]] — The Ganti-Onunkwo-Young code for $r=1$ is the $C_6$ code.
 - _parent_: [[concepts/qec/kls]] — The Khesin-Lu-Shor code for $r=2$ and $m=2^r - 1 = 3$ is the $C_6$ code.
-- _parent_: [[concepts/qec/stabilizer-over-gf4]] — The $C_6$ code is Hermitian  ([arXiv:2501.17447](https://arxiv.org/abs/2501.17447)).
 - _cousin_: [[concepts/qec/css-6-1-2]] — Fixing one logical qubit of the $⟦6,2,2⟧$ $C_6$ code to $|Y^{-}\rangle_L$ yields this $⟦6,1,2⟧$ code  ([arXiv:2507.10519](https://arxiv.org/abs/2507.10519)).
 - _cousin_: [[concepts/qec/qubit-concatenated]] — Concatenations of $⟦4,2,2⟧$ and $C_6$ codes yield fault-tolerant quantum computation schemes  ([arXiv:quant-ph/0410199](https://arxiv.org/abs/quant-ph/0410199)) admitting a post-selected threshold  ([arXiv:quant-ph/0608018](https://arxiv.org/abs/quant-ph/0608018), [arXiv:quant-ph/0703264](https://arxiv.org/abs/quant-ph/0703264)) (see also Ref.  ([arXiv:quant-ph/0612073](https://arxiv.org/abs/quant-ph/0612073))) and the Meier-Eastin-Knill (MEK) magic-state distillation protocols  ([arXiv:1204.4221](https://arxiv.org/abs/1204.4221)). Concatenating quantum Hamming codes on top of the $⟦4,2,2⟧$ and $C_6$ codes yields fault-tolerant quantum computation with constant space and quasi-polylogarithmic time overheads  ([arXiv:2402.09606](https://arxiv.org/abs/2402.09606)). In the optimized protocol of Ref.  ([arXiv:2402.09606](https://arxiv.org/abs/2402.09606)), a level-five $C_4/C_6$ code underlies concatenated quantum Hamming codes $\mathcal{Q}_5,\mathcal{Q}_6,\mathcal{Q}_7,\mathcal{Q}_7$, yielding a $2.5\%$ threshold and space overheads $162$ and $373$ physical qubits per logical qubit at physical error rate $0.1\%$ for logical CNOT error rates $10^{-10}$ and $10^{-24}$, respectively.

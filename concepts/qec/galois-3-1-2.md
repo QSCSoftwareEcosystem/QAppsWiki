@@ -2,7 +2,7 @@
 type: concept
 name: $⟦3,1,2⟧_4$ three-Galois-quartrit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -30,7 +30,7 @@ imported_id: galois_3_1_2
 
 Three-Galois-qudit CSS code over $\mathbb{F}_4=\{0,1,\omega,\omega^2\}$ that encodes one logical Galois qudit and detects a single-qudit error.
 
-Its $X$- and $Z$-type stabilizer check matrices are both
+Its $X$- and $Z$-type stabilizer check matrices are both  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927))
 \begin{align}
   H_X=H_Z=\begin{pmatrix}1&\omega&\omega^2\end{pmatrix}~.
 \end{align}
@@ -45,7 +45,7 @@ Detects a single Galois-qudit error. It is a quantum MDS code, saturating the qu
 ## Relations
 
 - _parent_: [[concepts/qec/galois-polynomial]] — The $⟦3,1,2⟧_4$ code is constructed from the shortened RS$_4$ code  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
-- _parent_: [[concepts/qec/galois-quad-residue]] — The $⟦3,1,2⟧_4$ code is constructed from the shortened RS$_4$ code  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
+- _parent_: [[concepts/qec/galois-quad-residue]] — The $⟦3,1,2⟧_4$ code is the $p=3$ member of the quantum QR codes over $\mathbb{F}_4$ of prime length $p$  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)). It is constructed from the shortened RS$_4$ code, which is the smallest quaternary QR code. Its $X$- and $Z$-type stabilizer spaces both equal the dual of this QR code, spanned by $(1,\omega,\omega^2)$. This dual is self-orthogonal, as it is for all prime lengths $p\equiv 3$ modulo 8  ([doi:10.1016/0097-3165(78)90021-3](https://doi.org/10.1016/0097-3165(78)90021-3), [arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
 - _parent_: [[concepts/qec/quantum-mds]] — The $⟦3,1,2⟧_4$ code saturates the quantum Singleton bound.
 - _parent_: [[concepts/qec/small-distance-quantum]]
 - _cousin_: [`reed_solomon_4`](https://errorcorrectionzoo.org/c/reed_solomon_4) — The $⟦3,1,2⟧_4$ code is constructed from the shortened RS$_4$ code  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).

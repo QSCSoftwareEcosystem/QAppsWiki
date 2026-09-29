@@ -2,7 +2,7 @@
 type: concept
 name: Triangular surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Triangle surface code
@@ -30,7 +30,7 @@ Triangle codes can be viewed as three conjoined surface-code patches projected i
 Symmetric distance-$d$ triangle codes use $3d^2/4+1/4$ data qubits, i.e., about $25\%$ fewer than the rotated surface code for a given odd distance.
 Logical $\overline{X}$, $\overline{Y}$, and $\overline{Z}$ operators can be supported on the three sides of the triangle, enabling initialization and measurement in any Pauli basis.
 
-The size of the triangular patches and which patch encodes data versus acts as ancillas for gates depends on the initialization and measurement procedures.
+The size of the triangular patches and which patch encodes data versus acts as ancillas for gates depend on the initialization and measurement procedures.
 See Ref.  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)) for tables and figures.
 
 (source: raw/error-correction-zoo.md)
@@ -72,7 +72,7 @@ Symmetric distance-$d$ triangle codes use $3d^2/4+1/4$ data qubits per logical q
 ## Threshold
 
 - $3.2\%$ bit-flip error-correction threshold for noisy syndrome measurements and $2.6\%$ for bit-phase flip noise. The decoder used is a decoding graph as described above  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)).
-- In general, the triangular surface code has a threshold of similar magnitude to the toric code for uncorrelated $X$ and $Z$ errors. For correlated errors, the triangle code has a lower threshold by a factor of about $36$  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)).
+- In general, the triangular surface code has a provable threshold of similar magnitude to that of the toric code for uncorrelated $X$ and $Z$ errors. For correlated errors, the provable threshold is lower by a factor of about $36$  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)).
 
 ## Relations
 

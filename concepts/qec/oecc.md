@@ -2,7 +2,7 @@
 type: concept
 name: Subsystem QECC
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Operator QECC (OQECC)
@@ -10,6 +10,7 @@ aliases:
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/oaecc
 - concepts/qec/qecc
 sources:
 - raw/error-correction-zoo.md
@@ -67,7 +68,7 @@ No additional OQEC conditions are needed to tolerate imperfect initialization: u
 
 ## Relations
 
-- _parent_: [`oaecc`](https://errorcorrectionzoo.org/c/oaecc) — An OAQECC which has gauge structure (e.g., gauge qubits) but no block structure is a subsystem QECC.
+- _parent_: [[concepts/qec/oaecc]] — An OAQECC which has gauge structure (e.g., gauge qubits) but no block structure is a subsystem QECC.
 - _cousin_: [[concepts/qec/qecc]] — A subsystem QECC reduces to an ordinary (i.e., subspace) QECC when the gauge subsystem is trivial. Conversely, any QECC with a tensor-product logical subspace can be turned into a subsystem code by treating a logical tensor factor as a gauge subsystem.
 
 ## Notes

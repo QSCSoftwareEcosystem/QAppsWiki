@@ -2,13 +2,14 @@
 type: concept
 name: Kitaev honeycomb code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
 - concepts/qec/2d-bosonization
+- concepts/qec/bacon-shor
 - concepts/qec/qubit-subsystem-stabilizer
 - concepts/qec/qudit-znone
 - concepts/qec/surface
@@ -51,6 +52,7 @@ Its ground state lies in the vortex-free sector, and the gapped $A$ phases reali
 - _parent_: [[concepts/qec/qubit-subsystem-stabilizer]]
 - _parent_: [[concepts/qec/qudit-znone]] — The Kitaev honeycomb code is the $q=2$ instance of the $\mathbb{Z}_q^{(1)}$ subsystem code  ([arXiv:2211.03798](https://arxiv.org/abs/2211.03798)).
 - _cousin_: [[concepts/qec/tetron]] — Embedding each physical qubit into two fermions via the tetron code is useful for exactly solving the Kitaev honeycomb model Hamiltonian  ([arXiv:cond-mat/0506438](https://arxiv.org/abs/cond-mat/0506438)) and other qubit Hamiltonians on certain graphs  ([arXiv:2003.05465](https://arxiv.org/abs/2003.05465), [arXiv:2012.07857](https://arxiv.org/abs/2012.07857)).
+- _cousin_: [[concepts/qec/bacon-shor]] — The gauge generators of both codes define spin Hamiltonians. In the framework of Ref.  ([arXiv:2201.07254](https://arxiv.org/abs/2201.07254)), a line-graph frustration graph yields a free-fermion solution. The static Kitaev honeycomb code is solvable but encodes no logical qubits  ([arXiv:1012.0425](https://arxiv.org/abs/1012.0425), [arXiv:2211.03798](https://arxiv.org/abs/2211.03798)), while completing the frustration graph of the 2D Bacon-Shor code to a line graph yields a solvable checkerboard-lattice model with exact topological qubits  ([arXiv:2201.07254](https://arxiv.org/abs/2201.07254)).
 - _cousin_: [[concepts/qec/2d-bosonization]] — Embedding each physical qubit into two fermions via the tetron code is useful for exactly solving the Kitaev honeycomb model Hamiltonian  ([arXiv:cond-mat/0506438](https://arxiv.org/abs/cond-mat/0506438)) and other qubit Hamiltonians on certain graphs  ([arXiv:2003.05465](https://arxiv.org/abs/2003.05465), [arXiv:2012.07857](https://arxiv.org/abs/2012.07857)). When done in reverse, this embedding can be thought of as a 2D bosonization fermion-into-qubit encoding by converting to a relabeled square lattice and performing single-qubit rotations  ([arXiv:1711.00515](https://arxiv.org/abs/1711.00515)) ([arXiv:2201.05153](https://arxiv.org/abs/2201.05153)).
 - _cousin_: [[concepts/qec/surface]] — The Kitaev honeycomb code can be obtained from the square-lattice surface code by gauging out the anyon $em$  ([arXiv:2211.03798](https://arxiv.org/abs/2211.03798)). During this process, the square lattice is effectively expanded to a honeycomb tiling  ([arXiv:2211.03798](https://arxiv.org/abs/2211.03798)).
 - _cousin_: [`honeycomb`](https://errorcorrectionzoo.org/c/honeycomb) — The Kitaev honeycomb code is defined on the honeycomb tiling.

@@ -2,7 +2,7 @@
 type: concept
 name: 3D bosonization code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -24,7 +24,7 @@ imported_id: 3d_bosonization
 
 ## Description
 
-A mapping from a 3D lattice quadratic Hamiltonian of Majorana modes to a lattice of qubits which realizes a $\mathbb{Z}_2$ gauge theory with a particular Gauss law.
+A mapping from a 3D lattice quadratic Hamiltonian of Majorana modes to a lattice of qubits which realizes a $\mathbb{Z}_2$ 2-form gauge theory with a particular Gauss law.
 
 (source: raw/error-correction-zoo.md)
 

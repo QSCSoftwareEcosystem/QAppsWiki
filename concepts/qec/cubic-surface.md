@@ -2,7 +2,7 @@
 type: concept
 name: $⟦8,3,2⟧$ Surface code on a cube
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Landahl plucky code

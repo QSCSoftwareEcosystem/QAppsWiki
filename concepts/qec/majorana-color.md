@@ -2,7 +2,7 @@
 type: concept
 name: Majorana color code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -10,6 +10,7 @@ domains:
 related_concepts:
 - concepts/qec/2d-color
 - concepts/qec/2d-stabilizer
+- concepts/qec/3d-subsystem-color
 - concepts/qec/majorana-stab
 - concepts/qec/majorana-surface
 - concepts/qec/qldpc
@@ -44,7 +45,7 @@ The code therefore interpolates between Kitaev-chain-like protection by fermion-
 
 ## Rate
 
-Concatenating a 4.8.8 Majorana surface code with an outer $⟦n_f,k,d_m⟧_{f}$ code yields a fermionic mode overhead of $\frac{2n_f}{k d_m^2} d^2$ per logical qubit of distance $d$  ([arXiv:1801.08143](https://arxiv.org/abs/1801.08143)).
+Concatenating a 4.8.8 Majorana surface code with an outer $⟦n_f,k,d_m⟧_{f}$ code yields a fermionic mode overhead of $\frac{4n_f}{k d_m^2} d^2$ per logical qubit of distance $d$  ([arXiv:1801.08143](https://arxiv.org/abs/1801.08143)).
 
 ## General gates
 
@@ -62,3 +63,4 @@ Concatenating a 4.8.8 Majorana surface code with an outer $⟦n_f,k,d_m⟧_{f}$ 
 - _parent_: [[concepts/qec/2d-stabilizer]] — The Majorana color code is a 2D qubit stabilizer code with respect to the Majorana operator basis.
 - _cousin_: [[concepts/qec/2d-color]] — The original Majorana color code is a fermionic analogue of a 2D color code in which one Majorana face operator doubles to matching $X$- and $Z$-type face checks, but the underlying cylinder graph need only be locally $3$-colorable and can support odd boundary logical operators  ([arXiv:1004.3791](https://arxiv.org/abs/1004.3791)). Later realizations stack Majorana surface-code layers and replace stacked building blocks with small Majorana fermion codes  ([arXiv:1703.00612](https://arxiv.org/abs/1703.00612), [arXiv:1704.01589](https://arxiv.org/abs/1704.01589), [arXiv:1708.05012](https://arxiv.org/abs/1708.05012), [arXiv:1801.08143](https://arxiv.org/abs/1801.08143)).
 - _cousin_: [[concepts/qec/majorana-surface]] — The original Majorana color code is a fermionic analogue of a 2D color code in which one Majorana face operator doubles to matching $X$- and $Z$-type face checks, but the underlying cylinder graph need only be locally $3$-colorable and can support odd boundary logical operators  ([arXiv:1004.3791](https://arxiv.org/abs/1004.3791)). Later realizations stack Majorana surface-code layers and replace stacked building blocks with small Majorana fermion codes  ([arXiv:1703.00612](https://arxiv.org/abs/1703.00612), [arXiv:1704.01589](https://arxiv.org/abs/1704.01589), [arXiv:1708.05012](https://arxiv.org/abs/1708.05012), [arXiv:1801.08143](https://arxiv.org/abs/1801.08143)).
+- _cousin_: [[concepts/qec/3d-subsystem-color]] — Gauge-fixing the 3D subsystem color code to a self-dual set of commuting face operators and substituting Majorana monomials for Pauli operators yields a 3D Majorana color code, whose boundaries support 2D Majorana color codes  ([arXiv:1805.01836](https://arxiv.org/abs/1805.01836)).

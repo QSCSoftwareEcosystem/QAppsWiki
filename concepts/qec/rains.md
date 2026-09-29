@@ -2,7 +2,7 @@
 type: concept
 name: $((2m+1,3 \times 2^{2m-3},2))$ Rains code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

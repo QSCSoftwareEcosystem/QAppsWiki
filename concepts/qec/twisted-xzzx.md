@@ -2,7 +2,7 @@
 type: concept
 name: Twisted XZZX toric code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - XZZX cyclic code
@@ -59,7 +59,7 @@ Other types of distances have been considered for this code  ([arXiv:2203.16486]
 
 ## Threshold
 
-- Phenomenological noise: between $3\%$ and $10\%$ at noise bias ranging from 1 to 4 under MWPM  ([arXiv:2203.16486](https://arxiv.org/abs/2203.16486)).
+- Phenomenological noise: between $3.5\%$ and $10\%$ at noise bias ranging from 1 to 4 under MWPM  ([arXiv:2203.16486](https://arxiv.org/abs/2203.16486)).
 
 ## Fault tolerance
 

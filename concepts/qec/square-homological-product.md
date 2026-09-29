@@ -2,7 +2,7 @@
 type: concept
 name: Square homological product code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Single-sector homological code
@@ -34,12 +34,15 @@ The parity-check matrix of the resulting product code is
   H_1 \otimes I_2 + I_1 \otimes H_2~,
 \end{align}
 where $I_i$ is the identity on the check space of code $i$.
-The logical dimension $k = k_1 k_2$.
 
 (source: raw/error-correction-zoo.md)
 
 ## Protection
 
+The product of two codes $⟦n_i,k_i⟧$ is an $⟦n_1 n_2,k_1 k_2⟧$ code  ([arXiv:1311.0885](https://arxiv.org/abs/1311.0885)).
+Its $X$-type and $Z$-type distances satisfy $\max(d_1^{\alpha},d_2^{\alpha})\leq d^{\alpha}\leq d_1^{\alpha}d_2^{\alpha}$ for $\alpha\in\{X,Z\}$  ([arXiv:1311.0885](https://arxiv.org/abs/1311.0885)).
+The product of two random codes of length $M$ and dimension $\rho M$ has distance $\Omega(M^2)$ with high probability for small enough $\rho>0$  ([arXiv:1311.0885](https://arxiv.org/abs/1311.0885)).
+This yields a family of $⟦n,\Theta(n),\Theta(n)⟧$ codes with stabilizer weight $O(\sqrt{n})$  ([arXiv:1311.0885](https://arxiv.org/abs/1311.0885)).
 Square homological-product codes admit different properties than those with rectangular boundary operators  ([arXiv:1512.07081](https://arxiv.org/abs/1512.07081)).
 
 ## Relations

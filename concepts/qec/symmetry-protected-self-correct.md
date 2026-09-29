@@ -2,7 +2,7 @@
 type: concept
 name: Symmetry-protected self-correcting quantum code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Symmetry-protected self-correcting memory

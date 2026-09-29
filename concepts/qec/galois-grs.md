@@ -2,7 +2,7 @@
 type: concept
 name: Galois-qudit GRS code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -27,7 +27,7 @@ imported_id: galois_grs
 
 ## Description
 
-A true $q$-Galois-qudit stabilizer code constructed from GRS codes via either the Hermitian construction  ([arXiv:1311.3009](https://arxiv.org/abs/1311.3009), [doi:10.1142/S0219749919500060](https://doi.org/10.1142/S0219749919500060), [doi:10.1109/TIT.2010.2054174](https://doi.org/10.1109/TIT.2010.2054174)) or the Galois-qudit CSS construction  ([arXiv:quant-ph/9906129](https://arxiv.org/abs/quant-ph/9906129), [arXiv:0812.4514](https://arxiv.org/abs/0812.4514)).
+A true $q$-Galois-qudit stabilizer code constructed from GRS codes, or their extended versions, via either the Hermitian construction  ([arXiv:1311.3009](https://arxiv.org/abs/1311.3009), [doi:10.1142/S0219749919500060](https://doi.org/10.1142/S0219749919500060), [doi:10.1109/TIT.2010.2054174](https://doi.org/10.1109/TIT.2010.2054174)) or the Galois-qudit CSS construction  ([arXiv:quant-ph/9906129](https://arxiv.org/abs/quant-ph/9906129), [arXiv:0812.4514](https://arxiv.org/abs/0812.4514)).
 
 (source: raw/error-correction-zoo.md)
 

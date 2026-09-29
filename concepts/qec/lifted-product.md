@@ -2,10 +2,11 @@
 type: concept
 name: Lifted-product (LP) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Panteleev-Kalachev (PK) code
+- Generalized hypergraph product code
 domains:
 - quantum-error-correction
 related_concepts:
@@ -32,25 +33,26 @@ Heuristically, the code is constructed as a hypergraph product code over the gro
 More technically, a *lifted product over* a ring $R$ is a product of two chain complexes whose chains are free modules over $R$.
 An interesting case is when $R=\mathbb{F}_q [G]$, the group-$G$ algebra over the finite field ${\mathbb{F}}_q = \mathbb{F}_q$; in this case, the product can be called a $G$-*lifted product*.
 Just like its further generalization the balanced product, a lifted product code generalizes a hypergraph product code in that a reduction of symmetry is exploited to decrease the number of physical qubits required.
-The first version of this construction appeared as a family of generalized hypergraph product codes that contains hypergraph product codes in the case where one of the two input parity-check matrices is square  ([arXiv:1904.02703](https://arxiv.org/abs/1904.02703)).
+The first version of this construction contains hypergraph-product codes in the case where one of the two input parity-check matrices is square  ([arXiv:1904.02703](https://arxiv.org/abs/1904.02703)).
 
 The key operation behind the $G$-lifted product is the $G$-*lift*, a group-algebraic version of the lifting procedure of protograph LDPC codes.
 A combination of the lift and the usual hypergraph product yields lifted-product codes.
 The two operations commute: one can first take the usual hypergraph product of two chain complexes, and then lift the resulting product complex; equivalently, one can take the hypergraph product of the two lifted complexes.
+
+Lifted products over non-Abelian group algebras have been studied, e.g., over the dihedral group algebra $\mathbb{F}_q[D_{2n}]$, whose Wedderburn decomposition yields short non-Abelian quantum moderate-density parity-check codes---dubbed *dihedral quantum codes*---with an explicit dimension formula and distance bound  ([arXiv:2310.15092](https://arxiv.org/abs/2310.15092)).
+Non-Abelian lifts also underlie mitten codes, whose non-commutativity removes a distance ceiling that constrains Abelian LP codes of the same base-matrix shape  ([arXiv:2607.28795](https://arxiv.org/abs/2607.28795)).
 
 (source: raw/error-correction-zoo.md)
 
 ## Protection
 
 Code performance strongly depends on the group $G$ used in the product  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)).
+For Abelian lift groups, commutativity can cause codewords of the base matrices to lift directly to logical operators, imposing construction-dependent upper bounds on the quantum distance.
+Non-Abelian lifts can evade such Abelian obstructions, although non-Abelianness alone does not guarantee high distance; for the one-by-two construction underlying mitten codes, it removes the Abelian bound $d\leq 6$  ([arXiv:2607.28795](https://arxiv.org/abs/2607.28795)).
 
 ## Rate
 
 There is no known simple way to compute the logical dimension $k$ in the general case  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)).
-
-## General gates
-
-- Transversal dimension jump, a code switching protocol between two LP codes  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
 
 ## Decoders
 
@@ -58,8 +60,4 @@ There is no known simple way to compute the logical dimension $k$ in the general
 
 ## Relations
 
-- _parent_: [[concepts/qec/balanced-product]] — Coarsely speaking, a lifted product is a balanced product where the group $G$ acts freely. In principle, a lifted product can be defined for rings that are more general than group algebras $ \mathbb{F}_q G $.
-
-## Notes
-
-- Formerly known as *generalized hypergraph product codes*  ([arXiv:1904.02703](https://arxiv.org/abs/1904.02703)), and later renamed to lifted-product codes  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068), [arXiv:2103.06309](https://arxiv.org/abs/2103.06309)).
+- _parent_: [[concepts/qec/balanced-product]] — Coarsely speaking, a lifted product is a balanced product where the group $G$ acts freely. In principle, a lifted product can be defined for rings that are more general than group algebras $ \mathbb{F}_q G $  ([arXiv:2012.09271](https://arxiv.org/abs/2012.09271)).

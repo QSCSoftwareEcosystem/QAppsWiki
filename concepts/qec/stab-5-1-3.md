@@ -2,7 +2,7 @@
 type: concept
 name: $⟦5,1,3⟧$ Five-qubit perfect code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Laflamme code
@@ -17,7 +17,6 @@ related_concepts:
 - concepts/qec/group-representation
 - concepts/qec/happy
 - concepts/qec/majorana-stab
-- concepts/qec/quantum-divisible
 - concepts/qec/quantum-mds
 - concepts/qec/quantum-perfect
 - concepts/qec/quantum-triorthogonal
@@ -28,6 +27,7 @@ related_concepts:
 - concepts/qec/stab-5-1-2-convolutional
 - concepts/qec/stabilizer-over-gf4
 - concepts/qec/twisted-xzzx
+- concepts/qec/weakly-divisible-css
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/stab_5_1_3
@@ -98,6 +98,7 @@ The five-qubit perfect code approximately corrects a single AD error  ([arXiv:qu
 - The entire logical Clifford group can be realized using fold-transversal gates  ([arXiv:1603.03948](https://arxiv.org/abs/1603.03948), [arXiv:2409.18175](https://arxiv.org/abs/2409.18175)).
 - The code does not admit any non-Clifford transversal gates  ([arXiv:quant-ph/9704043](https://arxiv.org/abs/quant-ph/9704043)); in particular, see  ([arXiv:2011.00197](https://arxiv.org/abs/2011.00197)) for the case of collective $Z$ rotations.
 - Transversal gates can be interpreted as monodromies under a particular notion of parallel transport  ([arXiv:1309.7062](https://arxiv.org/abs/1309.7062)).
+- Transversal single-qubit Clifford gates realize the logical group $C_3$, which no indecomposable CSS code admits  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)). Together with qubit permutations they realize the full single-qubit logical Clifford group, and the code is the unique smallest distance-three stabilizer code to do so  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
 
 ## General gates
 
@@ -117,7 +118,8 @@ The five-qubit perfect code approximately corrects a single AD error  ([arXiv:qu
 ## Fault tolerance
 
 - Pieceable fault-tolerant CZ, CNOT, and $CCZ$ gates  ([arXiv:1603.03948](https://arxiv.org/abs/1603.03948)).
-- A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$; this layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require magic-state distillation  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
+- A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer coset-divisible code preserved by transversal $T^\dagger$.
+This layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require teleporting magic states  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
 - Syndrome measurement can be done with two ancillary flag qubits  ([arXiv:1705.02329](https://arxiv.org/abs/1705.02329)). The depth of syndrome extraction circuits can be lowered by using past syndrome values  ([arXiv:2305.00784](https://arxiv.org/abs/2305.00784)).
 - Fault-tolerant logical one and logical minus state preparation in all-to-all and 2D grid connectivity  ([arXiv:2402.17761](https://arxiv.org/abs/2402.17761)).
 - Inspired by the honeycomb Floquet code, various weight-two measurement schemes have been designed  ([arXiv:2409.13681](https://arxiv.org/abs/2409.13681)).
@@ -131,7 +133,7 @@ The five-qubit perfect code approximately corrects a single AD error  ([arXiv:qu
 
 ## Relations
 
-- _parent_: [[concepts/qec/twisted-xzzx]] — Twisted XZZX codes are 2D lattice extensions of the five-qubit perfect code. The five-qubit code is a small twisted XZZX toric code  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)) ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2101.09349](https://arxiv.org/abs/2101.09349)). Its genus-one double cover is a $⟦10,2,3⟧$ toric code  ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)). The base code's transversal $SH$ gate lifts to a logical $CX \cdot SWAP$ gate on that double cover  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
+- _parent_: [[concepts/qec/twisted-xzzx]] — Twisted XZZX codes are 2D lattice extensions of the five-qubit perfect code. The five-qubit code is a small twisted XZZX toric code  ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)) ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2101.09349](https://arxiv.org/abs/2101.09349)). Its symplectic double (a.k.a. genus-one double cover) is a $⟦10,2,3⟧$ toric code  ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)). The base code's transversal $SH$ gate lifts to a logical $CX \cdot SWAP$ gate on that double cover  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
 - _parent_: [[concepts/qec/stab-5-1-2-convolutional]] — The $(5,1,2)$-convolutional code is a 1D lattice extension of the five-qubit perfect code, with the former's lattice-translation symmetry being the extension of the latter's cyclic permutation symmetry. The $(5,1,2)$-convolutional code reduces to the five-qubit code for a five-qubit chain and periodic boundary conditions. See Ref.  ([arXiv:2211.03094](https://arxiv.org/abs/2211.03094)) for the first few codes in a different extension of the five-qubit perfect code.
 - _parent_: [[concepts/qec/happy]] — The five-qubit code is the smallest (i.e., radius-one) single-qubit HaPPY code. The five-qubit encoding isometry tiles various holographic codes because its corresponding encoding isometry tensor is a perfect tensor  ([arXiv:1503.06237](https://arxiv.org/abs/1503.06237)).
 - _parent_: [[concepts/qec/quantum-perfect]] — The five-qubit code is the smallest perfect code and is a member of the perfect qubit code family $⟦(4^r-1)/3, (4^r-1)/3 - 2r, 3⟧$ for $r = 2$.
@@ -148,5 +150,5 @@ The five-qubit perfect code approximately corrects a single AD error  ([arXiv:qu
 - _cousin_: [[concepts/qec/cluster-state]] — The five-qubit perfect code is equivalent via a single-qubit Clifford circuit to a cluster-state code defined from a five-cycle (a.k.a. pentagon) graph and a classical repetition code  ([arXiv:0708.1021](https://arxiv.org/abs/0708.1021), [arXiv:1511.05647](https://arxiv.org/abs/1511.05647)) ([arXiv:1108.5490](https://arxiv.org/abs/1108.5490)).
 - _cousin_: [[concepts/qec/floquet]] — Inspired by the honeycomb Floquet code, various weight-two measurement schemes have been designed for the five-qubit code  ([arXiv:2409.13681](https://arxiv.org/abs/2409.13681)).
 - _cousin_: [[concepts/qec/ampdamp]] — The five-qubit perfect code approximately corrects a single AD error  ([arXiv:quant-ph/9704002](https://arxiv.org/abs/quant-ph/9704002)).
-- _cousin_: [[concepts/qec/quantum-divisible]] — A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$; this layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require magic-state distillation  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
-- _cousin_: [[concepts/qec/quantum-triorthogonal]] — A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer quantum divisible CSS code preserved by transversal $T^\dagger$; this layered construction can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code and does not require magic-state distillation  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
+- _cousin_: [[concepts/qec/weakly-divisible-css]] — A fault-tolerant logical $T$ gate can be obtained by encoding the five-qubit code's five physical qubits into the five logical qubits of a $⟦31,5,3⟧$ outer coset-divisible code preserved by transversal $T^\dagger$  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).
+- _cousin_: [[concepts/qec/quantum-triorthogonal]] — The layered construction with the $⟦31,5,3⟧$ outer coset-divisible code can be viewed as a factorization of a $⟦31,1,3⟧$ triorthogonal code  ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)).

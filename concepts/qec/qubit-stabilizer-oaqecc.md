@@ -2,7 +2,7 @@
 type: concept
 name: Operator-algebra (OA) qubit stabilizer code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Hybrid subsystem qubit stabilizer code

@@ -2,7 +2,7 @@
 type: concept
 name: Cluster-state code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Graph-state code
@@ -69,7 +69,7 @@ There is no physical error correction, and decoding output is simply used to upd
 There exist necessary and sufficient conditions for a family of cluster states to exhibit TQO-1  ([arXiv:2112.02502](https://arxiv.org/abs/2112.02502)).
 Quantum weight enumerators of cluster state codes are known as sector weights  ([arXiv:1905.06928](https://arxiv.org/abs/1905.06928), [arXiv:1908.04220](https://arxiv.org/abs/1908.04220), [arXiv:2105.12752](https://arxiv.org/abs/2105.12752), [arXiv:2207.07665](https://arxiv.org/abs/2207.07665)).
 
-Potential and limits of MBQC using probabilistic gates has been studied  ([arXiv:quant-ph/0605014](https://arxiv.org/abs/quant-ph/0605014)).
+Potential and limits of MBQC using probabilistic gates have been studied  ([arXiv:quant-ph/0605014](https://arxiv.org/abs/quant-ph/0605014)).
 Cluster states can be optimized to be robust against qubit erasure  ([arXiv:2212.04834](https://arxiv.org/abs/2212.04834)).
 
 ## Encoders
@@ -82,7 +82,7 @@ Cluster states can be optimized to be robust against qubit erasure  ([arXiv:2212
 ## General gates
 
 - In the original one-way MBQC scheme on a square-lattice cluster state, $Z$-basis measurements remove qubits from the resource, $X$-basis measurements teleport quantum information along a wire, adaptive equatorial-basis measurements on a five-qubit chain implement arbitrary single-qubit $SU(2)$ rotations, and a four-qubit pattern implements CNOT. Random measurement outcomes generate Pauli byproduct operators that are tracked classically and can modify later measurement bases  ([doi:10.1103/PhysRevLett.86.5188](https://doi.org/10.1103/PhysRevLett.86.5188)).
-- The computation is encoded in pre-determined fashion via topological features of the cluster state's graph, such as boundaries, defects, or twists. Such features can be created using $Z$-type measurements, which effectively cut a qubit off from the cluster state. Non-Clifford gates are performed by inserting non-Clifford states into particular *singular* qubits. More generally, any gate protocol of a qubit stabilizer code yields an MBQC protocol  ([arXiv:1811.11780](https://arxiv.org/abs/1811.11780)). To perform the computation, subsets qubits are measured, e.g., along one two-dimensional slice of a 3D lattice for each time step. This effectively teleports the logical information into the remaining unmeasured portion of the cluster state. The computation terminates after all qubits are measured.
+- The computation is encoded in pre-determined fashion via topological features of the cluster state's graph, such as boundaries, defects, or twists. Such features can be created using $Z$-type measurements, which effectively cut a qubit off from the cluster state. Non-Clifford gates are performed by inserting non-Clifford states into particular *singular* qubits. More generally, any gate protocol of a qubit stabilizer code yields an MBQC protocol  ([arXiv:1811.11780](https://arxiv.org/abs/1811.11780)). To perform the computation, subsets of qubits are measured, e.g., along one two-dimensional slice of a 3D lattice for each time step. This effectively teleports the logical information into the remaining unmeasured portion of the cluster state. The computation terminates after all qubits are measured.
 The entire cluster state does not need to be created at the start of the computation. Instead, the portion of the cluster state in the extra dimension can be initialized as the computation progresses.
 - Single-qubit Clifford operations mapping one cluster state to another can be realized as local complementations acting on the underlying graph  ([arXiv:quant-ph/0308151](https://arxiv.org/abs/quant-ph/0308151)). In one-way computation, Clifford gates can be parallelized  ([arXiv:quant-ph/0108067](https://arxiv.org/abs/quant-ph/0108067)).
 

@@ -2,7 +2,7 @@
 type: concept
 name: $⟦12,2,4⟧$ carbon code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $C_{12}$ code
@@ -10,6 +10,7 @@ domains:
 - quantum-error-correction
 related_concepts:
 - concepts/qec/bc-phantom
+- concepts/qec/perm-self-dual-css
 - concepts/qec/small-distance-qubit-stabilizer
 - concepts/qec/stab-4-2-2
 - concepts/qec/stab-6-2-2
@@ -28,7 +29,7 @@ imported_id: carbon
 ## Description
 
 Twelve-qubit CSS code based on Knill's $C_4/C_6$ scheme  ([arXiv:2404.02280](https://arxiv.org/abs/2404.02280)).
-Using the concatenation convention of the Zoo, the carbon code can be viewed as a block concatenation with inner code $⟦4,2,2⟧$ and outer code $C_6$: three inner $⟦4,2,2⟧$ blocks encode six intermediate qubits, which are then encoded into two logical qubits by the outer $⟦6,2,2⟧$ code.
+Using the concatenation convention of the Zoo, the carbon code can be viewed as a block concatenation with inner code $⟦6,2,2⟧$ and outer code $⟦4,2,2⟧$: the inner $⟦6,2,2⟧$ code encodes two logical qubits into six intermediate qubits, each pair of which is then encoded into an outer $⟦4,2,2⟧$ block.
 
 A stabilizer tableau for the code is given by  ([arXiv:2404.02280](https://arxiv.org/abs/2404.02280))
 \begin{align}
@@ -56,6 +57,7 @@ A stabilizer tableau for the code is given by  ([arXiv:2404.02280](https://arxiv
 
 - Two-block CNOT gates are transversal because the code is CSS.
 - Automorphism groups of the underlying classical codes can yield transversal Clifford gates when combined with qubit permutations  ([arXiv:1302.1035](https://arxiv.org/abs/1302.1035)). In particular, logical Hadamard is realized by a transversal physical Hadamard followed by a qubit permutation, and a logical one-block CNOT is implemented by a qubit permutation  ([arXiv:quant-ph/0410199](https://arxiv.org/abs/quant-ph/0410199), [arXiv:2404.02280](https://arxiv.org/abs/2404.02280)).
+- All logical Clifford gates can be realized as two-fold transversal gates, i.e., by depth-one circuits of two-local code-preserving physical gates  ([arXiv:2608.05688](https://arxiv.org/abs/2608.05688)).
 
 ## Decoders
 
@@ -63,10 +65,11 @@ A stabilizer tableau for the code is given by  ([arXiv:2404.02280](https://arxiv
 
 ## Realizations
 
-- Trapped-ion devices: Three rounds of error correction and post-selected fault-tolerant logical Bell-state preparation with logical error rates at least 5 times lower than physical rate on a quantum charge-coupled device (QCCD)  ([arXiv:2305.03828](https://arxiv.org/abs/2305.03828)) by Microsoft and Quantinuum  ([arXiv:2404.02280](https://arxiv.org/abs/2404.02280)).
+- Trapped-ion devices: Three rounds of error correction and post-selected fault-tolerant logical Bell-state preparation with logical error rates at least 5 times lower than physical rate on a quantum charge-coupled device (QCCD)  ([arXiv:2305.03828](https://arxiv.org/abs/2305.03828)) by Microsoft and Quantinuum  ([arXiv:2404.02280](https://arxiv.org/abs/2404.02280)). Up to ten rounds of error correction combined with error detection  ([arXiv:2404.02280](https://arxiv.org/abs/2404.02280)), with logical error rates at least 51 times lower than the physical rate  ([doi:10.1038/s41586-026-10628-y](https://doi.org/10.1038/s41586-026-10628-y)).
 
 ## Relations
 
+- _parent_: [[concepts/qec/perm-self-dual-css]] — The carbon code is permutationally self-dual. Transversal Hadamard followed by an exchange of two of its three $⟦4,2,2⟧$ blocks preserves the stabilizer group  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)). This block exchange is an involutive $XZ$-duality.
 - _parent_: [[concepts/qec/bc-phantom]] — The carbon code is the B\&C phantom code obtained from the $⟦3,1,2⟧_4$ Galois-qudit code  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
 - _cousin_: [[concepts/qec/stab-4-2-2]] — The carbon code is a concatenation of the $⟦4,2,2⟧$ code and the $C_6$ code.

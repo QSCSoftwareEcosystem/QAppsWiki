@@ -2,7 +2,7 @@
 type: concept
 name: Prime-qudit RM code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -24,11 +24,11 @@ imported_id: qudit_reed_muller
 
 ## Description
 
-Modular-qudit stabilizer code constructed from GRM codes or their duals via the modular-qudit CSS construction.
+Modular-qudit stabilizer code constructed from GRM codes, their punctured or shortened versions, or their duals via the modular-qudit CSS construction.
 
 For prime local dimension $q$, CSS constructions from $\mathrm{GRM}_q(\nu_1,m) \subseteq \mathrm{GRM}_q(\nu_2,m)$ yield pure $⟦q^m,k(\nu_2)-k(\nu_1),\min\{d(\nu_1^\perp),d(\nu_2)\}⟧_q$ codes  ([arXiv:quant-ph/0502001](https://arxiv.org/abs/quant-ph/0502001)).
 The special case $m=1$ gives quantum MDS codes $⟦q,q-2\nu-2,\nu+2⟧_q$ for $0 \leq \nu \leq (q-2)/2$  ([arXiv:quant-ph/0502001](https://arxiv.org/abs/quant-ph/0502001)).
-An odd-prime-qudit CSS code family constructed from first-order punctured GRM codes transversally implements a diagonal gate at any level of the qudit Clifford hierarchy  ([arXiv:1205.3104](https://arxiv.org/abs/1205.3104), [arXiv:1406.3055](https://arxiv.org/abs/1406.3055)).
+An odd-prime-qudit CSS code family constructed from shortened GRM codes transversally implements a diagonal gate in the third level of the qudit Clifford hierarchy  ([arXiv:1205.3104](https://arxiv.org/abs/1205.3104), [arXiv:1406.3055](https://arxiv.org/abs/1406.3055)).
 
 (source: raw/error-correction-zoo.md)
 
@@ -38,13 +38,13 @@ For the CSS family from $\mathrm{GRM}_q(\nu_1,m) \subseteq \mathrm{GRM}_q(\nu_2,
 
 ## Magic scaling exponent
 
-An odd-prime-qudit CSS code family constructed from first-order punctured GRM codes can be used for qudit magic-state distillation; see  ([arXiv:1205.3104](https://arxiv.org/abs/1205.3104)) for yields.
+An odd-prime-qudit CSS code family constructed from shortened GRM codes can be used for qudit magic-state distillation. See  ([arXiv:1205.3104](https://arxiv.org/abs/1205.3104)) for yields.
 
 ## Transversal gates
 
-- An odd-prime-qudit CSS code family constructed from first-order punctured GRM codes transversally implements a diagonal gate at any level of the qudit Clifford hierarchy  ([arXiv:1205.3104](https://arxiv.org/abs/1205.3104), [arXiv:1406.3055](https://arxiv.org/abs/1406.3055)).
+- An odd-prime-qudit CSS code family constructed from shortened GRM codes transversally implements a diagonal gate in the third level of the qudit Clifford hierarchy  ([arXiv:1205.3104](https://arxiv.org/abs/1205.3104), [arXiv:1406.3055](https://arxiv.org/abs/1406.3055)).
 
 ## Relations
 
 - _parent_: [[concepts/qec/qudit-css]]
-- _parent_: [[concepts/qec/galois-reed-muller]] — Galois-qudit RM codes reduce to prime-qudit RM codes when $q$ is prime.
+- _parent_: [[concepts/qec/galois-reed-muller]] — Prime-qudit RM codes are the Galois-qudit RM codes with prime $q$ that are constructed via the CSS construction from GRM codes, their punctured or shortened versions, or their duals.

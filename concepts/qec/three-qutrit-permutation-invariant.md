@@ -2,7 +2,7 @@
 type: concept
 name: $((3,2,2))_3$ Three-qutrit single-deletion code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

@@ -2,7 +2,7 @@
 type: concept
 name: Qubit stabilizer code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Binary stabilizer code
@@ -136,6 +136,17 @@ Conversion from stabilizer tableaus to graphs can be done in time of order $O(n^
 Properties of the underlying graph are related to properties of the code; for example, bipartite encoder-respecting graphs yield CSS codes, and graph degree controls bounds on code distance, stabilizer weight, and encoding-circuit depth  ([arXiv:2411.14448](https://arxiv.org/abs/2411.14448)).
 \end{defterm}
 
+The qubit CSS-to-homology correspondence extends to arbitrary stabilizer codes via the symplectic complex representation  ([arXiv:2608.16995](https://arxiv.org/abs/2608.16995)).
+
+\begin{defterm}{Symplectic complex}
+\label{topic:symplectic-complex}
+Any stabilizer code can be written as a *symplectic complex*, a three-term chain complex $S\xrightarrow{\sigma}P\xrightarrow{\hat{\sigma}}\bar{S}$.
+Its terms are the check space $S$, the Pauli space $P=\mathbb{F}_2^{2n}$ equipped with a symplectic form, and the syndrome space $\bar{S}$.
+The symplectic form and stabilizer map $\sigma$ determine the syndrome map $\hat{\sigma}$  ([arXiv:2608.16995](https://arxiv.org/abs/2608.16995)).
+The homology of the middle term consists of the equivalence classes of logical operators, and it inherits an induced symplectic form encoding their commutation relations  ([arXiv:2608.16995](https://arxiv.org/abs/2608.16995)).
+For CSS codes, the symplectic complex is the direct sum of the code's CSS chain complex and the corresponding cochain complex, each acting on one of the two Pauli sectors  ([arXiv:2608.16995](https://arxiv.org/abs/2608.16995)).
+\end{defterm}
+
 Alternative representations include the *decoupling representation*, in which Pauli strings are represented as vectors over $\mathbb{F}_2$ using three bits  ([arXiv:2305.17505](https://arxiv.org/abs/2305.17505)).
 
 (source: raw/error-correction-zoo.md)
@@ -203,9 +214,17 @@ Transversal gates for $n\in\{1,2\}$ are semi-Clifford  ([arXiv:0712.2084](https:
 - No stabilizer code can implement a classical universal gate set transversally  ([arXiv:1704.07798](https://arxiv.org/abs/1704.07798)).
 - Fold-transversal gates have been extended from qubit CSS codes to qubit stabilizer codes, and there is an algorithm to determine them from the stabilizer group  ([arXiv:2409.18175](https://arxiv.org/abs/2409.18175)).
 - Computation can be sped up substantially for codes that admit transversal measurements of logical $X$ and $Z$  ([arXiv:1210.4626](https://arxiv.org/abs/1210.4626)).
-- Diagonal transversal Clifford gates on multiple code blocks must form one of six families of matrix groups: $O(\ell,\mathbb{F}_2)$ generically, $U(\ell,\mathbb{F}_4)$ for Hermitian qubit codes, $GL(\ell,\mathbb{F}_2)$ for non-self-dual CSS codes, $O( \ell, \mathbb{F}_2[x]/(x^2) )$ for self-dual non-CSS codes, $U(\ell,R_8)$ for intermediate semi-self-dual CSS or self-dual semi-CSS cases, and $Sp(2\ell,\mathbb{F}_2)$ for self-dual CSS codes  ([arXiv:2507.10519](https://arxiv.org/abs/2507.10519)). There are two $⟦8,1,3⟧$ self-dual non-CSS codes; see QECDB .
+- Diagonal transversal Clifford gates on multiple code blocks must form one of six families of matrix groups: $O(\ell,2)$ generically, $U(\ell,\mathbb{F}_4)$ for Hermitian qubit codes, $GL(\ell,2)$ for non-self-dual CSS codes, $O( \ell, \mathbb{F}_2[x]/(x^2) )$ for self-dual non-CSS codes, $U(\ell,R_8)$ for intermediate semi-self-dual CSS or self-dual semi-CSS cases, and $Sp(2\ell,2)$ for self-dual CSS codes  ([arXiv:2507.10519](https://arxiv.org/abs/2507.10519)). There are two $⟦8,1,3⟧$ self-dual non-CSS codes; see QECDB .
 - An entangling diagonal transversal two-qubit Clifford gate exists only for codes equivalent to CSS or self-dual codes; canonical representatives are the inter-block CNOT in the CSS case and a $Y$-controlled-$Y$ gate, locally Clifford equivalent to $CZ$, in the self-dual case  ([arXiv:2507.10519](https://arxiv.org/abs/2507.10519)).
 - Implementing the full Clifford group on $k$ logical qubits requires $k$-fold transversal gates; in particular, stabilizer codes cannot admit a transversal (1-fold) implementation of the full Clifford group on more than one logical qubit, a fold-transversal (2-fold) implementation on more than two logical qubits, or a code-automorphism implementation on more than one logical qubit  ([arXiv:2602.13395](https://arxiv.org/abs/2602.13395)). These bounds are tight: $k$ copies of the $⟦7,1,3⟧$ Steane code form a $⟦7k,k,3⟧$ code admitting a $k$-fold transversal Clifford group  ([arXiv:2602.13395](https://arxiv.org/abs/2602.13395)).
+- In a suitable logical basis, qubit permutations realize gates lying in the Siegel parabolic subgroup $\mathcal{P}(2k,2)=\langle S_k,\mathrm{CX}_k\rangle$ of the logical Clifford group  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+- For $k\geq3$, the logical group realized by single-qubit Clifford gates and qubit permutations has order at most $|\mathcal{P}(2k,2)|$.
+Equality holds only when the group is conjugate to $\mathcal{P}(2k,2)$ by a change of logical basis  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+The maximum is the single-qubit Clifford group for $k=1$ and $O^{+}(4,2)$ of order 72 for $k=2$.
+The $k=1$ maximum is attained by self-dual CSS and non-CSS codes, while the $k=2$ maximum requires a non-CSS code  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+- Attaining the maximum logical group of single-qubit Clifford gates and qubit permutations requires a block length of order $\Theta(2^k)$  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+Realizing all addressable diagonal Clifford gates $\langle S_k,\mathrm{CZ}_k\rangle$ by transversal single-qubit Clifford gates requires only $\Theta(k^2)$.
+For fixed $t$, all addressable level-$t$ diagonal gates require $\Theta(k^t)$ physical qubits  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
 
 ## General gates
 
@@ -312,7 +331,7 @@ Binary linear codes can be used for error-corrected entanglement distillation pr
 - _cousin_: [`projective`](https://errorcorrectionzoo.org/c/projective) — $⟦n,k,d⟧$ qubit stabilizer codes with no weight-one stabilizers are equivalent to particular "quantum" sets of lines in projective space $PG(n-k-1,2)$  ([arXiv:2007.05992](https://arxiv.org/abs/2007.05992)) ([arXiv:2107.11281](https://arxiv.org/abs/2107.11281)). This equivalence is stated in the case of pure qubit stabilizer codes with distance two or greater in  ([doi:10.2140/iig.2008.6.53](https://doi.org/10.2140/iig.2008.6.53)).
 - _cousin_: [[concepts/qec/holographic]] — Qubit stabilizer states can be interpreted as states that are preparable using the Euclidean path integral in 3D Chern-Simons theory, defined on manifolds that are toy models of AdS/CFT wormholes  ([arXiv:1611.01516](https://arxiv.org/abs/1611.01516), [arXiv:2510.15067](https://arxiv.org/abs/2510.15067)).
 - _cousin_: [[concepts/qec/topological-abelian]] — Qubit stabilizer states can be interpreted as states that are preparable using the Euclidean path integral in 3D Chern-Simons theory, defined on manifolds that are toy models of AdS/CFT wormholes  ([arXiv:1611.01516](https://arxiv.org/abs/1611.01516), [arXiv:2510.15067](https://arxiv.org/abs/2510.15067)).
-- _cousin_: [[concepts/qec/galois-css]] — Any $⟦n,k,d⟧$ qubit stabilizer code can be mapped to an $⟦n,k,d⟧_4$ Galois-qudit CSS code via the BLT mapping  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)) ([arXiv:1004.3791](https://arxiv.org/abs/1004.3791)): each stabilizer $P = \bigotimes_j P_j$ generates an $XX$-type stabilizer via $\mathcal{D}_X$ ($I\mapsto II,\,X\mapsto XI,\,Z\mapsto IX,\,Y\mapsto XX$) and a $ZZ$-type stabilizer via $\mathcal{D}_Z$ ($I\mapsto II,\,X\mapsto IZ,\,Z\mapsto ZI,\,Y\mapsto ZZ$).
+- _cousin_: [[concepts/qec/galois-css]] — Any $⟦n,k,d⟧$ qubit stabilizer code can be mapped to an $⟦n,k,d⟧_4$ Galois-qudit CSS code via symplectic doubling  ([arXiv:2605.15344](https://arxiv.org/abs/2605.15344)) ([arXiv:1004.3791](https://arxiv.org/abs/1004.3791)): each stabilizer $P = \bigotimes_j P_j$ generates an $XX$-type stabilizer via $\mathcal{D}_X$ ($I\mapsto II,\,X\mapsto XI,\,Z\mapsto IX,\,Y\mapsto XX$) and a $ZZ$-type stabilizer via $\mathcal{D}_Z$ ($I\mapsto II,\,X\mapsto IZ,\,Z\mapsto ZI,\,Y\mapsto ZZ$). Expanded into qubit pairs, this map is symplectic doubling, yielding a $⟦2n,2k,d^{\prime}⟧$ qubit CSS code with $d\leq d^{\prime}\leq 2d$  ([arXiv:1212.6703](https://arxiv.org/abs/1212.6703)) ([arXiv:2311.18003](https://arxiv.org/abs/2311.18003)).
 
 ## Notes
 

@@ -2,13 +2,13 @@
 type: concept
 name: Long-range enhanced surface code (LRESC)
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
-- concepts/qec/cyclic-hgp
+- concepts/qec/hypergraph-product
 - concepts/qec/lacross
 sources:
 - raw/error-correction-zoo.md
@@ -31,7 +31,7 @@ An example using a $[5,2,3]$ code is also presented.
 
 (source: raw/error-correction-zoo.md)
 
-## General gates
+## Transversal gates
 
 - Patch-transversal gates for suitable seed codes  ([arXiv:2309.11719](https://arxiv.org/abs/2309.11719)).
 
@@ -41,7 +41,7 @@ An example using a $[5,2,3]$ code is also presented.
 
 ## Relations
 
-- _parent_: [[concepts/qec/cyclic-hgp]] — LRESCs are constructed using a hypergraph product of a concatenated LDPC-repetition code with itself.
+- _parent_: [[concepts/qec/hypergraph-product]] — An LRESC is the square HGP of a classical code formed by concatenating an outer LDPC code with inner repetition codes  ([arXiv:2309.11719](https://arxiv.org/abs/2309.11719)).
 - _cousin_: [[concepts/qec/lacross]] — La-cross codes yield LRESCs for $k=2$. La-cross codes have a number of long-range stabilizers that scales linearly with code size, while the number of LRESC long-range stabilizers can be tuned to scale between the square-root of the size and linearly in the size.
 - _cousin_: [`ldpc`](https://errorcorrectionzoo.org/c/ldpc) — LRESCs are constructed using a hypergraph product of two copies of a concatenated LDPC-repetition seed code.
 - _cousin_: [`repetition`](https://errorcorrectionzoo.org/c/repetition) — LRESCs are constructed using a hypergraph product of two copies of a concatenated LDPC-repetition seed code.

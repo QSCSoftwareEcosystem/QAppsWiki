@@ -2,7 +2,7 @@
 type: concept
 name: Single-spin code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -28,7 +28,7 @@ imported_id: single_spin
 An encoding into a monolithic (i.e. non-tensor-product) Hilbert space that houses an irreducible representation of $SU(2)$ or, more generally, another Lie group.
 In some cases, this space can be thought of as the permutation invariant subspace of a particular tensor-product space.
 
-The analogue of oscillator coherent states for single spins are the spin coherent states  ([doi:10.1088/0305-4470/4/3/009](https://doi.org/10.1088/0305-4470/4/3/009)).
+The analogue of oscillator coherent states for single spins is the spin coherent states  ([doi:10.1088/0305-4470/4/3/009](https://doi.org/10.1088/0305-4470/4/3/009)).
 
 (source: raw/error-correction-zoo.md)
 

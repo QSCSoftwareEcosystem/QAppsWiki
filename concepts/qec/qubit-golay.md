@@ -2,7 +2,7 @@
 type: concept
 name: $⟦23, 1, 7⟧$ Quantum Golay code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Qubit Golay code
@@ -30,12 +30,14 @@ imported_id: qubit_golay
 ## Description
 
 A $⟦23, 1, 7⟧$ self-dual CSS code with eleven stabilizer generators of each type, and with each generator being weight eight.
+The automorphism group of the code is the Mathieu group $M_{23}$  ([arXiv:2109.12735](https://arxiv.org/abs/2109.12735)).
 
 The code's 11-by-23 stabilizer generator matrix blocks $H_{X}$ and $H_{Z}$ are both parity-check matrices of the classical Golay code.
-Equivalently, it can be obtained from the $[24,12,8]$ extended Golay code by shortening on one bit to a self-orthogonal $[23,11,7]$ code  ([arXiv:1703.07847](https://arxiv.org/abs/1703.07847)).
-It can be punctured twice to obtain a $⟦21,3,5⟧$ code  ([arXiv:1703.07847](https://arxiv.org/abs/1703.07847)).
-
-The automorphism group of the code is $M_{23}$  ([arXiv:2109.12735](https://arxiv.org/abs/2109.12735)).
+Equivalently, it can be obtained from the $[24,12,8]$ extended Golay code by shortening on one bit to a self-orthogonal $[23,11,8]$ code  ([arXiv:1703.07847](https://arxiv.org/abs/1703.07847)).
+More generally, shortening the extended Golay code on $j$ bits yields a self-orthogonal doubly even code whose CSS code is, for $j=1,\dots,8$, the
+$⟦23,1,7⟧$, $⟦22,2,6⟧$, $⟦21,3,5⟧$, $⟦20,4,4⟧$, $⟦19,5,3⟧$, $⟦18,6,3⟧$, $⟦17,7,2⟧$, and $⟦16,8,2⟧$ code, respectively.
+The $⟦21,3,5⟧$ code is equivalently obtained by puncturing this code twice  ([arXiv:1703.07847](https://arxiv.org/abs/1703.07847)).
+Since $M_{24}$ is 5-transitive, the shortened code is independent of which bits are chosen for $j\leq 5$; for larger $j$ it depends on the choice.
 
 (source: raw/error-correction-zoo.md)
 

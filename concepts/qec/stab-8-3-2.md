@@ -2,7 +2,7 @@
 type: concept
 name: $⟦8,3,2⟧$ Smallest interesting color code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -14,6 +14,7 @@ related_concepts:
 - concepts/qec/hypercube-quantum
 - concepts/qec/qubit-concatenated
 - concepts/qec/stab-15-1-3
+- concepts/qec/surface
 - concepts/qec/xp-stabilizer
 sources:
 - raw/error-correction-zoo.md
@@ -46,6 +47,11 @@ In encoded IQP sampling, the final measurement outcomes determine both the logic
 
 (source: raw/error-correction-zoo.md)
 
+## Encoders
+
+- Depth-three eight-CNOT encoder for $|+++\rangle$ using nearest-neighbor connectivity on a square lattice  ([arXiv:2605.21867](https://arxiv.org/abs/2605.21867)).
+- $Z$-fault-tolerant preparation of $|+++\rangle$ by transversal CNOT onto an ancillary block, decoding, and postselection on the $X$-basis outcomes of the verification qubits  ([arXiv:2605.21867](https://arxiv.org/abs/2605.21867)).
+
 ## Transversal gates
 
 - $CZ$ gates between any two logical qubits  ([arXiv:1912.10063](https://arxiv.org/abs/1912.10063)) and (weakly) transversal $CCZ$ gate  ([arXiv:1503.02065](https://arxiv.org/abs/1503.02065), [arXiv:1912.10063](https://arxiv.org/abs/1912.10063)).
@@ -62,6 +68,8 @@ In encoded IQP sampling, the final measurement outcomes determine both the logic
 - Universal weakly fault-tolerant computation via code switching between this and another $⟦8,3,2⟧$ CSS code in a postselected error-detecting regime  ([arXiv:2603.15610](https://arxiv.org/abs/2603.15610)).
 - Fault-tolerant architecture  ([arXiv:2507.20387](https://arxiv.org/abs/2507.20387)).
 - For hIQP sampling with decoding only in the final measurement round, error-detected $⟦8,3,2⟧$ circuits outperform the $⟦16,3,4⟧$ and $⟦15,1,3⟧$ comparison circuits studied in Ref.  ([arXiv:2404.19005](https://arxiv.org/abs/2404.19005)) under its two-qubit-gate-noise model.
+- Superdense syndrome extraction of one $X$-type and three $Z$-type stabilizer generators at circuit depth eight using a GHZ ancillary state  ([arXiv:2605.21867](https://arxiv.org/abs/2605.21867)).
+- Zero-level distillation of the $CCZ$ magic state, in which the (weakly) transversal $CCZ$ gate is applied to an encoded $|+++\rangle$ state that is teleported onto three surface-code logical qubits  ([arXiv:2605.21867](https://arxiv.org/abs/2605.21867)). The depth-24 circuit uses 22 physical qubits and yields a logical error rate $p_L \simeq 300 p^2$ under circuit-level depolarizing noise  ([arXiv:2605.21867](https://arxiv.org/abs/2605.21867)).
 
 ## Realizations
 
@@ -74,9 +82,10 @@ In encoded IQP sampling, the final measurement outcomes determine both the logic
 - _parent_: [[concepts/qec/3d-color]] — The $⟦8,3,2⟧$ code is the smallest non-trivial 3D color code.
 - _parent_: [[concepts/qec/hypercube-quantum]] — The $⟦8,3,2⟧$ code is a hypercube code for $D=3$.
 - _parent_: [[concepts/qec/campbell-howard]] — The $⟦8,3,2⟧$ code is the $k=1$ member of the $⟦6k+2,3k,2⟧$ Campbell-Howard family with a quasi-transversal logical $CCZ$ gate  ([arXiv:1606.01904](https://arxiv.org/abs/1606.01904)).
-- _cousin_: [`hamming844`](https://errorcorrectionzoo.org/c/hamming844) — The $⟦8,3,2⟧$ hypercube code $H_X$ check matrix is the parity-check matrix of the $[8,4,4]$ extended Hamming code, while its $H_Z$ matrix is that of the SPC code.
-- _cousin_: [`parity_check`](https://errorcorrectionzoo.org/c/parity_check) — The $⟦8,3,2⟧$ hypercube code $H_X$ check matrix is the parity-check matrix of the $[8,4,4]$ extended Hamming code, while its $H_Z$ matrix is that of the SPC code.
+- _cousin_: [`hamming844`](https://errorcorrectionzoo.org/c/hamming844) — The $⟦8,3,2⟧$ hypercube code $H_Z$ check matrix is the parity-check matrix of the $[8,4,4]$ extended Hamming code, while its $H_X$ matrix is that of the SPC code.
+- _cousin_: [`parity_check`](https://errorcorrectionzoo.org/c/parity_check) — The $⟦8,3,2⟧$ hypercube code $H_Z$ check matrix is the parity-check matrix of the $[8,4,4]$ extended Hamming code, while its $H_X$ matrix is that of the SPC code.
 - _cousin_: [[concepts/qec/xp-stabilizer]] — As the $D=3$ member of the hypercube-code family, the $⟦8,3,2⟧$ code can be viewed as an XP stabilizer code with precision $N=8$  ([arXiv:2203.00103](https://arxiv.org/abs/2203.00103)).
 - _cousin_: [[concepts/qec/stab-15-1-3]] — The $⟦8,3,2⟧$ code can be obtained from a subset of physical qubits of the $⟦15,1,3⟧$ code  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
 - _cousin_: [[concepts/qec/3d-surface]] — Three cyclically rotated copies of the 3D surface/toric code admit a logical $CCZ$ gate via transversal physical $CCZ$ gates, and concatenating each such qubit triple with an $⟦8,3,2⟧$ block yields a 3D toric/color family with parameters $⟦8n,3,2d⟧$; its smallest member has parameters $⟦72,3,4⟧$  ([arXiv:2404.19005](https://arxiv.org/abs/2404.19005)).
-- _cousin_: [[concepts/qec/qubit-concatenated]] — Concatenating $⟦8,3,2⟧$ blocks with triples of qubits drawn from three cyclically rotated 3D surface/toric codes yields a 3D toric/color family with parameters $⟦8n,3,2d⟧$ and transversal logical $CCZ$ implemented by physical $T$ gates on the inner $⟦8,3,2⟧$ blocks  ([arXiv:2404.19005](https://arxiv.org/abs/2404.19005)).
+- _cousin_: [[concepts/qec/surface]] — The three logical qubits of the $⟦8,3,2⟧$ code can be teleported into surface-code patches by lattice surgery  ([arXiv:2605.21867](https://arxiv.org/abs/2605.21867)).
+- _cousin_: [[concepts/qec/qubit-concatenated]] — Concatenating $⟦8,3,2⟧$ blocks with triples of qubits drawn from three cyclically rotated 3D surface/toric codes yields a 3D toric/color family with parameters $⟦8n,3,2d⟧$ and transversal logical $CCZ$ implemented by physical $T$ gates on the outer $⟦8,3,2⟧$ blocks  ([arXiv:2404.19005](https://arxiv.org/abs/2404.19005)).

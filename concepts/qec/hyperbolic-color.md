@@ -2,7 +2,7 @@
 type: concept
 name: Hyperbolic color code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -36,7 +36,7 @@ Other admissible hyperbolic tilings can be obtained via a fattening procedure  (
 
 The use of hyperbolic surfaces allows one to circumvent bounds on code parameters (such as the \term{BPT bound}) that are valid for lattice geometries.
 Hyperbolic color codes can have high rate but tend to have small distance.
-For example, a $\{4g,4g\}$ tiling with periodic boundary conditions (i.e., a $g$-torus) yields a $⟦4g+8,4g,4⟧$ code family  ([arXiv:1804.06382](https://arxiv.org/abs/1804.06382)).
+For example, a $\{2g+4,3\}$ tiling of a $\{4g,4g\}$ fundamental polygon with opposite sides identified (i.e., a $g$-torus) yields a $⟦4g+8,4g,4⟧$ code family  ([arXiv:1804.06382](https://arxiv.org/abs/1804.06382)).
 More examples, such as the $⟦160,20,8⟧$ code on the 4.10.10 tiling, are provided in  ([arXiv:1906.11394](https://arxiv.org/abs/1906.11394)).
 
 ## Rate

@@ -2,7 +2,7 @@
 type: concept
 name: Dijkgraaf-Witten gauge theory code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Cohomological gauge theory code

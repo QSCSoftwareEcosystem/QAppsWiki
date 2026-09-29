@@ -2,7 +2,7 @@
 type: concept
 name: Quantum parity code (QPC)
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Subspace Shor code
@@ -16,6 +16,7 @@ related_concepts:
 - concepts/qec/group-quantum-parity
 - concepts/qec/majorana-stab
 - concepts/qec/quantum-lego
+- concepts/qec/qubit-concatenated
 - concepts/qec/rbh
 sources:
 - raw/error-correction-zoo.md
@@ -31,7 +32,7 @@ imported_id: quantum_parity
 
 ## Description
 
-A $⟦m_1 m_2,1,\min(m_1,m_2)⟧$ CSS code family obtained from concatenating an $m_1$-qubit bit-flip repetition code with an $m_2$-qubit phase-flip repetition code.
+A $⟦m_1 m_2,1,\min(m_1,m_2)⟧$ CSS code family obtained by concatenating an $m_2$-qubit phase-flip repetition code (inner code) with an $m_1$-qubit bit-flip repetition code (outer code), using the concatenation convention of the Zoo.
 
 A set of logical codewords is
 \begin{align}
@@ -69,6 +70,7 @@ Has distance $d=\min(m_1,m_2)$.
 
 - _parent_: [[concepts/qec/generalized-shor]]
 - _parent_: [[concepts/qec/group-quantum-parity]] — A $⟦m_1 m_2,1,\min(m_1,m_2)⟧_G$ group-based QPC reduces to a QPC for $G=\mathbb{Z}_2$.
+- _parent_: [[concepts/qec/qubit-concatenated]] — Using the concatenation convention of the Zoo, a QPC is a concatenation of an $m_2$-qubit phase-flip repetition code (inner code) with an $m_1$-qubit bit-flip repetition code (outer code).
 - _cousin_: [[concepts/qec/quantum-lego]] — Encoders for a recursively concatenated QPCs are related to *quantum trees*  ([arXiv:2305.03694](https://arxiv.org/abs/2305.03694), [arXiv:2306.14294](https://arxiv.org/abs/2306.14294)) and tree tensor networks  ([arXiv:1312.4578](https://arxiv.org/abs/1312.4578)).
 - _cousin_: [[concepts/qec/bacon-shor]] — Bacon-Shor codes reduce to QPCs when all $X$-type gauge generators are fixed  ([arXiv:1809.01193](https://arxiv.org/abs/1809.01193)).
 - _cousin_: [[concepts/qec/majorana-stab]] — QPCs for $m_1=m_2$ can be conveniently expressed in terms of mutually commuting Majorana operators  ([arXiv:quant-ph/0003137](https://arxiv.org/abs/quant-ph/0003137)).

@@ -2,7 +2,7 @@
 type: concept
 name: $⟦9,1,5⟧_3$ quantum Glynn code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

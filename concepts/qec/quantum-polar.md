@@ -2,7 +2,7 @@
 type: concept
 name: Quantum polar code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -25,7 +25,7 @@ imported_id: quantum_polar
 
 ## Description
 
-Entanglement-assisted CSS code utilized in a quantum polar coding scheme producing entangled pairs of qubits between sender and receiver. In such a scheme, the amplitude and phase information of a quantum state is handled in complementary fashion  ([arXiv:0803.3096](https://arxiv.org/abs/0803.3096)) using an encoding based on classical polar codes. Variants of the initial scheme have been developed for degradable channels  ([arXiv:1201.2906](https://arxiv.org/abs/1201.2906)) and extended to arbitrary channels  ([arXiv:1109.5346](https://arxiv.org/abs/1109.5346)).
+Entanglement-assisted CSS code utilized in a quantum polar coding scheme producing entangled pairs of qubits between sender and receiver. In such a scheme, the amplitude and phase information of a quantum state is handled in complementary fashion  ([arXiv:0803.3096](https://arxiv.org/abs/0803.3096)) using an encoding based on classical polar codes. Variants of the initial scheme have been developed for degradable channels  ([arXiv:1109.5346](https://arxiv.org/abs/1109.5346)) and extended to arbitrary channels  ([arXiv:1201.2906](https://arxiv.org/abs/1201.2906), [arXiv:1212.2537](https://arxiv.org/abs/1212.2537)).
 
 The scheme requires some a priori quantum side information in the general case, making the associated code entanglement-assisted  ([arXiv:1109.3195](https://arxiv.org/abs/1109.3195)). 
 They require assistance only to determine positions to store information which optimally protect against both bit and phase noise. Without this assistance, they are just CSS codes constructed out of polar codes.
@@ -35,13 +35,9 @@ A more complicated quantum polar-coding scheme that does not require pre-shared 
 
 (source: raw/error-correction-zoo.md)
 
-## Protection
-
-Protects against Pauli noise and erasures.
-
 ## Rate
 
-The rate approaches the symmetric coherent information of arbitrary quantum channels  ([arXiv:1201.2906](https://arxiv.org/abs/1201.2906)).
+The rate approaches the symmetric coherent information of arbitrary quantum channels  ([arXiv:1201.2906](https://arxiv.org/abs/1201.2906), [arXiv:1212.2537](https://arxiv.org/abs/1212.2537)).
 
 ## Encoders
 

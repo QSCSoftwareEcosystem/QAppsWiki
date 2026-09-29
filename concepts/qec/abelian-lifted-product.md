@@ -2,7 +2,7 @@
 type: concept
 name: Abelian LP code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -26,6 +26,7 @@ imported_id: abelian_lifted_product
 ## Description
 
 A lifted-product code whose lift group $G$ is Abelian.
+The one-by-one (scalar) case, built from a pair of single group-algebra elements $a,b \in \mathbb{F}_q[G]$, yields Abelian 2BGA codes.
 The case of $G$ being a cyclic group is a GB code (a.k.a. a quasi-cyclic LP code)  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)).
 A particular family with $G=\mathbb{Z}_{\ell}$ yields codes with parameters $⟦n,k=\Theta(\log n),d=\Theta(n/\log n)⟧$  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)).
 
@@ -37,6 +38,13 @@ See Refs.  ([arXiv:1904.02703](https://arxiv.org/abs/1904.02703), [arXiv:2012.04
 ## Rate
 
 For cyclic groups $G=\mathbb{Z}_{\ell}$ with $\ell=\Theta(n/\log n)$, quasi-cyclic expander LP codes yield families with parameters $⟦n,k=\Theta(\log n),d=\Theta(n/\log n)⟧$  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)). Related balanced-product reformulations and other explicit Abelian LP constructions appear in  ([arXiv:2012.09271](https://arxiv.org/abs/2012.09271), [arXiv:2112.01647](https://arxiv.org/abs/2112.01647)).
+
+## General gates
+
+- Transversal dimension jump, a code-switching protocol between a 3D LP code $LP(A,B,C)$ over $\mathbb{F}_2[G]$ and any of its 2D component codes, such as $LP(A,B)$  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
+The 2D code embeds as a slice of the 3D code via an inclusion chain map  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
+Physical CNOTs controlled by the 3D qubits of the slice and targeting their 2D partners form a one-way transversal logical CNOT  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
+Whenever the induced map on logical $Z$ operators is injective, one-bit teleportation through this CNOT switches logical qubits between the two codes  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
 
 ## Decoders
 

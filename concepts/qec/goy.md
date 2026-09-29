@@ -2,7 +2,7 @@
 type: concept
 name: $⟦6r,2r,2⟧$ Ganti-Onunkwo-Young code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

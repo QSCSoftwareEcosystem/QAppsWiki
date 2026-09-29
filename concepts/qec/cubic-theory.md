@@ -2,7 +2,7 @@
 type: concept
 name: Cubic theory code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Magic stabilizer code
@@ -11,6 +11,7 @@ domains:
 related_concepts:
 - concepts/qec/clifford-hierarchy
 - concepts/qec/color
+- concepts/qec/monomial-stabilizer
 - concepts/qec/quantum-double-dihedral
 - concepts/qec/self-correct
 - concepts/qec/yetter-gauge-theory
@@ -58,6 +59,7 @@ On suitable triangulations of the Wu 5-manifold, a family of five-dimensional cu
 
 - _parent_: [[concepts/qec/clifford-hierarchy]] — Cubic theory codes are joint eigenspaces of commuting non-Pauli stabilizers built from Pauli $X$, Pauli $Z$, and $CZ$ operators, placing them at the second level of the Clifford hierarchy.
 - _parent_: [[concepts/qec/yetter-gauge-theory]] — Cubic theory codes realize higher-form $\mathbb{Z}_2^3$ gauge theories with non-Abelian excitations in arbitrary dimensions.
+- _parent_: [[concepts/qec/monomial-stabilizer]] — Cubic theory code Hamiltonians contain Gauss-law terms dressed by zero-flux projectors, and the dressed terms are non-unitary and hence non-monomial  ([arXiv:2405.11719](https://arxiv.org/abs/2405.11719)). However, the codespace coincides with the joint $+1$ eigenspace of the diagonal Pauli-$Z$ flux operators together with the undressed Gauss-law operators. The latter are products of Pauli-$X$ strings and diagonal gates built from Pauli-$Z$ and $CZ$ operators, so the codespace is a joint $+1$ eigenspace of a finite monomial group  ([arXiv:1108.0531](https://arxiv.org/abs/1108.0531)).
 - _cousin_: [[concepts/qec/self-correct]] — A family of five-dimensional cubic theory codes with Abelian loop excitations and non-Abelian membrane excitations is argued to be self-correcting below a critical temperature via a Peierls argument  ([arXiv:2405.11719](https://arxiv.org/abs/2405.11719)).
 - _cousin_: [[concepts/qec/color]] — The cubic theory in $D$ spacetime dimensions can be obtained by twisted compactification of a generalized color code in $D+1$ spacetime dimensions; in particular, the five-dimensional cubic theory arises from a twisted compactification of the 6D color code  ([arXiv:2405.11719](https://arxiv.org/abs/2405.11719)).
 - _cousin_: [[concepts/qec/quantum-double-dihedral]] — For $D=3$ with $l=m=n=1$, the cubic theory is equivalent to the $G=D_4$ quantum double, i.e. the non-Abelian Type-III $\mathbb{Z}_2^3$ twisted quantum double  ([arXiv:2405.11719](https://arxiv.org/abs/2405.11719)).

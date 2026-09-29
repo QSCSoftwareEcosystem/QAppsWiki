@@ -2,7 +2,7 @@
 type: concept
 name: Quantum repetition code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -34,17 +34,17 @@ imported_id: quantum_repetition
 Encodes $1$ qubit into $n$ qubits according to $|0\rangle\to|\phi_0\rangle^{\otimes n}$ and $|1\rangle\to|\phi_1\rangle^{\otimes n}$. The code is called a *bit-flip* code when $|\phi_i\rangle = |i\rangle$, and a *phase-flip* code when $|\phi_0\rangle = |+\rangle$ and $|\phi_1\rangle = |-\rangle$.
 This repetition-style encoding does not clone an arbitrary quantum state; instead, it extends the copying of computational-basis states linearly to entangled codewords  .
 
-The $\pm$-basis codewords for the bit-flip code are *GHZ states*  ([doi:10.1119/1.16243](https://doi.org/10.1119/1.16243), [doi:10.1119/1.16503](https://doi.org/10.1119/1.16503), [arXiv:0712.0921](https://arxiv.org/abs/0712.0921)) (a.k.a. qubit cat states) $|0\rangle^{\otimes n}\pm|1\rangle^{\otimes n}$. These are ground states of the 1D *classical Ising model* Hamiltonian $H=\sum_{i} Z_{i}Z_{i+1}$.
+The $\pm$-basis codewords for the bit-flip code are *GHZ states*  ([doi:10.1119/1.16243](https://doi.org/10.1119/1.16243), [doi:10.1119/1.16503](https://doi.org/10.1119/1.16503), [arXiv:0712.0921](https://arxiv.org/abs/0712.0921)) (a.k.a. qubit cat states) $\left(|0\rangle^{\otimes n}\pm|1\rangle^{\otimes n}\right)/\sqrt{2}$. These are ground states of the 1D *classical Ising model* Hamiltonian $H=-\sum_{i} Z_{i}Z_{i+1}$.
 
 The $\pm$-basis codewords for the phase-flip code are expanded in the computational basis as
 \begin{align}
   \begin{split}
-    |\overline{+}\rangle =\frac{1}{\sqrt{2^{n-1}}}\sum_{\sum_{i}v_{i}=0}|v_{1},\cdots,v_{n}\rangle~{\phantom{,}}\\
-    |\overline{-}\rangle =\frac{1}{\sqrt{2^{n-1}}}\sum_{\sum_{i}v_{i}=1}|v_{1},\cdots,v_{n}\rangle~,
+    |\overline{+}\rangle =\frac{1}{\sqrt{2^{n-1}}}\sum_{\sum_{i}v_{i}=0\pmod{2}}|v_{1},\cdots,v_{n}\rangle~{\phantom{,}}\\
+    |\overline{-}\rangle =\frac{1}{\sqrt{2^{n-1}}}\sum_{\sum_{i}v_{i}=1\pmod{2}}|v_{1},\cdots,v_{n}\rangle~,
   \end{split}
 \end{align}
 showing that the phase-flip code stores information in the total parity of the qubits.
-For example, an early code realized in devices is the 2-qubit phase-flip code  ([arXiv:quant-ph/0006088](https://arxiv.org/abs/quant-ph/0006088)), which encodes a logical qubit into Bell states $|00\rangle+|11\rangle$ and $|01\rangle+|10\rangle$.
+For example, an early code realized in devices is the 2-qubit phase-flip code  ([arXiv:quant-ph/0006088](https://arxiv.org/abs/quant-ph/0006088)), whose $\pm$-basis codewords are the Bell states $\left(|00\rangle+|11\rangle\right)/\sqrt{2}$ and $\left(|01\rangle+|10\rangle\right)/\sqrt{2}$.
 
 (source: raw/error-correction-zoo.md)
 
@@ -60,7 +60,7 @@ Nevertheless, the phase-flip code can offer some degree of protection in particu
 
 - Non-deterministic encoders for various specific states of the 2-qubit phase-flip code  ([arXiv:quant-ph/0408064](https://arxiv.org/abs/quant-ph/0408064)).
 - Fault-tolerant GHZ-state preparation with small qubit registers  ([arXiv:0709.4539](https://arxiv.org/abs/0709.4539)).
-- Unitary circuit of depth logarithmic in $n$  ([arXiv:1807.05572](https://arxiv.org/abs/1807.05572)). Any circuit has to have range $n$ because Ghz states are locally indistinguishable  ([arXiv:1910.08980](https://arxiv.org/abs/1910.08980)).
+- Unitary circuit of depth logarithmic in $n$  ([arXiv:1807.05572](https://arxiv.org/abs/1807.05572)). Any circuit has to have range $n$ because GHZ states are locally indistinguishable  ([arXiv:1910.08980](https://arxiv.org/abs/1910.08980)).
 - Adaptive constant-depth circuit with geometrically local gates and measurements throughout  ([arXiv:1906.08890](https://arxiv.org/abs/1906.08890), [arXiv:2112.03061](https://arxiv.org/abs/2112.03061)).
 - Lindbladian-based dissipative encoding and autonomous QEC passively protecting against bit flips  ([arXiv:quant-ph/0110111](https://arxiv.org/abs/quant-ph/0110111), [arXiv:1702.08673](https://arxiv.org/abs/1702.08673)).
 - Error-corrected GHZ state distillation for Steane error correction  ([arXiv:2210.14143](https://arxiv.org/abs/2210.14143)).

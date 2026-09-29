@@ -2,7 +2,7 @@
 type: concept
 name: $⟦2^r-1,1,3⟧$ simplex code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $⟦2^r-1,1,3⟧$ quantum RM code
@@ -50,7 +50,7 @@ Morphing the $r$-dimensional distance-three code in this family yields a $⟦2^r
 
 - _parent_: [[concepts/qec/quantum-reed-muller]] — $⟦2^r-1,1,3⟧$ simplex codes are special cases of the $⟦\sum_{i=w+1}^m \binom{m}{i}, \sum_{i=0}^{w} \binom{m}{i}, \sum_{i=w+1}^{r+1} \binom{r+1}{i}⟧$ quantum RM codes for $w=0$ and $r=1$, with $m$ equal to the present entry's parameter $r$  ([arXiv:1709.03543](https://arxiv.org/abs/1709.03543)).
 - _parent_: [[concepts/qec/color]] — Each $⟦2^r-1,1,3⟧$ simplex code is a color code defined on a simplex in $r-1$ dimensions  ([arXiv:1311.0879](https://arxiv.org/abs/1311.0879), [arXiv:1503.08217](https://arxiv.org/abs/1503.08217)).
-- _parent_: [[concepts/qec/quantum-divisible]] — $⟦2^r-1,1,3⟧$ simplex codes come from RM$(1,m=r)$ codes, which are $(r-1)$-even  ([doi:10.1016/0097-3165(71)90066-5](https://doi.org/10.1016/0097-3165(71)90066-5), [doi:10.1016/0012-365X(72)90032-5](https://doi.org/10.1016/0012-365X(72)90032-5)), and admit transversal gates at levels of the \term{Clifford hierarchy}. Building a tower of generalized divisible codes by starting with the Steane code yields the $⟦2^r-1,1,3⟧$ simplex codes  ([arXiv:1709.08658](https://arxiv.org/abs/1709.08658)).
+- _parent_: [[concepts/qec/quantum-divisible]] — The $X$-type stabilizer space of each $⟦2^r-1,1,3⟧$ simplex code is $2^{r-1}$-divisible  ([doi:10.1016/0097-3165(71)90066-5](https://doi.org/10.1016/0097-3165(71)90066-5), [doi:10.1016/0012-365X(72)90032-5](https://doi.org/10.1016/0012-365X(72)90032-5)). Taking the all-ones logical generator and $t=(-1,\ldots,-1)$ makes the joint matrix satisfy the level-$(r-1)$ quantum divisible conditions  ([arXiv:1709.08658](https://arxiv.org/abs/1709.08658)). The two logical cosets therefore have weights congruent to $0$ and $2^{r-1}-1$ modulo $2^{r-1}$, respectively.
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
 - _cousin_: [[concepts/qec/xp-stabilizer]] — Each $⟦2^r-1,1,3⟧$ simplex code can be viewed as an XP stabilizer code with precision $N = 2^{r-2}$  ([arXiv:2203.00103](https://arxiv.org/abs/2203.00103)).
 - _cousin_: [[concepts/qec/quantum-k-orthogonal]] — $⟦2^r-1,1,3⟧$ simplex codes are $(r-1)$-orthogonal  ([arXiv:2210.14066](https://arxiv.org/abs/2210.14066)).

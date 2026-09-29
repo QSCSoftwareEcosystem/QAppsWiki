@@ -2,13 +2,14 @@
 type: concept
 name: OA qubit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Hybrid subsystem qubit code
 domains:
 - quantum-error-correction
-related_concepts: []
+related_concepts:
+- concepts/qec/oaecc
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/oa_qubits_into_qubits
@@ -38,4 +39,4 @@ The above code reduces to a subsystem code when $\mathsf{A}_{2}\otimes\mathsf{B}
 
 ## Relations
 
-- _parent_: [`oaecc`](https://errorcorrectionzoo.org/c/oaecc) — An OAQECC defined over qubits is an OA qubit code.
+- _parent_: [[concepts/qec/oaecc]] — An OAQECC defined over qubits is an OA qubit code.

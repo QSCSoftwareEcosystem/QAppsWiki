@@ -2,7 +2,7 @@
 type: concept
 name: Entanglement-assisted (EA) c-q code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Entanglement-assisted classical communication (EACC) code
@@ -11,6 +11,8 @@ domains:
 - quantum-error-correction
 related_concepts:
 - concepts/qec/bosonic-classical-into-quantum
+- concepts/qec/eacq
+- concepts/qec/eaoaecc
 - concepts/qec/eaqecc
 sources:
 - raw/error-correction-zoo.md
@@ -48,7 +50,7 @@ If the encoding and decoding circuits themselves are noisy, the fault-tolerant E
 
 ## Relations
 
-- _parent_: [`eaoaecc`](https://errorcorrectionzoo.org/c/eaoaecc) — An EAOA QECC that has no gauge structure (e.g., gauge qubits), that has a block structure that corresponds to a classical code, that stores no quantum information, and that utilizes pre-shared entanglement is an EA c-q code.
+- _parent_: [[concepts/qec/eaoaecc]] — An EAOA QECC that has no gauge structure (e.g., gauge qubits), that has a block structure that corresponds to a classical code, that stores no quantum information, and that utilizes pre-shared entanglement is an EA c-q code.
 - _cousin_: [[concepts/qec/bosonic-classical-into-quantum]] — Bosonic EA c-q schemes use pre-shared continuous-variable entanglement to assist bosonic c-q communication, including structured transceivers for lossy thermal-noise channels  ([arXiv:2001.03934](https://arxiv.org/abs/2001.03934), [arXiv:2208.07979](https://arxiv.org/abs/2208.07979)).
-- _cousin_: [`eacq`](https://errorcorrectionzoo.org/c/eacq) — EA c-q codes transmit only classical information with entanglement assistance, while EA hybrid QECCs transmit both classical and quantum information with entanglement assistance.
+- _cousin_: [[concepts/qec/eacq]] — EA c-q codes transmit only classical information with entanglement assistance, while EA hybrid QECCs transmit both classical and quantum information with entanglement assistance.
 - _cousin_: [[concepts/qec/eaqecc]] — EA c-q codes transmit classical information with entanglement assistance, while EAQECCs transmit quantum information with entanglement assistance.

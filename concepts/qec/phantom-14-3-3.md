@@ -2,7 +2,7 @@
 type: concept
 name: $⟦14,3,3⟧$ CE phantom code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -55,10 +55,11 @@ One stabilizer tableau for the code is
 
 Corrects a single-qubit error. Its $X$- and $Z$-sector distances are $d_X=3$ and $d_Z=4$, respectively  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
 
-## General gates
+## Transversal gates
 
 - The code is phantom, so every ordered-pair in-block logical CNOT gate between its three logical qubits can be implemented by a physical-qubit permutation  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
 - The Hadamard-dual code admits fold-diagonal logical $S_iS_j$ and $CZ_{ij}$ gates  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
+- All logical Clifford gates can be realized as products of depth-one, two-local code-preserving physical layers, i.e., as elements of the two-fold transversal group  ([arXiv:2608.05688](https://arxiv.org/abs/2608.05688)). In a suitable logical basis, all three $\overline{\sqrt{X}}_i$, all three $\overline{CZ}_{ij}$, and the $X$-type duals of the latter are addressable by a single depth-one, two-local code-preserving physical layer  ([arXiv:2608.05688](https://arxiv.org/abs/2608.05688)).
 
 ## Fault tolerance
 
@@ -72,4 +73,4 @@ Corrects a single-qubit error. Its $X$- and $Z$-sector distances are $d_X=3$ and
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
 - _cousin_: [[concepts/qec/xz-7-3-2]] — Concatenating the $⟦7,3,(d_X=3,d_Z=2)⟧$ punctured hypercube code with the two-qubit phase-flip repetition code yields this $⟦14,3,(d_X=3,d_Z=4)⟧$ CSS phantom code  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)). Dual-rail concatenation of the same punctured hypercube code yields a single-qubit Clifford-equivalent CE CSS frame  ([arXiv:2507.10395](https://arxiv.org/abs/2507.10395)).
 - _cousin_: [[concepts/qec/steane]] — Dual-rail concatenation of the $⟦7,1,3⟧$ Steane code yields a $⟦14,1,3⟧$ CE CSS code, from which the locally Clifford-equivalent $⟦14,3,3⟧$ CE CSS frame is obtained by removing two independent $Z$-type stabilizer generators  ([arXiv:2507.10395](https://arxiv.org/abs/2507.10395)).
-- _cousin_: [[concepts/qec/quantum-repetition]] — The inner code in the construction is the two-qubit phase-flip repetition code  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
+- _cousin_: [[concepts/qec/quantum-repetition]] — The outer code in the $⟦14,3,3⟧$ CE phantom code construction is the two-qubit phase-flip repetition code  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).

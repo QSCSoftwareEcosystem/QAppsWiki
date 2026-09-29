@@ -2,7 +2,7 @@
 type: concept
 name: Gottesman-Kitaev-Preskill (GKP) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -49,7 +49,7 @@ Particular families of GKP codes achieve the capacity of AD and amplification ch
 ## Encoders
 
 - GKP codes with fixed $n$ and prime-dimensional logical Hilbert space are symplectically related to a disjoint product of single-mode GKP codes on $n$ modes, such that encoding via Gaussian unitaries is possible.
-- Dissipative stabilization of finite-energy GKP states using stabilizers conjugated by *cooling* ( ([arXiv:1310.7596](https://arxiv.org/abs/1310.7596)), Appx. B) or *damping* operator, i.e., a damped exponential of the total occupation number  ([arXiv:2009.07941](https://arxiv.org/abs/2009.07941), [arXiv:2201.12337](https://arxiv.org/abs/2201.12337)).
+- Dissipative stabilization of finite-energy GKP states using stabilizers conjugated by *cooling*  ([arXiv:1310.7596](https://arxiv.org/abs/1310.7596)) or *damping* operator, i.e., a damped exponential of the total occupation number  ([arXiv:2009.07941](https://arxiv.org/abs/2009.07941), [arXiv:2201.12337](https://arxiv.org/abs/2201.12337)).
 - Logical Bell state can be created from two canonical GKP states by applying a beamsplitter  ([arXiv:2008.12791](https://arxiv.org/abs/2008.12791)).
 
 ## General gates

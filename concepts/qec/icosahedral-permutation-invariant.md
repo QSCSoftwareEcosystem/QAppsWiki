@@ -2,7 +2,7 @@
 type: concept
 name: $((7,2,3))$ Pollatsek-Ruskai code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $((7,2,3))$ icosahedral code

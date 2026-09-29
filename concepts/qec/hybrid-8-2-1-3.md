@@ -2,7 +2,7 @@
 type: concept
 name: $⟦8, 2:1, 3⟧$ hybrid stabilizer code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

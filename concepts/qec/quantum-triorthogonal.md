@@ -2,7 +2,7 @@
 type: concept
 name: Triorthogonal code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -61,7 +61,7 @@ Weight $t$ Pauli errors, where $t$ depends on the family. For example, Ref.  ([a
 
 ## Relations
 
-- _parent_: [[concepts/qec/quantum-k-orthogonal]] — $k$-orthogonal codes reduce to triorthogonal codes for $k=3$.
+- _parent_: [[concepts/qec/quantum-k-orthogonal]] — The $X$-type stabilizer space of a triorthogonal code is 3-orthogonal. Triorthogonal codes additionally have a CSS presentation with odd-weight logical-$X$ rows whose pair and triple overlaps with the full matrix are even  ([arXiv:1209.2426](https://arxiv.org/abs/1209.2426)).
 - _parent_: [[concepts/qec/qudit-triorthogonal]] — Prime-qudit triorthogonal codes reduce to triorthogonal codes when $p=2$.
 - _cousin_: [[concepts/qec/quantum-reed-muller]] — Classification of triorthogonal codes yields a connection to RM code polynomials  ([arXiv:2107.09684](https://arxiv.org/abs/2107.09684)).
 - _cousin_: [`self_dual`](https://errorcorrectionzoo.org/c/self_dual) — Self-dual binary codes can be used to construct triorthogonal codes  ([arXiv:2408.09685](https://arxiv.org/abs/2408.09685)).

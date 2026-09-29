@@ -2,7 +2,7 @@
 type: concept
 name: Four Color Cube (FCC) fracton model code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -40,4 +40,4 @@ The logical space on a cubic lattice of length $L$ with periodic boundary condit
 - _parent_: [[concepts/qec/qubit-css]]
 - _parent_: [[concepts/qec/qldpc]]
 - _parent_: [[concepts/qec/fracton]]
-- _cousin_: [[concepts/qec/xcube]] — The FCC fracton model code is obtained from four coupled X-cube models using p-membrane condensation.  ([arXiv:1701.00747](https://arxiv.org/abs/1701.00747)).
+- _cousin_: [[concepts/qec/xcube]] — The FCC fracton model code is obtained from four coupled X-cube models using p-membrane condensation  ([arXiv:1701.00747](https://arxiv.org/abs/1701.00747)).

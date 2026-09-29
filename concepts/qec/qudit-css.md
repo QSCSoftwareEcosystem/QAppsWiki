@@ -2,7 +2,7 @@
 type: concept
 name: Modular-qudit CSS code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -49,7 +49,7 @@ An $(n,K_X,d_X)_{\mathbb{Z}_q}$ linear code $C_X$ and an $(n,K_Z,d_Z)_{\mathbb{Z
 Specializing to the case when $C_Z=(n,K,d)_{\mathbb{Z}_q}$ is dual-containing yields an $((n,K^2 / q^n))_{\mathbb{Z}_q}$ *self-dual modular-qudit CSS code* with $C_X = C_Z$  ([doi:10.1142/S0219749914500208](https://doi.org/10.1142/S0219749914500208)).
 
 For prime $q=p$, the logical dimension returns to being a power of $q$: encoding is based on two related $p$-ary linear codes, an $[n,k_X,d_X]_p $ code $C_X$ and $[n,k_Z,d_Z]_p $ code $C_Z$,
-satisfying $C_X^\perp \subseteq C_Z$. The resulting CSS code has $k=k_X+k_Z-n$ logical qubits and distance $d\geq\min\{d_X,d_Z\}$.
+satisfying $C_X^\perp \subseteq C_Z$. The resulting CSS code has $k=k_X+k_Z-n$ logical qudits and distance $d\geq\min\{d_X,d_Z\}$.
 Specializing to the case when $C_Z=[n,k,d]_p$ is dual-containing yields an $⟦n,2k-n,\geq d_Z⟧_p$ *self-dual prime-qudit CSS code* with $C_X = C_Z$.
 The $H_X$ ($H_Z$) block of $H$ \eqref{eq:parityq} is the parity-check matrix of the code $C_X$ ($C_Z$). 
 The requirement $C_X^\perp \subseteq C_Z$ guarantees \eqref{eq:commQ}.
@@ -63,12 +63,12 @@ Basis states for the code are, for coset representatives $\gamma \in C_X/C_Z^\pe
 ## Transversal gates
 
 - Modular-qudit generalizations of CNOT gates are transversal interblock gates for all modular-qudit CSS codes.
-- Scalar multiplication physical gates, which map $|x\rangle \mapsto |ax\rangle$ for $a \in \mathbb{Z}_q^\times$, the mutiplicative group modulo $q$.
+- Scalar multiplication physical gates, which map $|x\rangle \mapsto |ax\rangle$ for $a \in \mathbb{Z}_q^\times$, the multiplicative group modulo $q$, are transversal.
 
 ## Relations
 
 - _parent_: [[concepts/qec/qudit-stabilizer]] — Modular-qudit CSS codes are modular-qudit stabilizer codes whose stabilizer groups admit a generating set of pure-$X$ and pure-$Z$ Pauli strings. 
-Any $⟦n,k,d⟧_{\mathbb{Z}_q}$ stabilizer code can be mapped onto a $⟦2n,2k,\geq d⟧_{\mathbb{Z}_q}$ two-block CSS code code via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
+Any $⟦n,k,d⟧_{\mathbb{Z}_q}$ stabilizer code can be mapped onto a $⟦2n,2k,d^{\prime}⟧_{\mathbb{Z}_q}$ two-block CSS code with $d\leq d^{\prime}\leq 2d$ via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
 - _parent_: [[concepts/qec/css]]
-- _cousin_: [[concepts/qec/two-block-quantum]] — Any $⟦n,k,d⟧_{\mathbb{Z}_q}$ stabilizer code can be mapped onto a $⟦2n,2k,\geq d⟧_{\mathbb{Z}_q}$ two-block CSS code code via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
+- _cousin_: [[concepts/qec/two-block-quantum]] — Any $⟦n,k,d⟧_{\mathbb{Z}_q}$ stabilizer code can be mapped onto a $⟦2n,2k,d^{\prime}⟧_{\mathbb{Z}_q}$ two-block CSS code with $d\leq d^{\prime}\leq 2d$ via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
 - _cousin_: [`q-ary_linear_over_zq`](https://errorcorrectionzoo.org/c/q-ary_linear_over_zq) — The modular-qudit CSS construction uses two related $q$-ary linear codes over $\mathbb{Z}_q$, $C_X$ and $C_Z$.

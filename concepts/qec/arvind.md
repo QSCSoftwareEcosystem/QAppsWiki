@@ -2,7 +2,7 @@
 type: concept
 name: $((n,1+n(q-1),2))_q$ union stabilizer code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

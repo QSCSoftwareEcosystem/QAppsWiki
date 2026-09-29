@@ -2,7 +2,7 @@
 type: concept
 name: XYZ product code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -25,7 +25,7 @@ imported_id: xyz_product
 
 ## Description
 
-A non-CSS QLDPC code obtained from a three-fold variant of the hypergraph product applied to three classical binary codes with parity-check matrices $H_1,H_2,H_3$.  Unlike CSS three-fold hypergraph product codes, the third input code acts through Pauli-$Y$ checks  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
+A non-CSS QLDPC code obtained from a three-fold variant of the hypergraph product applied to three classical binary codes with parity-check matrices $H_1,H_2,H_3$. The parity-check matrices $H_1$, $H_2$, and $H_3$ set the Pauli-$X$, $Y$, and $Z$ components of the stabilizer generators, respectively  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
 Under mild assumptions, the code dimension is determined by a tensor Sylvester equation over $\mathbb{F}_2$, and the minimum-distance problem reduces up to constant factors to how closely a related inhomogeneous tensor Sylvester equation can be satisfied  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).  When the underlying classical codes are repetition codes, the construction yields the Chamon model code.
 
 (source: raw/error-correction-zoo.md)
@@ -43,4 +43,4 @@ The logical dimension depends on properties of the input classical codes, specif
 - _parent_: [[concepts/qec/sc-qldpc]] — XYZ product stabilizer generator matrices can be used as sub-matrices to define a 2D SC-QLDPC code  ([arXiv:2305.00137](https://arxiv.org/abs/2305.00137)).
 - _parent_: [[concepts/qec/generalized-homological-product]] — The XYZ product code is a non-CSS three-fold variant of the hypergraph product built from three classical linear binary codes  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
 - _cousin_: [`binary_linear`](https://errorcorrectionzoo.org/c/binary_linear) — The XYZ product code is a non-CSS three-fold variant of the hypergraph product built from three classical linear binary codes  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
-- _cousin_: [[concepts/qec/multisector-hypergraph]] — The XYZ product code is a non-CSS three-fold variant of the hypergraph product built from three classical linear binary codes  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
+- _cousin_: [[concepts/qec/multisector-hypergraph]] — The XYZ product code is a non-CSS three-fold variant of the higher-dimensional homological product code of three classical codes. In the latter, the Pauli type of each check is set by its level in the underlying chain complex  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).

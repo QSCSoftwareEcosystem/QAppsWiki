@@ -2,13 +2,14 @@
 type: concept
 name: Hybrid QECC
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
 - concepts/qec/classical-into-quantum
+- concepts/qec/oaecc
 - concepts/qec/qecc
 sources:
 - raw/error-correction-zoo.md
@@ -49,6 +50,6 @@ The capacity of a hybrid quantum memory is determined by a convex region in the 
 
 ## Relations
 
-- _parent_: [`oaecc`](https://errorcorrectionzoo.org/c/oaecc) — An OAQECC which has no gauge structure (e.g., gauge qubits) but has a block structure that corresponds to a classical code is a hybrid QECC.
+- _parent_: [[concepts/qec/oaecc]] — An OAQECC which has no gauge structure (e.g., gauge qubits) but has a block structure that corresponds to a classical code is a hybrid QECC.
 - _cousin_: [[concepts/qec/qecc]] — A hybrid QECC storing no classical information reduces to a QECC. Conversely, any QECC can be converted into a hybrid QECC by using a portion of its logical subspace to store only classical information.
 - _cousin_: [[concepts/qec/classical-into-quantum]] — A hybrid QECC storing no quantum information reduces to a c-q code.

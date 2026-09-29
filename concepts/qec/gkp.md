@@ -2,7 +2,7 @@
 type: concept
 name: Square-lattice GKP code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -31,7 +31,7 @@ imported_id: gkp
 
 Single-mode GKP qudit-into-oscillator CSS code based on the rectangular lattice.
 Its stabilizer generators are oscillator displacement operators $\hat{S}_q(2\alpha)=e^{-2i\alpha \hat{p}}$ and $\hat{S}_p(2\beta)=e^{2i\beta \hat{x}}$.
-To ensure $\hat{S}_q(2\alpha)$ and $\hat{S}_p(2\beta)$ generate a stabilizer group that is Abelian, there is a constraint that $\alpha\beta=2q\pi$ where $q$ is an integer denoting the logical dimension.
+To ensure $\hat{S}_q(2\alpha)$ and $\hat{S}_p(2\beta)$ generate a stabilizer group that is Abelian, there is a constraint that $\alpha\beta=q\pi/2$ where $q$ is an integer denoting the logical dimension.
 
 Codewords can be expressed as equal weight superpositions of coherent states on a rectangular lattice in phase space with spatial period $2\sqrt{\pi}$.
 The exact GKP state is non-normalizable, so approximate constructions have to be considered.
@@ -56,7 +56,7 @@ For stabilizers $\hat{S}_q(2\alpha),\hat{S}_p(2\beta)$, the code can correct dis
 
 ## Encoders
 
-- Dissipative stabilization of finite-energy square-lattice GKP states using stabilizers conjugated by a *cooling* ( ([arXiv:1310.7596](https://arxiv.org/abs/1310.7596)), Appx. B) or *damping* operator, i.e., a damped exponential of the total occupation number  ([arXiv:2009.07941](https://arxiv.org/abs/2009.07941), [arXiv:2010.09681](https://arxiv.org/abs/2010.09681)). Preparation of approximate square-lattice GKP states has been studied both theoretically and experimentally  ([arXiv:1506.05033](https://arxiv.org/abs/1506.05033), [arXiv:1709.08580](https://arxiv.org/abs/1709.08580), [arXiv:1907.12487](https://arxiv.org/abs/1907.12487), [arXiv:1910.03673](https://arxiv.org/abs/1910.03673)). Various damped versions of GKP states are equivalent  ([arXiv:1910.08301](https://arxiv.org/abs/1910.08301), [arXiv:2012.12488](https://arxiv.org/abs/2012.12488)), and there exists a Fock-state expansion  ([arXiv:2002.11008](https://arxiv.org/abs/2002.11008)).
+- Dissipative stabilization of finite-energy square-lattice GKP states using stabilizers conjugated by a *cooling*  ([arXiv:1310.7596](https://arxiv.org/abs/1310.7596)) or *damping* operator, i.e., a damped exponential of the total occupation number  ([arXiv:2009.07941](https://arxiv.org/abs/2009.07941), [arXiv:2010.09681](https://arxiv.org/abs/2010.09681)). Preparation of approximate square-lattice GKP states has been studied both theoretically and experimentally  ([arXiv:1506.05033](https://arxiv.org/abs/1506.05033), [arXiv:1709.08580](https://arxiv.org/abs/1709.08580), [arXiv:1907.12487](https://arxiv.org/abs/1907.12487), [arXiv:1910.03673](https://arxiv.org/abs/1910.03673)). Various damped versions of GKP states are equivalent  ([arXiv:1910.08301](https://arxiv.org/abs/1910.08301), [arXiv:2012.12488](https://arxiv.org/abs/2012.12488)), and there exists a Fock-state expansion  ([arXiv:2002.11008](https://arxiv.org/abs/2002.11008)).
 - Two Josephson junctions coupled by a gyrator  ([arXiv:2002.07718](https://arxiv.org/abs/2002.07718)).
 - Periodic driving (a.k.a. Floquet engineering)  ([arXiv:2303.03541](https://arxiv.org/abs/2303.03541)).
 - Approximate GKP states can be prepared using Gaussian operations and photon detectors  ([arXiv:1902.02323](https://arxiv.org/abs/1902.02323)).

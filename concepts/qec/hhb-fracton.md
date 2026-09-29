@@ -2,7 +2,7 @@
 type: concept
 name: Hsieh-Halasz-Balents (HHB) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -24,7 +24,7 @@ imported_id: hhb_fracton
 
 ## Description
 
-Member of one of two families of fracton codes, named HHB model A and B, defined on a cubic lattice with two qubits per site.
+A member of one of two fracton-code families, named HHB models A and B, defined on a cubic lattice with two qubits per site.
 Both are expected to be foliated type-I fracton codes  ([arXiv:1908.08049](https://arxiv.org/abs/1908.08049)).
 
 (source: raw/error-correction-zoo.md)

@@ -2,7 +2,7 @@
 type: concept
 name: Subsystem Hypergraph Product Simplex (SHYPS) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -28,17 +28,12 @@ Family of quantum LDPC codes obtained by combining the subsystem hypergraph prod
 The results are CSS subsystem codes with weight-three gauge generators and code parameters $⟦n=(2^r − 1)^2, k=r^2, d=2^{r-1}⟧$ for $r \geq 3$.
 
 Due to their symmetric structure, SHYPS codes inherit the large automorphism group of the underlying classical simplex codes. 
-More precisely, $| Aut( SHYPS(r) ) | \geq |GL(r,\mathbb{F}_2)|^2$, which is exponential in the number of logical qubits. 
+More precisely, $| Aut( SHYPS(r) ) | \geq |GL(r,2)|^2$, which is exponential in the number of logical qubits. 
 This large automorphism group can be leveraged to obtain a depth-one fault-tolerant implementation for a large set of logical Clifford operators. 
 This set of depth-one Clifford generators is sufficiently large to allow for efficient compilation, i.e., any $m$-qubit Clifford operator can be executed in depth of order $O(m)$. 
 SHYPS codes exhibit practical single-shot features, so only order $O(m)$ rounds of syndrome extraction are required to fault-tolerantly execute any logical $m$-qubit Clifford circuit.
 
 (source: raw/error-correction-zoo.md)
-
-## Protection
-
-Memory simulations of the $⟦49, 9, 4⟧$ and $⟦225, 16, 8⟧$ SHYPS codes under circuit-level noise, using a sliding-window BPLSD decoder, yield pseudo-thresholds of approximately $0.32\%$ and $0.35\%$, respectively  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
-Depth-126 logical Clifford-circuit simulations on two blocks of the $⟦49, 9, 4⟧$ SHYPS code were also performed in  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
 
 ## Rate
 
@@ -47,7 +42,7 @@ The exact encoding rate is $k/n = r^2/(2^r-1)^2$, i.e., asymptotically as $\Thet
 ## Transversal gates
 
 - Cross-block transversal CNOT gates $\prod_{i=1}^n CNOT_{i, n+(\sigma_1\otimes\sigma_2)(i)}$ for $\sigma_1, \sigma_2$ automorphisms of the classical simplex code. These operators implement a generating set of cross-block logical CNOT gates.
-- In-block phase-type fold-transversal gates with $Sp(2k,\mathbb{F}_2)$ representation $\begin{pmatrix} I & (\sigma \otimes \sigma^T)\tau \\ 0 & 1\end{pmatrix}$ for $\sigma$ an automorphism of the classical simplex code, and $\tau$ a self-inverse permutation which acts like $\tau (e_i \otimes e_j) = e_j \otimes e_i$ for the canonical basis $\{e_i\}$ of $\mathbb{F}_2^{\sqrt{n}}$. These operators implement a generating set of logical in-block diagonal gates  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
+- In-block phase-type fold-transversal gates with $Sp(2k,2)$ representation $\begin{pmatrix} I & (\sigma \otimes \sigma^T)\tau \\ 0 & I\end{pmatrix}$ for $\sigma$ an automorphism of the classical simplex code, and $\tau$ a self-inverse permutation which acts like $\tau (e_i \otimes e_j) = e_j \otimes e_i$ for the canonical basis $\{e_i\}$ of $\mathbb{F}_2^{\sqrt{n}}$. These operators implement a generating set of logical in-block diagonal gates  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
 - Cross-block phase-type fold-transversal gates $\prod_{i=1}^n CZ_{i, n+(\sigma_1\otimes\sigma_2)\tau(i)}$ for $\sigma_1, \sigma_2$ automorphisms of the classical simplex code and $\tau$ as above. These operators implement a generating set of logical cross-block diagonal gates  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
 - Fold-transversal Hadamard gate $H^{\otimes n} \tau $, with $\tau$ as above. Implements logical Hadamard-SWAP operator $H^{\otimes k} \tau_k $, with $\tau_k$ defined analogously to $\tau$  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
 
@@ -63,6 +58,11 @@ The exact encoding rate is $k/n = r^2/(2^r-1)^2$, i.e., asymptotically as $\Thet
 ## Fault tolerance
 
 - Logical Clifford operation on $b$ blocks can be implemented fault-tolerantly in depth $4br^2( 1+o(1) )$ while remaining compatible with one syndrome-extraction round between logical generators  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
+- Depth-126 logical Clifford-circuit simulations on two blocks of the $⟦49, 9, 4⟧$ SHYPS code were performed in Ref.  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
+
+## Threshold
+
+- Memory simulations of the $⟦49, 9, 4⟧$ and $⟦225, 16, 8⟧$ SHYPS codes under circuit-level noise, using a sliding-window BPLSD decoder, yield pseudo-thresholds of approximately $0.32\%$ and $0.35\%$, respectively  ([arXiv:2502.07150](https://arxiv.org/abs/2502.07150)).
 
 ## Relations
 

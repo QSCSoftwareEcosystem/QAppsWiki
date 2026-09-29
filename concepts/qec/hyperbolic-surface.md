@@ -2,7 +2,7 @@
 type: concept
 name: Hyperbolic surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -36,7 +36,6 @@ Constructions (see code children below) have yielded distances scaling favorably
 
 ## General gates
 
-- $(1,D-1)$ surface codes on hyperbolic geometries admit a fault-tolerant implementation of $C^D Z$ gates  ([arXiv:2312.09111](https://arxiv.org/abs/2312.09111)).
 - Higher-dimensional hyperbolic surface codes can admit a cup product structure and can thus have logical gates in the \term{Clifford hierarchy} implemented by constant-depth Clifford circuits  ([arXiv:2410.16250](https://arxiv.org/abs/2410.16250)).
 
 ## Decoders

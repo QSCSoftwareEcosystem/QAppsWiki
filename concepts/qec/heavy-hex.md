@@ -2,7 +2,7 @@
 type: concept
 name: Heavy-hexagon code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -26,7 +26,8 @@ imported_id: heavy_hex
 ## Description
 
 Subsystem stabilizer code on the heavy-hexagonal point set that combines Bacon-Shor and surface-code stabilizers.
-Encodes one logical qubit into $n=(5d^2-2d-1)/2$ physical qubits with distance $d$.
+Has parameters $⟦d^2,1,d⟧$, with $d$ data qubits along each row and column of the lattice  ([arXiv:1907.09528](https://arxiv.org/abs/1907.09528)).
+A distance-$d$ implementation additionally requires $(d+1)(d-1)/2$ syndrome-measurement qubits and $d(d-1)$ flag qubits, for a total of $(5d^2-2d-1)/2$ qubits.
 The heavy-hexagonal point set allows for low degree (at most 3) connectivity between all the data and ancilla qubits, which is suitable for fixed-frequency transmon qubits subject to frequency collision errors.
 The code can be split into a surface and a Bacon-Shor code, with the idling qubits of one code serving as the physical qubits of the other  ([arXiv:2404.15989](https://arxiv.org/abs/2404.15989)).
 
@@ -34,13 +35,9 @@ Data qubits and ancillas of the code are placed on a heavy-hexagonal point set, 
 
 (source: raw/error-correction-zoo.md)
 
-## Protection
-
-Protects against Pauli noise. The code has no threshold for $Z$-type Pauli errors since they are detected by Bacon-Shor-type stabilizers.
-
 ## Rate
 
-$1/n$ for a distance-$d$ heavy-hexagon code on $n = (5d^2-2d-1)/2$ qubits.
+$1/d^2$ for a distance-$d$ heavy-hexagon code, whose implementation occupies $(5d^2-2d-1)/2$ qubits once syndrome-measurement and flag qubits are counted  ([arXiv:1907.09528](https://arxiv.org/abs/1907.09528)).
 
 ## Encoders
 
@@ -64,12 +61,12 @@ $1/n$ for a distance-$d$ heavy-hexagon code on $n = (5d^2-2d-1)/2$ qubits.
 ## Fault tolerance
 
 - All logical gates can be fault-tolerantly implemented using lattice surgery and magic state injection.
-- Stabilizer measurements are measured fault-tolerantly using one-flag circuits since some single-fault events can result in weight-two data qubit errors which are parallel to the code's logical operators. Hence, using information from the flag-qubit measurements is crucial to fault-tolerantly measure the code stabilizers.
+- Stabilizers are measured fault-tolerantly using one-flag circuits since some single-fault events can result in weight-two data qubit errors which are parallel to the code's logical operators. Hence, using information from the flag-qubit measurements is crucial to fault-tolerantly measure the code stabilizers.
 
 ## Threshold
 
-- $0.45\%$ for $X$ errors under a full circuit-level depolarizing noise model (obtained from Monte Carlo simulations).
-- $Z$-errors have no threshold given the $X$-type Bacon-Shor stabilizers.
+- $0.45\%$ for $X$ errors under a full circuit-level depolarizing noise model (obtained from Monte Carlo simulations)  ([arXiv:1907.09528](https://arxiv.org/abs/1907.09528)).
+- There is no threshold for $Z$-type Pauli errors, which are corrected using the Bacon-Shor column stabilizer generators  ([arXiv:1907.09528](https://arxiv.org/abs/1907.09528)). The number of those generators scales sublinearly with the system size, so they do not yield a topological threshold in the large-size limit. Low logical error rates were nevertheless observed over the range of distances simulated, $d\leq 13$.
 
 ## Realizations
 
@@ -77,6 +74,6 @@ $1/n$ for a distance-$d$ heavy-hexagon code on $n = (5d^2-2d-1)/2$ qubits.
 
 ## Relations
 
-- _parent_: [[concepts/qec/compass-model]] — The heavy-hex code is a compass code on a heavy-hexagonal lattice, combining weight-two $XX$ and $ZZ$ gauge operators that are partially gauge-fixed to yield surface-code $Z$-type stabilizers and Bacon-Shor $X$-type stabilizers  ([arXiv:1907.09528](https://arxiv.org/abs/1907.09528)).
+- _parent_: [[concepts/qec/compass-model]] — The heavy-hexagon code is a compass code on a heavy-hexagonal lattice, combining weight-two $XX$ and $ZZ$ gauge operators that are partially gauge-fixed to yield surface-code $Z$-type stabilizers and Bacon-Shor $X$-type stabilizers  ([arXiv:1907.09528](https://arxiv.org/abs/1907.09528)).
 - _cousin_: [[concepts/qec/surface]] — Surface code stabilizers are used to measure the Z-type stabilizers of the code. There are various ways to embed the surface code into the heavy-hex lattice  ([arXiv:2402.02185](https://arxiv.org/abs/2402.02185)).
 - _cousin_: [[concepts/qec/bacon-shor]] — Bacon-Shor stabilizers are used to measure the X-type stabilizers of the code.

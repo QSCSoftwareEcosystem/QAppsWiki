@@ -1,0 +1,62 @@
+---
+type: concept
+name: Kasai code
+status: provisional
+updated: '2026-09-29'
+concept_kind: qec
+aliases: []
+domains:
+- quantum-error-correction
+related_concepts:
+- concepts/qec/actively-orthogonal-css
+- concepts/qec/quasi-cyclic-qldpc
+sources:
+- raw/error-correction-zoo.md
+- https://errorcorrectionzoo.org/c/kasai
+provenance_status: needs-verification
+imported_from: error-correction-zoo
+imported_id: kasai
+---
+
+# Kasai code
+
+> **Imported by `qappswiki import-zoo eczoo`** from the [Error Correction Zoo](https://errorcorrectionzoo.org/c/kasai) (`code_id: kasai`). Text is reused under **CC-BY-SA**; attribute the Error Correction Zoo (errorcorrectionzoo.org), CC-BY-SA. This is a `needs-verification` page — confirm the claims against the cited primary sources before relying on it.
+
+## Description
+
+Actively orthogonal CSS code whose lifts are affine permutation matrices $\mathrm{APM}(a,b,P)$, the permutation matrices of the maps $x \mapsto ax+b \bmod P$ with $\gcd(a,P)=1$  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+Two such matrices commute exactly when a quadratic congruence modulo $P$ in their coefficients holds  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+The commutation table of active orthogonality is therefore a system of congruences solved by the choice of coefficients, which yields regular, high-girth stabilizer generator matrices at encoding rate at or above one half.
+
+Given $L$, $J$, and an active set $\Gamma$, the code is specified by lifts $\mathcal{F}=\{F_i\}$ and $\mathcal{G}=\{G_i\}$ drawn from the group of affine permutations on $P$ letters, with $[F_i,G_j]=0$ for every $(i,j)\in\Gamma$.
+The stabilizer generator matrices are the first $J$ block rows of the block-circulant parents built from $\mathcal{F}$ and $\mathcal{G}$, giving $n=LP$ qubits.
+
+Co-designed Kasai codes for reconfigurable qubit arrays additionally require every syndrome-extraction transition permutation to commute with a fixed reference affine permutation  ([arXiv:2604.16209](https://arxiv.org/abs/2604.16209)).
+In the qubit ordering along the orbits of the reference permutation, each transition is a cyclic shift within the orbits plus a permutation between them.
+Each qubit-permutation step of syndrome extraction therefore compiles into a few global cyclic shifts  ([arXiv:2604.16209](https://arxiv.org/abs/2604.16209)).
+These codes require girth at least six rather than the girth eight of the original construction.
+Instances include $⟦1152,580,\leq 12⟧$, $⟦2304,1156,\leq 14⟧$, and the movement-compatible $⟦2304,1156,\leq 16⟧$ and $⟦4608,2308,\leq 22⟧$  ([arXiv:2604.16209](https://arxiv.org/abs/2604.16209)).
+
+The original instance is a $(3,12)$-regular, girth-eight $⟦9216,4612,\leq 48⟧$ code with $P=768$ and rate approximately $0.5004$  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+It attains a frame error rate of $10^{-8}$ on the depolarizing channel at physical error rate $4\%$ under BP decoding with post-processing  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+
+(source: raw/error-correction-zoo.md)
+
+## Protection
+
+The parameters must satisfy $L \geq 4J$  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+Otherwise active orthogonality forces every block of the parent product to vanish, the latent rows become orthogonal as well, and the construction degenerates to a row-deleted fully orthogonal code  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+Since the rank of each active matrix is at most $JP$, the encoding rate is at least $1-2J/L$, hence at least one half in this regime  ([arXiv:2608.07431](https://arxiv.org/abs/2608.07431)).
+
+Reported distances are upper bounds obtained from latent-row combinations  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+Girth is at most eight, since once $J \geq 3$ and the required commutation conditions hold, the active Tanner graphs necessarily contain an eight-cycle  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+
+## Decoders
+
+- Belief propagation with post-processing, using a library of elementary trapping sets, flip history, and local ordered-statistics decoding  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+
+## Relations
+
+- _parent_: [[concepts/qec/actively-orthogonal-css]] — Kasai codes are actively orthogonal CSS codes whose lifts are affine permutation matrices  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+- _cousin_: [`apm_ldpc`](https://errorcorrectionzoo.org/c/apm_ldpc) — The blocks of the Kasai parent matrices are affine permutation matrices, the same building blocks used in APM-LDPC codes  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).
+- _cousin_: [[concepts/qec/quasi-cyclic-qldpc]] — Kasai codes with trivial multiplier $a=1$ reduce to QC-QLDPC codes  ([arXiv:quant-ph/0701020](https://arxiv.org/abs/quant-ph/0701020), [arXiv:2601.08824](https://arxiv.org/abs/2601.08824)). The lifts are then commuting cyclic shifts, so orthogonality holds on all rows. When a removed row is independent of the retained rows, the distance is capped by the row weight  ([arXiv:2601.08824](https://arxiv.org/abs/2601.08824)).

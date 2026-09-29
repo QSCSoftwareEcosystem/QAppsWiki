@@ -2,7 +2,7 @@
 type: concept
 name: Hierarchical code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -36,12 +36,12 @@ Rate scales as $\Omega(1/\log(n)^2)$.
 
 ## Decoders
 
-- Decoding is performed as in a standard concatenated code using decoders for the inner and outer codes. The syndrome extraction circuit depth for the outer code is optimized using a permutation routing algorithm  ([doi:10.1145/97444.97707](https://doi.org/10.1145/97444.97707)). The bilayer architecture allows for logical entangling gates between logical surface-code patches.
+- Decoding is performed as in a standard concatenated code using decoders for the inner and outer codes. The syndrome extraction circuit depth for the inner QLDPC code is optimized using a permutation routing algorithm  ([doi:10.1145/97444.97707](https://doi.org/10.1145/97444.97707)). The bilayer architecture allows for logical entangling gates between logical surface-code patches.
 - Soft output decoding  ([arXiv:2405.07433](https://arxiv.org/abs/2405.07433)).
 
 ## Threshold
 
-- Threshold exists for the locally decaying error model; see  ([arXiv:2303.04798](https://arxiv.org/abs/2303.04798)). However, the logical error rate below threshold falls super-polynomially (as opposed to exponentially) with the code distance. The code family possesses a threshold equal to that of surface codes given by tuning the inner code size for any fixed physical error rate.
+- Threshold exists for the locally decaying error model; see  ([arXiv:2303.04798](https://arxiv.org/abs/2303.04798)). However, the logical error rate below threshold falls super-polynomially (as opposed to exponentially) with the code distance. The code family possesses a threshold equal to that of surface codes given by tuning the outer surface-code size for any fixed physical error rate.
 
 ## Fault tolerance
 

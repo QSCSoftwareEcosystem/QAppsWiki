@@ -2,7 +2,7 @@
 type: concept
 name: Number-phase code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Single-mode translationally invariant Fock-state code

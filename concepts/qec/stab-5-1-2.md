@@ -2,7 +2,7 @@
 type: concept
 name: $⟦5,1,2⟧$ rotated surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $⟦5,1,2⟧$ morphed Steane code
@@ -49,16 +49,16 @@ The code is depicted in \ref{figure:512-operators}.
 
 
 
-A non-CSS genon-code form of the same stabilizer group, local Clifford equivalent to the above via Hadamard on the four corner qubits, is  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951))
+A non-CSS form, local Clifford equivalent to the above via $X\to Y\to Z\to X$ on qubits 0 and 2 and $Y\leftrightarrow Z$ on qubits 1 and 4, is  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951))
 \begin{align}
 \begin{array}{ccccc}
-  X & X & I & Z & I \\
-  I & I & X & Z & X \\
-  I & Z & Z & X & I \\
-  Z & I & I & X & Z
+  X & Y & I & Z & I \\
+  I & I & X & Z & Y \\
+  I & X & Y & X & I \\
+  Y & I & I & X & X
 \end{array}~.
 \end{align}
-The missing external stabilizer $YYYIY$ (product of all four generators) forms the back face when the code is viewed as a genon code on a sphere.
+The missing external stabilizer $YYYIY$ (product of all four CSS generators) forms the back face when the code is viewed as a twist-defect surface code on a sphere.
 
 (source: raw/error-correction-zoo.md)
 
@@ -74,9 +74,9 @@ The missing external stabilizer $YYYIY$ (product of all four generators) forms t
 ## Relations
 
 - _parent_: [[concepts/qec/rotated-surface]]
-- _parent_: [[concepts/qec/morphed-diagonal-clifford]] — The $⟦5,1,2⟧$ code is a specific instance of the $⟦2^r+r-1,1,2⟧$ morphed simplex codes with $r=2$  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
-- _parent_: [[concepts/qec/holographic-5-1-2]] — The $⟦5,1,2⟧$ rotated surface code is the smallest SCF holographic code  ([arXiv:2008.10206](https://arxiv.org/abs/2008.10206)). The encoding of more general SCF holographic codes is a holographic tensor network consisting of the encoding isometry for the $⟦5,1,2⟧$ rotated surface code, which is a planar-perfect tensor.
-- _parent_: [[concepts/qec/block-perfect]] — The $⟦5,1,2⟧$ rotated surface code is the smallest SCF holographic code  ([arXiv:2008.10206](https://arxiv.org/abs/2008.10206)). The encoding of more general SCF holographic codes is a holographic tensor network consisting of the encoding isometry for the $⟦5,1,2⟧$ rotated surface code, which is a planar-perfect tensor.
-- _cousin_: [[concepts/qec/twist-defect-surface]] — The $⟦5,1,2⟧$ rotated surface code is a genon code on a sphere, with the missing external $Y$-type stabilizer forming the back of the sphere. More generally, any surface code with a single boundary component can be interpreted this way  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
-- _cousin_: [[concepts/qec/steane]] — The $⟦5,1,2⟧$ morphed Steane code is obtained by morphing the Steane code on a region whose child code is a $⟦4,2,2⟧$ code  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
-- _cousin_: [[concepts/qec/stab-4-2-2]] — The $⟦5,1,2⟧$ morphed Steane code is obtained by morphing the Steane code on a region whose child code is a $⟦4,2,2⟧$ code  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
+- _parent_: [[concepts/qec/morphed-diagonal-clifford]] — The $⟦5,1,2⟧$ rotated surface code is a specific instance of the $⟦2^r+r-1,1,2⟧$ morphed simplex codes with $r=2$  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
+- _parent_: [[concepts/qec/holographic-5-1-2]] — The $⟦5,1,2⟧$ rotated surface code is the radius-one reduced-rate SCF holographic code  ([arXiv:2008.10206](https://arxiv.org/abs/2008.10206)).
+- _parent_: [[concepts/qec/block-perfect]] — The encoding isometry for the $⟦5,1,2⟧$ rotated surface code is a planar-perfect tensor  ([arXiv:2008.10206](https://arxiv.org/abs/2008.10206)).
+- _cousin_: [[concepts/qec/twist-defect-surface]] — The $⟦5,1,2⟧$ rotated surface code can be interpreted as a twist-defect surface code on a sphere, with the missing external $Y$-type stabilizer forming the back of the sphere. More generally, any surface code with a single boundary component can be interpreted this way  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
+- _cousin_: [[concepts/qec/steane]] — The $⟦5,1,2⟧$ rotated surface code is obtained by morphing the Steane code on a region whose child code is a $⟦4,2,2⟧$ code  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).
+- _cousin_: [[concepts/qec/stab-4-2-2]] — The $⟦5,1,2⟧$ rotated surface code is obtained by morphing the Steane code on a region whose child code is a $⟦4,2,2⟧$ code  ([arXiv:2112.01446](https://arxiv.org/abs/2112.01446)).

@@ -2,7 +2,7 @@
 type: concept
 name: Sierpinski prism model code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Sierpinski fractal spin-liquid (SFSL) code

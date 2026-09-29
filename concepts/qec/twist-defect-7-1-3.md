@@ -2,7 +2,7 @@
 type: concept
 name: $⟦7,1,3⟧$ twist-defect surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $⟦7,1,3⟧$ triangle code
@@ -42,10 +42,6 @@ It is one of sixteen distinct indecomposable $⟦7,1,3⟧$ codes  ([arXiv:0709.1
 
 (source: raw/error-correction-zoo.md)
 
-## Protection
-
-Fully fault-tolerant depolarizing-noise designs using $13$ or $15$ total qubits, including ancillas, have exREC pseudothresholds of order $10^{-4}$  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)).
-
 ## Transversal gates
 
 - Admits certain transversal order-three single-qubit Clifford gates (e.g., $SH$)  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)).
@@ -53,6 +49,10 @@ Fully fault-tolerant depolarizing-noise designs using $13$ or $15$ total qubits,
 ## General gates
 
 - Within the triangle-code architecture, supports the full logical Clifford group using lattice surgery, 1-bit teleportation, and patch reorientation  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)).
+
+## Threshold
+
+- Fully fault-tolerant depolarizing-noise designs using $13$ or $15$ total qubits, including ancillas, have exREC pseudothresholds of order $10^{-4}$  ([arXiv:1612.04795](https://arxiv.org/abs/1612.04795)).
 
 ## Relations
 

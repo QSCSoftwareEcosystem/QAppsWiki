@@ -2,7 +2,7 @@
 type: concept
 name: High-dimensional expander (HDX) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -51,9 +51,9 @@ For 2D LSV complexes, the rate is of order $\Omega(1/\sqrt{n \log n})$, with min
 ## Relations
 
 - _parent_: [[concepts/qec/homological-product]] — Ramanujan codes result from a tensor product of a classical-code and a quantum-code chain complex.
-- _parent_: [[concepts/qec/iterated-ramanujan]] — Ramanujan codes result from a tensor product of a classical-code and a quantum-code chain complex.
+- _parent_: [[concepts/qec/iterated-ramanujan]] — HDX codes correspond to the case of a single Ramanujan complex tensored with a classical LDPC code  ([arXiv:2008.09495](https://arxiv.org/abs/2008.09495)).
 - _cousin_: [[concepts/qec/distance-balanced]] — Ramanujan tensor-product constructions use distance balancing to increase distance.
-- _cousin_: [[concepts/qec/hypergraph-product]] — Ramanujan codes utilize the hypergraph product with a twist, which is an automorphism on one of the complexes in the tensor product, in order to increase distance  ([arXiv:2103.06309](https://arxiv.org/abs/2103.06309)).
+- _cousin_: [[concepts/qec/hypergraph-product]] — The product construction underlying HDX codes generalizes the hypergraph product, with one of the two classical component codes replaced by the chain complex of a quantum code  ([arXiv:2004.07935](https://arxiv.org/abs/2004.07935)).
 - _cousin_: [[concepts/qec/freedman-meyer-luo]] — Ramanujan codes broke 20-year record on minimum code distance set by Freedman-Meyer-Luo codes.
 
 ## Notes

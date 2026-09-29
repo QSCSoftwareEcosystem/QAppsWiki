@@ -2,7 +2,7 @@
 type: concept
 name: $⟦9,3,3⟧$ Quadric code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

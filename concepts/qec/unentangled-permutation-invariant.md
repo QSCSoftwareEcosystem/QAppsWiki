@@ -2,7 +2,7 @@
 type: concept
 name: $((n,2,2))$ Bravyi-Lee-Li-Yoshida PI code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

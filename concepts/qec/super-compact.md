@@ -2,7 +2,7 @@
 type: concept
 name: Super-compact fermion-to-qubit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Super-compact encoding

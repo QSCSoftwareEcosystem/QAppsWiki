@@ -2,7 +2,7 @@
 type: concept
 name: XP stabilizer code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Weighted hypergraph code
@@ -13,6 +13,7 @@ related_concepts:
 - concepts/qec/cubic-theory
 - concepts/qec/cws
 - concepts/qec/invertible
+- concepts/qec/monomial-stabilizer
 - concepts/qec/quantum-lego
 - concepts/qec/qubit-css
 sources:
@@ -46,6 +47,7 @@ Measurement of diagonal Pauli operators can be classically simulated efficiently
 ## Relations
 
 - _parent_: [[concepts/qec/clifford-hierarchy]] — XP stabilizer codes are joint eigenspaces of operators in the binary dihedral group, a subgroup consisting of Pauli strings and elements of a level of the Clifford hierarchy.
+- _parent_: [[concepts/qec/monomial-stabilizer]] — XP stabilizer generators are products of $X$-type Pauli strings and diagonal phase operators, so they are monomial matrices that generate finite groups  ([arXiv:2203.00103](https://arxiv.org/abs/2203.00103), [arXiv:1108.0531](https://arxiv.org/abs/1108.0531)). Orbit representatives of XP codes and the coset structure of XP codewords realize the monomial stabilizer orbit basis  ([arXiv:2203.00103](https://arxiv.org/abs/2203.00103)).
 - _cousin_: [[concepts/qec/qubit-css]] — Each XP-regular code can be mapped to a CSS code with the same diagonal logical operators and similar non-diagonal logical operators  ([arXiv:2203.00103](https://arxiv.org/abs/2203.00103)).
 - _cousin_: [[concepts/qec/cws]] — The orbit representatives of XP codes play a similar role to the word operators of CWS codes, and non-XP-regular codes have a similar structure  ([arXiv:2203.00103](https://arxiv.org/abs/2203.00103)).
 - _cousin_: [[concepts/qec/quantum-lego]] — XP stabilizer codes can be understood through the Quantum Lego formalism  ([arXiv:2310.19538](https://arxiv.org/abs/2310.19538)).

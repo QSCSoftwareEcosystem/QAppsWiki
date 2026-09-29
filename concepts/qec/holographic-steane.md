@@ -2,7 +2,7 @@
 type: concept
 name: Heptagon holographic code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Holographic Steane code
@@ -37,7 +37,7 @@ Depending on how the isometry tensors are contracted, there is a zero-rate and a
 
 ## Code capacity threshold
 
-- $~33\%$ under erasures using optimal erasure decoder for the finite-rate family, and $50\%$ for the zero-rate family  ([arXiv:1806.06472](https://arxiv.org/abs/1806.06472)).
+- $\approx 33\%$ under erasures using an optimal erasure decoder for the finite-rate family  ([arXiv:1806.06472](https://arxiv.org/abs/1806.06472)).
 - Depolarizing noise: $9.4\%$ using tensor-network decoder, and $\approx 7\%$ using integer optimization decoder  ([arXiv:2012.07317](https://arxiv.org/abs/2012.07317)).
 - $18.985\%$ against depolarizing noise for zero-rate code under tensor-network decoder  ([arXiv:2408.06232](https://arxiv.org/abs/2408.06232)).
 

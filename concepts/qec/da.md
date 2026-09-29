@@ -2,7 +2,7 @@
 type: concept
 name: Dynamical code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Dynamical automorphism (DA) code
@@ -81,7 +81,7 @@ Above, $\mathsf{G}$ is a gauge group defined from the algorithm that depends par
 - _cousin_: [[concepts/qec/topological-abelian]] — Useful measurement sequences of dynamical codes can be extracted from topological quantum field theory  ([arXiv:2307.10353](https://arxiv.org/abs/2307.10353)).
 - _cousin_: [[concepts/qec/approximate-qecc]] — Approximate versions of dynamical codes have been formulated  ([arXiv:2502.09177](https://arxiv.org/abs/2502.09177)).
 - _cousin_: [[concepts/qec/qubit-subsystem-stabilizer]] — A dynamical code can be viewed as a subsystem qubit stabilizer code, albeit one with fewer logical qubits.
-- _cousin_: [[concepts/qec/monitored-random-circuits]] — Both dynamical and monitored random circuit codes can have an instantaneous stabilizer group which evolves through unitary evolution and measurements. However, dynamical codewords are generated via a specific prescribed sequence of measurements, while random-circuit codes maintain a stabilizer group after any measurement. Dynamical codes have the additional capability of detecting errors induced during the measurement process; see Appx. A of Ref.  ([arXiv:2107.02194](https://arxiv.org/abs/2107.02194)).
+- _cousin_: [[concepts/qec/monitored-random-circuits]] — Both dynamical and monitored random circuit codes can have an instantaneous stabilizer group which evolves through unitary evolution and measurements. However, dynamical codewords are generated via a specific prescribed sequence of measurements, while random-circuit codes maintain a stabilizer group after any measurement. Dynamical codes have the additional capability of detecting errors induced during the measurement process; see  ([arXiv:2107.02194](https://arxiv.org/abs/2107.02194)).
 - _cousin_: [[concepts/qec/majorana-stab]] — Dynamical codes are viable candidates for storage in Majorana-qubit devices  ([arXiv:2202.11829](https://arxiv.org/abs/2202.11829)).
 - _cousin_: [[concepts/qec/qldpc]] — Using ZX calculus, an $⟦n,k,d⟧$ qubit stabilizer code admitting stabilizer generators of weight no more than $m$ can be *Floquetified* into an $⟦n+\lceil m/2 \rceil+\ell,k,d^{\prime}⟧$ dynamical code with single- and two-qubit operations, where $\ell \leq \log_{2} m$ and $d^{\prime} \geq d$  ([arXiv:2410.17240](https://arxiv.org/abs/2410.17240)) (see also Ref.  ([arXiv:2307.11136](https://arxiv.org/abs/2307.11136))). 
 A more general locality-preserving *spacetime concatenation* procedure yields a dynamical code out of any qubit stabilizer code by structuring measurement gadgets using low-weight measurements while ensuring the preservation of logical information  ([arXiv:2504.08918](https://arxiv.org/abs/2504.08918)). 

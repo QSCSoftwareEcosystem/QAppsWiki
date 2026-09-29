@@ -2,7 +2,7 @@
 type: concept
 name: Haah cubic code (CC)
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -11,9 +11,10 @@ related_concepts:
 - concepts/qec/3d-color
 - concepts/qec/3d-surface
 - concepts/qec/4d-surface
+- concepts/qec/abelian-2bga
 - concepts/qec/cluster-state
-- concepts/qec/generalized-bicycle
 - concepts/qec/lifted-product
+- concepts/qec/perm-self-dual-css
 - concepts/qec/qldpc
 - concepts/qec/qudit-cubic
 - concepts/qec/sierpinsky-fractal-liquid
@@ -59,14 +60,18 @@ CC1A and CC1B have been generalized to manifolds more general than 3D lattices  
 
 Cubic codes protect against simultaneous independent Pauli errors on different sites (not qubits, since there can be 2 qubits per site). Codes CC0-CC4 are known to have distance $d \ge L$, meaning they can achieve macroscopic code distance as $L\to\infty$.
 
+## Rate
+
+The encoding rate depends on the code implemented, but code CC0 has been shown to have $k \ge L$ on a periodic finite cubic lattice of side length $L$. In general, we expect the number of logical qubits to scale as $k = \Omega(L)$.
+
 ## Decoders
 
-- Hard-decisions RG decoder  ([arXiv:1112.3252](https://arxiv.org/abs/1112.3252)).
+- Hard-decision RG decoder  ([arXiv:1112.3252](https://arxiv.org/abs/1112.3252)).
 - BP-OSD decoder  ([arXiv:1904.02703](https://arxiv.org/abs/1904.02703)).
 
-## Threshold
+## Code capacity threshold
 
-- The encoding rate depends on the code implemented, but code CC0 has been shown to have $k \ge L$ on a periodic finite cubic lattice of side length $L$. In general, we expect the number of logical qubits to scale as $k = \Omega(L)$.
+- Cubic code 1 has a threshold of $7.97(4)\%$ under BP-OSD decoding for code capacity bit-flip noise  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). This estimate uses periodic lattices of odd side length on which the code encodes $k=2$ logical qubits  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). Under full postselection, the clean statistical mechanical model of cubic code 1 is the self-dual fractal Ising model  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)). This model has a unique transition at $p=1/(2+\sqrt{2})\approx 0.2929$, the self-dual value shared by zero-rate PSD codes with a unique threshold  ([arXiv:2607.21160](https://arxiv.org/abs/2607.21160)).
 
 ## Relations
 
@@ -76,7 +81,8 @@ Cubic codes protect against simultaneous independent Pauli errors on different s
 - _cousin_: [[concepts/qec/3d-surface]] — The Haah B-code admits a topological defect network construction out of two copies of the 3D surface code  ([arXiv:2002.05166](https://arxiv.org/abs/2002.05166)).
 - _cousin_: [[concepts/qec/3d-color]] — The 3D color and cubic code families both include 3D codes that do not admit string-like operators.
 - _cousin_: [[concepts/qec/4d-surface]] — The energy of any partial implementation of CC1 is proportional to the boundary length, similar to the 4D toric code. This can potentially suppress the effects of thermal errors, but it is currently an open problem.
-- _cousin_: [[concepts/qec/generalized-bicycle]] — A GB code for the group $G=\mathbb{Z}_{L}^{\times 3}$ is a cubic code  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)).
+- _cousin_: [[concepts/qec/abelian-2bga]] — CSS cubic codes are Abelian 2BGA codes over the group $G=\mathbb{Z}_{L}^{\times 3}$  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)); e.g., cubic code 1 corresponds to group-algebra elements $a = 1+x+y+z$ and $b = 1+xy+xz+yz$  ([arXiv:2601.18879](https://arxiv.org/abs/2601.18879)).
 - _cousin_: [[concepts/qec/cluster-state]] — A short-range entangled cluster-state model with fractal $X$-type symmetries on both sublattices can be built from the cubic-code gauging data. Gauging one sublattice yields, up to a local circuit, either the cubic code or its ungauged fractal-symmetry Ising model, while gauging both sublattices returns the cluster model up to local swaps and Hadamards  ([arXiv:1603.05182](https://arxiv.org/abs/1603.05182)).
 - _cousin_: [[concepts/qec/lifted-product]] — A lifted-product code constructed with coefficients in the ring $R=\mathbb{F}_2[x,y,z]/(x^L-1,y^L-1,z^L-1)$ is a cubic code  ([arXiv:2111.03654](https://arxiv.org/abs/2111.03654)).
 - _cousin_: [[concepts/qec/sierpinsky-fractal-liquid]] — The Haah A-code can be written in a similar form as the Sierpinski prism model code  ([arXiv:2112.14717](https://arxiv.org/abs/2112.14717)).
+- _cousin_: [[concepts/qec/perm-self-dual-css]] — CSS cubic codes are qubit Abelian 2BGA codes  ([arXiv:2012.04068](https://arxiv.org/abs/2012.04068)), so they are permutationally self-dual  ([arXiv:2306.16400](https://arxiv.org/abs/2306.16400)). For cubic code 1, transversal Hadamard composed with the spatial inversion $\vec{r}\to-\vec{r}$ and a swap of the two qubits on each site exchanges the $X$- and $Z$-type stabilizers  ([arXiv:2401.17359](https://arxiv.org/abs/2401.17359)).

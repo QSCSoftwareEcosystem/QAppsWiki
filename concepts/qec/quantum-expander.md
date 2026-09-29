@@ -2,7 +2,7 @@
 type: concept
 name: Quantum expander code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Quantum Sipser-Spielman code
@@ -29,7 +29,7 @@ imported_id: quantum_expander
 
 ## Description
 
-CSS code constructed from a hypergraph product of bipartite expander graphs  ([doi:10.1090/S0273-0979-06-01126-8](https://doi.org/10.1090/S0273-0979-06-01126-8)) with bounded left and right vertex degrees. For every bipartite graph there is an associated matrix (the parity check matrix) with columns indexed by the left vertices, rows indexed by the right vertices, and 1 entries whenever a left and right vertex are connected. This matrix can serve as the parity check matrix of a classical code. Two bipartite expander graphs can be used to construct a quantum CSS code (the quantum expander code) via the hypergraph product of their parity check matrices.
+CSS code constructed from a hypergraph product of bipartite expander graphs  ([doi:10.1090/S0273-0979-06-01126-8](https://doi.org/10.1090/S0273-0979-06-01126-8)) with bounded left and right vertex degrees. For every bipartite graph there is an associated matrix (the parity check matrix) with columns indexed by the left vertices, rows indexed by the right vertices, and entries equal to 1 whenever a left and right vertex are connected. This matrix can serve as the parity check matrix of a classical code. Two bipartite expander graphs can be used to construct a quantum CSS code (the quantum expander code) via the hypergraph product of their parity check matrices.
 
 (source: raw/error-correction-zoo.md)
 
@@ -68,7 +68,7 @@ $⟦n,k=\Theta(n),d=O(\sqrt{n})⟧$ code with asymptotically constant rate.
 ## Relations
 
 - _parent_: [[concepts/qec/hypergraph-product]]
-- _parent_: [[concepts/qec/galois-expander]]
+- _parent_: [[concepts/qec/galois-expander]] — Quantum expander codes are the $q=2$ specialization of Galois-qudit expander codes.
 - _parent_: [[concepts/qec/single-shot]] — Quantum expander codes are single-shot  ([arXiv:1808.03821](https://arxiv.org/abs/1808.03821)).
 - _cousin_: [`expander`](https://errorcorrectionzoo.org/c/expander) — Quantum expander codes are quantum analogues of expander codes.
 - _cousin_: [[concepts/qec/topological]] — Quantum expander codes realize topological quantum spin glass order  ([arXiv:2412.13248](https://arxiv.org/abs/2412.13248)).

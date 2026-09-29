@@ -2,7 +2,7 @@
 type: concept
 name: Qubit QLDPC code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Sparse qubit stabilizer code
@@ -153,4 +153,5 @@ There are bounds on their performance against erasure noise  ([arXiv:1205.7036](
 - Collection of QLDPC qubit codes based on hyperbolic tilings in the QEC-Pages software library }.
 - High-rate QLDPC codes can be used for Bell-pair distillation  ([arXiv:2502.09542](https://arxiv.org/abs/2502.09542)).
 - Qldpc code circUIT Simulator (QUITS) Python software library for simulating QLDPC code circuits  ([arXiv:2504.02673](https://arxiv.org/abs/2504.02673))}.
+- sQetch GPU (CUDA via PyTorch) Python package for CSS-code minimum-distance estimation. It runs a randomized information-set decoder over random low-dimensional sketches of check-matrix null spaces  ([arXiv:2607.28795](https://arxiv.org/abs/2607.28795))}.
 - See  ([arXiv:2605.29137](https://arxiv.org/abs/2605.29137)) for a pedagogical introduction to QLDPC codes.

@@ -2,7 +2,7 @@
 type: concept
 name: Subsystem hypergraph product (SHP) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Subsystem generalized Shor code

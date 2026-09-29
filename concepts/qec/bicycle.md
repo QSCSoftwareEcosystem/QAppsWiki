@@ -2,15 +2,15 @@
 type: concept
 name: Bicycle code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
 - concepts/qec/generalized-bicycle
-- concepts/qec/qldpc
-- concepts/qec/qubit-generalized-homological-product-css
+- concepts/qec/mirror
+- concepts/qec/self-dual-css
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/bicycle
@@ -25,7 +25,7 @@ imported_id: bicycle
 
 ## Description
 
-A CSS code whose stabilizer generator matrix blocks are $H_{X}=H_{Z}=(A|A^T)$, where $A$ is a circulant matrix.
+An even-length CSS code whose stabilizer generator matrix blocks are $H_{X}=H_{Z}=(A|A^T)$, where $A$ is a sparse circulant matrix.
 The fact that $A$ commutes with its transpose ensures that the CSS condition is satisfied.
 Bicycle codes are the first QLDPC codes.
 
@@ -35,6 +35,6 @@ A notable example is an $⟦2^n,2^{(n+1)/2},2^{(n-1)/2}⟧$ code constructed fro
 
 ## Relations
 
-- _parent_: [[concepts/qec/qubit-generalized-homological-product-css]]
+- _parent_: [[concepts/qec/self-dual-css]] — Bicycle codes use the same check matrix $H_X=H_Z=(A|A^T)$ for both check types  ([arXiv:quant-ph/0304161](https://arxiv.org/abs/quant-ph/0304161)). Their $X$- and $Z$-type stabilizer spaces therefore coincide.
 - _parent_: [[concepts/qec/generalized-bicycle]] — A GB code whose circulants satisfy $B = A^T$ reduces to a bicycle code.
-- _cousin_: [[concepts/qec/qldpc]] — Bicycle codes are the first QLDPC codes  ([arXiv:quant-ph/0304161](https://arxiv.org/abs/quant-ph/0304161)).
+- _parent_: [[concepts/qec/mirror]] — Bicycle codes are mirror codes up to qubit permutations and Hadamard gates  ([arXiv:2603.05496](https://arxiv.org/abs/2603.05496)).

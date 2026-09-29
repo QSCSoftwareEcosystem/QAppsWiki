@@ -2,12 +2,13 @@
 type: concept
 name: Holographic code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/approximate-oaecc
 - concepts/qec/approximate-qecc
 - concepts/qec/qecc
 sources:
@@ -35,7 +36,7 @@ For connected boundary regions of negatively curved planar holographic states, t
 
 - _parent_: [[concepts/qec/qecc]]
 - _cousin_: [[concepts/qec/approximate-qecc]] — Universal subspace approximate error correction is used to model black holes  ([arXiv:1807.06041](https://arxiv.org/abs/1807.06041)).
-- _cousin_: [`approximate_oaecc`](https://errorcorrectionzoo.org/c/approximate_oaecc) — Properties of holographic codes are often quantified in the Heisenberg picture, i.e., in terms of operator algebras  ([arXiv:1411.7041](https://arxiv.org/abs/1411.7041), [arXiv:1612.00017](https://arxiv.org/abs/1612.00017), [arXiv:2012.14001](https://arxiv.org/abs/2012.14001), [arXiv:2203.01379](https://arxiv.org/abs/2203.01379)).
+- _cousin_: [[concepts/qec/approximate-oaecc]] — Properties of holographic codes are often quantified in the Heisenberg picture, i.e., in terms of operator algebras  ([arXiv:1411.7041](https://arxiv.org/abs/1411.7041), [arXiv:1612.00017](https://arxiv.org/abs/1612.00017), [arXiv:2012.14001](https://arxiv.org/abs/2012.14001), [arXiv:2203.01379](https://arxiv.org/abs/2203.01379)).
 
 ## Notes
 

@@ -2,7 +2,7 @@
 type: concept
 name: $⟦14,3,3⟧$ Rhombic dodecahedron surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Landahl jaunty code

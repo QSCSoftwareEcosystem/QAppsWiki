@@ -2,12 +2,13 @@
 type: concept
 name: Classical-quantum (c-q) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
-related_concepts: []
+related_concepts:
+- concepts/qec/oaecc
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/classical_into_quantum
@@ -60,4 +61,4 @@ Unambiguous state discrimination (USD) can be used to achieve Holevo capacity on
 
 ## Relations
 
-- _parent_: [`oaecc`](https://errorcorrectionzoo.org/c/oaecc) — An OAQECC that retains its block structure for storing classical information but stores no quantum information and has no gauge degrees of freedom (e.g., gauge qubits) is a c-q code.
+- _parent_: [[concepts/qec/oaecc]] — An OAQECC that retains its block structure for storing classical information but stores no quantum information and has no gauge degrees of freedom (e.g., gauge qubits) is a c-q code.

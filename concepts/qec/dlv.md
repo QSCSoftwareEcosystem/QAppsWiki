@@ -2,7 +2,7 @@
 type: concept
 name: Dinur-Lin-Vidick (DLV) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -26,7 +26,7 @@ imported_id: dlv
 
 Member of a family of codes constructed using cubical chain complexes, which are $t$-order extensions of the complexes underlying expander codes ($t=1$) and expander lifted-product codes ($t=2$).
 
-For $t=4$, assuming a conjecture about random linear maps, there exists a quantum locally testable family with linear dimension and inverse poly-logarithmic relative distance and soundness.
+For $t=4$, there exists a quantum locally testable family with linear dimension and inverse poly-logarithmic relative distance and soundness.
 Applying weight reduction yields order $\Omega(1/\text{polylog}n)$ soundness, $\Omega(n/\text{polylog}n)$ distance and dimension, and constant locality  ([arXiv:2309.05541](https://arxiv.org/abs/2309.05541)).
 Applying distance amplification and soundness amplification yields asymptotically constant soundness, order $\Theta(n)$ distance, order $\Theta(n)$ dimension, but poly-logarithmic locality  ([arXiv:2309.05541](https://arxiv.org/abs/2309.05541)).
 
@@ -34,5 +34,5 @@ Applying distance amplification and soundness amplification yields asymptoticall
 
 ## Relations
 
-- _parent_: [[concepts/qec/qubit-generalized-homological-product-css]] — DLV codes are codes constructed using a cubical chain complex, which is a $t$-order extension of the chain complexes underlying quantum generalized homological product CSS codes.
-- _cousin_: [[concepts/qec/qltc]] — DLV codes have linear dimension and inverse poly-logarithmic relative distance and soundness, assuming a conjecture about random linear maps  ([arXiv:2402.07476](https://arxiv.org/abs/2402.07476)). Applying distance amplification and soundness amplification yields asymptotically constant soundness, order $\Theta(n)$ distance, order $\Theta(n)$ dimension, but poly-logarithmic locality  ([arXiv:2309.05541](https://arxiv.org/abs/2309.05541)).
+- _parent_: [[concepts/qec/qubit-generalized-homological-product-css]] — DLV codes are quantum generalized homological product CSS codes whose underlying chain complex is a cubical chain complex, i.e., a $t$-order extension of the complexes underlying expander codes ($t=1$) and expander lifted-product codes ($t=2$)  ([arXiv:2402.07476](https://arxiv.org/abs/2402.07476)).
+- _cousin_: [[concepts/qec/qltc]] — DLV codes have linear dimension and inverse poly-logarithmic relative distance and soundness  ([arXiv:2402.07476](https://arxiv.org/abs/2402.07476)). Applying distance amplification and soundness amplification yields asymptotically constant soundness, order $\Theta(n)$ distance, order $\Theta(n)$ dimension, but poly-logarithmic locality  ([arXiv:2309.05541](https://arxiv.org/abs/2309.05541)).

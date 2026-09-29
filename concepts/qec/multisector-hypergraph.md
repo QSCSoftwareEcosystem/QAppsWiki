@@ -2,7 +2,7 @@
 type: concept
 name: Higher-dimensional homological product code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Higher-dimensional tensor product code
@@ -50,7 +50,7 @@ Let $u=\mathrm{rank}(P)$ and $\delta$ be the minimum distance of the binary code
 Writing $n_j$, $k_j$, $d_j$ for the block length, logical dimension, and homological distance of the $j$-th sector of $\mathcal{A}$, and primes for the corresponding parameters of the product, the Künneth theorem gives
 $n_j'=n_{j-1}c+n_j r$ and $k_j'=k_{j-1}(c-u)+k_j(r-u)$.
 The main result of  ([arXiv:1810.01519](https://arxiv.org/abs/1810.01519)) establishes tight bounds on the homological distance:
-$d_j'=\min(d_j,d_{j-1}\delta)$ when $r>u$ (P does not have full row rank), and $d_j'=d_{j-1}\delta$ when $r=u$ (P has full row rank).
+$d_j'=\min(d_j,d_{j-1}\delta)$ when $r>u$ ($P$ does not have full row rank), and $d_j'=d_{j-1}\delta$ when $r=u$ ($P$ has full row rank).
 
 ## Rate
 
@@ -74,8 +74,14 @@ For asymptotically good LDPC seed-code families, these higher-dimensional HGP fa
 
 ## General gates
 
-- Gates in the \term{Clifford hierarchy} can be implemented via constant-depth circuits  ([arXiv:2507.16797](https://arxiv.org/abs/2507.16797)).
+- The dimension of the product bounds the level of the \term{Clifford hierarchy} that is accessible to constant-depth circuits. Sector-preserving and shape-preserving constant-depth circuits realize logical gates only up to the $\lfloor \ell_X/\ell_Z\rfloor+1$-th level, where $\ell_Z$ and $\ell_X$ are the dimensions of the canonical $Z$- and $X$-type logical representatives and $\ell_Z+\ell_X$ is the dimension of the code  ([arXiv:2507.16797](https://arxiv.org/abs/2507.16797)). This bound holds when the code distance is sufficiently large compared to the number of logical qubits. Orientation-preserving constant-depth circuits realize only Clifford gates.
 - Parallel Pauli product measurements via homomorphic CNOT gates for 3- and 4-dimensional HGP codes  ([arXiv:2407.18490](https://arxiv.org/abs/2407.18490)).
+- Transversal dimension jump, a code-switching protocol between a 3D HGP code and its 2D component codes  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
+The first-sector logical $Z$ operators of $HGP(C_A,C_B,C_C)$ lie on $k_C^T$ disjoint slices, each carrying a copy of the logical operators of $HGP(C_A,C_B)$  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
+Here, $k_C^T$ is the dimension of the code with parity-check matrix $H_C^T$.
+Physical CNOTs from each slice onto a copy of the 2D code form one-way transversal logical CNOTs  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
+One-bit teleportation through them switches logical qubits between the 3D code and up to $k_C^T$ copies of the 2D code in parallel  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
+For example, the $⟦180,8,3⟧$ product of two $[3,1,3]$ repetition codes and the $[10,6,3]$ cycle code of $K_5$ switches to its $⟦45,7,3⟧$ component code  ([arXiv:2510.07269](https://arxiv.org/abs/2510.07269)).
 
 ## Relations
 

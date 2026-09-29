@@ -2,7 +2,7 @@
 type: concept
 name: Honeycomb (6.6.6) color code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -57,6 +57,7 @@ There is a $⟦(3d^2+1)/4, 1, d⟧$ code family  ([arXiv:1108.5738](https://arxi
 - Height-bound decision-tree decoder (DTD)  ([arXiv:2502.16408](https://arxiv.org/abs/2502.16408)).
 - Most likely error (MLE) decoder  ([arXiv:2412.14256](https://arxiv.org/abs/2412.14256)).
 - Neural network decoder  ([arXiv:2412.14256](https://arxiv.org/abs/2412.14256)).
+- [Frontier decoder](https://github.com/aleverrier/frontier), a pruned dynamic-programming decoder  ([arXiv:2606.20513](https://arxiv.org/abs/2606.20513)).
 
 ## Fault tolerance
 
@@ -64,7 +65,7 @@ There is a $⟦(3d^2+1)/4, 1, d⟧$ code family  ([arXiv:1108.5738](https://arxi
 
 ## Code capacity threshold
 
-- Independent $X,Z$ noise: $p_X = 7.8\%$ under message-passing decoder  ([arXiv:1111.0831](https://arxiv.org/abs/1111.0831)), $8.7\%$ under projection decoder  ([arXiv:1308.6207](https://arxiv.org/abs/1308.6207)), $\geq 6\%$ under rescaling decoder  ([arXiv:2112.09584](https://arxiv.org/abs/2112.09584)), $9.0\%$ under Möbius matching decoder  ([arXiv:2108.11395](https://arxiv.org/abs/2108.11395)), $10.1\%$ under MaxSAT-based decoder  ([arXiv:2303.14237](https://arxiv.org/abs/2303.14237)), and $8.2\%$ under concatenated MWPM decoder  ([arXiv:2404.07482](https://arxiv.org/abs/2404.07482)). The threshold under ML decoding corresponds to the value of a critical point of the two-dimensional three-body random-bond Ising model (RBIM) on the Nishimori line  ([doi:10.1143/JPSJ.55.3305](https://doi.org/10.1143/JPSJ.55.3305), [arXiv:0902.4845](https://arxiv.org/abs/0902.4845)), calculated to be $10.9(2)\%$ in Ref.  ([arXiv:0902.4845](https://arxiv.org/abs/0902.4845)) and $10.97(1)\%$ in Ref.  ([arXiv:0903.2102](https://arxiv.org/abs/0903.2102)).
+- Independent $X,Z$ noise: $p_X = 7.8\%$ under message-passing decoder  ([arXiv:1111.0831](https://arxiv.org/abs/1111.0831)), $8.7\%$ under projection decoder  ([arXiv:1308.6207](https://arxiv.org/abs/1308.6207)), $\geq 6\%$ under rescaling decoder  ([arXiv:2112.09584](https://arxiv.org/abs/2112.09584)), $9.0\%$ under Möbius matching decoder  ([arXiv:2108.11395](https://arxiv.org/abs/2108.11395)), $10.1\%$ under MaxSAT-based decoder  ([arXiv:2303.14237](https://arxiv.org/abs/2303.14237)), $8.2\%$ under concatenated MWPM decoder  ([arXiv:2404.07482](https://arxiv.org/abs/2404.07482)), and close to the optimal value under the Frontier decoder  ([arXiv:2606.20513](https://arxiv.org/abs/2606.20513)). The threshold under ML decoding corresponds to the value of a critical point of the two-dimensional three-body random-bond Ising model (RBIM) on the Nishimori line  ([doi:10.1143/JPSJ.55.3305](https://doi.org/10.1143/JPSJ.55.3305), [arXiv:0902.4845](https://arxiv.org/abs/0902.4845)), calculated to be $10.9(2)\%$ in Ref.  ([arXiv:0902.4845](https://arxiv.org/abs/0902.4845)) and $10.97(1)\%$ in Ref.  ([arXiv:0903.2102](https://arxiv.org/abs/0903.2102)).
 - Depolarizing channel: $12.6\%$ under the restriction decoder  ([arXiv:1911.00355](https://arxiv.org/abs/1911.00355)) and the projection decoder  ([arXiv:1308.6207](https://arxiv.org/abs/1308.6207)), and $\approx 14.5\%$ under AMBP4 decoding  ([arXiv:2202.06612](https://arxiv.org/abs/2202.06612)).
 
 ## Threshold

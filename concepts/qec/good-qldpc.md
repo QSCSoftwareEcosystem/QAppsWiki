@@ -2,7 +2,7 @@
 type: concept
 name: Good QLDPC code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -59,7 +59,7 @@ AEL distance amplification  ([doi:10.1109/SFCS.1995.492581](https://doi.org/10.1
 ## Relations
 
 - _parent_: [[concepts/qec/general-qldpc]]
-- _cousin_: [[concepts/qec/translationally-invariant-stabilizer]] — Chain complexes describing some QLDPC codes  ([arXiv:2012.02249](https://arxiv.org/abs/2012.02249), [arXiv:2309.16104](https://arxiv.org/abs/2309.16104)), and, more generally, CSS codes  ([arXiv:2404.16736](https://arxiv.org/abs/2404.16736)) can be 'lifted' into higher-dimensional manifolds admitting some notion of geometric locality. Applying this procedure to good QLDPC codes yields $⟦n,n^{1-2/D},n^{1-1/D}⟧$ lattice stabilizer codes in $D$ spatial dimensions that saturate the BPT bound  ([arXiv:2303.06755](https://arxiv.org/abs/2303.06755), [arXiv:2309.16104](https://arxiv.org/abs/2309.16104), [arXiv:2408.01769](https://arxiv.org/abs/2408.01769)).
+- _cousin_: [[concepts/qec/translationally-invariant-stabilizer]] — Chain complexes describing some QLDPC codes  ([arXiv:2012.02249](https://arxiv.org/abs/2012.02249), [arXiv:2309.16104](https://arxiv.org/abs/2309.16104)), and, more generally, CSS codes  ([arXiv:2404.16736](https://arxiv.org/abs/2404.16736)) can be 'lifted' into higher-dimensional manifolds admitting some notion of geometric locality. Applying this procedure to good QLDPC codes yields $⟦n,n^{1-2/D},n^{1-1/D}⟧$ lattice stabilizer codes in $D$ spatial dimensions that saturate the BPT bound  ([arXiv:2303.06755](https://arxiv.org/abs/2303.06755), [arXiv:2309.16104](https://arxiv.org/abs/2309.16104), [arXiv:2408.01769](https://arxiv.org/abs/2408.01769)). The $L$-subdivision of the square complex used in Ref.  ([arXiv:2309.16104](https://arxiv.org/abs/2309.16104)) is a regular height-2 mapping cone whose embedded code is the input code  ([arXiv:2507.05361](https://arxiv.org/abs/2507.05361)).
 - _cousin_: [[concepts/qec/translationally-invariant-subsystem]] — An $⟦n,k,d⟧$ qubit stabilizer code can be converted into an order $⟦O(\ell \delta n),k,\Omega(d/w)⟧$ subsystem qubit stabilizer code with weight-three gauge operators via the wire-code mapping  ([arXiv:2410.10194](https://arxiv.org/abs/2410.10194)), which uses weight reduction. 
 Here, $w$ and $\delta$ are the weight and degree of the input code's Tanner graph, while $\ell$ is the length of the longest edge of a particular embedding of that graph.
 Applying this procedure to good QLDPC codes and using an embedding into $D$-dimensional Euclidean space yields lattice subsystem codes whose logical-qubit number and distance both scale as $\Theta(n^{1-1/D})$ as functions of block length $n$, saturating the subsystem BT bound  ([arXiv:2410.10194](https://arxiv.org/abs/2410.10194)).

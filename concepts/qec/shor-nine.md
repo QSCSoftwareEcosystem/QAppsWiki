@@ -2,7 +2,7 @@
 type: concept
 name: $⟦9,1,3⟧$ Shor code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -12,7 +12,6 @@ related_concepts:
 - concepts/qec/qecc
 - concepts/qec/quantum-parity
 - concepts/qec/quantum-repetition
-- concepts/qec/qubit-concatenated
 - concepts/qec/real-projective-plane
 - concepts/qec/small-distance-qubit-stabilizer
 - concepts/qec/stab-9-1-3
@@ -88,7 +87,6 @@ The code detects two-qubit errors or corrects an arbitrary single-qubit error. S
 - _parent_: [[concepts/qec/real-projective-plane]] — The Shor code is one of the nine-qubit surface codes defined on the projective plane  ([arXiv:quant-ph/9810055](https://arxiv.org/abs/quant-ph/9810055)) ([arXiv:quant-ph/0605094](https://arxiv.org/abs/quant-ph/0605094)).
 - _parent_: [[concepts/qec/stab-9-1-3]] — The $⟦9,1,3⟧_{\mathbb{Z}_q}$ modular-qudit code for $q=2$ reduces to the $⟦9,1,3⟧$ Shor code.
 - _parent_: [[concepts/qec/small-distance-qubit-stabilizer]]
-- _cousin_: [[concepts/qec/quantum-repetition]] — The Shor code is a concatenation of a three-qubit bit-flip with a three-qubit phase-flip repetition code.
-- _cousin_: [[concepts/qec/qubit-concatenated]] — The Shor code is a concatenation of a three-qubit bit-flip with a three-qubit phase-flip repetition code.
+- _cousin_: [[concepts/qec/quantum-repetition]] — Using the concatenation convention of the Zoo, the Shor code is a concatenation of a three-qubit phase-flip repetition code (inner code) with a three-qubit bit-flip repetition code (outer code).
 - _cousin_: [[concepts/qec/qecc]] — The Shor code is the first quantum error-correcting code.
 - _cousin_: [[concepts/qec/cluster-state]] — The Shor code admits a codeword that is the cluster state of a particular nine-vertex graph  ([arXiv:1511.05647](https://arxiv.org/abs/1511.05647)).

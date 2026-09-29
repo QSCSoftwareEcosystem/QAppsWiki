@@ -2,7 +2,7 @@
 type: concept
 name: Frobenius code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -37,8 +37,8 @@ A cyclic prime-qudit stabilizer code whose length $n$ divides $p^t + 1$ for some
 
 - _parent_: [[concepts/qec/qudit-stabilizer]]
 - _parent_: [[concepts/qec/quantum-cyclic]]
-- _cousin_: [[concepts/qec/stabilizer-over-gf4]] — Frobenius Hermitian codes have been completely classified; no such codes exist when $t$ is odd  ([arXiv:1011.5814](https://arxiv.org/abs/1011.5814)).
+- _cousin_: [[concepts/qec/stabilizer-over-gf4]] — Frobenius Hermitian codes have been completely classified. No such codes exist when $t$ is odd  ([arXiv:1011.5814](https://arxiv.org/abs/1011.5814)).
 
 ## Notes
 
-- Frobenius Hermitian codes have been completely classified; no such codes exist when $t$ is odd  ([arXiv:1011.5814](https://arxiv.org/abs/1011.5814)).
+- Frobenius Hermitian codes have been completely classified. No such codes exist when $t$ is odd  ([arXiv:1011.5814](https://arxiv.org/abs/1011.5814)).

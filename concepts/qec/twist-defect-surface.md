@@ -2,7 +2,7 @@
 type: concept
 name: Twist-defect surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Surface code with a twist
@@ -54,15 +54,20 @@ Twist-defect surface codes have negative curvature around their defects, and thu
 - State injection protocols yield arbitrary logical rotations  ([arXiv:1408.3379](https://arxiv.org/abs/1408.3379)).
 - Symplectic doubles of codes yield fault-tolerant Clifford gates performed via Dehn twists  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
 
+## Decoders
+
+- The gauge-operator measurement schedule of Ref.  ([arXiv:2605.30455](https://arxiv.org/abs/2605.30455)) keeps twist defects decodable by minimum-weight perfect matching, unlike lower-depth schedules that give up matching-based decoding  ([arXiv:2307.10147](https://arxiv.org/abs/2307.10147)).
+
 ## Fault tolerance
 
+- The weight-five twist-defect stabilizer generators can be measured indirectly, by measuring lower-weight gauge operators that commute with the stabilizer group but anticommute with each other and taking the parity of two outcomes  ([arXiv:2605.30455](https://arxiv.org/abs/2605.30455)). This yields a six-layer cycle needing only degree-three connectivity. Earlier twist-defect circuits required at least seven layers and degree-six connectivity  ([arXiv:1709.02318](https://arxiv.org/abs/1709.02318), [arXiv:2201.05678](https://arxiv.org/abs/2201.05678)), or halved the distance along the domain wall  ([arXiv:2307.10147](https://arxiv.org/abs/2307.10147)).
 - Fault-tolerant measurement of defects  ([arXiv:1408.3379](https://arxiv.org/abs/1408.3379)).
 - Twisted double covers of codes yield fault-tolerant Clifford gates performed via Dehn twists  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
 
 ## Realizations
 
 - Ground state of the toric code has been implemented with and without twists, and the non-Abelian braiding behavior of the twists, which realize Ising anyons, has been demonstrated  ([arXiv:2211.09802](https://arxiv.org/abs/2211.09802)).
-- Logical Clifford gates arising from a $⟦4,1,2⟧$ twist-defect surface-code protocol, together with lifted gates on its $⟦8,2,2⟧$ and $⟦10,2,3⟧$ double covers, were realized on a trapped-ion device by Quantinuum  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
+- Logical Clifford gates arising from a $⟦4,1,2⟧$ twist-defect surface-code protocol, together with lifted gates on its $⟦8,2,2⟧$ and $⟦10,2,3⟧$ symplectic doubles, were realized on a trapped-ion device by Quantinuum  ([arXiv:2406.09951](https://arxiv.org/abs/2406.09951)).
 
 ## Relations
 

@@ -2,7 +2,7 @@
 type: concept
 name: $⟦2^r-1, 2^r-2r-1, 3⟧$ quantum Hamming code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:

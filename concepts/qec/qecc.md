@@ -2,7 +2,7 @@
 type: concept
 name: Quantum error-correcting code (QECC)
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -10,6 +10,7 @@ domains:
 related_concepts:
 - concepts/qec/approximate-qecc
 - concepts/qec/metrological
+- concepts/qec/oaecc
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/qecc
@@ -70,7 +71,7 @@ For a noise model parameterized by a single physical error rate $p$, the *pseudo
 
 ## Relations
 
-- _parent_: [`oaecc`](https://errorcorrectionzoo.org/c/oaecc) — An OAQECC which has no gauge structure (e.g., gauge qubits) and no block structure is a QECC.
+- _parent_: [[concepts/qec/oaecc]] — An OAQECC which has no gauge structure (e.g., gauge qubits) and no block structure is a QECC.
 - _cousin_: [[concepts/qec/approximate-qecc]] — QAECCs correcting a noise channel exactly reduce to QECCs.
 - _cousin_: [`ecc`](https://errorcorrectionzoo.org/c/ecc) — Quantum information cannot be copied using a linear process  ([doi:10.1038/299802a0](https://doi.org/10.1038/299802a0)), so one cannot send several copies of a quantum state through a channel as can be done for classical information. The \term{Knill-Laflamme conditions} can similarly be formulated for classical codes  ([arXiv:2109.08691](https://arxiv.org/abs/2109.08691)), although they are not as widely used as those for quantum codes.
 - _cousin_: [[concepts/qec/metrological]] — Metrological codes are logical-qubit codes that satisfy the \term{Knill-Laflamme conditions} conditions only partially, and codes that satisfy them fully are QECCs.

@@ -2,7 +2,7 @@
 type: concept
 name: $k$-orthogonal code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -24,12 +24,12 @@ imported_id: quantum_k-orthogonal
 
 ## Description
 
-Qubit stabilizer code whose $X$-type logicals and generators form a $k$-orthogonal matrix (defined below) in the symplectic representation.
-In other words, the overlap between any $k$ $X$-type code-preserving Paulis (including the identity) is even.
-The original definition is for qubit CSS codes  ([arXiv:1503.08800](https://arxiv.org/abs/1503.08800)), but it can be extended to more general qubit stabilizer codes  ([arXiv:2210.14066](https://arxiv.org/abs/2210.14066)).
+Qubit stabilizer code for which the binary space $S_X$ of $X$ components of stabilizers is $k$-orthogonal in the symplectic representation.
+In other words, the overlap of any $j$ vectors in $S_X$ is even for every $1\leq j\leq k$  ([arXiv:2210.14066](https://arxiv.org/abs/2210.14066)).
+This definition applies to general qubit stabilizer codes and does not require a CSS presentation.
 This entry is formulated for qubits, but an extension exists for modular qudits  ([arXiv:1503.08800](https://arxiv.org/abs/1503.08800)).
 
-A matrix is $k$-orthogonal  ([arXiv:2210.14066](https://arxiv.org/abs/2210.14066)) if
+Equivalently, a generator matrix for $S_X$ is $k$-orthogonal if
 \begin{align}
   |x^1|&\equiv 0 \mod 2 \\
   |x^1\cdot x^2|&\equiv 0 \mod 2 \\
@@ -37,7 +37,7 @@ A matrix is $k$-orthogonal  ([arXiv:2210.14066](https://arxiv.org/abs/2210.14066
   &\vdots \\
   |x^1\cdot x^2\cdot x^3\cdot\ldots\cdot x^k|&\equiv 0 \mod 2 
 \end{align}
-for all its rows $x^j$, where the generalized dot-product notation means a sum of products of the respective coordinates of all vectors.
+for all vectors $x^j$ in its row space, where the generalized dot-product notation means a sum of products of the respective coordinates of all vectors.
 
 (source: raw/error-correction-zoo.md)
 

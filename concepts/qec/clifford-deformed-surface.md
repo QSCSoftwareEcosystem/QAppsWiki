@@ -2,7 +2,7 @@
 type: concept
 name: Clifford-deformed surface code (CDSC)
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -42,7 +42,7 @@ As a stabilizer code, $⟦n=O(d^2), k=O(1), d⟧$.
 
 ## Code capacity threshold
 
-- Depolarizing noise: the threshold under ML decoding corresponds to the value of a critical point of the weight-two (two-body) two-dimensional random-bond Ising model (RBIM) on the Nishimori line  ([doi:10.1143/JPSJ.55.3305](https://doi.org/10.1143/JPSJ.55.3305), [arXiv:quant-ph/0110143](https://arxiv.org/abs/quant-ph/0110143), [arXiv:2201.07802](https://arxiv.org/abs/2201.07802)). Utilizing this statistical mechanical mapping yields a phase diagram for a CDSC.
+- Depolarizing noise: the threshold under ML decoding corresponds to the value of a critical point of a two-dimensional random-bond Ising model (RBIM) with two- and four-body terms on the Nishimori line  ([doi:10.1143/JPSJ.55.3305](https://doi.org/10.1143/JPSJ.55.3305), [arXiv:quant-ph/0110143](https://arxiv.org/abs/quant-ph/0110143), [arXiv:2201.07802](https://arxiv.org/abs/2201.07802)). Utilizing this statistical mechanical mapping yields a phase diagram for a CDSC.
 - A class of random CDSCs, parametrized by the probabilities $\Pi_{XZ},~ \Pi_{YZ}$ of $X\leftrightarrow Z$ and $Y\leftrightarrow Z$ Pauli permutations, respectively, has $50\%$ code capacity threshold at infinite $Z$ bias. Certain translation-invariant CDSCs such as the XY code and the XZZX code also have $50\%$ code capacity threshold at infinite $Z$ bias.
 - XZZX code and the $(0.5,\Pi_{YZ})$ random CDSCs have a $50\%$ code capacity threshold for noise infinitely biased towards either Pauli-$X$, $Y$, or $Z$ errors.
 

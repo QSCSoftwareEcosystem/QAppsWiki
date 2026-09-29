@@ -2,7 +2,7 @@
 type: concept
 name: Bravyi-Kitaev superfast (BKSF) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Loop-stabilized fermion simulation (LSFS) code

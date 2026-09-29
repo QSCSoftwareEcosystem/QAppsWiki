@@ -2,7 +2,7 @@
 type: concept
 name: GKP-surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -60,4 +60,4 @@ The error threshold under ML decoding of GKP-rotated-surface codes comes close t
 - _cousin_: [[concepts/qec/toric]] — GKP codes have been concatenated with toric codes  ([arXiv:1810.00047](https://arxiv.org/abs/1810.00047)).
 - _cousin_: [[concepts/qec/rotated-surface]] — GKP codes have been concatenated with rotated surface codes  ([arXiv:1908.03579](https://arxiv.org/abs/1908.03579), [arXiv:2101.03014](https://arxiv.org/abs/2101.03014), [arXiv:2103.06994](https://arxiv.org/abs/2103.06994), [arXiv:2303.04702](https://arxiv.org/abs/2303.04702)).
 - _cousin_: [[concepts/qec/xzzx]] — GKP codes have been concatenated with XZZX surface codes  ([arXiv:2207.04383](https://arxiv.org/abs/2207.04383)).
-- _cousin_: [[concepts/qec/analog-surface]] — Condensing pure fluxes and charges in the analog surface code yields toric-GKP codes  ([arXiv:2411.04993](https://arxiv.org/abs/2411.04993)).
+- _cousin_: [[concepts/qec/analog-surface]] — Condensing pure fluxes and charges in the analog surface code yields toric-GKP codes  ([arXiv:2411.04993](https://arxiv.org/abs/2411.04993)). Reference  ([arXiv:2411.04993](https://arxiv.org/abs/2411.04993)) contains another condensation protocol which yields a model that is equivalent to the toric-GKP code via a constant-depth Gaussian transformation.

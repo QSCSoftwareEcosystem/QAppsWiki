@@ -2,7 +2,7 @@
 type: concept
 name: Two-block CSS code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Two-sublattice code
@@ -10,9 +10,9 @@ aliases:
 domains:
 - quantum-error-correction
 related_concepts:
-- concepts/qec/galois-css
 - concepts/qec/general-qldpc
 - concepts/qec/lifted-product
+- concepts/qec/multi-block-quantum
 sources:
 - raw/error-correction-zoo.md
 - https://errorcorrectionzoo.org/c/two_block_quantum
@@ -27,10 +27,11 @@ imported_id: two_block_quantum
 
 ## Description
 
-Galois-qudit CSS code whose stabilizer generator matrices $H_X=(A_1,B_1)$ and $H_Z=(B^T_2,-A^T_2)$, are constructed from four matrices satisfying $A_1 B_2 - B_1 A_2 = 0$.
+An even-length Galois-qudit CSS code whose stabilizer generator matrices $H_X=(A_1,B_1)$ and $H_Z=(B^T_2,-A^T_2)$, are constructed from four matrices satisfying $A_1 B_2 - B_1 A_2 = 0$.
 In the case the two pairs are equal, we have $H_X=(A,B)$ and $H_Z=(B^T,-A^T)$, constructed from a pair of square commuting matrices $A$ and $B$.
 
-Generalized constructions utilizing more than two blocks have also been considered  ([arXiv:2310.15092](https://arxiv.org/abs/2310.15092)).
+Generalized constructions utilizing more than two blocks yield multi-block CSS codes  ([arXiv:2506.16910](https://arxiv.org/abs/2506.16910), [arXiv:2508.10714](https://arxiv.org/abs/2508.10714)).
+Two-block CSS codes are not hypergraph-product codes in general; they reduce to hypergraph products only in special cases, such as 2BGA codes whose two support subgroups intersect trivially  ([arXiv:2306.16400](https://arxiv.org/abs/2306.16400)).
 
 (source: raw/error-correction-zoo.md)
 
@@ -41,6 +42,6 @@ The corresponding expressions, as well as some upper and lower bounds on paramet
 
 ## Relations
 
-- _parent_: [[concepts/qec/galois-css]]
+- _parent_: [[concepts/qec/multi-block-quantum]] — Two-block CSS codes are multi-block CSS codes with $t=2$.
 - _cousin_: [[concepts/qec/general-qldpc]] — When matrices $A$ and $B$ have row and column weights bounded by $W$, a two-block CSS code is a quantum LDPC code with stabilizer generators bounded by $2W$.
 - _cousin_: [[concepts/qec/lifted-product]] — LP codes can be constructed using non-square matrices and taking a hypergraph product over a group algebra, while two-block CSS codes are constructed directly using square matrices.

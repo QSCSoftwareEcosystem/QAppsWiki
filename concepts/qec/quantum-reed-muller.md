@@ -2,7 +2,7 @@
 type: concept
 name: Quantum Reed-Muller (RM) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -37,6 +37,10 @@ For example, the original construction  ([arXiv:quant-ph/9608026](https://arxiv.
 
 Non-CSS codes can be derived from such codes by modifying the $X$-type stabilizers  ([arXiv:quant-ph/9608026](https://arxiv.org/abs/quant-ph/9608026)).
 
+A CSS code can also be formed from a single RM code.
+For $2r < m-1$, RM$(r,m)$ is strictly contained in its dual RM$(m-r-1,m)$ .
+Using RM$(r,m)$ for both the $X$- and $Z$-type stabilizers then yields a $⟦2^m, 2^m - 2\sum_{j=0}^{r} {m \choose j}, 2^{r+1}⟧$ code, whose distance is the minimum weight of RM$(m-r-1,m)$.
+
 (source: raw/error-correction-zoo.md)
 
 ## Protection
@@ -56,7 +60,7 @@ The family constructed out of shortened RM codes with parameters $⟦\sum_{i=w+1
 
 ## Rate
 
-Dimension is $k = 2^r - {r \choose t} + 2 \sum_{i=0}^{t-1} {r \choose i}$. CSS codes formed from RM codes achieve channel capacity on erasure channels  ([doi:10.1109/ISIT.2016.7541599](https://doi.org/10.1109/ISIT.2016.7541599)).
+Dimension is $k = 2^r - {r \choose t} - 2 \sum_{i=0}^{t-1} {r \choose i}$  ([arXiv:quant-ph/9608026](https://arxiv.org/abs/quant-ph/9608026)). CSS codes formed from RM codes achieve channel capacity on erasure channels  ([doi:10.1109/ISIT.2016.7541599](https://doi.org/10.1109/ISIT.2016.7541599)).
 
 ## Fault tolerance
 

@@ -2,12 +2,13 @@
 type: concept
 name: Approximate quantum error-correcting code (AQECC)
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/approximate-oaecc
 - concepts/qec/spt
 - concepts/qec/topological
 sources:
@@ -178,7 +179,7 @@ An extension of the BPT bound to approximate codes is done in Ref.  ([arXiv:1610
 
 ## Relations
 
-- _parent_: [`approximate_oaecc`](https://errorcorrectionzoo.org/c/approximate_oaecc)
+- _parent_: [[concepts/qec/approximate-oaecc]]
 - _cousin_: [[concepts/qec/topological]] — In the case of topological codes, the Petz infidelity is related to the topological entanglement entropy  ([arXiv:2408.00857](https://arxiv.org/abs/2408.00857)).
 - _cousin_: [[concepts/qec/spt]] — Certain phases with continuous symmetries cannot be prepared using a constant-depth circuit, a consequence of the Lieb-Schult-Mattis theorem  ([doi:10.1016/0003-4916(61)90115-4](https://doi.org/10.1016/0003-4916(61)90115-4), [arXiv:cond-mat/9911137](https://arxiv.org/abs/cond-mat/9911137), [arXiv:2112.06946](https://arxiv.org/abs/2112.06946), [arXiv:2405.14929](https://arxiv.org/abs/2405.14929)). The theorem, in turn, can be linked to the circuit complexity of the underlying approximate error-correcting code  ([arXiv:2510.04453](https://arxiv.org/abs/2510.04453)).
 - _cousin_: [`stiefel`](https://errorcorrectionzoo.org/c/stiefel) — Riemannian optimization techniques can be applied to design approximate QECCs since the set of unitary encoding maps $U$ forms a Stiefel manifold  ([arXiv:2407.08423](https://arxiv.org/abs/2407.08423)).

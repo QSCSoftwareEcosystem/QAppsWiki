@@ -2,7 +2,7 @@
 type: concept
 name: Coherent-parity-check (CPC) code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -31,5 +31,5 @@ CPC codes can be obtained from numerical search  ([arXiv:1709.01866](https://arx
 ## Relations
 
 - _parent_: [[concepts/qec/qubit-stabilizer]] — CPC codes are a type of stabilizer code. A teleported version of the CPC construction, the Clifford noise reduction (CliNR) scheme, can reduce noise in Clifford circuits with Pauli measurements with at most a three-fold overhead in the number of qubits and gates  ([arXiv:2407.06583](https://arxiv.org/abs/2407.06583), [arXiv:2504.13356](https://arxiv.org/abs/2504.13356)). There is a simple formula for the probability that a Clifford circuit contains a logical error  ([arXiv:2009.07752](https://arxiv.org/abs/2009.07752)).
-- _cousin_: [`binary_linear`](https://errorcorrectionzoo.org/c/binary_linear) — The CPC Construction uses two binary linear codes.
+- _cousin_: [`binary_linear`](https://errorcorrectionzoo.org/c/binary_linear) — The CPC construction uses two binary linear codes.
 - _cousin_: [`hamming`](https://errorcorrectionzoo.org/c/hamming) — *Tripartite CPC codes* are constructed from Hamming codes via the CPC construction  ([arXiv:1611.08012](https://arxiv.org/abs/1611.08012)).

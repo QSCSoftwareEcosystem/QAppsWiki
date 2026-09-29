@@ -2,7 +2,7 @@
 type: concept
 name: Qubit CSS code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Qubit Euclidean code
@@ -63,6 +63,10 @@ Basis states for the code are, for coset representatives $\gamma \in C_X/C_Z^\pe
 \end{align}
 After a Hadamard transform on every qubit, the same code can be described using superpositions over cosets of $C_X^\perp$ in $C_Z$, exchanging the roles of bit-flip and phase-flip protection.
 
+Qubit permutations preserving both $C_X$ and $C_Z$ form the permutation automorphism group of a CSS code  ([arXiv:1302.1035](https://arxiv.org/abs/1302.1035)).
+A CSS code whose $X$- and $Z$-type stabilizer spaces are exchanged by a qubit permutation is permutationally self-dual.
+The code is self-dual when that permutation can be taken to be the identity.
+
 Inequivalent CSS codes up to $n=14$ qubits have been classified  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
 
 \subsection{CSS-to-homology correspondence}
@@ -106,7 +110,7 @@ d_{Z}&=\min\{ w_H(c) | c \in C_Z \setminus C_X^\perp \} \geq \delta_Z \\
 d&=\min\{d_X,d_Z\}~,
 \end{align}
 where $w_H$ is the Hamming weight of a codeword.
-In the homology correspondence, the code distance is equal to the minimum of the combinatorial ($d-1$)-systole of the cellulated $d$-dimensional manifold and its dual.
+In the homology correspondence, the code distance is equal to the minimum of the combinatorial ($D-1$)-systole of the cellulated $D$-dimensional manifold and its dual.
 
 A CSS code has *stabilizer weight* $w$ if the highest weight of any stabilizer generator is $w$, i.e., any row of $H_X$ and $H_Z$ has weight at most $w$.
 *Strong CSS codes* are codes for which there exists a set of $X$ and $Z$ stabilizer generators of equal weight.
@@ -136,13 +140,15 @@ For a depolarizing channel with probability $p$, CSS codes allowing for arbitrar
 - Transversal CNOT gates preserve the logical subspace, up to $X$-type Paulis, iff a qubit stabilizer code is CSS  ([arXiv:quant-ph/9605011](https://arxiv.org/abs/quant-ph/9605011)). The Paulis are necessary for when the code is stabilized by stabilizers with a minus in front of them, e.g., $-XXXX$ and $ZZZZ$.
 - *Fold-transversal*  ([arXiv:1503.02065](https://arxiv.org/abs/1503.02065), [arXiv:1603.02286](https://arxiv.org/abs/1603.02286), [arXiv:2202.06647](https://arxiv.org/abs/2202.06647)) Clifford gates are transversal gates combined with qubit permutations. Some of these can be obtained from automorphism groups of the underlying classical codes  ([arXiv:1302.1035](https://arxiv.org/abs/1302.1035)).
 - Necessary and sufficient conditions for diagonal physical gates on a CSS code to induce logical gates in the \term{Clifford hierarchy} have been formulated  ([arXiv:2109.13481](https://arxiv.org/abs/2109.13481)) ([arXiv:2204.13176](https://arxiv.org/abs/2204.13176)) ([arXiv:2406.00425](https://arxiv.org/abs/2406.00425)). There are routines that can determine what diagonal gates in the \term{Clifford hierarchy} are realized by a code  ([arXiv:2303.15615](https://arxiv.org/abs/2303.15615)).
-- CSS code families with asymptotic rate $> 1/3$ and distance at $\geq 3$ do not admit logical qubit permutations from physical permutations  ([arXiv:2502.13889](https://arxiv.org/abs/2502.13889)).
-- Diagonal transversal Clifford gates on $\ell$ codeblocks of a CSS code form $GL(\ell,\mathbb{F}_2)$ for non-self-dual CSS codes, $U(\ell,R_8)$ for *semi-self-dual CSS codes* (i.e., CSS codes whose $X$-type stabilizers are contained in the $Z$-type stabilizers), and $Sp(2\ell,\mathbb{F}_2)$ for self-dual CSS codes  ([arXiv:2507.10519](https://arxiv.org/abs/2507.10519)).
+- CSS code families with asymptotic rate $> 1/3$ and distance $\geq 3$ do not admit logical qubit permutations from physical permutations  ([arXiv:2502.13889](https://arxiv.org/abs/2502.13889)).
+- Diagonal transversal Clifford gates on $\ell$ codeblocks of a CSS code form $GL(\ell,2)$ for non-self-dual CSS codes, $U(\ell,R_8)$ for *semi-self-dual CSS codes* (i.e., CSS codes whose $X$-type stabilizers are contained in the $Z$-type stabilizers), and $Sp(2\ell,2)$ for self-dual CSS codes  ([arXiv:2507.10519](https://arxiv.org/abs/2507.10519)).
 - Diagonal transversal gate groups can be defined using a set of equations  ([arXiv:2601.21514](https://arxiv.org/abs/2601.21514)).
+- Qubit permutations realize only logical CX circuits, forming a subgroup of $\mathrm{GL}(k,2)$  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)). They never realize a logical $S$, CZ, or Hadamard gate  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+- Transversal single-qubit Clifford gates on an indecomposable CSS code never realize a logical CX or SWAP gate  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)). Such a code with $k>1$ admits no addressable logical $H$, $SH$, or $HS$ gate from single-qubit Clifford gates and qubit permutations in a CSS logical basis  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
+- A product of single-qubit diagonal gates with a qubit permutation is a logical gate only if the diagonal part and the permutation are each logical gates  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
 
 ## General gates
 
-- LDPC CSS code symmetries called $XZ$-dualities allow for fold-transversal gates, i.e., transversal gates followed by qubit permutations  ([arXiv:2202.06647](https://arxiv.org/abs/2202.06647)).
 - Generalized lattice surgery  ([arXiv:2301.13738](https://arxiv.org/abs/2301.13738)).
 - Cohomology invariants give rise to logical gates implemented by constant-depth Clifford circuits for codes admitting a cup product structure  ([arXiv:2310.16982](https://arxiv.org/abs/2310.16982), [arXiv:2410.14631](https://arxiv.org/abs/2410.14631), [arXiv:2410.16250](https://arxiv.org/abs/2410.16250), [arXiv:2411.15848](https://arxiv.org/abs/2411.15848)). For example, a diagonal *copy-cup* gate in the $m$th level of the \term{Clifford hierarchy} can be implemented on a code admitting an $m$-fold cup product  ([arXiv:2410.16250](https://arxiv.org/abs/2410.16250)).
 - Fault-tolerant CNOT gate using generalized lattice surgery  ([arXiv:2505.01370](https://arxiv.org/abs/2505.01370)).
@@ -154,7 +160,7 @@ For a depolarizing channel with probability $p$, CSS codes allowing for arbitrar
 - Steane's method also yields non-destructive logical Pauli measurement for CSS codes by coupling the data block transversally to encoded $\ket{0}$ or $\ket{+}$ ancillas and classically decoding the ancilla measurement results .
 - Transversal computational-basis measurement followed by classical decoding is a fault-tolerant gadget for logical measurement of all encoded qubits .
 - Fault-tolerant error correction and logical measurements using flag qubits for distance-three cyclic CSS codes  ([arXiv:1803.09758](https://arxiv.org/abs/1803.09758)). Parallel syndrome extraction for distance-three codes can be done fault-tolerantly using one flag qubit  ([arXiv:2208.00581](https://arxiv.org/abs/2208.00581)). Distance-preserving flag fault-tolerant error correction can be done using lookup tables for small codes  ([arXiv:2306.12862](https://arxiv.org/abs/2306.12862)).
-- Homomorphic gadgets fault-tolerant measurement unify Steane and Shor error correction  ([arXiv:2211.03625](https://arxiv.org/abs/2211.03625)).
+- Homomorphic gadgets for fault-tolerant measurement unify Steane and Shor error correction  ([arXiv:2211.03625](https://arxiv.org/abs/2211.03625)).
 - A fault-tolerant error-correction protocol using $O(d\log d)$ syndrome measurements can be applied to any CSS code with distance $d \geq \Omega(n^{\alpha})$ for any $\alpha > 0$  ([arXiv:2002.05180](https://arxiv.org/abs/2002.05180)).
 - Fault-tolerant measurement-free scheme for low-distance CSS codes  ([arXiv:2307.13296](https://arxiv.org/abs/2307.13296)).
 - Automated fault-tolerant encoding circuit synthesis  ([arXiv:2408.11894](https://arxiv.org/abs/2408.11894)).
@@ -164,6 +170,7 @@ For a depolarizing channel with probability $p$, CSS codes allowing for arbitrar
 ## Code capacity threshold
 
 - Bounds on code capacity thresholds for various noise models exist in terms of stabilizer generator weights  ([arXiv:1208.2317](https://arxiv.org/abs/1208.2317), [arXiv:1412.6172](https://arxiv.org/abs/1412.6172)).
+- Consider a CSS code family with bounded check weights and asymptotic rate $R$, in which $\max(d_X,d_Z)$ strictly increases. Its decodable region is the set of error probabilities $p$ and decoder temperatures $T=1/K$ at which decoding succeeds with probability approaching one as the family grows. A temperature off the Nishimori line corresponds to a decoder that assumes an incorrect error probability. For $X$ and $Z$ errors of equal probability, the coupling $K_{\max}=1/T_{\max}$ at the upper temperature boundary of this region satisfies $K_{\max} - K_{\max}^{*} \geq R \ln 2$  ([arXiv:1804.01950](https://arxiv.org/abs/1804.01950)). Here, the Kramers-Wannier dual coupling $K^{*}$ is defined by $\tanh K^{*} = e^{-2K}$. At zero rate, this bound is the self-dual point  ([arXiv:1804.01950](https://arxiv.org/abs/1804.01950)).
 
 ## Decoders
 
@@ -184,11 +191,11 @@ For a depolarizing channel with probability $p$, CSS codes allowing for arbitrar
 - _parent_: [[concepts/qec/galois-css]] — Galois-qudit CSS codes for $q=2$ are qubit CSS codes.
 - _cousin_: [[concepts/qec/qubit-stabilizer]] — Qubit CSS codes are qubit stabilizer codes whose stabilizer groups admit a generating set of pure-$X$ and pure-$Z$ Pauli strings. 
 Transversal CNOT gates preserve the logical subspace iff a qubit stabilizer code is CSS  ([arXiv:quant-ph/9605011](https://arxiv.org/abs/quant-ph/9605011)).
-Any $⟦n,k,d⟧$ stabilizer code can be mapped onto a $⟦2n,2k,\geq d⟧$ two-block CSS code via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
+Any $⟦n,k,d⟧$ stabilizer code can be mapped onto a $⟦2n,2k,d^{\prime}⟧$ two-block CSS code with $d\leq d^{\prime}\leq 2d$ via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
 For any non-CSS qubit stabilizer code $\mathsf{C}$, there exists a CSS code $\mathsf{C}^{\prime}$ such that $\mathsf{C} = DQ\mathsf{C}^{\prime}$, where $D$ is a diagonal Clifford operator, and where $Q$ is an element of an XP stabilizer group .
 There is a holographic relation between qubit CSS codes describing CFTs and qubit stabilizer codes describing path integrals over certain topologies  ([arXiv:2504.08724](https://arxiv.org/abs/2504.08724)).
 - _cousin_: [[concepts/qec/movassagh-ouyang]] — Qubit CSS codes encoding one logical qubit are a subset of Movassagh-Ouyang codes.
-- _cousin_: [[concepts/qec/two-block-quantum]] — Any $⟦n,k,d⟧$ stabilizer code can be mapped onto a $⟦2n,2k,\geq d⟧$ two-block CSS code via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
+- _cousin_: [[concepts/qec/two-block-quantum]] — Any $⟦n,k,d⟧$ stabilizer code can be mapped onto a $⟦2n,2k,d^{\prime}⟧$ two-block CSS code with $d\leq d^{\prime}\leq 2d$ via symplectic doubling, which preserves geometric locality of a code up to a constant factor.
 - _cousin_: [`binary_linear`](https://errorcorrectionzoo.org/c/binary_linear) — The CSS construction uses two related binary linear codes, $C_X$ and $C_Z$.
 - _cousin_: [`alternant`](https://errorcorrectionzoo.org/c/alternant) — Alternant codes used in the CSS construction yield quantum codes that asymptotically achieve the quantum GV bound  ([doi:10.1109/TIT.2022.3201239](https://doi.org/10.1109/TIT.2022.3201239)).
 - _cousin_: [[concepts/qec/random-stabilizer]] — Random CSS codes asymptotically achieve linear distance with high probability, achieving the quantum GV bound  ([arXiv:quant-ph/9512032](https://arxiv.org/abs/quant-ph/9512032)).
@@ -204,3 +211,4 @@ There is a holographic relation between qubit CSS codes describing CFTs and qubi
 - Introduction to \ref{topic:CSS-to-homology-correspondence} by [M. Hastings](https://www.youtube.com/watch?v=SeLpWg_8qlc); see also Refs.  ([arXiv:1310.5376](https://arxiv.org/abs/1310.5376), [arXiv:1504.01444](https://arxiv.org/abs/1504.01444)).
 - Entanglement purification protocols with qubit CSS codes are related to quantum key distribution (QKD)  ([arXiv:quant-ph/0003004](https://arxiv.org/abs/quant-ph/0003004)).
 - Qubit CSS codes can be used in quantum repeaters  ([arXiv:0809.3629](https://arxiv.org/abs/0809.3629)).
+- A database of randomly generated CSS codes with estimated $⟦n,k,d⟧$ parameters for $n$ up to $30$, maintained by W. Zeng at this [repository](https://github.com/WeileiZeng/CSS-Code-Database).

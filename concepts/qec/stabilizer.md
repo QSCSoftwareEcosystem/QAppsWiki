@@ -2,16 +2,16 @@
 type: concept
 name: Stabilizer code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
 - quantum-error-correction
 related_concepts:
 - concepts/qec/commuting-projector
-- concepts/qec/frustration-free
 - concepts/qec/group-quantum
 - concepts/qec/knill
+- concepts/qec/monomial-stabilizer
 - concepts/qec/topological-abelian
 sources:
 - raw/error-correction-zoo.md
@@ -54,7 +54,7 @@ In the context of stabilizer codes realizing Abelian topological phases, code sw
 Code switching can be done using only transversal gates for qubit stabilizer codes  ([arXiv:2409.13465](https://arxiv.org/abs/2409.13465)).
 \end{defterm}
 
-Extensions of the stabilizer formalism, such as XS and XP stabilizer codes, relax the mutual commutation property.
+Extensions of the stabilizer formalism, such as monomial stabilizer codes and their XS and XP special cases, relax the mutual commutation property.
 Other extensions, such as CWS and union stabilizer codes, enlarge the codespace by re-assigning error words as codewords.
 
 (source: raw/error-correction-zoo.md)
@@ -75,8 +75,8 @@ The group of all Pauli-type operators typically serves as the set of noise opera
 
 - _parent_: [[concepts/qec/group-quantum]] — Stabilizer codes are constructed out of Pauli strings, modular-qudit Pauli strings, Galois-qudit Pauli strings, oscillator displacement operators, or rotor generalized Pauli strings. All of these are examples of the Weyl-Heisenberg group on Manin's quantum plane, which is defined on a configuration space that is generally a free Abelian group  ([doi:10.5802/aif.1117](https://doi.org/10.5802/aif.1117), [doi:10.1143/PTP.102.219](https://doi.org/10.1143/PTP.102.219), [arXiv:math/0307393](https://arxiv.org/abs/math/0307393), [arXiv:math/0402401](https://arxiv.org/abs/math/0402401)).
 - _parent_: [[concepts/qec/commuting-projector]] — Codespace is the ground-state space of the *code Hamiltonian*, which consists of an equal linear combination of stabilizer generators and which can be made into a frustration-free commuting-projector Hamiltonian.
-- _parent_: [[concepts/qec/frustration-free]] — Codespace is the ground-state space of the *code Hamiltonian*, which consists of an equal linear combination of stabilizer generators and which can be made into a frustration-free commuting-projector Hamiltonian.
 - _parent_: [[concepts/qec/knill]] — Stabilizer codes are Knill codes whose nice error basis is either the Pauli strings, modular-qudit Pauli strings, Galois-qudit Pauli strings, oscillator displacement operators, or rotor generalized Pauli strings.
+- _parent_: [[concepts/qec/monomial-stabilizer]] — Stabilizer codes on finite-dimensional spaces are monomial stabilizer codes because Pauli-type strings are monomial in the computational basis and generate finite groups. The remaining stabilizer codes are defined over sufficiently well-behaved locally compact Abelian groups, such as those of bosonic and rotor stabilizer codes, and are covered by extending the formalism to infinite stabilizer groups  ([arXiv:1108.0531](https://arxiv.org/abs/1108.0531)).
 - _cousin_: [[concepts/qec/topological-abelian]] — There is a general correspondence between stabilizer codes and gauge theory, with the stabilizer group playing the role of the gauge group  ([arXiv:2412.15317](https://arxiv.org/abs/2412.15317)).
 
 ## Notes

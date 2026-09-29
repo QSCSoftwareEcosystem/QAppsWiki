@@ -2,7 +2,7 @@
 type: concept
 name: Block quantum code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -38,7 +38,7 @@ Put differently, the configuration space of the canonical (a.k.a. computational)
 
 A block quantum code over a finite alphabet $\Sigma$ with *distance* $d$ detects errors acting on up to $d-1$ subsystems, corrects erasure errors on up to $d-1$ subsystems, or corrects errors acting on up to $\lfloor (d-1)/2 \rfloor$ subsystems.
 The subsystems that are erased are known to the receiver, and erasures of subsystems at unknown locations are called *deletion errors*  ([arXiv:2001.08405](https://arxiv.org/abs/2001.08405), [arXiv:2004.00814](https://arxiv.org/abs/2004.00814), [arXiv:2102.02494](https://arxiv.org/abs/2102.02494), [arXiv:2102.03015](https://arxiv.org/abs/2102.03015)).
-More general forms of noise are caused by *insertion errors*  ([arXiv:2001.08405](https://arxiv.org/abs/2001.08405), [arXiv:2004.00814](https://arxiv.org/abs/2004.00814), [arXiv:2102.02494](https://arxiv.org/abs/2102.02494), [arXiv:2102.03015](https://arxiv.org/abs/2102.03015)), where subsystems are inserted into the block, and *synchronization errors* (a.k.a. misalignment)  ([arXiv:1206.0260](https://arxiv.org/abs/1206.0260)), where the code block is misplaced in a larger block by one or more locations.
+More general forms of noise are caused by *insertion errors*  ([arXiv:2001.08405](https://arxiv.org/abs/2001.08405), [arXiv:2004.00814](https://arxiv.org/abs/2004.00814), [arXiv:2102.02494](https://arxiv.org/abs/2102.02494), [arXiv:2102.03015](https://arxiv.org/abs/2102.03015)), where subsystems are inserted into the block, and *synchronization errors* (a.k.a. misalignment)  ([arXiv:1206.0260](https://arxiv.org/abs/1206.0260), [arXiv:1304.0502](https://arxiv.org/abs/1304.0502)), where the code block is misplaced in a larger block by one or more locations.
 There are relations between deletion and insertion errors  ([arXiv:2105.07214](https://arxiv.org/abs/2105.07214), [arXiv:2501.07027](https://arxiv.org/abs/2501.07027)).
 
 The *weight* of an operator on a tensor-product Hilbert space is the number of subsystems on which the operator acts non-trivially.

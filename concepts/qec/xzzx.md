@@ -2,7 +2,7 @@
 type: concept
 name: XZZX surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Wen plaquette model
@@ -69,7 +69,7 @@ As a stabilizer code, $⟦n=O(d^2), k=O(1), d⟧$.
 This code outperformed the average of several instances of the smaller distance-three nine-qubit $XZZX$ variant of the surface-17 code realized on the same device, both in terms of logical error probability over 25 cycles and in terms of logical error per cycle.
 This increase in error-correcting capabilities while using more physical qubits supports the notion of an error threshold.
 Braiding of defects has been demonstrated for the distance-five code  ([arXiv:2210.10255](https://arxiv.org/abs/2210.10255)). Leakage errors have been handled in a separate work in a distance-three code  ([arXiv:2211.04728](https://arxiv.org/abs/2211.04728)).
-Google Quantum AI follow-up experiment realizing distance-5 and distance-7 codes with 100 rounds of correction using the Libra and transformer-based decoders. The logical error rate is suppressed by a factor of $\approx 2$, demonstrating beyond-break-even error correction with a block quantum code  ([arXiv:2408.13687](https://arxiv.org/abs/2408.13687)).
+A Google Quantum AI follow-up experiment realized distance-5 and distance-7 codes with 100 rounds of correction using the Libra and transformer-based decoders. The logical error rate is suppressed by a factor of $\approx 2$, demonstrating beyond-break-even error correction with a block quantum code  ([arXiv:2408.13687](https://arxiv.org/abs/2408.13687)).
 Magic-state cultivation was demonstrated on a device by Google Quantum AI by code switching between a distance-three 6.6.6 color code and distance-five $XZZX$ surface code and decoding with the Tesseract decoder  ([arXiv:2512.13908](https://arxiv.org/abs/2512.13908)).
 - Neutral atom arrays: Lukin group. Transversal CNOT gates performed on distance $3$, $5$, and $7$ codes  ([arXiv:2312.03982](https://arxiv.org/abs/2312.03982)). Below-threshold performance on distance $3$ and $5$ codes with multiple rounds of syndrome extraction and error correction  ([arXiv:2506.20661](https://arxiv.org/abs/2506.20661)).
 
@@ -77,13 +77,13 @@ Magic-state cultivation was demonstrated on a device by Google Quantum AI by cod
 
 - _parent_: [[concepts/qec/twist-defect-surface]] — XZZX toric and planar codes can be treated in the general twist-defect surface code formalism  ([arXiv:2101.09349](https://arxiv.org/abs/2101.09349)).
 - _cousin_: [[concepts/qec/quantum-double-abelian]] — The XZZX surface code is an example of $\mathbb{Z}_2$ topological order as manifest in the Wen plaquette model  ([arXiv:quant-ph/0205004](https://arxiv.org/abs/quant-ph/0205004)).
-- _cousin_: [[concepts/qec/rotated-surface]] — The XZZX code is obtained from the rotated surface code by applying Hadamard gates on a subset of qubits such that $XXXX$ and $ZZZZ$ generators are both mapped to $XZXZ$. Both rotated and XZZX codes offer improved performance over the original surface code for biased noise  ([arXiv:2312.17057](https://arxiv.org/abs/2312.17057)).
+- _cousin_: [[concepts/qec/rotated-surface]] — The XZZX code is obtained from the rotated surface code by applying Hadamard gates on a subset of qubits such that $XXXX$ and $ZZZZ$ generators are both mapped to $XZZX$. Both rotated and XZZX codes offer improved performance over the original surface code for biased noise  ([arXiv:2312.17057](https://arxiv.org/abs/2312.17057)).
 - _cousin_: [[concepts/qec/chamon]] — The Chamon model code can be obtained from an XYZ product of three repetition codes ; see  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)). Using only two repetition codes in the analogous 2D construction yields the XZZX code, making it a 2D analogue of the Chamon code  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
 - _cousin_: [`repetition`](https://errorcorrectionzoo.org/c/repetition) — The Chamon model code can be obtained from an XYZ product of three repetition codes ; see  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)). Using only two repetition codes in the analogous 2D construction yields the XZZX code, making it a 2D analogue of the Chamon code  ([arXiv:2011.09746](https://arxiv.org/abs/2011.09746)).
 - _cousin_: [[concepts/qec/fracton]] — Subsystem symmetries play a role in finite-bias decoders for both XZZX and fracton codes  ([arXiv:1901.08061](https://arxiv.org/abs/1901.08061)). The XZZX surface code resembles a Type-I fracton code with lineons in the limit of infinite noise bias  ([arXiv:2203.16534](https://arxiv.org/abs/2203.16534)).
 - _cousin_: [[concepts/qec/heavy-hex]] — XZZX surface code can be adapted for a heavy-hexagonal point set  ([arXiv:2211.14038](https://arxiv.org/abs/2211.14038)).
 - _cousin_: [[concepts/qec/cluster-state]] — XZZX surface code can be foliated for a noise-bias preserving MBQC  ([arXiv:2201.10566](https://arxiv.org/abs/2201.10566)) or FBQC  ([arXiv:2303.16122](https://arxiv.org/abs/2303.16122)) protocol; see also  ([arXiv:1308.4776](https://arxiv.org/abs/1308.4776)).
-- _cousin_: [[concepts/qec/surface]] — The XZZX surface code on a square lattice with non-twisted periodic boundary conditions is obtained from a surface code by applying Hadamard gates on a subset of qubits such that $XXXX$ and $ZZZZ$ generators are both mapped to $XZXZ$. While this code is equivalent to a CSS surface code with the same distance, other properties like noise-bias performance can differ significantly. Twisted XZZX surface codes are generally not equivalent to CSS surface codes via a single-qubit Clifford circuit and permutation.
+- _cousin_: [[concepts/qec/surface]] — The XZZX surface code on a square lattice with non-twisted periodic boundary conditions is obtained from a surface code by applying Hadamard gates on a subset of qubits such that $XXXX$ and $ZZZZ$ generators are both mapped to $XZZX$. While this code is equivalent to a CSS surface code with the same distance, other properties like noise-bias performance can differ significantly. Twisted XZZX surface codes are generally not equivalent to CSS surface codes via a single-qubit Clifford circuit and permutation.
 
 ## Notes
 

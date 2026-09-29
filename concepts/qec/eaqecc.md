@@ -2,13 +2,15 @@
 type: concept
 name: Entanglement-assisted (EA) QECC
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Catalytic QECC
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qec/eacq
+- concepts/qec/eaoaecc
 - concepts/qec/eaoecc
 - concepts/qec/qecc
 sources:
@@ -40,9 +42,9 @@ The fault-tolerant EA capacity is the capacity for the more general case where t
 
 ## Relations
 
-- _parent_: [`eaoaecc`](https://errorcorrectionzoo.org/c/eaoaecc) — An EAOA QECC that has no gauge structure (e.g., gauge qubits), that has no block structure that corresponds to a classical code, and that utilizes pre-shared entanglement is an EA QECC.
+- _parent_: [[concepts/qec/eaoaecc]] — An EAOA QECC that has no gauge structure (e.g., gauge qubits), that has no block structure that corresponds to a classical code, and that utilizes pre-shared entanglement is an EA QECC.
 - _cousin_: [[concepts/qec/qecc]] — EA QECCs utilize additional ancillary subsystems in a pre-shared entangled state, but reduce to QECCs when said subsystems are interpreted as noiseless physical subsystems.
-- _cousin_: [`eacq`](https://errorcorrectionzoo.org/c/eacq) — An EA hybrid QECC storing no classical information reduces to an EA QECC. Conversely, any EA QECC can be converted into an EA hybrid QECC by using a portion of its logical subspace to store only classical information.
+- _cousin_: [[concepts/qec/eacq]] — An EA hybrid QECC storing no classical information reduces to an EA QECC. Conversely, any EA QECC can be converted into an EA hybrid QECC by using a portion of its logical subspace to store only classical information.
 - _cousin_: [[concepts/qec/eaoecc]] — An EAOQECC reduces to an EA QECC when the gauge subsystem is trivial. Conversely, any EA QECC with a tensor-product logical subspace can be turned into an EAOQECC by treating a logical tensor factor as a gauge subsystem.
 
 ## Notes

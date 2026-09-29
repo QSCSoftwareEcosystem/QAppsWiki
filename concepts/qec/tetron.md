@@ -2,7 +2,7 @@
 type: concept
 name: Tetron code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - Kitaev-Wen Majorana mapping
@@ -50,4 +50,5 @@ Majorana stabilizer groups can be converted into ordinary qubit stabilizer group
 - _cousin_: [[concepts/qec/hamiltonian]] — Embedding each physical qubit into two fermions via the tetron code is useful for exactly solving the Kitaev honeycomb model Hamiltonian  ([arXiv:cond-mat/0506438](https://arxiv.org/abs/cond-mat/0506438)) and other qubit Hamiltonians on certain graphs  ([arXiv:2003.05465](https://arxiv.org/abs/2003.05465), [arXiv:2012.07857](https://arxiv.org/abs/2012.07857)). Majorana stabilizer groups can be converted into ordinary qubit stabilizer groups via the parton mapping, while their corresponding states are converted via the Gutzwiller projection  ([arXiv:2505.02683](https://arxiv.org/abs/2505.02683)).
 - _cousin_: [[concepts/qec/majorana-surface]] — Four-boundary Majorana surface-code patches are logical tetrons, i.e., higher-distance versions of the tetron code  ([arXiv:1801.08143](https://arxiv.org/abs/1801.08143)).
 - _cousin_: [[concepts/qec/qubit-stabilizer]] — Any $⟦n,k,d⟧$ stabilizer code can be mapped into a $⟦2n,k,2d⟧_{f}$ Majorana stabilizer code by concatenating with the tetron code  ([arXiv:cond-mat/0506438](https://arxiv.org/abs/cond-mat/0506438)) ([arXiv:1004.3791](https://arxiv.org/abs/1004.3791)).
+This concatenation is the first stage of concatenated symplectic doubling, whose second stage assigns one qubit to each Majorana mode.
 Embedding each physical qubit into two fermions via the tetron code is useful for exactly solving the Kitaev honeycomb model Hamiltonian  ([arXiv:cond-mat/0506438](https://arxiv.org/abs/cond-mat/0506438)) and other qubit Hamiltonians on certain graphs  ([arXiv:2003.05465](https://arxiv.org/abs/2003.05465), [arXiv:2012.07857](https://arxiv.org/abs/2012.07857)). Majorana stabilizer groups can be converted into ordinary qubit stabilizer groups via the parton mapping, while their corresponding states are converted via the Gutzwiller projection  ([arXiv:2505.02683](https://arxiv.org/abs/2505.02683)).

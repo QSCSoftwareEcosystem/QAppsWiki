@@ -2,7 +2,7 @@
 type: concept
 name: Hermitian Galois-qudit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $\mathbb{F}_{q^2}$-linear stabilizer code

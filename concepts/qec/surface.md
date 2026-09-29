@@ -2,7 +2,7 @@
 type: concept
 name: Kitaev surface code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases: []
 domains:
@@ -17,6 +17,7 @@ related_concepts:
 - concepts/qec/layer
 - concepts/qec/lcs
 - concepts/qec/lresc
+- concepts/qec/perm-self-dual-css
 - concepts/qec/quantum-double
 - concepts/qec/qudit-surface
 - concepts/qec/twist-defect-surface
@@ -80,6 +81,7 @@ Both the planar and toric codes saturate the BPT bound, which states that $k d^2
 
 - A depth-$L^2$ circuit that grows the code out of a small patch on an $L\times L$ square lattice using CNOT gates (i.e., "local moves")  ([arXiv:quant-ph/0110143](https://arxiv.org/abs/quant-ph/0110143), [arXiv:0712.0348](https://arxiv.org/abs/0712.0348)).
 - Teleportation-based state injection into the planar code  ([arXiv:1202.1016](https://arxiv.org/abs/1202.1016)).
+- Adaptively initialized teleportation, in which one $X$-type stabilizer generator is left unmeasured during initialization so that the logical $Z$ operator of the patch is temporarily three-body  ([arXiv:2605.21867](https://arxiv.org/abs/2605.21867)). This allows a logical $ZZ$ measurement against the low-weight logical operators of another code.
 - Graph-state based adaptive circuit  ([arXiv:quant-ph/0703143](https://arxiv.org/abs/quant-ph/0703143), [arXiv:1105.2111](https://arxiv.org/abs/1105.2111)).
 - For an $L\times L$ lattice, deterministic state preparation can be done with a geometrically local unitary $O(L)$-depth circuit  ([arXiv:2002.00362](https://arxiv.org/abs/2002.00362), [arXiv:2110.02020](https://arxiv.org/abs/2110.02020)) or an $O(\log{L})$-depth unitary circuit with non-local two-qubit gates  ([arXiv:0712.0348](https://arxiv.org/abs/0712.0348), [arXiv:0806.4583](https://arxiv.org/abs/0806.4583), [arXiv:1207.0253](https://arxiv.org/abs/1207.0253)) (matching lower bounds  ([arXiv:quant-ph/0603121](https://arxiv.org/abs/quant-ph/0603121), [arXiv:quant-ph/0603114](https://arxiv.org/abs/quant-ph/0603114), [arXiv:1810.03912](https://arxiv.org/abs/1810.03912))). The geometric entanglement measure of a ground state of the surface code scales as order $\Omega(L^2)$  ([arXiv:2405.07970](https://arxiv.org/abs/2405.07970)).
 - Stabilizer measurement-based circuit of linear depth  ([arXiv:quant-ph/0110143](https://arxiv.org/abs/quant-ph/0110143), [arXiv:1404.2495](https://arxiv.org/abs/1404.2495)).
@@ -117,7 +119,8 @@ Fault-tolerant gates should be interpretable as monodromies under a particular n
 - Flag fault-tolerant syndrome extraction  ([arXiv:1708.02246](https://arxiv.org/abs/1708.02246)).
 - Homomorphic measurement protocols for arbitrary surface codes  ([arXiv:2211.03625](https://arxiv.org/abs/2211.03625)).
 - Non-geometrically local connectivity can reduce overhead cost  ([arXiv:2211.15465](https://arxiv.org/abs/2211.15465)).
-- Magic-state distillation protocols  ([arXiv:1208.0928](https://arxiv.org/abs/1208.0928), [arXiv:1209.0510](https://arxiv.org/abs/1209.0510), [arXiv:2212.00813](https://arxiv.org/abs/2212.00813), [arXiv:2403.03991](https://arxiv.org/abs/2403.03991)) leading up to magic-state cultivation  ([arXiv:2409.17595](https://arxiv.org/abs/2409.17595)).
+- Magic-state distillation protocols  ([arXiv:1208.0928](https://arxiv.org/abs/1208.0928), [arXiv:1209.0510](https://arxiv.org/abs/1209.0510), [arXiv:2212.00813](https://arxiv.org/abs/2212.00813), [arXiv:2403.03991](https://arxiv.org/abs/2403.03991), [arXiv:2605.21867](https://arxiv.org/abs/2605.21867)).
+- Magic-state cultivation  ([arXiv:2409.17595](https://arxiv.org/abs/2409.17595)).
 - Framework of fault tolerance utilizing ZX calculus  ([doi:10.1007/978-3-540-70583-3_25](https://doi.org/10.1007/978-3-540-70583-3_25), [arXiv:0906.4725](https://arxiv.org/abs/0906.4725)) that is applicable to MBQC, FBQC, and conventional computation versions of the surface code  ([arXiv:2303.08829](https://arxiv.org/abs/2303.08829)).
 - Syndrome extraction circuits consisting of CNOT gates and ancillary measurements  ([arXiv:1208.0928](https://arxiv.org/abs/1208.0928)). Measurement schedules can be optimized using spacetime circuit codes to yield what is known as the *3CX surface code*  ([arXiv:2302.02192](https://arxiv.org/abs/2302.02192)). Schedules can also be optimized via ZX calculus  ([doi:10.1007/978-3-540-70583-3_25](https://doi.org/10.1007/978-3-540-70583-3_25), [arXiv:0906.4725](https://arxiv.org/abs/0906.4725)). Inspired by the honeycomb Floquet code, various weight-two measurement schemes have been designed  ([arXiv:2007.00307](https://arxiv.org/abs/2007.00307), [arXiv:2206.12780](https://arxiv.org/abs/2206.12780), [arXiv:2310.12981](https://arxiv.org/abs/2310.12981)), with the scheme in Ref.  ([arXiv:2206.12780](https://arxiv.org/abs/2206.12780)) being a special case of DWR.
 - LUCI framework for syndrome extraction circuits  ([arXiv:2410.14891](https://arxiv.org/abs/2410.14891), [arXiv:2502.10355](https://arxiv.org/abs/2502.10355)).
@@ -174,6 +177,7 @@ Fault-tolerant gates should be interpretable as monodromies under a particular n
 - _parent_: [[concepts/qec/lcs]] — LCS codes consist of sparsely interconnected stacks of surface codes.
 - _parent_: [[concepts/qec/qudit-surface]] — The modular-qudit surface code for $q=2$ reduces to the surface code.
 - _parent_: [[concepts/qec/galois-topological]] — The Galois-qudit surface code for $q=2$ reduces to the surface code.
+- _cousin_: [[concepts/qec/perm-self-dual-css]] — Surface codes on self-dual cellulations of closed surfaces, such as the toric code, are permutationally self-dual. The isomorphism between the cellulation and its dual induces an edge permutation that exchanges vertex and face stabilizers  ([arXiv:2202.06647](https://arxiv.org/abs/2202.06647)). The planar code is also permutationally self-dual, with an $XZ$-duality given by a reflection along a diagonal  ([arXiv:2202.06647](https://arxiv.org/abs/2202.06647)).
 - _cousin_: [[concepts/qec/layer]] — Layer codes are combinations of constant-rate QLDPC codes with surface codes built using lattice surgery.
 - _cousin_: [[concepts/qec/lresc]] — LRESCs reduce to planar surface codes when a trivial LDPC code is used in the hypergraph product.
 - _cousin_: [[concepts/qec/lacross]] — La-cross codes with periodic (open) boundary conditions reduce to the toric (planar surface) code at $k=1$.

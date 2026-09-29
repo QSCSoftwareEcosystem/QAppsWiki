@@ -2,7 +2,7 @@
 type: concept
 name: $⟦4,2,2⟧$ Four-qubit code
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - $C_4$ code
@@ -18,7 +18,7 @@ related_concepts:
 - concepts/qec/hypercube-quantum
 - concepts/qec/iceberg
 - concepts/qec/jump
-- concepts/qec/phantom
+- concepts/qec/quantum-logic
 - concepts/qec/qubit-concatenated
 - concepts/qec/rotated-surface
 - concepts/qec/stab-5-1-3
@@ -79,6 +79,9 @@ Various magic-state distillation protocols exist for the $⟦4,2,2⟧$ qubit cod
 
 - A tensor product of Hadamard gates applies a Hadamard gate to both logical qubits, and a tensor product of $S=\sqrt{Z}$ gates applies a $CZ$ gate followed by a logical $Z$ on both qubits  ([arXiv:1610.03507](https://arxiv.org/abs/1610.03507)) (see also  ([arXiv:1912.10063](https://arxiv.org/abs/1912.10063))). A logical $CZ$ gate is then realized by $\sqrt{Z}\otimes\sqrt{Z}^{\dagger}\otimes\sqrt{Z}^{\dagger}\otimes\sqrt{Z}$. With a different logical basis, transversal Hadamard swaps the two logical qubits, enabling control-SWAP and $H^{\otimes 2}$-measurement routines for quadratic magic-state distillation  ([arXiv:1703.07847](https://arxiv.org/abs/1703.07847)).
 - This code is the only four-qubit subspace to house a transversal representation of the single-qubit Clifford group but not of the single-qubit unitary group  ([arXiv:1609.08172](https://arxiv.org/abs/1609.08172)). Equivalently, its projector is the only extra generator of the fourth tensor-power Clifford commutant beyond qubit permutations  ([arXiv:1609.08172](https://arxiv.org/abs/1609.08172)). Its $n$-block version is a $⟦4n,2n,2⟧$ code, which houses a signed permutation representation of the $n$-qubit Clifford group  ([arXiv:1609.08172](https://arxiv.org/abs/1609.08172)).
+- The code is the smallest phantom code.
+Qubit permutations implement logical CNOT gates between its two logical qubits  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
+In a suitable logical basis these permutations realize the full logical group $\mathrm{GL}(2,2)\cong Sp(2,2)$, making it the shortest self-dual CSS code to do so at distance two  ([arXiv:2609.19250](https://arxiv.org/abs/2609.19250)).
 
 ## General gates
 
@@ -120,6 +123,8 @@ Error correction with mid-circuit erasure measurements and logical teleportation
 - _parent_: [[concepts/qec/iceberg]] — The $⟦2m,2m-2,2⟧$ error-detecting code for $m=2$ reduces to the $⟦4,2,2⟧$ code.
 - _parent_: [[concepts/qec/brickwork]] — The $⟦4,2,2⟧$ code can be interpreted as a brickwork code on a square of the overlapping rectangular tilings  ([arXiv:2503.15751](https://arxiv.org/abs/2503.15751)).
 - _parent_: [[concepts/qec/group-4-2-2]] — The four group-qudit code reduces to the four-qubit code for $G=\mathbb{Z}_2$.
+- _parent_: [[concepts/qec/quantum-logic]] — The $⟦4,2,2⟧$ code is the $\mathbb{Z}_4$ core of the Quantum Logic Code family  ([arXiv:2606.13521](https://arxiv.org/abs/2606.13521)).
+- _cousin_: [`group`](https://errorcorrectionzoo.org/c/group) — The $⟦4,2,2⟧$ is constructed as a group-algebra CSS code over $\mathbb{Z}_4$ with $c=1+x+x^2+x^3$  ([arXiv:2606.13521](https://arxiv.org/abs/2606.13521)).
 - _cousin_: [[concepts/qec/stab-5-1-3]] — The $⟦4,2,2⟧$ code can be derived from the five-qubit code using a protocol that converts an $⟦n,k,d⟧$ code into an $⟦n-1, k+1, d-1⟧$ code  ([arXiv:quant-ph/9705052](https://arxiv.org/abs/quant-ph/9705052)) ([arXiv:1907.11253](https://arxiv.org/abs/1907.11253)).
 - _cousin_: [[concepts/qec/surface]] — Concatenating the $⟦4,2,2⟧$ code with the surface code is equivalent to removing stabilizer generators from the 4.8.8 color code  ([arXiv:1604.04062](https://arxiv.org/abs/1604.04062)).
 - _cousin_: [[concepts/qec/toric]] — The toric code can be constructed by arranging $⟦4,2,2⟧$ tensors on a square lattice and recovering the star and plaquette operators by operator pushing  ([arXiv:2109.08158](https://arxiv.org/abs/2109.08158)).
@@ -132,4 +137,3 @@ The $⟦4,2,2⟧$ code can be concatenated with two copies of the surface code t
 - _cousin_: [[concepts/qec/stab-6-4-2]] — The $⟦6,4,2⟧$ error-detecting code can be constructed out of two $⟦4,2,2⟧$ codes in the quantum Lego code framework  ([arXiv:2109.08158](https://arxiv.org/abs/2109.08158)).
 - _cousin_: [[concepts/qec/cpc]] — CPC gadgets for the $⟦4,2,2⟧$ code have been implemented on the IBM 5Q superconducting device  ([arXiv:1709.01866](https://arxiv.org/abs/1709.01866)).
 - _cousin_: [[concepts/qec/jump]] — A $((4,3,1))_2$ jump code is a subcode of the $⟦4,2,2⟧$ code and contains the $⟦4,1,2⟧$ LNCY code as a subcode  ([arXiv:quant-ph/0208140](https://arxiv.org/abs/quant-ph/0208140)).
-- _cousin_: [[concepts/qec/phantom]] — The $⟦4,2,2⟧$ code is the smallest phantom code: logical CNOT gates between its two logical qubits can be implemented by physical-qubit permutations  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)). Gluing copies of the $⟦4,2,2⟧$ code with $X$-type stabilizers yields CSS phantom codes with parameters $⟦4m,2,(d_X=2,d_Z=2m)⟧$, and puncturing one qubit from this construction yields $⟦4m-1,2,(d_X=2,d_Z=2m-1)⟧$, for $m\geq1$  ([arXiv:2601.20927](https://arxiv.org/abs/2601.20927)).
