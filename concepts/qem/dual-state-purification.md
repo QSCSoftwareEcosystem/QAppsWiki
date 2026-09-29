@@ -2,7 +2,7 @@
 type: concept
 name: Dual-State Purification
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - DSP
@@ -18,11 +18,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: dual-state-purification
+qem_catalog: techniques
 ---
 
 # Dual-State Purification
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=dual-state-purification) (`id: dual-state-purification`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=dual-state-purification) (`id: dual-state-purification`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 

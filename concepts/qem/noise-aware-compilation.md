@@ -2,7 +2,7 @@
 type: concept
 name: Noise-Aware Compilation
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - NAC
@@ -21,15 +21,16 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: noise-aware-compilation
+qem_catalog: techniques
 ---
 
 # Noise-Aware Compilation
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=noise-aware-compilation) (`id: noise-aware-compilation`, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=noise-aware-compilation) (`id: noise-aware-compilation`, catalog: techniques, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
-Suppresses errors at the compilation stage by using up-to-date hardware calibration data (gate error rates, coherence times, crosstalk maps) to make routing, qubit mapping, and gate scheduling decisions. This includes selecting low-error qubit subgraphs, routing SWAP operations through high-fidelity paths, and timing gate execution to avoid decoherence and crosstalk. Modern implementations recover up to 40% of missing fidelity compared to noise-unaware compilation.
+Suppresses errors at the compilation stage by using up-to-date hardware calibration data (gate error rates, coherence times, crosstalk maps) to make routing, qubit mapping, and gate scheduling decisions. This includes selecting low-error qubit subgraphs, routing SWAP operations through high-fidelity paths, and timing gate execution to avoid decoherence and crosstalk. Current transpilers score candidate qubit layouts using reported gate error rates and coherence times by default.
 
 (source: raw/qem-zoo.md)
 

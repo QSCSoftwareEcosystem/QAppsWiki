@@ -2,7 +2,7 @@
 type: concept
 name: Machine Learning QEM
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - ML-QEM
@@ -22,11 +22,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: ml-qem
+qem_catalog: techniques
 ---
 
 # Machine Learning QEM
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=ml-qem) (`id: ml-qem`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=ml-qem) (`id: ml-qem`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -52,6 +53,6 @@ Uses classical machine learning models — including linear regression, random f
 ## References
 
 - H. Liao, D. S. Wang, I. Sitdikov, C. Salcedo, A. Seif, Z. K. Minev. *Machine Learning for Practical Quantum Error Mitigation*. Nature Machine Intelligence, 2024 [arXiv:2309.17368](https://arxiv.org/abs/2309.17368) [doi](https://doi.org/10.1038/s42256-024-00927-2)
-- P. Czarnik, M. McKerns, A. T. Sornborger, L. Cincio. *Neural Error Mitigation of Near-Term Quantum Simulations*. arXiv preprint, 2022 [arXiv:2105.08086](https://arxiv.org/abs/2105.08086)
+- E. R. Bennewitz, F. Hopfmueller, B. Kulchytskyy, J. Carrasquilla, P. Ronagh. *Neural Error Mitigation of Near-Term Quantum Simulations*. Nature Machine Intelligence, 2022 [arXiv:2105.08086](https://arxiv.org/abs/2105.08086) [doi](https://doi.org/10.1038/s42256-022-00509-0)
 - C. Kim, K. D. Park, J.-K. K. Rhee. *Quantum Error Mitigation with Artificial Neural Network*. IEEE Access, 2020 [doi](https://doi.org/10.1109/ACCESS.2020.3031607)
 - A. Strikis, D. Qin, Y. Chen, S. C. Benjamin, Y. Li. *Learning-Based Quantum Error Mitigation*. PRX Quantum, 2021 [arXiv:2005.07601](https://arxiv.org/abs/2005.07601) [doi](https://doi.org/10.1103/PRXQuantum.2.040330)

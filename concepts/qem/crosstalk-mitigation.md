@@ -2,7 +2,7 @@
 type: concept
 name: Crosstalk-Adaptive Scheduling
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - CAS
@@ -19,11 +19,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: crosstalk-mitigation
+qem_catalog: techniques
 ---
 
 # Crosstalk-Adaptive Scheduling
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=crosstalk-mitigation) (`id: crosstalk-mitigation`, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=crosstalk-mitigation) (`id: crosstalk-mitigation`, catalog: techniques, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 

@@ -220,9 +220,36 @@ def _qem_reference(key: str, refs: dict) -> str:
     return line
 
 
+# QEM Zoo publishes 6 catalogs (README's "the other catalogs follow the same
+# two-file pattern"), of which only "techniques" was ever imported here. The
+# other 5 share the id/name/summary/references shape but each names its
+# forward links to technique entries differently.
+QEM_CATALOGS = ("techniques", "noise", "extrapolation", "noise-scaling",
+                "noise-learning", "applications")
+_QEM_RELATION_FIELD = {
+    "techniques": "related",         # [{id, reason}]
+    "noise": "mitigated_by",         # [id, ...]
+    "applications": "qem_techniques",  # [id, ...]
+    # extrapolation / noise-scaling / noise-learning carry no relation field.
+}
+_QEM_RELATION_LABEL = {"mitigated_by": "mitigated by", "qem_techniques": "uses"}
+# Fields rendered elsewhere (frontmatter, summary, properties, relations);
+# anything else in an entry (noise's `kraus_operators`, applications'
+# `key_results`, ...) is rendered generically so a catalog's own fields show up
+# without hardcoding every catalog's schema here.
+_QEM_HANDLED_FIELDS = frozenset({
+    "id", "name", "abbreviation", "aliases", "category", "summary",
+    "properties", "references", "related", "mitigated_by", "qem_techniques",
+})
+
+
 def qemzoo_page(entry: dict, refs: dict, today: str,
-                batch_slugs: frozenset = frozenset()) -> tuple[str, str]:
-    """Render one QEM technique -> (rel_path, markdown). Pure / offline."""
+                batch_slugs: frozenset = frozenset(),
+                catalog: str = "techniques") -> tuple[str, str]:
+    """Render one QEM Zoo entry, from any of its 6 catalogs -> (rel_path, markdown).
+
+    Pure / offline.
+    """
     tid = entry["id"]
     slug = _slug(tid)
     rel_path = f"{OUT_DIR['qemzoo']}/{slug}.md"
@@ -231,9 +258,16 @@ def qemzoo_page(entry: dict, refs: dict, today: str,
     if entry.get("abbreviation"):
         aliases = [entry["abbreviation"], *aliases]
 
-    related_ids = [f"{OUT_DIR['qemzoo']}/{_slug(r['id'])}"
-                   for r in (entry.get("related") or [])
-                   if r.get("id") and _slug(r["id"]) in batch_slugs]
+    relation_field = _QEM_RELATION_FIELD.get(catalog)
+    raw_related = (entry.get(relation_field) or []) if relation_field else []
+    if relation_field == "related":
+        related_pairs = [(r.get("id", ""), r.get("reason", "")) for r in raw_related]
+    else:
+        reason = _QEM_RELATION_LABEL.get(relation_field, "")
+        related_pairs = [(rid, reason) for rid in raw_related]
+
+    related_ids = [f"{OUT_DIR['qemzoo']}/{_slug(rid)}"
+                   for rid, _reason in related_pairs if rid and _slug(rid) in batch_slugs]
 
     fm = {
         "type": "concept",
@@ -248,13 +282,14 @@ def qemzoo_page(entry: dict, refs: dict, today: str,
         "provenance_status": "needs-verification",
         "imported_from": "qem-zoo",
         "imported_id": tid,
+        "qem_catalog": catalog,
     }
 
     category = entry.get("category", "")
     parts = [f"---\n{_fm_yaml(fm)}\n---\n", f"# {name}\n"]
     parts.append(
         f"> **Imported by `qappswiki import-zoo qemzoo`** from the "
-        f"[QEM Zoo]({ENTRY_URL['qemzoo'](tid)}) (`id: {tid}`"
+        f"[QEM Zoo]({ENTRY_URL['qemzoo'](tid)}) (`id: {tid}`, catalog: {catalog}"
         + (f", category: {category}" if category else "") + "). Public domain "
         f"(The Unlicense); cited as the {ATTRIBUTION['qemzoo']}. This is a "
         f"`needs-verification` page — confirm against the references below.\n"
@@ -266,16 +301,24 @@ def qemzoo_page(entry: dict, refs: dict, today: str,
     if props:
         rows = "\n".join(f"| {k} | {v} |" for k, v in props.items())
         parts.append("## Properties\n\n| Property | Value |\n|---|---|\n" + rows + "\n")
-    related = entry.get("related") or []
-    if related:
+
+    for key, value in entry.items():
+        if key in _QEM_HANDLED_FIELDS:
+            continue
+        body = _render_block(value)
+        if body:
+            parts.append(f"## {key.replace('_', ' ').capitalize()}\n\n{body}\n")
+
+    if related_pairs:
         lines = []
-        for r in related:
-            rid = r.get("id", "")
+        for rid, reason in related_pairs:
+            if not rid:
+                continue
             if _slug(rid) in batch_slugs:
                 link = f"[[{OUT_DIR['qemzoo']}/{_slug(rid)}]]"
             else:
                 link = f"[`{rid}`]({ENTRY_URL['qemzoo'](rid)})"
-            lines.append(f"- {link} — {r.get('reason', '')}".rstrip(" —"))
+            lines.append(f"- {link}" + (f" — {reason}" if reason else ""))
         parts.append("## Related techniques\n\n" + "\n".join(lines) + "\n")
     cited = entry.get("references") or []
     if cited:
@@ -382,16 +425,18 @@ def fetch_eczoo(code_ids=None, cache_dir: str = DEFAULT_CACHE,
 
 
 def fetch_qemzoo(ids=None, cache_dir: str = DEFAULT_CACHE,
-                 refresh: bool = False) -> tuple[list[dict], dict]:
-    """Read QEM techniques + the references index from the local clone."""
+                 refresh: bool = False, catalog: str = "techniques") -> tuple[list[dict], dict]:
+    """Read one QEM Zoo catalog (see ``QEM_CATALOGS``) + the references index."""
+    if catalog not in QEM_CATALOGS:
+        raise ImportError_(f"unknown QEM Zoo catalog: {catalog}")
     repo_dir = sync("qemzoo", cache_dir, refresh)
     data = repo_dir / "data"
-    techniques = json.loads((data / "techniques.json").read_text(encoding="utf-8"))
+    entries = json.loads((data / f"{catalog}.json").read_text(encoding="utf-8"))
     refs = json.loads((data / "references.json").read_text(encoding="utf-8"))
     if ids is not None:
         wanted = set(ids)
-        techniques = [t for t in techniques if t["id"] in wanted]
-    return techniques, refs
+        entries = [t for t in entries if t["id"] in wanted]
+    return entries, refs
 
 
 # --- index.md registration (idempotent managed blocks) ---------------------
@@ -407,7 +452,8 @@ def update_index(root, source: str, node_titles: list[tuple[str, str]]) -> None:
     text = index.read_text(encoding="utf-8")
     begin, end = f"<!-- BEGIN imported:{source} -->", f"<!-- END imported:{source} -->"
     heading = {"eczoo": "## QEC Codes (imported from the Error Correction Zoo)",
-               "qemzoo": "## QEM Techniques (imported from the QEM Zoo)"}[source]
+               "qemzoo": "## QEM Zoo (techniques, noise, extrapolation, "
+                         "noise-scaling, noise-learning, applications)"}[source]
     body = "\n".join(f"- [[{nid}]]: {title}." for nid, title in sorted(node_titles))
     block = f"{begin}\n{heading}\n\n{body}\n{end}"
     if begin in text and end in text:

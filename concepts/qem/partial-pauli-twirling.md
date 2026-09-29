@@ -2,7 +2,7 @@
 type: concept
 name: Partial Pauli Twirling
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - PPT
@@ -20,11 +20,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: partial-pauli-twirling
+qem_catalog: techniques
 ---
 
 # Partial Pauli Twirling
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=partial-pauli-twirling) (`id: partial-pauli-twirling`, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=partial-pauli-twirling) (`id: partial-pauli-twirling`, catalog: techniques, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -49,4 +50,4 @@ Modifies standard Pauli twirling by using only a strategically selected subset o
 
 ## References
 
-- R. Majumdar, P. Rivero, F. Metz, A. Hasan, D. S. Wang. *Combining Error Detection and Mitigation: A Hybrid Protocol for Near-Term Quantum Simulation*. arXiv preprint, 2025 [arXiv:2510.01181](https://arxiv.org/abs/2510.01181) [doi](https://doi.org/10.48550/arXiv.2510.01181)
+- D. Zhong, W. Munizzi, H. Chen, W. A. de Jong. *Combining Error Detection and Mitigation: A Hybrid Protocol for Near-Term Quantum Simulation*. arXiv preprint, 2025 [arXiv:2510.01181](https://arxiv.org/abs/2510.01181) [doi](https://doi.org/10.48550/arXiv.2510.01181)

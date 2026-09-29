@@ -2,7 +2,7 @@
 type: concept
 name: Tensor Network Error Mitigation
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - TEM
@@ -19,15 +19,16 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: tem
+qem_catalog: techniques
 ---
 
 # Tensor Network Error Mitigation
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=tem) (`id: tem`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=tem) (`id: tem`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
-Represents the noise channel as a matrix product operator (MPO) and applies its inverse to noisy measurement outcomes to recover mitigated expectation values. The tensor network structure captures spatially and temporally correlated noise with polynomial complexity, avoiding the exponential overhead of full process tomography. The MPO inverse is computed variationally or analytically, and the method scales to large circuits while maintaining provably optimal sampling overhead.
+Represents the noise channel as a matrix product operator (MPO) and applies its inverse to noisy measurement outcomes to recover mitigated expectation values. The tensor network structure captures spatially and temporally correlated noise with polynomial complexity, avoiding the exponential overhead of full process tomography. The MPO inverse is computed variationally or analytically, and the measurement overhead is quadratically smaller than that of PEC, which lets TEM reach roughly twice the circuit depth under comparable sparse Pauli-Lindblad noise.
 
 (source: raw/qem-zoo.md)
 
@@ -36,7 +37,7 @@ Represents the noise channel as a matrix product operator (MPO) and applies its 
 | Property | Value |
 |---|---|
 | Bias | Zero (in principle) if noise model is exact |
-| Sampling overhead | Optimal among linear mitigation methods; polynomial in bond dimension |
+| Sampling overhead | Quadratically smaller than PEC; polynomial in bond dimension |
 | Noise model required | Learned MPO representation of the noise channel |
 | Applicability | General-purpose; particularly effective for circuits with spatially correlated noise |
 

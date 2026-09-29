@@ -325,11 +325,20 @@ def cmd_import_zoo(args):
             rendered = [(*_iz.eczoo_page(e, today, batch), _iz.tex_to_md(e.get("name") or e["code_id"]))
                         for e in entries]
         else:  # qemzoo
-            ids = args.ids or None                          # default: all techniques
-            entries, refs = _iz.fetch_qemzoo(ids, cache, refresh=args.refresh)
-            batch = frozenset(_iz._slug(e["id"]) for e in entries)
-            rendered = [(*_iz.qemzoo_page(e, refs, today, batch), e.get("name") or e["id"])
-                        for e in entries]
+            # --all pulls every catalog (techniques, noise, extrapolation,
+            # noise-scaling, noise-learning, applications); otherwise --catalog
+            # picks one (default: techniques, the pre-existing behavior).
+            catalogs = list(_iz.QEM_CATALOGS) if args.all else [args.catalog or "techniques"]
+            ids = args.ids or None
+            by_catalog = []
+            refs = {}
+            for cat in catalogs:
+                cat_entries, refs = _iz.fetch_qemzoo(ids, cache, refresh=args.refresh, catalog=cat)
+                by_catalog.extend((cat, e) for e in cat_entries)
+            batch = frozenset(_iz._slug(e["id"]) for _cat, e in by_catalog)
+            rendered = [(*_iz.qemzoo_page(e, refs, today, batch, catalog=cat),
+                        e.get("name") or e["id"])
+                        for cat, e in by_catalog]
     except _iz.ImportError_ as exc:
         print(f"import failed: {exc}")
         return 1
@@ -549,9 +558,14 @@ def main(argv=None) -> int:
     piz.add_argument("--root", default=str(_default_root()), help="wiki root (default: parent of tools/)")
     piz.add_argument("source", choices=["eczoo", "qemzoo"], help="which catalog to import")
     piz.add_argument("ids", nargs="*", help="specific entry ids (default: eczoo=flagship set, qemzoo=all)")
-    piz.add_argument("--all", action="store_true", help="eczoo: import the whole catalog (quantum codes by default)")
+    piz.add_argument("--all", action="store_true",
+                     help="eczoo: import the whole catalog (quantum codes by default); "
+                          "qemzoo: import all 6 catalogs instead of just techniques")
     piz.add_argument("--include-classical", action="store_true",
                      help="eczoo --all: also import the ~450 purely-classical codes")
+    piz.add_argument("--catalog", choices=["techniques", "noise", "extrapolation",
+                                           "noise-scaling", "noise-learning", "applications"],
+                     default=None, help="qemzoo: import one specific catalog (default: techniques)")
     piz.add_argument("--refresh", action="store_true", help="git pull the local zoo clone before importing")
     piz.add_argument("--dry-run", action="store_true", help="show what would be written, write nothing")
     piz.add_argument("--force", action="store_true", help="overwrite existing imported pages")

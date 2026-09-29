@@ -2,7 +2,7 @@
 type: concept
 name: N-Representability Constraints
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - fermionic constraints
@@ -18,11 +18,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: n-representability
+qem_catalog: techniques
 ---
 
 # N-Representability Constraints
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=n-representability) (`id: n-representability`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=n-representability) (`id: n-representability`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -38,6 +39,10 @@ Leverages known constraints from quantum chemistry and many-body physics on redu
 | Sampling overhead | Minimal (classical post-processing only) |
 | Noise model required | None; uses physical constraints |
 | Applicability | Primarily fermionic/quantum chemistry problems |
+
+## Note
+
+This is a family of constraint-based techniques rather than a single specific protocol.
 
 ## Related techniques
 

@@ -2,7 +2,7 @@
 type: concept
 name: Operator Decoherence Renormalization
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - ODR
@@ -20,11 +20,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: odr
+qem_catalog: techniques
 ---
 
 # Operator Decoherence Renormalization
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=odr) (`id: odr`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=odr) (`id: odr`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 

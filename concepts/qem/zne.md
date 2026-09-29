@@ -2,7 +2,7 @@
 type: concept
 name: Zero-Noise Extrapolation
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - ZNE
@@ -23,11 +23,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: zne
+qem_catalog: techniques
 ---
 
 # Zero-Noise Extrapolation
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=zne) (`id: zne`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=zne) (`id: zne`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -57,7 +58,7 @@ Intentionally increases the noise level of a quantum circuit (e.g., by stretchin
 ## References
 
 - K. Temme, S. Bravyi, J. M. Gambetta. *Error Mitigation for Short-Depth Quantum Circuits*. Physical Review Letters, 2017 [arXiv:1612.02058](https://arxiv.org/abs/1612.02058) [doi](https://doi.org/10.1103/PhysRevLett.119.180509)
-- Y. Li, S. C. Benjamin. *Efficient Variational Quantum Simulator Incorporating Active Error Minimisation*. Physical Review X, 2017 [arXiv:1611.09301](https://arxiv.org/abs/1611.09301) [doi](https://doi.org/10.1103/PhysRevX.7.021050)
+- Y. Li, S. C. Benjamin. *Efficient Variational Quantum Simulator Incorporating Active Error Minimization*. Physical Review X, 2017 [arXiv:1611.09301](https://arxiv.org/abs/1611.09301) [doi](https://doi.org/10.1103/PhysRevX.7.021050)
 - S. Endo, S. C. Benjamin, Y. Li. *Practical Quantum Error Mitigation for Near-Future Applications*. Physical Review X, 2018 [arXiv:1712.09271](https://arxiv.org/abs/1712.09271) [doi](https://doi.org/10.1103/PhysRevX.8.031027)
 - Y. Kim, A. Eddins, S. Anand, K. X. Wei, E. van den Berg, S. Rosenblatt, H. Nayfeh, Y. Wu, M. Zaletel, K. Temme, A. Kandala. *Evidence for the Utility of Quantum Computing Before Fault Tolerance*. Nature, 2023 [doi](https://doi.org/10.1038/s41586-023-06096-3)
 - R. Majumdar, P. Rivero, F. Metz, A. Hasan, D. S. Wang. *Best Practices for Quantum Error Mitigation with Digital Zero-Noise Extrapolation*. IEEE International Conference on Quantum Computing and Engineering (QCE), 2023 [arXiv:2307.05203](https://arxiv.org/abs/2307.05203) [doi](https://doi.org/10.1109/QCE57702.2023.00102)

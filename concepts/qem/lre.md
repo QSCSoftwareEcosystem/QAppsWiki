@@ -2,7 +2,7 @@
 type: concept
 name: Layerwise Richardson Extrapolation
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - LRE
@@ -10,6 +10,7 @@ aliases:
 domains:
 - quantum-error-correction
 related_concepts:
+- concepts/qem/kik
 - concepts/qem/zne
 sources:
 - raw/qem-zoo.md
@@ -17,11 +18,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: lre
+qem_catalog: techniques
 ---
 
 # Layerwise Richardson Extrapolation
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=lre) (`id: lre`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=lre) (`id: lre`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -34,13 +36,14 @@ Generalizes zero-noise extrapolation by scaling noise independently at each laye
 | Property | Value |
 |---|---|
 | Bias | Reduced compared to global ZNE at the same extrapolation order |
-| Sampling overhead | \(\binom{d + k - 1}{k}\) circuit variations for depth \(d\) and order \(k\); exponential in order |
+| Sampling overhead | \(\binom{d + k}{k}\) circuit variations for \(d\) layers and extrapolation order \(k\); polynomial in \(d\), exponential in \(k\) |
 | Noise model required | Minimal; requires ability to scale noise at each layer independently |
 | Applicability | Layered circuits (e.g., variational ansatze, Trotterized evolution) |
 
 ## Related techniques
 
 - [[concepts/qem/zne]] — LRE is a multivariate generalization of ZNE
+- [[concepts/qem/kik]] — Layered KIK also amplifies noise layer by layer, but builds each layer's amplification from a pulse inverse rather than from folding
 
 ## References
 

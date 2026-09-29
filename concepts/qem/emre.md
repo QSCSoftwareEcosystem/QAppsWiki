@@ -2,7 +2,7 @@
 type: concept
 name: Error Mitigation by Restricted Evolution
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - EMRE
@@ -20,11 +20,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: emre
+qem_catalog: techniques
 ---
 
 # Error Mitigation by Restricted Evolution
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=emre) (`id: emre`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=emre) (`id: emre`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -50,4 +51,4 @@ Trades unbiasedness for constant sampling overhead by retaining only the positiv
 
 ## References
 
-- G. Saxena, T. H. Kyaw. *Error Mitigation by Restricted Evolution*. arXiv preprint, 2024 [arXiv:2409.06636](https://arxiv.org/abs/2409.06636) [doi](https://doi.org/10.48550/arXiv.2409.06636)
+- G. Saxena, T. H. Kyaw. *Constant Runtime Error Mitigation via Restricted Evolution*. npj Quantum Information, 2026 [arXiv:2409.06636](https://arxiv.org/abs/2409.06636) [doi](https://doi.org/10.1038/s41534-026-01284-1)

@@ -768,23 +768,42 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 <!-- END imported:eczoo -->
 
 <!-- BEGIN imported:qemzoo -->
-## QEM Techniques (imported from the QEM Zoo)
+## QEM Zoo (techniques, noise, extrapolation, noise-scaling, noise-learning, applications)
 
 - [[concepts/qem/accreditation]]: Accreditation.
+- [[concepts/qem/adaptive-extrapolation]]: Adaptive Extrapolation.
+- [[concepts/qem/amplitude-damping]]: Amplitude Damping.
+- [[concepts/qem/bit-flip]]: Bit Flip.
+- [[concepts/qem/bit-phase-flip]]: Bit-Phase Flip.
 - [[concepts/qem/bnzne]]: Benchmarked-Noise Zero-Noise Extrapolation.
 - [[concepts/qem/cdr]]: Clifford Data Regression.
+- [[concepts/qem/circuit-unoptimization]]: Circuit Unoptimization.
+- [[concepts/qem/coherent-errors]]: Coherent Errors.
+- [[concepts/qem/crosstalk]]: Crosstalk.
 - [[concepts/qem/crosstalk-mitigation]]: Crosstalk-Adaptive Scheduling.
+- [[concepts/qem/cycle-benchmarking]]: Cycle Benchmarking.
 - [[concepts/qem/dd]]: Dynamical Decoupling.
+- [[concepts/qem/decoherence]]: Decoherence.
+- [[concepts/qem/dephasing]]: Dephasing.
+- [[concepts/qem/depolarizing]]: Depolarizing.
 - [[concepts/qem/dual-state-purification]]: Dual-State Purification.
 - [[concepts/qem/echo-verification]]: Echo Verification.
 - [[concepts/qem/emre]]: Error Mitigation by Restricted Evolution.
+- [[concepts/qem/erasure]]: Erasure.
+- [[concepts/qem/exponential-extrapolation]]: Exponential Extrapolation.
 - [[concepts/qem/fcqem]]: Fictitious Copy Quantum Error Mitigation.
+- [[concepts/qem/gate-set-tomography]]: Gate Set Tomography.
 - [[concepts/qem/gse]]: Generalized Subspace Expansion.
+- [[concepts/qem/hamiltonian-simulation]]: Hamiltonian Simulation.
 - [[concepts/qem/hemre]]: Hybrid Error Mitigation by Restricted Evolution.
 - [[concepts/qem/ide]]: Infinite Distance Extrapolation.
+- [[concepts/qem/identity-insertion]]: Identity Insertion.
 - [[concepts/qem/kik]]: K-Inverse-K (KIK).
+- [[concepts/qem/leakage]]: Leakage.
+- [[concepts/qem/linear-extrapolation]]: Linear Extrapolation.
 - [[concepts/qem/logical-shadow-tomography]]: Logical Shadow Tomography.
 - [[concepts/qem/lre]]: Layerwise Richardson Extrapolation.
+- [[concepts/qem/many-body-chaos]]: Many-Body Quantum Chaos.
 - [[concepts/qem/measurement-error-mitigation]]: Readout Error Mitigation.
 - [[concepts/qem/ml-qem]]: Machine Learning QEM.
 - [[concepts/qem/n-representability]]: N-Representability Constraints.
@@ -795,12 +814,24 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 - [[concepts/qem/partial-pauli-twirling]]: Partial Pauli Twirling.
 - [[concepts/qem/pauli-twirling]]: Pauli Twirling.
 - [[concepts/qem/pea]]: Probabilistic Error Amplification.
+- [[concepts/qem/pea-amplification]]: Probabilistic Error Amplification.
 - [[concepts/qem/pec]]: Probabilistic Error Cancellation.
+- [[concepts/qem/phase-flip]]: Phase Flip.
 - [[concepts/qem/pie]]: Physics-Inspired Extrapolation.
+- [[concepts/qem/poly-exponential]]: Poly-Exponential Extrapolation.
+- [[concepts/qem/polynomial-extrapolation]]: Polynomial Extrapolation.
 - [[concepts/qem/pseudo-twirling]]: Pseudo Twirling.
+- [[concepts/qem/pulse-stretching]]: Pulse Stretching.
 - [[concepts/qem/purification]]: Virtual Distillation.
+- [[concepts/qem/qaoa]]: Quantum Approximate Optimization Algorithm.
 - [[concepts/qem/qed]]: Quantum Error Detection.
+- [[concepts/qem/quantum-machine-learning]]: Quantum Machine Learning.
+- [[concepts/qem/quantum-volume]]: Quantum Volume.
+- [[concepts/qem/randomized-benchmarking]]: Randomized Benchmarking.
+- [[concepts/qem/richardson-extrapolation]]: Richardson Extrapolation.
 - [[concepts/qem/robust-shadows]]: Robust Shadow Estimation.
+- [[concepts/qem/spam]]: SPAM Errors.
+- [[concepts/qem/sparse-pauli-lindblad]]: Sparse Pauli-Lindblad Learning.
 - [[concepts/qem/sqd]]: Sample-Based Quantum Diagonalization.
 - [[concepts/qem/subspace-expansion]]: Quantum Subspace Expansion.
 - [[concepts/qem/symmetric-clifford-twirling]]: Symmetric Clifford Twirling.
@@ -808,5 +839,9 @@ domains. Raw sources live under `raw/`; synthesized wiki knowledge lives under
 - [[concepts/qem/symmetry-verification]]: Symmetry Verification.
 - [[concepts/qem/tem]]: Tensor Network Error Mitigation.
 - [[concepts/qem/trex]]: Twirled Readout Error eXtinction.
+- [[concepts/qem/unitary-folding]]: Unitary Folding.
+- [[concepts/qem/utility-scale]]: Utility-Scale Experiments.
+- [[concepts/qem/virtual-noise-scaling]]: Virtual Noise Scaling.
+- [[concepts/qem/vqe]]: Variational Quantum Eigensolver.
 - [[concepts/qem/zne]]: Zero-Noise Extrapolation.
 <!-- END imported:qemzoo -->

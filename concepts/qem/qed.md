@@ -2,7 +2,7 @@
 type: concept
 name: Quantum Error Detection
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - QED
@@ -23,11 +23,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: qed
+qem_catalog: techniques
 ---
 
 # Quantum Error Detection
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=qed) (`id: qed`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=qed) (`id: qed`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -58,7 +59,7 @@ Encodes logical qubits into a quantum error-detecting code (e.g., a $[\![ n, k, 
 - A. D. Córcoles, E. Magesan, S. J. Srinivasan, A. W. Cross, M. Steffen, J. M. Gambetta, J. M. Chow. *Demonstration of a Quantum Error Detection Code Using a Square Lattice of Four Superconducting Qubits*. Nature Communications, 2015 [doi](https://doi.org/10.1038/ncomms7979)
 - N. M. Linke, M. Gutierrez, K. A. Landsman, C. Figgatt, S. Debnath, K. R. Brown, C. Monroe. *Fault-Tolerant Quantum Error Detection*. Science Advances, 2017 [arXiv:1611.06946](https://arxiv.org/abs/1611.06946) [doi](https://doi.org/10.1126/sciadv.1701074)
 - J. R. McClean, Z. Jiang, N. C. Rubin, R. Babbush, H. Neven. *Decoding Quantum Errors with Subspace Expansions*. Nature Communications, 2020 [arXiv:1903.05786](https://arxiv.org/abs/1903.05786) [doi](https://doi.org/10.1038/s41467-020-14341-w)
-- M. Urbanek, B. Nachman, W. A. de Jong. *Error Detection on Quantum Computers Improves Accuracy of Chemical Calculations*. Physical Review A, 2020 [arXiv:1910.00129](https://arxiv.org/abs/1910.00129) [doi](https://doi.org/10.1103/PhysRevA.102.022427)
+- M. Urbanek, B. Nachman, W. A. de Jong. *Error Detection on Quantum Computers Improving the Accuracy of Chemical Calculations*. Physical Review A, 2020 [arXiv:1910.00129](https://arxiv.org/abs/1910.00129) [doi](https://doi.org/10.1103/PhysRevA.102.022427)
 - M. Gong, X. Yuan, S. Wang, Y. Wu, Y. Zhao, C. Zha, S. Li, Z. Zhang, Q. Zhao, Y. Liu, F. Liang, J. Lin, Y. Xu, H. Deng, H. Rong, H. Lu, S. C. Benjamin, C.-Z. Peng, X. Ma, Y.-A. Chen, X. Zhu, J.-W. Pan. *Experimental Exploration of Five-Qubit Quantum Error Correcting Code with Superconducting Qubits*. National Science Review, 2022 [arXiv:1907.04507](https://arxiv.org/abs/1907.04507) [doi](https://doi.org/10.1093/nsr/nwab011)
 - C. N. Self, M. Benedetti, D. Amaro. *Protecting Expressive Circuits with a Quantum Error Detection Code*. Nature Physics, 2024 [arXiv:2211.06703](https://arxiv.org/abs/2211.06703) [doi](https://doi.org/10.1038/s41567-023-02282-2)
 - E. Chertkov, A. C. Potter, D. Hayes, M. Foss-Feig. *Error Detection Without Post-Selection in Adaptive Quantum Circuits*. arXiv preprint, 2025 [arXiv:2509.25326](https://arxiv.org/abs/2509.25326)

@@ -2,7 +2,7 @@
 type: concept
 name: Readout Error Mitigation
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - REM
@@ -19,11 +19,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: measurement-error-mitigation
+qem_catalog: techniques
 ---
 
 # Readout Error Mitigation
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=measurement-error-mitigation) (`id: measurement-error-mitigation`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=measurement-error-mitigation) (`id: measurement-error-mitigation`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
@@ -36,7 +37,7 @@ Corrects for errors occurring during the final measurement (readout) stage of a 
 | Property | Value |
 |---|---|
 | Bias | Zero (in principle) if the assignment matrix is exact |
-| Sampling overhead | Grows exponentially with measurement fault rate |
+| Sampling overhead | Variance inflated by \(\|A^{-1}\|^2\), which grows exponentially in the number of qubits times the readout error rate |
 | Noise model required | Measurement-only; characterized via \(2^n\) calibration circuits (or fewer with tensor product approximation) |
 | Scalability | Full matrix inversion is \(O(2^n)\); tensor product or correlated subsets used in practice |
 

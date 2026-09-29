@@ -125,6 +125,72 @@ def test_qemzoo_page_renders_valid_concept(tmp_path):
     assert not errors, errors
 
 
+NOISE_ENTRY = {
+    "id": "depolarizing", "name": "Depolarizing", "category": "incoherent",
+    "aliases": ["depolarizing channel"],
+    "summary": "Symmetric noise driving the state toward the maximally mixed state.",
+    "physical_origin": "Interaction with a high-temperature environment.",
+    "kraus_operators": r"\(K_0 = \sqrt{1-p}\,I\)",
+    "mitigated_by": ["zne", "pec"],
+    "references": ["giurgica2020"],
+}
+
+APPLICATION_ENTRY = {
+    "id": "quantum-volume", "name": "Quantum Volume", "category": "benchmarking",
+    "summary": "A hardware-agnostic circuit-depth benchmark.",
+    "qem_techniques": ["zne", "dd"],
+    "key_results": ["First demonstration of increased effective QV using ZNE."],
+    "references": ["giurgica2020"],
+}
+
+
+def test_qemzoo_page_renders_noise_catalog_with_generic_fields_and_relations():
+    # zne not in batch here (unlike the cross-catalog batch a real import
+    # would build) -> both mitigated_by entries render as external links.
+    rel_path, md = import_zoo.qemzoo_page(NOISE_ENTRY, QEM_REFS, "2026-09-29",
+                                          catalog="noise")
+    assert rel_path == "concepts/qem/depolarizing.md"
+    assert "qem_catalog: noise" in md
+    assert "catalog: noise" in md                # provenance line
+    assert "## Physical origin" in md             # generic field, own section
+    assert "## Kraus operators" in md
+    assert "$K_0 = \\sqrt{1-p}\\,I$" in md         # tex_to_md applied to the value
+    assert "mitigated by" in md
+    assert "qemzoo.com/technique.html?id=zne" in md
+    assert "qemzoo.com/technique.html?id=pec" in md
+
+
+def test_qemzoo_cross_catalog_batch_wikilinks_resolve():
+    # A real import batches ids across all 6 catalogs, so a noise entry's
+    # mitigated_by can point at a technique in the same run.
+    batch = frozenset({"depolarizing", "zne"})
+    _rel, md = import_zoo.qemzoo_page(NOISE_ENTRY, QEM_REFS, "2026-09-29",
+                                      batch, catalog="noise")
+    assert "[[concepts/qem/zne]]" in md
+    assert "concepts/qem/zne" in md  # also in related_concepts frontmatter
+
+
+def test_qemzoo_page_validates_cleanly(tmp_path):
+    rel_path, md = import_zoo.qemzoo_page(NOISE_ENTRY, QEM_REFS, "2026-09-29", catalog="noise")
+    (tmp_path / import_zoo.SOURCE_PAGE["qemzoo"]).parent.mkdir(parents=True, exist_ok=True)
+    (tmp_path / import_zoo.SOURCE_PAGE["qemzoo"]).write_text("x", encoding="utf-8")
+    page = _validate_markdown(tmp_path, rel_path, md)
+    edge_list, synth = edges.derive_edges([page], tmp_path)
+    graph = build.build_graph([page["node"]], edge_list, synth)
+    findings = validate.validate([page], graph, tmp_path)
+    errors = [f for f in findings if f["level"] == "ERROR"]
+    assert not errors, errors
+
+
+def test_qemzoo_page_renders_applications_catalog(tmp_path):
+    rel_path, md = import_zoo.qemzoo_page(APPLICATION_ENTRY, QEM_REFS, "2026-09-29",
+                                          catalog="applications")
+    assert rel_path == "concepts/qem/quantum-volume.md"
+    assert "## Key results" in md
+    assert "uses" in md                            # qem_techniques relation label
+    assert "qemzoo.com/technique.html?id=zne" in md
+
+
 def test_is_quantum_includes_loose_top_level_codes(tmp_path):
     # eczoo_data keeps a few quantum codes (EA/operator-algebra QECC variants) as
     # loose files directly under codes/ rather than under codes/quantum/.

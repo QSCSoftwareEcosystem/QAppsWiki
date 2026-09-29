@@ -2,7 +2,7 @@
 type: concept
 name: Pseudo Twirling
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - pseudo-Pauli twirling
@@ -19,11 +19,12 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: pseudo-twirling
+qem_catalog: techniques
 ---
 
 # Pseudo Twirling
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=pseudo-twirling) (`id: pseudo-twirling`, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=pseudo-twirling) (`id: pseudo-twirling`, catalog: techniques, category: suppression). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 

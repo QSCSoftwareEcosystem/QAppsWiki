@@ -2,7 +2,7 @@
 type: concept
 name: Sample-Based Quantum Diagonalization
 status: provisional
-updated: '2026-06-15'
+updated: '2026-09-29'
 concept_kind: qec
 aliases:
 - SQD
@@ -21,15 +21,16 @@ sources:
 provenance_status: needs-verification
 imported_from: qem-zoo
 imported_id: sqd
+qem_catalog: techniques
 ---
 
 # Sample-Based Quantum Diagonalization
 
-> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=sqd) (`id: sqd`, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
+> **Imported by `qappswiki import-zoo qemzoo`** from the [QEM Zoo](https://qemzoo.com/technique.html?id=sqd) (`id: sqd`, catalog: techniques, category: mitigation). Public domain (The Unlicense); cited as the QEM Zoo (qemzoo.com), public domain (The Unlicense). This is a `needs-verification` page — confirm against the references below.
 
 ## Summary
 
-Constructs a Krylov subspace by applying powers of the Hamiltonian (via time evolution) to a reference state, then uses measurement samples to build matrix representations for classical diagonalization. Unlike phase estimation, SQD avoids deep circuits by shifting computational burden to classical post-processing. The method achieves polynomial convergence guarantees while remaining practical for near-term quantum hardware.
+Samples computational-basis configurations from states prepared on hardware and diagonalizes the Hamiltonian classically in the subspace those configurations span. In the Krylov variant (SKQD) the sampled states come from real-time evolution of a reference state, which keeps circuits far shallower than phase estimation. Noise enters only through which configurations are sampled, and is handled by self-consistent configuration recovery that repairs samples violating known symmetries such as particle number; convergence is provable in polynomial time when the ground state is sparse in the measurement basis.
 
 (source: raw/qem-zoo.md)
 
@@ -37,7 +38,7 @@ Constructs a Krylov subspace by applying powers of the Hamiltonian (via time evo
 
 | Property | Value |
 |---|---|
-| Bias | Controlled; converges to ground state with increasing Krylov dimension |
+| Bias | Variational; the subspace energy upper-bounds the true ground-state energy and converges as the sampled subspace grows |
 | Sampling overhead | Moderate; requires samples from multiple Krylov states |
 | Noise model required | None |
 | Applicability | Ground state estimation for many-body systems; quantum chemistry |
